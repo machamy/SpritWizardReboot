@@ -85,6 +85,10 @@ public class Enemy : MonoBehaviour
     {
         enemyTurnChannelSO.OnTurnEventRaised += Execute;
     }
+    private void OnDisable()
+    {
+        enemyTurnChannelSO.OnTurnEventRaised -= Execute;
+    }
     private void AllBehaviourQueueUI()
     {
         foreach (Transform child in _queueObj.transform)
@@ -214,18 +218,10 @@ public class Enemy : MonoBehaviour
         //TODO
         //몬스터 데미지 구현
         _hp -= dmg;
-        CheckState();
-    }
-
-
-    // 테스트 위한 임시 코드들
-    [ContextMenu ("Damage")]
-    public void Damage()
-    {
-        _hp -= 4;
-        Debug.Log(_hp);
-
-        // 데미지 입었으면 상태 체크
+        if (_hp <= 0)
+        {
+            Destroy(gameObject);
+        }
         CheckState();
     }
     [ContextMenu("Reset")]
