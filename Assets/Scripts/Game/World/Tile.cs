@@ -34,6 +34,11 @@ namespace Game.World
             entities.Add(entity);
         }
         
+        public void RemoveEntity(Entity.Entity entity)
+        {
+            entities.Remove(entity);
+        }
+        
         #region Debug
 
         private float colorDuration = -10f;

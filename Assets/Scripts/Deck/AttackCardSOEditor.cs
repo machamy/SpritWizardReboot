@@ -32,6 +32,7 @@ public class AttackCardSOEditor : Editor
         if (cardSO.attackType == AttackType.projectile)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("pierce"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("projectilePrefab"));
         }
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("move"));

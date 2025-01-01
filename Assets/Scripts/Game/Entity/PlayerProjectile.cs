@@ -38,14 +38,15 @@ namespace Game.Entity
 
         public void OnTileEntered(Tile tile)
         {
-            tile.ShowDebugColor(Color.red, 0.5f);
+            tile.ShowDebugColor(new Color(1f, 0, 0, 0.5f), 0.5f);
             if (tile.IsClear())
                 return;
             foreach (var e in tile.GetEntities())
             {
                 if (e.CompareTag("Enemy"))
                 {
-                   //TODO 적 피격 처리 e.GetComponent<Enemy>()
+                    Enemy enemy = e.GetComponent<Enemy>();
+                    enemy.OnHit(dmg);
                    Debug.Log($"player projectile hit enemy ${e.name} with damage {dmg}");
                    this.penestration--;
                 }
