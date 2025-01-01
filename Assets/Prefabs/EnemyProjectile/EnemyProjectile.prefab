@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1760608572060973072}
   - component: {fileID: 6820136306896380589}
   m_Layer: 0
-  m_Name: AttackProjectile
+  m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTurnEvent: {fileID: 11400000, guid: e3bbc31977c14bb4494865e038c4ac9d, type: 2}
+  playerTurnExitEvent: {fileID: 11400000, guid: 74a9d209f490a174d9899b88ba77234d, type: 2}
 --- !u!114 &6820136306896380589
 MonoBehaviour:
   m_ObjectHideFlags: 0
