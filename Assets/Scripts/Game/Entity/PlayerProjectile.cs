@@ -13,7 +13,7 @@ namespace Game.Entity
         private Vector3 _direction;
 
         
-        public void Initialize(Define.Direction direction, float dmg, int penestration = 1)
+        public void Initialize(Direction direction, float dmg, int penestration = 1)
         {
             _direction = (Vector2)direction.ToVectorInt();
             _direction.Normalize();
@@ -38,7 +38,7 @@ namespace Game.Entity
 
         public void OnTileEntered(Tile tile)
         {
-            tile.GetComponent<SpriteRenderer>().color = Color.red;
+            tile.ShowDebugColor(Color.red, 0.5f);
             if (tile.IsClear())
                 return;
             foreach (var e in tile.GetEntities())
