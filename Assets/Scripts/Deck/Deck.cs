@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    private List<CardSO> allCards = new List<CardSO>();
+    public List<CardSO> allCards { get; private set; } = new List<CardSO>();
     
 
     void Start()
