@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Game.World;
 using UnityEngine;
 
@@ -10,29 +11,55 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Board : MonoBehaviour
 {
+     [Serializable]
+     public class TileLine
+     {
+          public Tile[] tiles;
+     }
+     
      public static Board Instance { get; private set; }
      
      [SerializeField] private Vector2Int gridSize;
      public Vector2Int GridSize => gridSize;
      private Tile[][] _tilemap;
-     private Grid _grid;
+     [SerializeField] private Grid _grid;
      
      private void Awake()
      {
           if (Instance == null)
           {
                Instance = this;
+               _grid = GetComponent<Grid>();
           }
           else
           {
                Destroy(gameObject);
           }
      }
-     
+     [SerializeField] private TileLine[] tileLines;
      public void Initialize(Tile[][] tilemap)
      {
-          _tilemap = tilemap;
-          gridSize = new Vector2Int(tilemap.Length, tilemap[0].Length);
+          tileLines = new TileLine[tilemap.Length];
+          for (int i = 0; i < tilemap.Length; i++)
+          {
+               tileLines[i] = new TileLine();
+               tileLines[i].tiles = tilemap[i];
+          }
+          gridSize = new Vector2Int(tilemap[0].Length, tilemap.Length);
+     }
+
+     private void Start()
+     {
+          _tilemap = new Tile[gridSize.y][];
+          for (int i = 0; i < gridSize.y; i++)
+          {
+               _tilemap[i] = new Tile[gridSize.x];
+               for (int j = 0; j < gridSize.x; j++)
+               {
+                    _tilemap[i][j] = tileLines[i].tiles[j];
+                    _tilemap[i][j].Initialize(new Vector2Int(i, j));
+               }
+          }
      }
 
      /// <summary>
@@ -48,7 +75,7 @@ public class Board : MonoBehaviour
                Debug.Log($"Cell out of bounds {cell} (input : {worldPos})");
                return null;
           }
-          return _tilemap[cell.x][cell.y];
+          return _tilemap[cell.y][cell.x];
      }
 
      public Tile GetTile(Vector2Int coordinates) => CellToTile(coordinates);
@@ -65,7 +92,7 @@ public class Board : MonoBehaviour
                Debug.Log($"Cell out of bounds {cell}");
                return null;
           }
-          return _tilemap[cell.x][cell.y];
+          return  _tilemap[cell.y][cell.x];
      }
      
      /// <summary>
@@ -87,6 +114,80 @@ public class Board : MonoBehaviour
      public Vector3 CellToWorld(Vector2Int cell)
      {
           return _grid.CellToWorld(new Vector3Int(cell.x, cell.y, 0));
+     }
+     
+     /// <summary>
+     ///  셀 좌표의 중심을 월드 좌표로 변환
+     /// </summary>
+     /// <param name="cell"></param>
+     /// <returns></returns>
+     public Vector3 CellCenterToWorld(Vector2Int cell)
+     {
+          return _grid.GetCellCenterWorld(new Vector3Int(cell.x, cell.y, 0));
+     }
+     
+     /// <summary>
+     /// 해당 좌표 중심을 기준으로, 사각형 크기만큼 타일을 받아온다.
+     /// raidus가 1이면 3x3, 2면 5x5
+     /// </summary>
+     /// <param name="center"></param>
+     /// <param name="radius">0~N의 값.</param>
+     /// <returns></returns>
+     public List<Tile> GetTilesSquare(Vector2Int center, int radius)
+     {
+          List<Tile> tiles = new List<Tile>();
+          for (int x = center.x - radius; x <= center.x + radius; x++)
+          {
+               for (int y = center.y - radius; y <= center.y + radius; y++)
+               {
+                    if (x < 0 || x >= gridSize.x || y < 0 || y >= gridSize.y)
+                    {
+                         continue;
+                    }
+                    tiles.Add(_tilemap[y][x]);
+               }
+          }
+          return tiles;
+     }
+
+     public List<Tile> GetTilesLine(Vector2Int start, Direction direction,int distance)
+     {
+          List<Tile> tiles = new List<Tile>();
+          Vector2Int dir = direction.ToVectorInt();
+          for (int i = 0; i < distance; i++)
+          {
+               Vector2Int pos = start + dir * i;
+               if (pos.x < 0 || pos.x >= gridSize.x || pos.y < 0 || pos.y >= gridSize.y)
+               {
+                    break;
+               }
+               tiles.Add(_tilemap[pos.y][pos.x]);
+          }
+          return tiles;
+     }
+
+     public List<Tile> GetTilesBeam(Vector2Int start, Direction direction, int distance, int width)
+     {
+          List<Tile> tiles;
+          tiles = GetTilesLine(start, direction, distance);
+
+          Direction deltaDirection = direction.BeamWidthDirection();
+          Vector2Int deltaVector = deltaDirection.ToVectorInt();
+          Vector2Int oppositeVector;
+          if (direction.IsDiagonal())
+          {
+               oppositeVector = deltaDirection.Turn90ClockWise().ToVectorInt();
+          }
+          else
+          {
+               oppositeVector = deltaDirection.Opposite().ToVectorInt();
+          }
+          for(int i = 2; i <= width; i++)
+          {
+               Vector2Int startPos = start + (i % 2 == 0 ? deltaVector : oppositeVector) * (i/2);
+               tiles.AddRange(GetTilesLine(startPos, direction, distance));
+          }
+          return tiles;
      }
      
      #if UNITY_EDITOR

@@ -7,7 +7,7 @@ namespace Game.World
 {
     public class Tile : MonoBehaviour
     {
-        private Vector2Int coordinates;
+        [SerializeField] private Vector2Int coordinates;
         private List<Entity.Entity> entities = new List<Entity.Entity>();
         public Vector2Int Coordinates
         {

@@ -13,7 +13,7 @@ namespace Game.Entity
         private Vector3 _direction;
 
         
-        public void Initialize(Define.Direction direction, float dmg, int penestration = 1)
+        public void Initialize(Direction direction, float dmg, int penestration = 1)
         {
             _direction = (Vector2)direction.ToVectorInt();
             _direction.Normalize();
