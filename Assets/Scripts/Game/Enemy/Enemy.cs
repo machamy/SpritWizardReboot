@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
 
 
     public TurnEventChannelSO enemyTurnChannelSO;
+    public TurnEventChannelSO playerTurnExitEvent;
 
     private void Start()
     {
@@ -84,6 +85,10 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         enemyTurnChannelSO.OnTurnEventRaised += Execute;
+    }
+    private void OnDisable()
+    {
+        enemyTurnChannelSO.OnTurnEventRaised -= Execute;
     }
     private void AllBehaviourQueueUI()
     {
@@ -214,19 +219,22 @@ public class Enemy : MonoBehaviour
         //TODO
         //몬스터 데미지 구현
         _hp -= dmg;
+        if (_hp <= 0)
+        {
+            Ondeath();
+            playerTurnExitEvent.OnTurnEventRaised += OnPlayerturnEnd;
+        }
         CheckState();
     }
 
-
-    // 테스트 위한 임시 코드들
-    [ContextMenu ("Damage")]
-    public void Damage()
+    private void Ondeath()
     {
-        _hp -= 4;
-        Debug.Log(_hp);
-
-        // 데미지 입었으면 상태 체크
-        CheckState();
+        //애니메이션 출력
+    }
+    private void OnPlayerturnEnd(int turn)
+    {
+        playerTurnExitEvent.OnTurnEventRaised -= OnPlayerturnEnd;
+        Destroy(gameObject);
     }
     [ContextMenu("Reset")]
     public void Reset()

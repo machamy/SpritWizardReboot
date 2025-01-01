@@ -64,6 +64,10 @@ namespace Test
             {
                 //TODO 딜넣기
                 tile.ShowDebugColor(Color.red, 1f);
+                foreach (var e in tile.GetEntities())
+                {
+                    e.GetComponent<Enemy>().OnHit(1);
+                }
             }
             if (changeDirection)
                 direction = (Direction)((int)++direction % (int)Direction.MAX);

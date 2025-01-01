@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DefaultNamespace;
 using Game.World;
 using UnityEngine;
@@ -24,8 +24,8 @@ namespace Game.Entity
         public void Initialize(Board board, Vector2Int position)
         {
             _board = board;
-            _position = position;
             _isInitialized = true;
+            MoveToImmediate(position);
         }
         
         public void MoveTo(Vector2Int position)

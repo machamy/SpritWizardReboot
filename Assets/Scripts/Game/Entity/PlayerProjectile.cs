@@ -51,7 +51,7 @@ namespace Game.Entity
                    this.penestration--;
                 }
 
-                if (penestration <= 0)
+                if (penestration < 0)
                 {
                     break;
                 }

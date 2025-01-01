@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e890d303f36f5449bfdcfa87d93a9ef, type: 3}
   m_Name: "1\uD398 \uC6D0\uAC70\uB9AC \uACF5\uACA9 2"
   m_EditorClassIdentifier: 
-  attackRange: 7
-  attackDamage: 0
+  id: 0
+  action: 0
+  value: 1
+  enemyProjectile: {fileID: 1760608572060973072, guid: 92dc3336fad5f16489bdf09129726409, type: 3}
