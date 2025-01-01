@@ -38,7 +38,7 @@ namespace Game.Entity
 
         public void OnTileEntered(Tile tile)
         {
-            tile.GetComponent<SpriteRenderer>().color = Color.red;
+            tile.ShowDebugColor(Color.red, 0.5f);
             if (tile.IsClear())
                 return;
             foreach (var e in tile.GetEntities())
