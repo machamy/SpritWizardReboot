@@ -7,6 +7,7 @@ public class CardSO : ScriptableObject
     public string description;
     public CardType cardType;
     public AttackType attackType;
+    public int moveDistance = 0;
     public int cost = 1;
     public CalculateType damageCalculateType;
     public int damage = 1;
