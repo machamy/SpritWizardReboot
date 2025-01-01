@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Test;
 
 public class CardManager : MonoBehaviour
 {
@@ -53,6 +54,10 @@ public class CardManager : MonoBehaviour
         }
         if (card.cardType == CardType.Attack)
         {
+            Dictionary<string, int> runeEffect = rune.GetRuneEffect(); // key -> damage, attackCnt
+            int damage = card.damage + runeEffect["damage"];
+            int attackCnt = card.attackCnt + runeEffect["attackCnt"];
+
             if (card.attackType == AttackType.Ice)
             {
                 Debug.Log("얼음공격");
@@ -75,5 +80,7 @@ public class CardManager : MonoBehaviour
             rune.AddRuneEffect(card.damageCalculateType, card.damage, card.attackCntCalculateType, card.attackCnt);
         }
         else Debug.Log("카드타입오류");
+
+        CardDraw();
     }
 }
