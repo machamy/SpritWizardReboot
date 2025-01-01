@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Game.Entity;
 using Game.World;
+using Unity.Mathematics.Geometry;
 using UnityEngine;
+using Math = System.Math;
 
 namespace Game.Player
 {
@@ -39,6 +41,7 @@ namespace Game.Player
             yield return new WaitForSeconds(0.2f);
             Direction direction = Direction.R;
             int cnt = card.attackCnt;
+            int spreadMax = Math.Min(card.spreadRange,(int)Direction.MAX);
             while (cnt-- > 0)
             {
                 if (card.attackType == AttackType.projectile)
@@ -78,7 +81,7 @@ namespace Game.Player
                 
                 if (card.attackSpread == AttackSpread.radial)
                 {
-                    direction = (Direction) ((int) ++direction % (int) Direction.MAX);
+                    direction = (Direction) ((int) ++direction % spreadMax);
                     if (direction == Direction.R)
                     {
                         yield return new WaitForSeconds(0.75f);
