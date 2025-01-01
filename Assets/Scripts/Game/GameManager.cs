@@ -1,6 +1,7 @@
 ﻿
 using System;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,15 +38,18 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    
+    [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private float MaxHP = 100;
     [SerializeField] private FloatVariableSO gateHP;
+    
+    [SerializeField] private GUIManager guiManager;
+    public GUIManager GUIManager => guiManager;
     public float GateHP
     {
         get => gateHP.Value;
         set => gateHP.Value = value;
     }
-
+    
     private void Start()
     {
         GateHP = MaxHP;
