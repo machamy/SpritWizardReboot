@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62314ea8891aad54abb534473cee580d, type: 3}
-  m_Name: EnemyMeleePattern 1
+  m_Name: "1\uD398 \uC6D0\uAC70\uB9AC \uD328\uD134 2"
   m_EditorClassIdentifier: 
-  _enemyBehaviors:
-  - {fileID: 11400000, guid: 83fa6a51aaa0a3d4890040169dcbfc2f, type: 2}
-  - {fileID: 11400000, guid: 83fa6a51aaa0a3d4890040169dcbfc2f, type: 2}
+  id: 0
+  range: 7
+  actionSequence:
+  - {fileID: 11400000, guid: 2ab0e8d3de286ff44a039c15cc084256, type: 2}
   - {fileID: 11400000, guid: 0c57867475d18e04e9fa215f4ad7caa6, type: 2}
+  phase: 1
+  weight: 1

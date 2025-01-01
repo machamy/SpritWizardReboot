@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 1688292137}
   - component: {fileID: 1688292136}
   - component: {fileID: 1688292140}
+  - component: {fileID: 1688292141}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -420,7 +421,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behaviorPrefab: {fileID: 6147262948439114420, guid: b1e6124e036f6d34abf4936fda038e21, type: 3}
+  _data: {fileID: 11400000, guid: d68dca0fef370644cb2d703c163688bf, type: 2}
   _queueObj: {fileID: 505401624}
+  _position: {x: 5, y: 5}
+--- !u!114 &1688292141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688292135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c445071cff48d6b25079e1ca10c553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

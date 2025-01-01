@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2a9f33764b1b743a9a43b212bef5c1, type: 3}
-  m_Name: EnemyRest
+  m_Script: {fileID: 11500000, guid: 4e890d303f36f5449bfdcfa87d93a9ef, type: 3}
+  m_Name: "1\uD398 \uC6D0\uAC70\uB9AC \uACF5\uACA9 1"
   m_EditorClassIdentifier: 
+  attackRange: 15
+  attackDamage: 0

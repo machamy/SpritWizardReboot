@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62314ea8891aad54abb534473cee580d, type: 3}
-  m_Name: EnemyRangePattern 2
+  m_Script: {fileID: 11500000, guid: a978dc2c182dacc4aa132d28978d6408, type: 3}
+  m_Name: "\uC774\uB3D9"
   m_EditorClassIdentifier: 
-  _enemyBehaviors:
-  - {fileID: 11400000, guid: 83fa6a51aaa0a3d4890040169dcbfc2f, type: 2}
-  - {fileID: 11400000, guid: d81657771abcc5d428b5f9c1dd17bd26, type: 2}
+  _moveDistance: 1
