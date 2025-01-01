@@ -1,41 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class DeckManager : MonoBehaviour
+public class Deck : MonoBehaviour
 {
     private List<CardSO> allCards = new List<CardSO>();
-    private Queue<CardSO> _deckQueue = new Queue<CardSO>();
-
-    [SerializeField] private CardDisplay[] deck;
+    
 
     void Start()
     {
         allCards = new List<CardSO>(Resources.LoadAll<CardSO>("Cards"));
-
-        InitDeck();
     }
 
-    void Update()
-    {
-        
-    }
-
-    public void CardDraw()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            if (_deckQueue.Count <= 0)
-                InitDeck();
-            
-            deck[i].DisplayCard(_deckQueue.Dequeue());
-        }
-    }
-
-    private void InitDeck()
+    public Queue<CardSO> GetDeckQueue()
     {
         Shuffle(allCards);
-        _deckQueue = new Queue<CardSO>(allCards);
+        return new Queue<CardSO>(allCards);
     }
 
     private void Shuffle<T>(List<T> list)
