@@ -51,12 +51,12 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    private bool CheckCanSlimeMove(Slime slime, Vector2Int targetPosition)
+    private bool CheckCanSlimeMove(Slime slime, Vector2Int targetPosition, int maxDistance)
     {
         Vector2Int slimePosition = slime.GetComponent<Entity>().Position;
         int deltaX = targetPosition.x - slimePosition.x;
         int deltaY = targetPosition.y - slimePosition.y;
-        if (deltaX == deltaY || deltaX == -deltaY || deltaX * deltaY == 0) return true;
+        if ((deltaX == deltaY || deltaX == -deltaY || deltaX * deltaY == 0) && Mathf.Abs(deltaX) <= maxDistance && Mathf.Abs(deltaY) <= maxDistance) return true;
         return false;
     }
 
@@ -78,7 +78,7 @@ public class CardManager : MonoBehaviour
             
             if (attackCard.skillCaster == SkillCaster.Ice)
             {
-                if (CheckCanSlimeMove(iceSlime, targetPosition))
+                if (CheckCanSlimeMove(iceSlime, targetPosition, attackCard.move))
                 {
                     Debug.Log("얼음공격");
                     iceSlime.CastCard(attackCard, targetPosition);
@@ -86,7 +86,7 @@ public class CardManager : MonoBehaviour
             }
             else if (attackCard.skillCaster == SkillCaster.Grass)
             {
-                if (CheckCanSlimeMove(grassSlime, targetPosition))
+                if (CheckCanSlimeMove(grassSlime, targetPosition, attackCard.move))
                 {
                     Debug.Log("풀공격");
                     grassSlime.CastCard(attackCard, targetPosition);
@@ -94,7 +94,7 @@ public class CardManager : MonoBehaviour
             }
             else if (attackCard.skillCaster == SkillCaster.Fire)
             {
-                if (CheckCanSlimeMove(fireSlime, targetPosition))
+                if (CheckCanSlimeMove(fireSlime, targetPosition, attackCard.move))
                 {
                     Debug.Log("불공격");
                     fireSlime.CastCard(attackCard, targetPosition);
