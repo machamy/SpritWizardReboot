@@ -38,7 +38,7 @@ namespace Game.Entity
 
         public void OnTileEntered(Tile tile)
         {
-            tile.ShowDebugColor(Color.red, 0.5f);
+            tile.ShowDebugColor(new Color(1f, 0, 0, 0.5f), 0.5f);
             if (tile.IsClear())
                 return;
             foreach (var e in tile.GetEntities())

@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using Game.Entity;
+using Game.Player;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackCard", menuName = "Card/Attack Card")]
@@ -11,10 +15,14 @@ public class AttackCardSO : CardSO
     public int pierce = 0;
     public int move = 0;
     // TODO -> specialeffectid 추가
+    
+    public PlayerProjectile projectilePrefab;
 
     private void OnEnable()
     {
         cardName = "New Attack Card";
         cardType = CardType.Attack;
     }
+    
+
 }
