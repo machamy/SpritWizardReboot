@@ -45,7 +45,8 @@ namespace Game.Entity
             {
                 if (e.CompareTag("Enemy"))
                 {
-                   //TODO 적 피격 처리 e.GetComponent<Enemy>()
+                    Enemy enemy = e.GetComponent<Enemy>();
+                    enemy.OnHit(dmg);
                    Debug.Log($"player projectile hit enemy ${e.name} with damage {dmg}");
                    this.penestration--;
                 }
