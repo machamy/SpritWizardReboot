@@ -30,17 +30,21 @@ namespace Game.Entity
         
         public void MoveTo(Vector2Int position)
         {
+            Tile currentTile = _board.GetTile(_position);
+            currentTile.RemoveEntity(this);
             Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
-            Tile currentTile = _board.GetTile(clamped);
-            currentTile.AddEntity(this);
+            Tile nextTile = _board.GetTile(clamped);
+            nextTile.AddEntity(this);
             _position = clamped;
         }
         
         public void MoveToImmediate(Vector2Int position)
         {
+            Tile currentTile = _board.GetTile(_position);
+            currentTile.RemoveEntity(this);
             Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
-            Tile currentTile = _board.GetTile(clamped);
-            currentTile.AddEntity(this);
+            Tile nextTile = _board.GetTile(clamped);
+            nextTile.AddEntity(this);
             _position = clamped;
             transform.position = _board.CellCenterToWorld(clamped);
         }
