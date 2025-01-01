@@ -48,7 +48,7 @@ public class BattleReward : MonoBehaviour
     }
     private CardSO SelectOneCard()
     {
-        return new CardSO();
+        return new CardSO(); // TODO -> 전체 덱을 보여주고 하나 선택하는 기능 만들기
     }
 
     private void RemoveCard()

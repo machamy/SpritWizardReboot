@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Game.Player;
 using UnityEngine;
 using Test;
+using Game.Entity;
 
 public class CardManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CardManager : MonoBehaviour
     private Rune rune;
     private Queue<CardSO> deckQueue = new Queue<CardSO>();
 
+    [SerializeField] private Board board;
     [SerializeField] private Slime iceSlime;
     [SerializeField] private Slime grassSlime;
     [SerializeField] private Slime fireSlime;
@@ -49,7 +51,16 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public void UseCard(CardSO card)
+    private bool CheckCanSlimeMove(Slime slime, Vector2Int targetPosition)
+    {
+        Vector2Int slimePosition = slime.GetComponent<Entity>().Position;
+        int deltaX = targetPosition.x - slimePosition.x;
+        int deltaY = targetPosition.y - slimePosition.y;
+        if (deltaX == deltaY || deltaX == -deltaY || deltaX * deltaY == 0) return true;
+        return false;
+    }
+
+    public void UseCard(CardSO card, Vector2Int targetPosition)
     {
         if (card == null)
         {
@@ -67,19 +78,27 @@ public class CardManager : MonoBehaviour
             
             if (attackCard.skillCaster == SkillCaster.Ice)
             {
-                Debug.Log("얼음공격");
-                Debug.Log(attackCard.attackRange);
-                iceSlime.CastCard(attackCard, randomPos);
+                if (CheckCanSlimeMove(iceSlime, targetPosition))
+                {
+                    Debug.Log("얼음공격");
+                    iceSlime.CastCard(attackCard, targetPosition);
+                }
             }
             else if (attackCard.skillCaster == SkillCaster.Grass)
             {
-                Debug.Log("바람공격");
-                grassSlime.CastCard(attackCard, randomPos);
+                if (CheckCanSlimeMove(grassSlime, targetPosition))
+                {
+                    Debug.Log("풀공격");
+                    grassSlime.CastCard(attackCard, targetPosition);
+                }
             }
             else if (attackCard.skillCaster == SkillCaster.Fire)
             {
-                Debug.Log("불공격");
-                fireSlime.CastCard(attackCard, randomPos);
+                if (CheckCanSlimeMove(fireSlime, targetPosition))
+                {
+                    Debug.Log("불공격");
+                    fireSlime.CastCard(attackCard, targetPosition);
+                }
             }
             else
             {
