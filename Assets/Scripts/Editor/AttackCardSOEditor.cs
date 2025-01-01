@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(AttackCardSO))]
-public class AttackCardSOEditor : Editor
+public class AttackCardSOEditor : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {
