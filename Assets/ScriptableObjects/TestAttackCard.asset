@@ -17,14 +17,14 @@ MonoBehaviour:
   rarity: 0
   cardType: 0
   damage: 1
-  attackCnt: 1
+  attackCnt: 8
   cost: 0
   image: {fileID: 0}
   skillCaster: 0
   attackType: 0
-  attackRange: {x: 1, y: 1}
-  attackSpread: 0
-  spreadRange: 1
-  pierce: 0
+  attackRange: {x: 5, y: 2}
+  attackSpread: 1
+  spreadRange: 7
+  pierce: 2
   move: 0
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 900807520614608079, guid: c35f2562d5d7dd14bbf9252c068e4447, type: 3}
