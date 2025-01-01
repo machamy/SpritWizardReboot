@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.World
@@ -6,7 +7,7 @@ namespace Game.World
     public class Tile : MonoBehaviour
     {
         private Vector2Int coordinates;
-        private List<Entity.Entity> entities;
+        private List<Entity.Entity> entities = new List<Entity.Entity>();
         public Vector2Int Coordinates
         {
             get => coordinates;
@@ -31,5 +32,6 @@ namespace Game.World
         {
             entities.Add(entity);
         }
+        
     }
 }
