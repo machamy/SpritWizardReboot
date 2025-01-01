@@ -1697,6 +1697,7 @@ MonoBehaviour:
   _meleeAttackSprite: {fileID: 3818499947502846799, guid: d6c155744146bea45a9a6c33944efb49, type: 3}
   _restSprite: {fileID: 8993749310216187204, guid: 23bbe9cc3d49eed45868c9d1705d7c2e, type: 3}
   _moveSprite: {fileID: -7815710348493759202, guid: 42e38e74d526789468183eea1368280b, type: 3}
+  enemyTurnChannelSO: {fileID: 11400000, guid: e3bbc31977c14bb4494865e038c4ac9d, type: 2}
 --- !u!212 &274150547
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4656,10 +4657,10 @@ MonoBehaviour:
   currentRawTurn: 0
   notMovedEntity: 0
   ready2endTurn: 0
-  playerTurnEnterEvent: {fileID: 0}
-  playerTurnExitEvent: {fileID: 0}
-  enemyTurnEnterEvent: {fileID: 0}
-  enemyTurnExitEvent: {fileID: 0}
+  playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
+  playerTurnExitEvent: {fileID: 11400000, guid: 74a9d209f490a174d9899b88ba77234d, type: 2}
+  enemyTurnEnterEvent: {fileID: 11400000, guid: e3bbc31977c14bb4494865e038c4ac9d, type: 2}
+  enemyTurnExitEvent: {fileID: 11400000, guid: 1fe7f4bee656b314a9f3abd4cb97a9ce, type: 2}
 --- !u!1001 &974108130
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using Game.Entity;
 using DefaultNamespace;
 using System.Linq;
 using TMPro;
+using EventChannel;
+
 [RequireComponent (typeof(Entity))]
 public class Enemy : MonoBehaviour
 {
@@ -39,6 +41,8 @@ public class Enemy : MonoBehaviour
     private Sprite _moveSprite;
 
 
+    public TurnEventChannelSO enemyTurnChannelSO;
+
     private void Start()
     {
         // 이름 체력 설정
@@ -64,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     }
     [ContextMenu("Execute")]
-    private void Execute()
+    private void Execute(int turn)
     {
         // 해당하는 행동 수행
         _behaviorQueue.Peek().Execute(_entity);
@@ -76,22 +80,11 @@ public class Enemy : MonoBehaviour
         // 큐 조정
         NextBehavior();
     }
-    //private void NextBehaviourQueueUI()
-    //{
-    //    Destroy(_queueObj.transform.GetChild(0));
-    //    int i = 0;
-    //    foreach (EnemyBehaviourSO e in _behaviorQueue)
-    //    {
-    //        i++;
-    //        if (i >= 3)
-    //        {
-    //            GameObject obj;
-    //            obj = Instantiate(_behaviourPrefab, _queueObj.transform);
-    //            BehaviourPrefabSetting(e, obj);
-    //            break;
-    //        }
-    //    }
-    //}
+
+    private void OnEnable()
+    {
+        enemyTurnChannelSO.OnTurnEventRaised += Execute;
+    }
     private void AllBehaviourQueueUI()
     {
         foreach (Transform child in _queueObj.transform)
