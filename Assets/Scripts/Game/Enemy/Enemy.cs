@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
 
 
     public TurnEventChannelSO enemyTurnChannelSO;
+    public TurnEventChannelSO playerTurnExitEvent;
 
     private void Start()
     {
@@ -220,9 +221,20 @@ public class Enemy : MonoBehaviour
         _hp -= dmg;
         if (_hp <= 0)
         {
-            Destroy(gameObject);
+            Ondeath();
+            playerTurnExitEvent.OnTurnEventRaised += OnPlayerturnEnd;
         }
         CheckState();
+    }
+
+    private void Ondeath()
+    {
+        //애니메이션 출력
+    }
+    private void OnPlayerturnEnd(int turn)
+    {
+        playerTurnExitEvent.OnTurnEventRaised -= OnPlayerturnEnd;
+        Destroy(gameObject);
     }
     [ContextMenu("Reset")]
     public void Reset()

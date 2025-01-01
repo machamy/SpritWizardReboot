@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1969149863795912641}
   - component: {fileID: 856192991283505290}
   - component: {fileID: 1760608572060973072}
+  - component: {fileID: 6820136306896380589}
   m_Layer: 0
   m_Name: AttackProjectile
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTurnEvent: {fileID: 11400000, guid: e3bbc31977c14bb4494865e038c4ac9d, type: 2}
+--- !u!114 &6820136306896380589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236387620401579191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c445071cff48d6b25079e1ca10c553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _position: {x: 0, y: 0}
