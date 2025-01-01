@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Game.Entity;
 using DefaultNamespace;
 using System.Linq;
+using TMPro;
+using EventChannel;
 
 [RequireComponent (typeof(Entity))]
 public class Enemy : MonoBehaviour
@@ -15,8 +17,7 @@ public class Enemy : MonoBehaviour
     private Queue<EnemyBehaviourSO> _behaviorQueue = new Queue<EnemyBehaviourSO>();
     [SerializeField]
     private List<EnemyPatternSO> _curPatternList = new List<EnemyPatternSO>();
-    [SerializeField]
-    private GameObject _behaviorPrefab;
+
     [SerializeField]
     private EnemyDataSO _data;
     [SerializeField]
@@ -27,8 +28,21 @@ public class Enemy : MonoBehaviour
     private Define.EnemyPhase phase = Define.EnemyPhase.FirstPhase;
     private Define.EnemyAttackMode mode = Define.EnemyAttackMode.Range;
 
-    // 테스트 위한 임시 변수
-    public int x = 15;
+    [SerializeField]
+    private GameObject _behaviourPrefab;
+
+    [SerializeField]
+    private Sprite _rangeAttackSprite;
+    [SerializeField]
+    private Sprite _meleeAttackSprite;
+    [SerializeField]
+    private Sprite _restSprite;
+    [SerializeField]
+    private Sprite _moveSprite;
+
+
+    public TurnEventChannelSO enemyTurnChannelSO;
+
     private void Start()
     {
         // 이름 체력 설정
@@ -48,22 +62,16 @@ public class Enemy : MonoBehaviour
 
         // 1페 원거리로 설정
         _curPatternList = _data.patternList.Where(e => (e.phase == 1 && e.range != 0)).ToList();
-        Debug.Log("1페 원거리");
-
-
         CreateBehaviorList();
-        Debug.Log("현재 행동 큐");
-        foreach (EnemyBehaviourSO behaviour in _behaviorQueue)
-        {
-            Debug.Log(behaviour.name);
-        }
+
+        AllBehaviourQueueUI();
 
     }
     [ContextMenu("Execute")]
-    private void Execute()
+    private void Execute(int turn)
     {
         // 해당하는 행동 수행
-        //_behaviorQueue.Peek().Execute(_entity);
+        _behaviorQueue.Peek().Execute(_entity);
         Debug.Log(_behaviorQueue.Peek().name + " 실행");
 
         // 큐에서 삭제
@@ -72,17 +80,64 @@ public class Enemy : MonoBehaviour
         // 큐 조정
         NextBehavior();
     }
+
+    private void OnEnable()
+    {
+        enemyTurnChannelSO.OnTurnEventRaised += Execute;
+    }
+    private void AllBehaviourQueueUI()
+    {
+        foreach (Transform child in _queueObj.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        int i = 0;
+        foreach (EnemyBehaviourSO e in _behaviorQueue)
+        {
+            GameObject obj;
+            obj = Instantiate(_behaviourPrefab, _queueObj.transform);
+            BehaviourPrefabSetting(e, obj);
+            i++;
+            if (i >= 3)
+            {
+                break;
+            }
+        }
+    }
+    private void BehaviourPrefabSetting(EnemyBehaviourSO behaviour, GameObject obj)
+    {
+        switch (behaviour.action)
+        {
+            case EnemyBehaviour.RangeAttack:
+                obj.GetComponent<SpriteRenderer>().sprite = _rangeAttackSprite;
+                obj.transform.GetComponentInChildren<TextMeshPro>().text = behaviour.value.ToString();
+                break;
+            case EnemyBehaviour.MeleeAttack:
+                obj.GetComponent<SpriteRenderer>().sprite = _meleeAttackSprite;
+                obj.transform.GetComponentInChildren<TextMeshPro>().text = behaviour.value.ToString();
+                break;
+            case EnemyBehaviour.Move:
+                obj.GetComponent<SpriteRenderer>().sprite = _moveSprite;
+                obj.transform.GetComponentInChildren<TextMeshPro>().text = behaviour.value.ToString();
+                break;
+            case EnemyBehaviour.Rest:
+                obj.GetComponent<SpriteRenderer>().sprite = _restSprite;
+                obj.transform.GetComponentInChildren<TextMeshPro>().text = "";
+                break;
+        }
+    }
     public void NextBehavior()
     {
         // 현재 상태 체크
         CheckState();
 
 
-        Debug.Log("현재 행동 큐");
-        foreach (EnemyBehaviourSO behaviour in _behaviorQueue)
-        {
-            Debug.Log(behaviour.name);
-        }
+        //Debug.Log("현재 행동 큐");
+        //foreach (EnemyBehaviourSO behaviour in _behaviorQueue)
+        //{
+        //    Debug.Log(behaviour.name);
+        //}
     }
 
     // 몬스터 태세 변환
@@ -92,7 +147,7 @@ public class Enemy : MonoBehaviour
         if (phase == Define.EnemyPhase.FirstPhase && mode == Define.EnemyAttackMode.Range)
         {
             // 1페 근거리
-            if (x == 0)
+            if (_entity.Position.x == 0)
             {
                 _curPatternList.Clear();
                 foreach (EnemyPatternSO element in _data.patternList)
@@ -103,7 +158,6 @@ public class Enemy : MonoBehaviour
                     }
                 }
                 mode = Define.EnemyAttackMode.Melee;
-                Debug.Log("1페 근거리");
                 _behaviorQueue.Clear();
             }
             // 2페 원거리
@@ -112,7 +166,6 @@ public class Enemy : MonoBehaviour
                 _curPatternList.Clear();
                 _curPatternList = _data.patternList.Where(e => (e.phase == 2 && e.range != 0)).ToList();
                 phase = Define.EnemyPhase.SecondPhase;
-                Debug.Log("2페 원거리");
                 _behaviorQueue.Clear();
             }
         }
@@ -120,18 +173,19 @@ public class Enemy : MonoBehaviour
         else if ((phase == Define.EnemyPhase.FirstPhase && mode == Define.EnemyAttackMode.Melee) ||
                     (phase == Define.EnemyPhase.SecondPhase && mode == Define.EnemyAttackMode.Range))
         {
-            if ((_hp <= _fullHp * _data.phaseSwitchHpRatio / 100) && (x == 0))
+            if ((_hp <= _fullHp * _data.phaseSwitchHpRatio / 100) && (_entity.Position.x == 0))
             {
                 _curPatternList.Clear();
                 _curPatternList = _data.patternList.Where(e => (e.phase == 2 && e.range == 0)).ToList();
                 phase = Define.EnemyPhase.SecondPhase;
                 mode = Define.EnemyAttackMode.Melee;
-                Debug.Log("2페 근거리");
                 _behaviorQueue.Clear();
             }
         }
         // 상태에 맞는 행동 생성
         CreateBehaviorList();
+        // 행동 프리팹 생성
+        AllBehaviourQueueUI();
 
     }
 
@@ -143,12 +197,11 @@ public class Enemy : MonoBehaviour
         while (_behaviorQueue.Count < 3)
         {
             // 현재 State의 패턴중에 사정거리가 맞는 패턴들 선택
-            var availiablePattern = _curPatternList.Where(e => e.range >= x);
+            var availiablePattern = _curPatternList.Where(e => e.range >= _entity.Position.x);
             // 가중치 리스트
             int[] weightarray = new int[availiablePattern.ToArray().Length];
             // 가중치 선택
             int index = Utilities.WeightedRandom(weightarray);
-            Debug.Log(_curPatternList[index] + " 패턴 선택");
             foreach (EnemyBehaviourSO behaviourElement in _curPatternList[index].actionSequence)
             {
                 _behaviorQueue.Enqueue(behaviourElement);
@@ -160,6 +213,8 @@ public class Enemy : MonoBehaviour
 
         //TODO
         //몬스터 데미지 구현
+        _hp -= dmg;
+        CheckState();
     }
 
 
@@ -173,29 +228,11 @@ public class Enemy : MonoBehaviour
         // 데미지 입었으면 상태 체크
         CheckState();
     }
-    [ContextMenu("Move")]
-    public void Move()
-    {
-        x -= 2;
-        if (x <= 0)
-        {
-            x = 0;
-        }
-        CheckState();
-    }
-    [ContextMenu("MoveZero")]
-    public void MoveZero()
-    {
-        x = 0;
-        CheckState();
-    }
     [ContextMenu("Reset")]
     public void Reset()
     {
         _hp = 20;
-        x = 15;
         _behaviorQueue.Clear();
-        // 1페 원거리로 설정
         _curPatternList = _data.patternList.Where(e => (e.phase == 1 && e.range != 0)).ToList();
         phase = Define.EnemyPhase.FirstPhase;
         mode = Define.EnemyAttackMode.Range;

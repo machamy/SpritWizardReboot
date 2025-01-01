@@ -6,6 +6,5 @@ public class EnemyAttackSO : EnemyBehaviourSO
 {
     public override void Execute(Entity entity)
     {
-        throw new System.NotImplementedException();
     }
 }

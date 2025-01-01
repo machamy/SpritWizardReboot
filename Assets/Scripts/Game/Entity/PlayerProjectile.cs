@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Game.World;
 using UnityEngine;
 
@@ -7,13 +7,13 @@ namespace Game.Entity
 
     public class PlayerProjectile : MonoBehaviour
     {
-        public float dmg = 1f;
+        public int dmg = 1;
         public float speed = 10f;
         public int penestration = 1;
         private Vector3 _direction;
 
         
-        public void Initialize(Direction direction, float dmg, int penestration = 1)
+        public void Initialize(Direction direction, int dmg, int penestration = 1)
         {
             _direction = (Vector2)direction.ToVectorInt();
             _direction.Normalize();
@@ -38,14 +38,15 @@ namespace Game.Entity
 
         public void OnTileEntered(Tile tile)
         {
-            tile.ShowDebugColor(Color.red, 0.5f);
+            tile.ShowDebugColor(new Color(1f, 0, 0, 0.5f), 0.5f);
             if (tile.IsClear())
                 return;
             foreach (var e in tile.GetEntities())
             {
                 if (e.CompareTag("Enemy"))
                 {
-                   //TODO 적 피격 처리 e.GetComponent<Enemy>()
+                    Enemy enemy = e.GetComponent<Enemy>();
+                    enemy.OnHit(dmg);
                    Debug.Log($"player projectile hit enemy ${e.name} with damage {dmg}");
                    this.penestration--;
                 }

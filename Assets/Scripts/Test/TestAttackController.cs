@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Game.Entity;
 using UnityEngine;
 
@@ -39,7 +39,7 @@ namespace Test
         public void SpawnProjectile()
         {
             var projectile = Instantiate(projectilePrefab);
-            projectile.Initialize(direction , 1f);
+            projectile.Initialize(direction , 1);
             projectile.transform.position = transform.position;
             if (changeDirection)
                 direction = (Direction)((int)++direction % (int)Direction.MAX);
