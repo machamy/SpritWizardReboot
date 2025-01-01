@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace Game.World
 {
@@ -7,7 +8,6 @@ namespace Game.World
     {
         [SerializeField] private Board board;
         [SerializeField] private Vector2Int gridSize;
-        [SerializeField] private Vector2 tileSize;
         [SerializeField] private GameObject whiteTilePrefab;
         [SerializeField] private GameObject greyTilePrefab;
         
@@ -25,7 +25,9 @@ namespace Game.World
                     Vector3 pos = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
                     int cnt = x + y;
                     GameObject tilePrefab = cnt % 2 == 0 ? whiteTilePrefab : greyTilePrefab;
-                    GameObject go = Instantiate(tilePrefab,pos , Quaternion.identity);
+                    GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(tilePrefab);
+                    go.transform.position = pos;
+                    go.transform.localScale = grid.cellSize;
                     go.transform.SetParent(board.transform);
                     go.name = $"Tile {x},{y}";
                     Tile tile = go.GetComponent<Tile>();
