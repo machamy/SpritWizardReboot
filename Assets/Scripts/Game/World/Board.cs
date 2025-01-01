@@ -28,7 +28,7 @@ public class Board : MonoBehaviour
           Vector3Int cell = _grid.WorldToCell(worldPos);
           if (cell.x < 0 || cell.x >= gridSize.x || cell.y < 0 || cell.y >= gridSize.y)
           {
-               Debug.Log($"Cell out of bounds {cell} (input : {worldPos})");;
+               Debug.Log($"Cell out of bounds {cell} (input : {worldPos})");
                return null;
           }
           return _tilemap[cell.x][cell.y];
