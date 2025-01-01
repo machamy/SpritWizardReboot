@@ -54,19 +54,21 @@ public class CardManager : MonoBehaviour
         }
         if (card.cardType == CardType.Attack)
         {
+            AttackCardSO attackCard = (AttackCardSO)card;
             Dictionary<string, int> runeEffect = rune.GetRuneEffect(); // key -> damage, attackCnt
             int damage = card.damage + runeEffect["damage"];
             int attackCnt = card.attackCnt + runeEffect["attackCnt"];
 
-            if (card.attackType == AttackType.Ice)
+            if (attackCard.skillCaster == SkillCaster.Ice)
             {
                 Debug.Log("얼음공격");
+                Debug.Log(attackCard.attackRange);
             }
-            else if (card.attackType == AttackType.Wind)
+            else if (attackCard.skillCaster == SkillCaster.Grass)
             {
                 Debug.Log("바람공격");
             }
-            else if (card.attackType == AttackType.Fire)
+            else if (attackCard.skillCaster == SkillCaster.Fire)
             {
                 Debug.Log("불공격");
             }
@@ -77,7 +79,8 @@ public class CardManager : MonoBehaviour
         }
         else if (card.cardType == CardType.Rune)
         {
-            rune.AddRuneEffect(card.damageCalculateType, card.damage, card.attackCntCalculateType, card.attackCnt);
+            RuneCardSO runeCard = (RuneCardSO)card;
+            rune.AddRuneEffect(runeCard.damageCalculateType, card.damage, runeCard.attackCntCalculateType, card.attackCnt);
         }
         else Debug.Log("카드타입오류");
 

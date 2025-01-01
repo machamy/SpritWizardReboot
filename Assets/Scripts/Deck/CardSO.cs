@@ -1,17 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Card", menuName = "Scriptable Objects/Card")]
 public class CardSO : ScriptableObject
 {
     public string cardName;
     public string description;
-    public CardType cardType;
-    public AttackType attackType;
-    public int moveDistance = 0;
-    public int cost = 1;
-    public CalculateType damageCalculateType;
+    public Rarity rarity;
+    [HideInInspector] public CardType cardType;
     public int damage = 1;
-    public CalculateType attackCntCalculateType;
     public int attackCnt = 1;
+    public int cost = 0;
     public Sprite image;
 }
