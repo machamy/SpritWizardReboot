@@ -4,12 +4,19 @@ using UnityEngine.UI;
 
 public class CardDisplay : Card
 {
-    [SerializeField] private Card cardData;
+    private Card cardData;
+
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI damageText;
+
+    private void Start()
+    {
+        cardData = GetComponent<Card>();
+        if (cardData == null) cardData = gameObject.AddComponent<Card>();
+    }
 
     public void DisplayCard(CardSO card)
     {
