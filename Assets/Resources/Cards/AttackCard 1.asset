@@ -26,4 +26,5 @@ MonoBehaviour:
   attackSpread: 0
   spreadRange: 1
   pierce: 0
-  move: 0
+  move: 1
+  projectilePrefab: {fileID: 900807520614608079, guid: c35f2562d5d7dd14bbf9252c068e4447, type: 3}

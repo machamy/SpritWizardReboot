@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ca60367ac9f9e4db30863f233e3c90, type: 3}
   m_Name: AttackCard
   m_EditorClassIdentifier: 
-  cardName: New Card
+  cardName: New Attack Card
   description: 
   rarity: 0
+  cardType: 0
   damage: 1
   attackCnt: 1
   cost: 0
   image: {fileID: 0}
   skillCaster: 0
   attackType: 0
-  attackRange: {x: 1, y: 1}
+  attackRange: {x: 10, y: 10}
   attackSpread: 0
   spreadRange: 1
-  pierce: 0
-  move: 0
+  pierce: 1
+  move: 2
+  projectilePrefab: {fileID: 900807520614608079, guid: c35f2562d5d7dd14bbf9252c068e4447, type: 3}
