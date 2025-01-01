@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Game.World
 {
 #if UNITY_EDITOR
+    [ExecuteInEditMode]
     public class BoardInitializer : MonoBehaviour
     {
         [SerializeField] private Board board;
@@ -33,6 +34,7 @@ namespace Game.World
                     Tile tile = go.GetComponent<Tile>();
                     tile.Initialize(new Vector2Int(x, y));
                     tilemap[y][x] = tile;
+                    PrefabUtility.RecordPrefabInstancePropertyModifications(go);
                 }
             }
             board.Initialize(tilemap);

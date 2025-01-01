@@ -17,6 +17,9 @@ namespace Game
             currentRawTurn = 1;
         }
 
+        /// <summary>
+        /// 테스트용, 사용금지
+        /// </summary>
         public void NextTurn()
         {
             currentRawTurn++;
@@ -29,6 +32,22 @@ namespace Game
             {
                 turnEnterEvent.RaiseTurnEvent(CurrentTurn);
                 Debug.Log($"Enemy Turn {CurrentTurn}");
+            }
+        }
+        
+        public void EndPlayerTurn()
+        {
+            if (IsPlayerTurn)
+            {
+                NextTurn();
+            }
+        }
+        
+        public void EndEnemyTurn()
+        {
+            if (IsEnemyTurn)
+            {
+                NextTurn();
             }
         }
     }

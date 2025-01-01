@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class Define
 {
     public enum EnemyPhase

@@ -2,8 +2,10 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Tile
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Tile
+  - PlayerProjectile
+  - EnemyProjectile
   - 
   - 
   - 
@@ -38,6 +40,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tile
+    uniqueID: 1941789017
+    locked: 0
+  - name: Tile2
+    uniqueID: 1399966783
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: EffectUnder
+    uniqueID: 468007873
+    locked: 0
+  - name: Enemy
+    uniqueID: 340161919
+    locked: 0
+  - name: Projectile
+    uniqueID: 1537173361
+    locked: 0
+  - name: EffectUpper
+    uniqueID: 3538375379
+    locked: 0
+  m_RenderingLayers:
+  - Default
