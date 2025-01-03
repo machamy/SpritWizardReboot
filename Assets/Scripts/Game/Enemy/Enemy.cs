@@ -6,7 +6,7 @@ using System.Linq;
 using TMPro;
 using EventChannel;
 
-[RequireComponent (typeof(Entity))]
+[RequireComponent (typeof(Entity), typeof(HitHandler))]
 public class Enemy : MonoBehaviour
 {
     private string _name;
@@ -85,6 +85,7 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         enemyTurnChannelSO.OnTurnEventRaised += Execute;
+        GetComponent<HitHandler>().Handler += OnHit;
     }
     private void OnDisable()
     {
@@ -213,12 +214,12 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    public void OnHit(int dmg)
+    public void OnHit(object caller, HitHandler.HitEventArgs e)
     {
 
         //TODO
         //몬스터 데미지 구현
-        _hp -= dmg;
+        _hp -= e.dmg;
         if (_hp <= 0)
         {
             Ondeath();

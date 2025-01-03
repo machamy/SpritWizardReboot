@@ -38,17 +38,16 @@ namespace Game.Entity
 
         public void OnTileEntered(Tile tile)
         {
+            
             tile.ShowDebugColor(new Color(1f, 0, 0, 0.5f), 0.5f);
             if (tile.IsClear())
                 return;
             foreach (var e in tile.GetEntities())
             {
-                if (e.CompareTag("Enemy"))
+                if (TryGetComponent(out HitHandler hitHandler))
                 {
-                    Enemy enemy = e.GetComponent<Enemy>();
-                    enemy.OnHit(dmg);
-                   Debug.Log($"player projectile hit enemy ${e.name} with damage {dmg}");
-                   this.penestration--;
+                    hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = this.dmg});
+                    penestration--;
                 }
 
                 if (penestration < 0)
