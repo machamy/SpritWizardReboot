@@ -1,5 +1,6 @@
 public enum SeedType
 {
+    None,
     normal,
     elite,
     rest,
