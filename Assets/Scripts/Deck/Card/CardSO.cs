@@ -19,10 +19,7 @@ public class CardSO : ScriptableObject
     {
         int deltaX = targetPosition.x - startPosition.x;
         int deltaY = targetPosition.y - startPosition.y;
-        // ?? 왜 이렇게 해둠?
-        // if ((deltaX == deltaY || deltaX == -deltaY || deltaX * deltaY == 0) && Mathf.Abs(deltaX) <= maxDistance && Mathf.Abs(deltaY) <= maxDistance) return true;
-        
-        if (Mathf.Abs(deltaX) <= maxDistance && Mathf.Abs(deltaY) <= maxDistance) 
+        if ((deltaX == deltaY || deltaX == -deltaY || deltaX * deltaY == 0) && Mathf.Abs(deltaX) <= maxDistance && Mathf.Abs(deltaY) <= maxDistance) return true;
             return true;
         return false;
     }
