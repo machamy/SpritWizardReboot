@@ -230,6 +230,7 @@ public class Enemy : MonoBehaviour
 
     private void Ondeath()
     {
+        
         //애니메이션 출력
     }
     private void OnPlayerturnEnd(int turn)

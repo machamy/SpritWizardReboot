@@ -89,7 +89,7 @@ public class Board : MonoBehaviour
      {
           if (cell.x < 0 || cell.x >= gridSize.x || cell.y < 0 || cell.y >= gridSize.y)
           {
-               Debug.Log($"Cell out of bounds {cell}");
+               //Debug.Log($"Cell out of bounds {cell}");
                return null;
           }
           return  _tilemap[cell.y][cell.x];

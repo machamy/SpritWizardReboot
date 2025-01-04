@@ -32,10 +32,18 @@ namespace Game.Player
         public void CastCard(AttackCardSO card, Vector2Int targetPosition)
         {
             Board board = Board.Instance;
-            StartCoroutine(CastCardRoutine(board, card, targetPosition));
+            StartCoroutine(TestCastCardRoutine(board, card, targetPosition));
         }
         
-        private IEnumerator CastCardRoutine(Board board, AttackCardSO card, Vector2Int targetPosition)
+        /// <summary>
+        /// 테스트용 카드 시전.
+        /// 실제 코드는 카드 자체가 구현하도록 해야함.
+        /// </summary>
+        /// <param name="board"></param>
+        /// <param name="card"></param>
+        /// <param name="targetPosition"></param>
+        /// <returns></returns>
+        private IEnumerator TestCastCardRoutine(Board board, AttackCardSO card, Vector2Int targetPosition)
         {
             entity.MoveToImmediate(targetPosition);
             yield return new WaitForSeconds(0.2f);

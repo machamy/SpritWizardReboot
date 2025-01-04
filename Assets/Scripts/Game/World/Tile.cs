@@ -1,19 +1,30 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Game.World
 {
     public class Tile : MonoBehaviour
     {
         [SerializeField] private Vector2Int coordinates;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private SpriteRenderer focusRenderer;
         private List<Entity.Entity> entities = new List<Entity.Entity>();
         public Vector2Int Coordinates
         {
             get => coordinates;
         }
-        
+        private Color defaultColor;
+
+        private void Start()
+        {
+            defaultColor = spriteRenderer.color;
+        }
+
+
         public void Initialize(Vector2Int coordinates)
         {
             this.coordinates = coordinates;
@@ -38,6 +49,18 @@ namespace Game.World
         {
             entities.Remove(entity);
         }
+
+        public void Focus() => Focus(new Color(0.7f, 1f, 0f, 0.5f));
+        public void Focus(Color focusColor)
+        {
+            spriteRenderer.color = focusColor;
+        }
+        
+        public void Unfocus()
+        {
+            spriteRenderer.color = defaultColor;
+        }
+        
         
         #region Debug
 
@@ -71,6 +94,6 @@ namespace Game.World
         }
 
         #endregion
-
+        
     }
 }

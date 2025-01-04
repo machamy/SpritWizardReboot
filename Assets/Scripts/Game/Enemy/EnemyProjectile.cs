@@ -38,7 +38,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (_entity.Position.x != 0)
         {
-            _entity.MoveDirectionImmediate(Direction.L, 1);
+            _entity.MoveDirectionAnimated(Direction.L, 1,1f);
         }
         else
         {

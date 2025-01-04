@@ -44,19 +44,18 @@ namespace Game.Entity
                 return;
             foreach (var e in tile.GetEntities())
             {
-                if (TryGetComponent(out HitHandler hitHandler))
-                {
-                    hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = this.dmg});
-                    penestration--;
-                }
-
                 if (penestration < 0)
                 {
                     break;
                 }
+                if (e.TryGetComponent(out HitHandler hitHandler))
+                {
+                    hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = this.dmg});
+                    penestration--;
+                }
             }
             
-            if (penestration <= 0)
+            if (penestration < 0)
             {
                 Destroy(gameObject);
             }

@@ -6,6 +6,6 @@ public class EnemyMoveSO : EnemyBehaviourSO
 {
     public override void Execute(Entity entity)
     {
-        entity.MoveDirectionImmediate(Direction.L, value);
+        entity.MoveDirectionAnimated(Direction.L, value, 1f);
     }
 }
