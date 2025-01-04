@@ -2,7 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class CardDisplay : Card
+[RequireComponent(typeof(Card))]
+public class CardDisplay : MonoBehaviour
 {
     private Card cardData;
 
