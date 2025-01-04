@@ -49,10 +49,9 @@ namespace Test
         {
             Board board = Board.Instance;
             var tiles = board.GetTilesSquare(e.Position, squareSize/2);
-            foreach (var tile in tiles)
+            if (TryGetComponent(out HitHandler hitHandler))
             {
-                //TODO 딜넣기
-                tile.ShowDebugColor(Color.red, 1f);
+                hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = 1});
             }
         }
         
@@ -66,7 +65,10 @@ namespace Test
                 tile.ShowDebugColor(Color.red, 1f);
                 foreach (var e in tile.GetEntities())
                 {
-                    e.GetComponent<Enemy>().OnHit(1);
+                    if (TryGetComponent(out HitHandler hitHandler))
+                    {
+                        hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = 1});
+                    }
                 }
             }
             if (changeDirection)

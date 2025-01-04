@@ -70,10 +70,9 @@ namespace Game.Player
                                 continue;
                             foreach (var e in t.GetEntities())
                             {
-                                if (e.CompareTag("Enemy"))
+                                if (e.TryGetComponent(out HitHandler hitHandler))
                                 {
-                                    Enemy enemy = e.GetComponent<Enemy>();
-                                    enemy.OnHit(card.damage);
+                                    hitHandler.Raise(this,new HitHandler.HitEventArgs(){dmg = 1});
                                 }
                             }
                         }
