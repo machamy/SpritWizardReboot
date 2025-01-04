@@ -76,33 +76,29 @@ public class CardManager : MonoBehaviour
         
             Vector2Int randomPos = new Vector2Int(Random.Range(0, 15), Random.Range(0, 6));
             
-            if (attackCard.skillCaster == SkillCaster.Ice)
+            switch (attackCard.skillCaster)
             {
-                if (CheckCanSlimeMove(iceSlime, targetPosition, attackCard.move))
-                {
-                    Debug.Log("얼음공격");
-                    iceSlime.CastCard(attackCard, targetPosition);
-                }
-            }
-            else if (attackCard.skillCaster == SkillCaster.Grass)
-            {
-                if (CheckCanSlimeMove(grassSlime, targetPosition, attackCard.move))
-                {
-                    Debug.Log("풀공격");
-                    grassSlime.CastCard(attackCard, targetPosition);
-                }
-            }
-            else if (attackCard.skillCaster == SkillCaster.Fire)
-            {
-                if (CheckCanSlimeMove(fireSlime, targetPosition, attackCard.move))
-                {
-                    Debug.Log("불공격");
-                    fireSlime.CastCard(attackCard, targetPosition);
-                }
-            }
-            else
-            {
-                Debug.Log("공격카드 아님");
+                case SkillCaster.Ice:
+                    if (CheckCanSlimeMove(iceSlime, targetPosition, attackCard.move))
+                    {
+                        Debug.Log("얼음공격");
+                        iceSlime.CastCard(attackCard, targetPosition);
+                    }
+                    break;
+                case SkillCaster.Grass:
+                    if (CheckCanSlimeMove(grassSlime, targetPosition, attackCard.move))
+                    {
+                        Debug.Log("풀공격");
+                        grassSlime.CastCard(attackCard, targetPosition);
+                    }
+                    break;
+                case SkillCaster.Fire:
+                    if (CheckCanSlimeMove(fireSlime, targetPosition, attackCard.move))
+                    {
+                        Debug.Log("불공격");
+                        fireSlime.CastCard(attackCard, targetPosition);
+                    }
+                    break;
             }
         }
         else if (card.cardType == CardType.Rune)
