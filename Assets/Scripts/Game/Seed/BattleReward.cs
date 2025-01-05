@@ -25,7 +25,7 @@ public class BattleReward : MonoBehaviour
                 GetGold();
                 break;
             case 5:
-                Heal();
+                GameManager.Instance.GateHP += 40; // TODO => MaxHP 불러와서 맞는 비율만큼 체력 올라갈 수 있도록 설정
                 break;
 
         }

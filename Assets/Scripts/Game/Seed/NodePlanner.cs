@@ -6,8 +6,9 @@ public class NodePlanner : MonoBehaviour
     enum Week { 월, 화, 수, 목, 금, 토, 일 }
     private void Start()
     {
+        /* 테스트용
         int i = 0;
-        Queue<Queue<SeedType>> seed = GetSeed();
+        Queue<Queue<SeedType>> seed = GetWeekSeed();
         while (seed.Count > 0)
         {
             int j = 0;
@@ -19,12 +20,13 @@ public class NodePlanner : MonoBehaviour
             }
             i++;
         }
+        */
     }
 
     /// <summary>
     /// 일주일치 시드 반환
     /// </summary>
-    public Queue<Queue<SeedType>> GetSeed()
+    public Queue<Queue<SeedType>> GetWeekSeed()
     {
         Queue<SeedType>[] weekSeed = new Queue<SeedType>[7];
         for (int i = 0; i < weekSeed.Length; i++)
@@ -38,9 +40,9 @@ public class NodePlanner : MonoBehaviour
         weekSeed[0].Enqueue(SeedType.normal); // 노말 1개
 
         // 화요일
-        for (int i = 0; i < Random.Range(1, 3); i++) // 50% 확률로 노말 1~2개
+        for (int i = 0; i < Random.Range(1, 3); i++) // 노말 1개 + 50% 확률로 하드 1개
         {
-            weekSeed[1].Enqueue(SeedType.normal);
+            weekSeed[1].Enqueue((SeedType)(i+1));
         }
 
         // 수, 목, 금, 토요일
@@ -120,7 +122,7 @@ public class NodePlanner : MonoBehaviour
                 ran = Random.Range(0, remain);
                 if (remainArr[ran] == SeedType.elite)
                 {
-                    remainArr[ran] = SeedType.normal;
+                    remainArr[ran] = SeedType.hard;
                     idx++;
                 }
             }
