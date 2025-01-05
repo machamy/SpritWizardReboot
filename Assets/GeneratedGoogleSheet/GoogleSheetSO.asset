@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5bbbc206368a47b7457e869d2e65e, type: 3}
+  m_Name: GoogleSheetSO
+  m_EditorClassIdentifier: 
+  RawCombatList:
+  - gateHp: 70
+  RawRewardChanceList:
+  - rewardType: "\uC77C\uBC18 \uBCF4\uC0C1"
+    addRuneCardChance: 100
+    addMagicCardChance: 100
+    destroyCardChance: 3
+    upgradeCardChance: 10
+    gateHpRestoreChance: 3
+    gateHpRestoreAmountMiddle: 7
+    gateHpRestoreAmountVariation: 2
+    goldMiddle: 15
+    goldVariation: 3
+  - rewardType: "\uC5D8\uB9AC\uD2B8 \uBCF4\uC0C1"
+    addRuneCardChance: 100
+    addMagicCardChance: 100
+    destroyCardChance: 15
+    upgradeCardChance: 20
+    gateHpRestoreChance: 10
+    gateHpRestoreAmountMiddle: 12
+    gateHpRestoreAmountVariation: 5
+    goldMiddle: 20
+    goldVariation: 6
+  RawAddCardWeightList:
+  - "\uBCC0\uC218\uBA85": "\uC77C\uBC18 \uBAAC\uC2A4\uD130"
+    rareCardWeight: 4
+  - "\uBCC0\uC218\uBA85": "\uC5D8\uB9AC\uD2B8 \uBAAC\uC2A4\uD130"
+    rareCardWeight: 1
+  - "\uBCC0\uC218\uBA85": "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130"
+    rareCardWeight: 0
+  RawMagicCardList:
+  - skillKoreanName: "\uB354\uBE14\uC0F7"
+    id: 11001
+    name: doubleShot
+    describe: "\uB354\uBE14~~\uC0F7"
+    skillCaster: grassSlime
+    rarity: normal
+    attackDamage: 3
+    attackCount: 2
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - skillKoreanName: "\uBA40\uD2F0\uC0F7"
+    id: 11002
+    name: tripleShot
+    describe: "\uBA40\uD2F0~~~\uC0F7"
+    skillCaster: grassSlime
+    rarity: normal
+    attackDamage: 2
+    attackCount: 3
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: radial
+    spreadRange: 3
+    pierce: 2
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - skillKoreanName: "\uB798\uD53C\uB4DC \uD30C\uC774\uC5B4"
+    id: 11003
+    name: rapidFire
+    describe: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    skillCaster: grassSlime
+    rarity: rare
+    attackDamage: 1
+    attackCount: 5
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - skillKoreanName: "\uD30C\uC774\uC5B4\uBCFC!"
+    id: 12001
+    name: fireball
+    describe: "\uBD88\uACF5"
+    skillCaster: fireSlime
+    rarity: normal
+    attackDamage: 4
+    attackCount: 1
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: radial
+    spreadRange: 3
+    pierce: 1
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - skillKoreanName: "\uD654\uC5FC\uD3ED\uBC1C"
+    id: 12002
+    name: fireExplosion
+    describe: "\uD391~~~"
+    skillCaster: fireSlime
+    rarity: normal
+    attackDamage: 5
+    attackCount: 1
+    attackType: explosion
+    attackHeight: 3
+    attackWidth: 3
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - skillKoreanName: "\uC544\uC774\uC2A4 \uC2A4\uCE90\uD130"
+    id: 13001
+    name: iceScatter
+    describe: "\uC5BC\uC74C \uB09C\uC0AC"
+    skillCaster: iceSlime
+    rarity: rare
+    attackDamage: 1
+    attackCount: 8
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: radial
+    spreadRange: 8
+    pierce: 0
+    move: 2
+    cost: 2
+    specialEffectId: 13001
+  - skillKoreanName: "\uC544\uC774\uC2A4 \uBE0C\uB808\uC2A4"
+    id: 13002
+    name: iceBeam
+    describe: "\uC5BC\uC74C \uBE54"
+    skillCaster: iceSlime
+    rarity: rare
+    attackDamage: 4
+    attackCount: 2
+    attackType: beam
+    attackHeight: 2
+    attackWidth: 5
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 2
+    specialEffectId: 13002
+  RawSpecialEffectList:
+  - id: 130011
+    effect: freeze
+    value: 1
+  - id: 130021
+    effect: freeze
+    value: 1
+  RawSpecialEffectDescribeList:
+  - name: freeze
+    describe: "\uC801\uC744 \uC5BC\uB9BD\uB2C8\uB2E4!"
+  - name: knockback
+    describe: "\uC801\uC744 \uBC00\uCE69\uB2C8\uB2E4!"
+  RawMonsterList:
+  - name: strikeShade
+    id: 20001
+    sprite: 
+    size: 1
+    hpMiddle: 20
+    hpVariation: 1
+    pattern: 20001-1, 20001-2, 20001-3, 20001-4, 20001-5
+    initPattern: 20001-5
+    phaseSwitchHpRatio: 0
+  - name: blowgunShade
+    id: 20002
+    sprite: 
+    size: 1
+    hpMiddle: 15
+    hpVariation: 1
+    pattern: 20002-1, 20002-2, 20002-3
+    initPattern: 0
+    phaseSwitchHpRatio: 0
+  RawMonsterPatternList:
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uC774\uB3D9"
+    id: 20001-1
+    range: 15
+    actionSequence: 1
+    phase: 1
+    weight: 3
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uC774\uB3D9"
+    id: 20001-2
+    range: 5
+    actionSequence: 2, 0
+    phase: 1
+    weight: 1
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uADFC\uC811\uACF5\uACA9"
+    id: 20001-3
+    range: 0
+    actionSequence: 20001-1-1
+    phase: 1
+    weight: 1
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uC57D\uADFC\uC811\uACF5\uACA9"
+    id: 20001-4
+    range: 0
+    actionSequence: 20001-1-2
+    phase: 1
+    weight: 2
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uCD5C\uCD08 \uC774\uB3D9"
+    id: 20001-5
+    range: 15
+    actionSequence: 2, 0
+    phase: 1
+    weight: 0
+  - sosok: "\uBE14\uB85C\uC6B0\uAC74 \uC720\uB839"
+    dragonSwordMemo: "\uC774\uB3D9"
+    id: 20002-1
+    range: 15
+    actionSequence: 1
+    phase: 1
+    weight: 1
+  - sosok: "\uBE14\uB85C\uC6B0\uAC74 \uC720\uB839"
+    dragonSwordMemo: "\uC6D0\uAC70\uB9AC \uACF5\uACA9"
+    id: 20002-2
+    range: 15
+    actionSequence: 20002-1-1, 0, 0
+    phase: 1
+    weight: 3
+  - sosok: "\uBE14\uB85C\uC6B0\uAC74 \uC720\uB839"
+    dragonSwordMemo: "\uC57D \uC6D0\uAC70\uB9AC \uACF5\uACA9"
+    id: 20002-3
+    range: 9
+    actionSequence: 20002-1-2, 0
+    phase: 1
+    weight: 1
+  RawMonsterActionList:
+  - sosok: "\uBC94\uC6A9"
+    dragonSwordMemo: "\uD734\uC2DD"
+    id: 0
+    action: rest
+    value: 0
+  - sosok: "\uBC94\uC6A9"
+    dragonSwordMemo: "\uC774\uB3D9"
+    id: 1
+    action: move
+    value: 1
+  - sosok: "\uBC94\uC6A9"
+    dragonSwordMemo: "\uC774\uB3D9"
+    id: 2
+    action: move
+    value: 2
+  - sosok: "\uBC94\uC6A9"
+    dragonSwordMemo: "\uC774\uB3D9"
+    id: 3
+    action: move
+    value: 3
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uAC15\uADFC\uC811\uACF5\uACA9"
+    id: +020000-12-31T15:00:00.000Z
+    action: meleeAttack
+    value: 12
+  - sosok: "\uADFC\uC811 \uC720\uB839"
+    dragonSwordMemo: "\uC57D\uADFC\uC811\uACF5\uACA9"
+    id: +020001-01-01T15:00:00.000Z
+    action: meleeAttack
+    value: 4
+  - sosok: "\uBE14\uB85C\uC6B0\uAC74 \uC720\uB839"
+    dragonSwordMemo: "\uC57D \uD22C\uC0AC\uCCB4 \uACF5\uACA9"
+    id: +020001-12-31T15:00:00.000Z
+    action: rangedAttack
+    value: 5

@@ -1,0 +1,501 @@
+{
+  "combat": [
+    {
+      "gateHp": "대문 체력"
+    },
+    {
+      "gateHp": "int"
+    },
+    {
+      "gateHp": 70
+    }
+  ],
+  "rewardChance": [
+    {
+      "rewardType": "보상 종류",
+      "addRuneCardChance": "룬 카드추가 등장 확률",
+      "addMagicCardChance": "마법 카드추가 등장 확률",
+      "destroyCardChance": "카드 제거 등장 확률",
+      "upgradeCardChance": "카드 강화 등장 확률",
+      "gateHpRestoreChance": "대문 체력 회복 등장 확률",
+      "gateHpRestoreAmountMiddle": "대문 체력 회복량 중간값",
+      "gateHpRestoreAmountVariation": "대문 체력 회복량 폭",
+      "goldMiddle": "골드 중간값",
+      "goldVariation": "골드 폭"
+    },
+    {
+      "rewardType": "string",
+      "addRuneCardChance": "int",
+      "addMagicCardChance": "int",
+      "destroyCardChance": "int",
+      "upgradeCardChance": "int",
+      "gateHpRestoreChance": "int",
+      "gateHpRestoreAmountMiddle": "int",
+      "gateHpRestoreAmountVariation": "int",
+      "goldMiddle": "int",
+      "goldVariation": "int"
+    },
+    {
+      "rewardType": "일반 보상",
+      "addRuneCardChance": 100,
+      "addMagicCardChance": 100,
+      "destroyCardChance": 3,
+      "upgradeCardChance": 10,
+      "gateHpRestoreChance": 3,
+      "gateHpRestoreAmountMiddle": 7,
+      "gateHpRestoreAmountVariation": 2,
+      "goldMiddle": 15,
+      "goldVariation": 3
+    },
+    {
+      "rewardType": "엘리트 보상",
+      "addRuneCardChance": 100,
+      "addMagicCardChance": 100,
+      "destroyCardChance": 15,
+      "upgradeCardChance": 20,
+      "gateHpRestoreChance": 10,
+      "gateHpRestoreAmountMiddle": 12,
+      "gateHpRestoreAmountVariation": 5,
+      "goldMiddle": 20,
+      "goldVariation": 6
+    }
+  ],
+  "addCardWeight": [
+    {
+      "변수명": "항목",
+      "rareCardWeight": "일반카드 가중치"
+    },
+    {
+      "변수명": "타입",
+      "rareCardWeight": "int"
+    },
+    {
+      "변수명": "일반 몬스터",
+      "rareCardWeight": 4
+    },
+    {
+      "변수명": "엘리트 몬스터",
+      "rareCardWeight": 1
+    },
+    {
+      "변수명": "보스 몬스터",
+      "rareCardWeight": 0
+    }
+  ],
+  "magicCard": [
+    {
+      "skillKoreanName": "스킬 이름",
+      "id": "",
+      "name": "",
+      "describe": "",
+      "skillCaster": "",
+      "rarity": "",
+      "attackDamage": "",
+      "attackCount": "",
+      "attackType": "",
+      "attackHeight": "",
+      "attackWidth": "",
+      "attackSpread": "",
+      "spreadRange": "",
+      "pierce": "",
+      "move": "",
+      "cost": "",
+      "specialEffectId": "특수효과"
+    },
+    {
+      "skillKoreanName": "_",
+      "id": "int",
+      "name": "string",
+      "describe": "string",
+      "skillCaster": "enum",
+      "rarity": "enum",
+      "attackDamage": "int",
+      "attackCount": "int",
+      "attackType": "enum",
+      "attackHeight": "int",
+      "attackWidth": "int",
+      "attackSpread": "enum",
+      "spreadRange": "int",
+      "pierce": "int",
+      "move": "int",
+      "cost": "int",
+      "specialEffectId": "list"
+    },
+    {
+      "skillKoreanName": "더블샷",
+      "id": 11001,
+      "name": "doubleShot",
+      "describe": "더블~~샷",
+      "skillCaster": "grassSlime",
+      "rarity": "normal",
+      "attackDamage": 3,
+      "attackCount": 2,
+      "attackType": "projectile",
+      "attackHeight": -1,
+      "attackWidth": -1,
+      "attackSpread": "focused",
+      "spreadRange": 1,
+      "pierce": 0,
+      "move": 2,
+      "cost": 1,
+      "specialEffectId": ""
+    },
+    {
+      "skillKoreanName": "멀티샷",
+      "id": 11002,
+      "name": "tripleShot",
+      "describe": "멀티~~~샷",
+      "skillCaster": "grassSlime",
+      "rarity": "normal",
+      "attackDamage": 2,
+      "attackCount": 3,
+      "attackType": "projectile",
+      "attackHeight": -1,
+      "attackWidth": -1,
+      "attackSpread": "radial",
+      "spreadRange": 3,
+      "pierce": 2,
+      "move": 2,
+      "cost": 1,
+      "specialEffectId": ""
+    },
+    {
+      "skillKoreanName": "래피드 파이어",
+      "id": 11003,
+      "name": "rapidFire",
+      "describe": "와다다다다다다",
+      "skillCaster": "grassSlime",
+      "rarity": "rare",
+      "attackDamage": 1,
+      "attackCount": 5,
+      "attackType": "projectile",
+      "attackHeight": -1,
+      "attackWidth": -1,
+      "attackSpread": "focused",
+      "spreadRange": 1,
+      "pierce": 0,
+      "move": 2,
+      "cost": 1,
+      "specialEffectId": ""
+    },
+    {
+      "skillKoreanName": "파이어볼!",
+      "id": 12001,
+      "name": "fireball",
+      "describe": "불공",
+      "skillCaster": "fireSlime",
+      "rarity": "normal",
+      "attackDamage": 4,
+      "attackCount": 1,
+      "attackType": "projectile",
+      "attackHeight": -1,
+      "attackWidth": -1,
+      "attackSpread": "radial",
+      "spreadRange": 3,
+      "pierce": 1,
+      "move": 2,
+      "cost": 1,
+      "specialEffectId": ""
+    },
+    {
+      "skillKoreanName": "화염폭발",
+      "id": 12002,
+      "name": "fireExplosion",
+      "describe": "펑~~~",
+      "skillCaster": "fireSlime",
+      "rarity": "normal",
+      "attackDamage": 5,
+      "attackCount": 1,
+      "attackType": "explosion",
+      "attackHeight": 3,
+      "attackWidth": 3,
+      "attackSpread": "focused",
+      "spreadRange": 1,
+      "pierce": 0,
+      "move": 2,
+      "cost": 1,
+      "specialEffectId": ""
+    },
+    {
+      "skillKoreanName": "아이스 스캐터",
+      "id": 13001,
+      "name": "iceScatter",
+      "describe": "얼음 난사",
+      "skillCaster": "iceSlime",
+      "rarity": "rare",
+      "attackDamage": 1,
+      "attackCount": 8,
+      "attackType": "projectile",
+      "attackHeight": -1,
+      "attackWidth": -1,
+      "attackSpread": "radial",
+      "spreadRange": 8,
+      "pierce": 0,
+      "move": 2,
+      "cost": 2,
+      "specialEffectId": "13001"
+    },
+    {
+      "skillKoreanName": "아이스 브레스",
+      "id": 13002,
+      "name": "iceBeam",
+      "describe": "얼음 빔",
+      "skillCaster": "iceSlime",
+      "rarity": "rare",
+      "attackDamage": 4,
+      "attackCount": 2,
+      "attackType": "beam",
+      "attackHeight": 2,
+      "attackWidth": 5,
+      "attackSpread": "focused",
+      "spreadRange": 1,
+      "pierce": 0,
+      "move": 2,
+      "cost": 2,
+      "specialEffectId": "13002"
+    }
+  ],
+  "specialEffect": [
+    {
+      "id": "",
+      "effect": "",
+      "value": ""
+    },
+    {
+      "id": "int",
+      "effect": "enum",
+      "value": "int"
+    },
+    {
+      "id": 130011,
+      "effect": "freeze",
+      "value": 1
+    },
+    {
+      "id": 130021,
+      "effect": "freeze",
+      "value": 1
+    }
+  ],
+  "specialEffectDescribe": [
+    {
+      "name": "이름",
+      "describe": "설명"
+    },
+    {
+      "name": "string",
+      "describe": "string"
+    },
+    {
+      "name": "freeze",
+      "describe": "적을 얼립니다!"
+    },
+    {
+      "name": "knockback",
+      "describe": "적을 밀칩니다!"
+    }
+  ],
+  "monster": [
+    {
+      "name": "이름",
+      "id": "id",
+      "sprite": "스프라이트",
+      "size": "크기",
+      "hpMiddle": "체력 중앙값",
+      "hpVariation": "체력 폭",
+      "pattern": "패턴",
+      "initPattern": "최초 패턴",
+      "phaseSwitchHpRatio": "페이즈 전환 비율"
+    },
+    {
+      "name": "string",
+      "id": "int",
+      "sprite": "",
+      "size": "int",
+      "hpMiddle": "int",
+      "hpVariation": "int",
+      "pattern": "list",
+      "initPattern": "string",
+      "phaseSwitchHpRatio": "int"
+    },
+    {
+      "name": "strikeShade",
+      "id": 20001,
+      "sprite": "",
+      "size": 1,
+      "hpMiddle": 20,
+      "hpVariation": 1,
+      "pattern": "20001-1, 20001-2, 20001-3, 20001-4, 20001-5",
+      "initPattern": "20001-5",
+      "phaseSwitchHpRatio": 0
+    },
+    {
+      "name": "blowgunShade",
+      "id": 20002,
+      "sprite": "",
+      "size": 1,
+      "hpMiddle": 15,
+      "hpVariation": 1,
+      "pattern": "20002-1, 20002-2, 20002-3",
+      "initPattern": "0",
+      "phaseSwitchHpRatio": 0
+    }
+  ],
+  "monsterPattern": [
+    {
+      "sosok": "소속 몬스터",
+      "dragonSwordMemo": "용도 메모",
+      "id": "id",
+      "range": "사거리",
+      "actionSequence": "행동 순서",
+      "phase": "1페/2페",
+      "weight": "가중치"
+    },
+    {
+      "sosok": "-",
+      "dragonSwordMemo": "",
+      "id": "string",
+      "range": "int",
+      "actionSequence": "list",
+      "phase": "int",
+      "weight": "int"
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "이동",
+      "id": "20001-1",
+      "range": 15,
+      "actionSequence": "1",
+      "phase": 1,
+      "weight": 3
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "이동",
+      "id": "20001-2",
+      "range": 5,
+      "actionSequence": "2, 0",
+      "phase": 1,
+      "weight": 1
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "근접공격",
+      "id": "20001-3",
+      "range": 0,
+      "actionSequence": "20001-1-1",
+      "phase": 1,
+      "weight": 1
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "약근접공격",
+      "id": "20001-4",
+      "range": 0,
+      "actionSequence": "20001-1-2",
+      "phase": 1,
+      "weight": 2
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "최초 이동",
+      "id": "20001-5",
+      "range": 15,
+      "actionSequence": "2, 0",
+      "phase": 1,
+      "weight": 0
+    },
+    {
+      "sosok": "블로우건 유령",
+      "dragonSwordMemo": "이동",
+      "id": "20002-1",
+      "range": 15,
+      "actionSequence": "1",
+      "phase": 1,
+      "weight": 1
+    },
+    {
+      "sosok": "블로우건 유령",
+      "dragonSwordMemo": "원거리 공격",
+      "id": "20002-2",
+      "range": 15,
+      "actionSequence": "20002-1-1, 0, 0",
+      "phase": 1,
+      "weight": 3
+    },
+    {
+      "sosok": "블로우건 유령",
+      "dragonSwordMemo": "약 원거리 공격",
+      "id": "20002-3",
+      "range": 9,
+      "actionSequence": "20002-1-2, 0",
+      "phase": 1,
+      "weight": 1
+    }
+  ],
+  "monsterAction": [
+    {
+      "sosok": "소속 몬스터",
+      "dragonSwordMemo": "용도 메모",
+      "id": "id",
+      "action": "행동 형태",
+      "value": ""
+    },
+    {
+      "sosok": "",
+      "dragonSwordMemo": "string",
+      "id": "string",
+      "action": "string",
+      "value": "string"
+    },
+    {
+      "sosok": "범용",
+      "dragonSwordMemo": "휴식",
+      "id": 0,
+      "action": "rest",
+      "value": 0
+    },
+    {
+      "sosok": "범용",
+      "dragonSwordMemo": "이동",
+      "id": 1,
+      "action": "move",
+      "value": 1
+    },
+    {
+      "sosok": "범용",
+      "dragonSwordMemo": "이동",
+      "id": 2,
+      "action": "move",
+      "value": 2
+    },
+    {
+      "sosok": "범용",
+      "dragonSwordMemo": "이동",
+      "id": 3,
+      "action": "move",
+      "value": 3
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "강근접공격",
+      "id": "+020000-12-31T15:00:00.000Z",
+      "action": "meleeAttack",
+      "value": 12
+    },
+    {
+      "sosok": "근접 유령",
+      "dragonSwordMemo": "약근접공격",
+      "id": "+020001-01-01T15:00:00.000Z",
+      "action": "meleeAttack",
+      "value": 4
+    },
+    {
+      "sosok": "블로우건 유령",
+      "dragonSwordMemo": "약 투사체 공격",
+      "id": "+020001-12-31T15:00:00.000Z",
+      "action": "rangedAttack",
+      "value": 5
+    }
+  ]
+}
