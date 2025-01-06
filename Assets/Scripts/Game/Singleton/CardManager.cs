@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DataBase.DataClasses;
 using EventChannel;
 using Game;
 using Game.Player;
@@ -14,7 +15,7 @@ public class CardManager : Singleton<CardManager>
 
     private Deck deck;
     private Rune rune;
-    private Queue<CardSO> deckQueue = new Queue<CardSO>();
+    private Queue<CardData> deckQueue = new Queue<CardData>();
 
     [SerializeField] private Board board;
     [SerializeField] private Slime iceSlime;
@@ -54,14 +55,13 @@ public class CardManager : Singleton<CardManager>
             cards[i].RaiseCardDrawn(deckQueue.Dequeue());
         }
     }
-
-
-
-    public bool UseCard(CardSO card, Vector2Int targetPosition)
+    
+    
+    public bool UseCard(CardData cardData, Vector2Int targetPosition)
     {
-        if (card == null)
+        if (cardData == null)
         {
-            Debug.Log("선택된 카드 없음");
+            Debug.Log("No card selected");
             return false;
         }
         Debug.Log($"Cast Card : {card.name}");
@@ -73,35 +73,32 @@ public class CardManager : Singleton<CardManager>
             int damage = card.damage + runeEffect[RuneEffect.damage];
             int attackCnt = card.attackCnt + runeEffect[RuneEffect.attackCnt];
 
-            Slime slime = attackCard.skillCaster switch
-            {
-                SkillCaster.Ice => iceSlime,
-                SkillCaster.Grass => grassSlime,
-                SkillCaster.Fire => fireSlime,
-                _ => null
-            };
-            if (slime == null)
-            {
-                Debug.Log("슬라임 선택 오류");
-                return false;
-            }
-            if(attackCard.CheckCanSlimeMove(slime.GetComponent<Entity>().Position, targetPosition, attackCard.move))
-            {
-                slime.CastCard(attackCard, targetPosition);
-                isSuccessful = true;
-            }
-        }
-        else if (card.cardType == CardType.Rune)
+        // CardAction action = cardData.cardType switch
+        // {
+        //     CardType.Attack => new AttackAction(DetermineSlime((AttackCardData)cardData)),
+        //     _ => null
+        // };
+
+        // if (action != null)
+        // {
+        //     action.Execute(cardData, targetPosition);
+        //     TurnManager.Instance.ReadyToEndPlayerTurn();
+        //     return true;
+        // }
+        //
+        // Debug.Log("Invalid card type");
+        // return false;
+        return false;
+    }
+
+    private Slime DetermineSlime(MagicCardData cardData)
+    {
+        return cardData.skillCaster switch
         {
-            RuneCardSO runeCard = (RuneCardSO)card;
-            rune.AddRuneEffect(runeCard.damageCalculateType, card.damage, runeCard.attackCntCalculateType, card.attackCnt);
-            //TODO 룬카드 구현 
-            isSuccessful = true;
-        }
-        else Debug.Log("카드타입오류");
-        
-        if(isSuccessful)
-            TurnManager.Instance.ReadyToEndPlayerTurn();
-        return isSuccessful;
+            SkillCaster.Ice => iceSlime,
+            SkillCaster.Grass => grassSlime,
+            SkillCaster.Fire => fireSlime,
+            _ => null
+        };
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using DataBase.DataClasses;
 using DG.Tweening;
 using UnityEngine;
 using TMPro;
@@ -27,9 +28,10 @@ public class CardDisplay : MonoBehaviour
     [Header("Display Setting")]
     [SerializeField] private CardDisplaySettingSO displaySetting;
     
+    [FormerlySerializedAs("cardData")]
     [Header("References")]
-    [SerializeField] private Card cardData;
-    private CardSelect cardSelect => cardData.CardSelect;
+    [SerializeField] private Card card;
+    private CardSelect cardSelect => card.CardSelect;
     [SerializeField] private RectTransform cardHolder;
     [Header("Rendering")] 
     [SerializeField] private Image image;
@@ -39,7 +41,7 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI costText;
-    [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private TextMeshProUGUI moveText;
 
     
     
@@ -47,7 +49,7 @@ public class CardDisplay : MonoBehaviour
     
     private void Awake()
     {
-        cardData = GetComponent<Card>();
+        card = GetComponent<Card>();
         material = new Material(image.material);
         image.material = material;
     }
@@ -60,19 +62,27 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    public void DisplayCard(CardSO card)
+    public void DisplayCard(CardData card)
     {
-        cardData.card = card;
+        this.card.cardData = card;
         nameText.text = card.cardName;
         descriptionText.text = card.description;
-        image.sprite = card.image;
+        image.sprite = card.backImage;
         costText.text = card.cost.ToString();
-        damageText.text = card.damage.ToString();
+        if(card.cardType == CardType.Attack)
+        {
+            var attackCard = (card as MagicCardData);
+            moveText.text = attackCard?.move.ToString() ?? String.Empty;
+        }
+        else
+        {
+            moveText.text = String.Empty;
+        }
     }
 
     private void OnEnable()
     {
-        cardData.OnCardDrawn += OnCardDrawn;
+        card.OnCardDrawn += OnCardDrawn;
         cardSelect.OnFocus += OnFocused;
         cardSelect.OnUnfocus += OnUnfocused;
         cardSelect.OnDragStart += OnDragStart;
@@ -82,7 +92,7 @@ public class CardDisplay : MonoBehaviour
     
     private void OnDisable()
     {
-        cardData.OnCardDrawn -= OnCardDrawn;
+        card.OnCardDrawn -= OnCardDrawn;
         cardSelect.OnFocus -= OnFocused;
         cardSelect.OnUnfocus -= OnUnfocused;
         cardSelect.OnDragStart -= OnDragStart;
@@ -90,7 +100,7 @@ public class CardDisplay : MonoBehaviour
         cardSelect.OnDragEnd -= OnDragEnd;
     }
     
-    private void OnCardDrawn(CardSO cardSO)
+    private void OnCardDrawn(CardData cardSO)
     {
         DisplayCard(cardSO);
         ShowDecay(0);
@@ -148,7 +158,7 @@ public class CardDisplay : MonoBehaviour
     {
         if(dacayDOTweener is { active: true })
             dacayDOTweener.Kill();
-        material.SetFloat(_DissolveAmount, decayScale);
+        image.materialForRendering.SetFloat(_DissolveAmount, decayScale);
     }
     
     private Tween dacayDOTweener;
@@ -160,7 +170,7 @@ public class CardDisplay : MonoBehaviour
     {
         if(dacayDOTweener is { active: true })
             dacayDOTweener.Kill();
-        var anim = material.DOFloat(decayScale, _DissolveAmount, duration);
+        var anim = image.materialForRendering.DOFloat(decayScale, _DissolveAmount, duration);
         dacayDOTweener = anim;
     }
     

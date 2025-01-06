@@ -1,22 +1,15 @@
 using System;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace DataBase.DataClasses
 {
     [Serializable]
-    public class MagicCardData
+    public class MagicCardData : CardData
     {
-        /// <summary>스킬 이름</summary>
-        public string skillKoreanName;
-        /// <summary></summary>
-        public int id;
-        /// <summary></summary>
-        public string name;
-        /// <summary></summary>
-        public string describe;
         /// <summary></summary>
         public SkillCaster skillCaster;
-        /// <summary></summary>
-        public Rarity rarity;
+
         /// <summary></summary>
         public int attackDamage;
         /// <summary></summary>
@@ -28,24 +21,22 @@ namespace DataBase.DataClasses
         /// <summary></summary>
         public int attackWidth;
         /// <summary></summary>
-        public string attackSpread;
+        public AttackSpread attackSpread;
         /// <summary></summary>
         public int spreadRange;
         /// <summary></summary>
         public int pierce;
         /// <summary></summary>
         public int move;
-        /// <summary></summary>
-        public int cost;
         /// <summary>특수효과</summary>
         public string specialEffectId;
         
         public void ParseRawData(RawMagicCard rawMagicCard)
         {
-            skillKoreanName = rawMagicCard.skillKoreanName;
-            id = rawMagicCard.id;
-            name = rawMagicCard.name;
-            describe = rawMagicCard.describe;
+            cardKoreanName = rawMagicCard.skillKoreanName;
+            cardId = rawMagicCard.id;
+            cardName = rawMagicCard.name;
+            description = rawMagicCard.describe;
             skillCaster = rawMagicCard.skillCaster.ToLowerInvariant() switch
             {
                 "grassslime" => SkillCaster.Grass,
@@ -70,7 +61,12 @@ namespace DataBase.DataClasses
             };
             attackHeight = rawMagicCard.attackHeight;
             attackWidth = rawMagicCard.attackWidth;
-            attackSpread = rawMagicCard.attackSpread;
+            attackSpread = rawMagicCard.attackSpread.ToLowerInvariant() switch
+            {
+                "radial" => AttackSpread.radial,
+                "focused" => AttackSpread.focused,
+                _ => AttackSpread.radial
+            };
             spreadRange = rawMagicCard.spreadRange;
             pierce = rawMagicCard.pierce;
             move = rawMagicCard.move;

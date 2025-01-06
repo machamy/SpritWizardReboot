@@ -39,7 +39,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         cardData.OnCardDrawn -= OnCardDrawn;
     }
     
-    private void OnCardDrawn(CardSO cardSO)
+    private void OnCardDrawn(CardData cardSO)
     {
         isUsed = false;
     }
@@ -69,7 +69,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         previousFocusedTile?.Unfocus();
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int boardPos = board.WorldToCell(mousePos);
-        bool isSuccessful = CardManager.Instance.UseCard(cardData.card, boardPos);
+        bool isSuccessful = CardManager.Instance.UseCard(cardData.cardData, boardPos);
         if(isSuccessful)
         {
             cardData.CardDisplay.ShowDecayDelayed(1);

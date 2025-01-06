@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public List<CardSO> allCards { get; private set; } = new List<CardSO>();
+    public List<CardData> allCards { get; private set; } = new List<CardData>();
     
 
     void Start()
     {
-        allCards = new List<CardSO>(Resources.LoadAll<CardSO>("Cards"));
+        // allCards = new List<CardData>(Resources.LoadAll<CardSO>("Cards"));
     }
 
-    public Queue<CardSO> GetDeckQueue()
+    public Queue<CardData> GetDeckQueue()
     {
         Shuffle(allCards);
-        return new Queue<CardSO>(allCards);
+        return new Queue<CardData>(allCards);
     }
 
     private void Shuffle<T>(List<T> list)

@@ -1,14 +1,13 @@
+using DataBase.DataClasses;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(AttackCardSO))]
-public class AttackCardSOEditor : UnityEditor.Editor
-{
-    public override void OnInspectorGUI()
+[CustomPropertyDrawer(typeof(MagicCardData))]
+public class AttackCardSOEditor : PropertyDrawer{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        serializedObject.Update();
-        AttackCardSO cardSO = (AttackCardSO)target;
-
+        SerializedObject serializedObject = property.serializedObject;
+        
         EditorGUILayout.PropertyField(serializedObject.FindProperty("cardName"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("rarity"));
@@ -21,16 +20,12 @@ public class AttackCardSOEditor : UnityEditor.Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("attackType"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("attackRange"));
 
-        if (cardSO.attackType != AttackType.explosion)
-        {
+        AttackType attackType = (AttackType)serializedObject.FindProperty("attackType").enumValueIndex;
+        if (attackType == AttackType.beam)
             EditorGUILayout.PropertyField(serializedObject.FindProperty("attackSpread"));
-        }
-        if (cardSO.attackSpread == AttackSpread.radial)
-        {
+        if (attackType == AttackType.explosion)
             EditorGUILayout.PropertyField(serializedObject.FindProperty("spreadRange"));
-        }
-        if (cardSO.attackType == AttackType.projectile)
-        {
+        if (attackType == AttackType.projectile || attackType == AttackType.projectile){
             EditorGUILayout.PropertyField(serializedObject.FindProperty("pierce"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("projectilePrefab"));
         }
