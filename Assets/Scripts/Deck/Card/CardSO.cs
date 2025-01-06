@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Card", menuName = "CardSO")]
 public class CardSO : ScriptableObject
 {
-    public CardData cardData;
+    [SerializeField] public CardData cardData;
 
 
-    private void OnValidate()
-    {
-        name = cardData.cardName;
-    }
+
+    
+    
 }

@@ -14,7 +14,7 @@ public class CardManager : Singleton<CardManager>
     [SerializeField] private Card[] cards;
 
     private Deck deck;
-    private Rune rune;
+    private RuneEffectHolder _runeEffectHolder;
     private Queue<CardData> deckQueue = new Queue<CardData>();
 
     [SerializeField] private Board board;
@@ -27,7 +27,7 @@ public class CardManager : Singleton<CardManager>
     private void Start()
     {
         deck = GetComponent<Deck>();
-        rune = GetComponent<Rune>();
+        _runeEffectHolder = GetComponent<RuneEffectHolder>();
     }
 
     private void OnEnable()
@@ -64,14 +64,14 @@ public class CardManager : Singleton<CardManager>
             Debug.Log("No card selected");
             return false;
         }
-        Debug.Log($"Cast Card : {card.name}");
-        bool isSuccessful = false;
-        if (card.cardType == CardType.Attack)
-        {
-            AttackCardSO attackCard = (AttackCardSO)card;
-            Dictionary<RuneEffect, int> runeEffect = rune.GetRuneEffect(); // key -> damage, attackCnt
-            int damage = card.damage + runeEffect[RuneEffect.damage];
-            int attackCnt = card.attackCnt + runeEffect[RuneEffect.attackCnt];
+        Debug.Log($"Cast Card : {cardData.cardName}");
+        // bool isSuccessful = false;
+        // if (card.cardType == CardType.Attack)
+        // {
+        //     AttackCardSO attackCard = (AttackCardSO)card;
+        //     Dictionary<RuneEffect, int> runeEffect = rune.GetRuneEffect(); // key -> damage, attackCnt
+        //     int damage = card.damage + runeEffect[RuneEffect.damage];
+        //     int attackCnt = card.attackCnt + runeEffect[RuneEffect.attackCnt];
 
         // CardAction action = cardData.cardType switch
         // {

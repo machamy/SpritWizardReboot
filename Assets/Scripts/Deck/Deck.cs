@@ -6,11 +6,6 @@ public class Deck : MonoBehaviour
     public List<CardData> allCards { get; private set; } = new List<CardData>();
     
 
-    void Start()
-    {
-        // allCards = new List<CardData>(Resources.LoadAll<CardSO>("Cards"));
-    }
-
     public Queue<CardData> GetDeckQueue()
     {
         Shuffle(allCards);

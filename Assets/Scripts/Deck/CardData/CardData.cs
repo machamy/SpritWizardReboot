@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
-public abstract class CardData
+public class CardData
 {
     /// <summary></summary>
     public int cardId;

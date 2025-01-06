@@ -1,6 +1,6 @@
 ﻿namespace DataBase.DataClasses
 {
-    public class RuneCard
+    public class RuneCardData
     {
         
     }

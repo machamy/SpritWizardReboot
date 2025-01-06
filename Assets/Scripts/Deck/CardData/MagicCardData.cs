@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace DataBase.DataClasses
 {
     [Serializable]
-    public class MagicCardData : CardData
+    public class MagicCardData : CardData, ICloneable
     {
         /// <summary></summary>
         public SkillCaster skillCaster;
@@ -31,47 +31,26 @@ namespace DataBase.DataClasses
         /// <summary>특수효과</summary>
         public string specialEffectId;
         
-        public void ParseRawData(RawMagicCard rawMagicCard)
+        public BaseCardAction magicCardAction;
+        public object Clone()
         {
-            cardKoreanName = rawMagicCard.skillKoreanName;
-            cardId = rawMagicCard.id;
-            cardName = rawMagicCard.name;
-            description = rawMagicCard.describe;
-            skillCaster = rawMagicCard.skillCaster.ToLowerInvariant() switch
+            return new MagicCardData
             {
-                "grassslime" => SkillCaster.Grass,
-                "iceslime" => SkillCaster.Ice,
-                "fireslime" => SkillCaster.Fire,
-                _ => SkillCaster.Ice
+                skillCaster = skillCaster,
+                attackDamage = attackDamage,
+                attackCount = attackCount,
+                attackType = attackType,
+                attackHeight = attackHeight,
+                attackWidth = attackWidth,
+                attackSpread = attackSpread,
+                spreadRange = spreadRange,
+                pierce = pierce,
+                move = move,
+                cost = cost,
+                specialEffectId = specialEffectId,
+                backImage = backImage,
+                magicCardAction = magicCardAction
             };
-            rarity = rawMagicCard.rarity.ToLowerInvariant() switch
-            {
-                "common" => Rarity.common,
-                "rare" => Rarity.rare,
-                _ => Rarity.common
-            };
-            attackDamage = rawMagicCard.attackDamage;
-            attackCount = rawMagicCard.attackCount;
-            attackType = rawMagicCard.attackType.ToLowerInvariant() switch
-            {
-                "beam" => AttackType.beam,
-                "projectile" => AttackType.projectile,
-                "explosion" => AttackType.explosion,
-                _ => AttackType.projectile
-            };
-            attackHeight = rawMagicCard.attackHeight;
-            attackWidth = rawMagicCard.attackWidth;
-            attackSpread = rawMagicCard.attackSpread.ToLowerInvariant() switch
-            {
-                "radial" => AttackSpread.radial,
-                "focused" => AttackSpread.focused,
-                _ => AttackSpread.radial
-            };
-            spreadRange = rawMagicCard.spreadRange;
-            pierce = rawMagicCard.pierce;
-            move = rawMagicCard.move;
-            cost = rawMagicCard.cost;
-            specialEffectId = rawMagicCard.specialEffectId;
         }
     }
 }

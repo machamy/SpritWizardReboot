@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rune : MonoBehaviour
+public class RuneEffectHolder : MonoBehaviour
 {
     [SerializeField] private int damage = 0;
     [SerializeField] private int attackCnt = 0;
