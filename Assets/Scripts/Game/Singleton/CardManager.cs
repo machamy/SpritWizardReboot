@@ -69,9 +69,9 @@ public class CardManager : Singleton<CardManager>
         if (card.cardType == CardType.Attack)
         {
             AttackCardSO attackCard = (AttackCardSO)card;
-            Dictionary<string, int> runeEffect = rune.GetRuneEffect(); // key -> damage, attackCnt
-            int damage = card.damage + runeEffect["damage"];
-            int attackCnt = card.attackCnt + runeEffect["attackCnt"];
+            Dictionary<RuneEffect, int> runeEffect = rune.GetRuneEffect(); // key -> damage, attackCnt
+            int damage = card.damage + runeEffect[RuneEffect.damage];
+            int attackCnt = card.attackCnt + runeEffect[RuneEffect.attackCnt];
 
             Slime slime = attackCard.skillCaster switch
             {

@@ -1,17 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SeedManager : MonoBehaviour
 {
     [SerializeField] private NodePlanner nodePlanner;
-    [SerializeField] private Seed[] seeds;
+    [SerializeField] private Seed[] seeds = new Seed[2];
+    [SerializeField] private RewardManager rewardManager; // 테스트용
 
     private Queue<Queue<SeedType>> weekSeed;
     private Queue<SeedType> daySeed;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         for (int i = 0; i < seeds.Length; i++)
@@ -23,7 +22,7 @@ public class SeedManager : MonoBehaviour
 
     public void PrintSeed()
     {
-        Debug.Log(GetSeed());
+        rewardManager.ReceiveReward(GetSeed());
     }
 
     public SeedType GetSeed()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace DataBase.DataClasses
 {
@@ -55,9 +55,9 @@ namespace DataBase.DataClasses
             };
             rarity = rawMagicCard.rarity.ToLowerInvariant() switch
             {
-                "common" => Rarity.normal,
+                "common" => Rarity.common,
                 "rare" => Rarity.rare,
-                _ => Rarity.normal
+                _ => Rarity.common
             };
             attackDamage = rawMagicCard.attackDamage;
             attackCount = rawMagicCard.attackCount;

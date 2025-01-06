@@ -13,7 +13,7 @@ public enum SkillCaster
 
 public enum Rarity
 {
-    normal,
+    common,
     rare
 }
 
@@ -28,4 +28,10 @@ public enum AttackSpread
 {
     focused,
     radial
+}
+
+public enum RuneEffect
+{
+    damage,
+    attackCnt
 }

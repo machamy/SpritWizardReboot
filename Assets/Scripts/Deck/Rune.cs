@@ -19,11 +19,11 @@ public class Rune : MonoBehaviour
         else Debug.Log("연산타입오류!");
     }
 
-    public Dictionary<string, int> GetRuneEffect()
+    public Dictionary<RuneEffect, int> GetRuneEffect()
     {
-        Dictionary<string, int> effect = new Dictionary<string, int>();
-        effect["damage"] = damage;
-        effect["attackCnt"] = attackCnt;
+        Dictionary<RuneEffect, int> effect = new Dictionary<RuneEffect, int>();
+        effect[RuneEffect.damage] = damage;
+        effect[RuneEffect.attackCnt] = attackCnt;
 
         // 룬 초기화
         damage = 0;

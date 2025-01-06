@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Game.Entity;
-using Game.Player;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AttackCard", menuName = "Card/Attack Card")]
