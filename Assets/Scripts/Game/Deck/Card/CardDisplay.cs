@@ -23,7 +23,7 @@ public class CardDisplay : MonoBehaviour
     private float dragReturnDuration => displaySetting.dragReturnDuration;
     private float dragMaxHeightCoefficient => displaySetting.dragMaxHeightCoefficient;
     [Header("Decay Animation")]
-    public float drageDcayHeightStartCoefficient => displaySetting.drageDcayHeightStartCoefficient;
+    public float DrageDecayHeightStartCoefficient => displaySetting.drageDecayHeightStartCoefficient;
     private float dragDecayHeightMaxCoeefcient => displaySetting.dragDecayHeightMaxCoeefcient;
     private float dragDecayScale => displaySetting.dragDecayScale;
      private float decayDuration => displaySetting.decayDuration;
@@ -162,7 +162,7 @@ public class CardDisplay : MonoBehaviour
         transform.position = targetPos;
         if(rawTargetPos.y > dragMaxHeight)
         {
-            float decayStartHeight = cardHolder.position.y + cardHolder.position.y * drageDcayHeightStartCoefficient;
+            float decayStartHeight = cardHolder.position.y + cardHolder.position.y * DrageDecayHeightStartCoefficient;
             float decayMaxHeight = cardHolder.position.y + cardHolder.position.y * dragDecayHeightMaxCoeefcient;
             float range = decayMaxHeight - decayStartHeight;
 
