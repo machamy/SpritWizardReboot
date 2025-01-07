@@ -86,6 +86,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             card.CardDisplay.ShowDecayDelayed(1);
             isUsed = true;
+            card.Discard();
         }
         isDragging = false;
         OnDragEnd?.Invoke();

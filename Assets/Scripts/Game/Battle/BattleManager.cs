@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using EventChannel;
 using Game.Player;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Game
         [SerializeField] private HandDeckManager handDeckManager;
         public TurnManager TurnManager => turnManager;
         public CardCastManager CardCastManager => cardCastManager;
+        public HandDeckManager HandDeckManager => handDeckManager;
         [Header("References")]
         [SerializeField] private Board board;
         [Header("Slime")]
@@ -28,6 +30,8 @@ namespace Game
         public List<CardMetaData> CurrentCardDataList => currentCardDataList;
         [Header("Battle")]
         [SerializeField] private bool isOnBattle = false;
+        [SerializeField] private IntVariableSO mana;
+        [SerializeField] private IntVariableSO maxMana;
         [Header("Channel")]
         [SerializeField] private TurnEventChannelSO playerTurnEnterEvent;
         public bool IsOnBattle => isOnBattle;

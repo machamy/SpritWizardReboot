@@ -5,8 +5,6 @@ using UnityEngine;
 public class HandDeckManager : MonoBehaviour
 {
     [SerializeField] private Deck deck;
-    // [SerializeField] private Hand hand;
-
     [SerializeField] private List<Card> cards;
     
     /// <summary>
@@ -32,14 +30,20 @@ public class HandDeckManager : MonoBehaviour
         deck.ShuffleDrawPool();
     }
     
+    public void DiscardCard(CardMetaData cardMetaData)
+    {
+        deck.AddCardToDiscardPool(cardMetaData);
+    }
+    
     public void OnPlayerTurnEnter()
     {
+        // TODO 카드 버리기/ 뽑기 분리
         for (int i = 0; i < 3; i++)
         {
             var card = cards[i];
-            // if(card.CardSelect.IsUsed)
-            deck.AddCardToDiscardPool(card.CardMetaData);
             var drawnCard = deck.DrawCard();
+            if(card.CardMetaData != null && !card.CardSelect.IsUsed)
+                card.Discard();
             
             if (drawnCard == null)
             {

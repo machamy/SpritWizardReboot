@@ -14,17 +14,11 @@ public class CardCastManager : Singleton<CardCastManager>
     [SerializeField] private Card[] cards;
     
     private RuneEffectHolder _runeEffectHolder;
-    private Queue<CardMetaData> deckQueue = new Queue<CardMetaData>();
-
-
-
-
+    
     private void Start()
     {
         _runeEffectHolder = GetComponent<RuneEffectHolder>();
     }
-
-
     
     public bool UseCard(CardMetaData cardMetaData, Vector2Int targetPosition)
     {
@@ -42,6 +36,12 @@ public class CardCastManager : Singleton<CardCastManager>
         if (cardMetaData.cost > 9999)
         {
             Debug.Log("Not enough mana");
+            return false;
+        }
+
+        if (BattleManager.Instance.Board.GetTile(targetPosition) == null)
+        {
+            Debug.Log("No target position");
             return false;
         }
         Debug.Log($"Cast Card : {cardMetaData.cardName}");
