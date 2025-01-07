@@ -9,7 +9,7 @@ using Test;
 using Game.Entity;
 using Random = UnityEngine.Random;
 
-public class CardManager : Singleton<CardManager>
+public class CardCastManager : Singleton<CardCastManager>
 {
     [SerializeField] private Card[] cards;
 
@@ -17,10 +17,7 @@ public class CardManager : Singleton<CardManager>
     private RuneEffectHolder _runeEffectHolder;
     private Queue<CardData> deckQueue = new Queue<CardData>();
 
-    [SerializeField] private Board board;
-    [SerializeField] private Slime iceSlime;
-    [SerializeField] private Slime grassSlime;
-    [SerializeField] private Slime fireSlime;
+
     [Header("Channel")]
     [SerializeField] private TurnEventChannelSO playerTurnEnterEvent;
 
@@ -91,14 +88,5 @@ public class CardManager : Singleton<CardManager>
         return false;
     }
 
-    private Slime DetermineSlime(MagicCardData cardData)
-    {
-        return cardData.skillCaster switch
-        {
-            SkillCaster.Ice => iceSlime,
-            SkillCaster.Grass => grassSlime,
-            SkillCaster.Fire => fireSlime,
-            _ => null
-        };
-    }
+
 }
