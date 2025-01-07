@@ -48,22 +48,33 @@ namespace Game
             StartGame();
         }
 
+        /// <summary>
+        /// 게임시작 상태로 턴을 세팅하고, 카드를 뽑도록 이벤트를 호출한다.
+        /// </summary>
         public void StartGame()
         {
             currentRawTurn = 2;
             playerTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
         }
         
+        /// <summary>
+        /// 턴을 종료할 준비를 한다.
+        /// TODO : 현재로선 바로 종료됨. 애니메이션/모든 행동 이 끝난 후 종료되도록 수정 필요
+        /// </summary>
         public void ReadyToEndPlayerTurn()
         {
             if (IsPlayerTurn)
             {
                 isReadyToEndPlayerTurn = true;
-                //TODO 애니메이션 기다리고 턴 끝내야함
+                // 애니메이션 조건
+                // 행동 조건
                 EndPlayerTurn();
             }
         }
         
+        /// <summary>
+        /// 플레이어의 턴을 끝낸다.
+        /// </summary>
         private void EndPlayerTurn()
         {
             if (isReadyToEndPlayerTurn)
@@ -75,6 +86,11 @@ namespace Game
             }
         }
         
+        /// <summary>
+        /// 적 턴이 시작된 후 자동으로 종료되는 타이머 루틴
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         private IEnumerator EnemyTurnTimer(float time)
         {
             while (time > 0)
@@ -89,6 +105,9 @@ namespace Game
             }
         }
         
+        /// <summary>
+        /// 적 턴을 끝낸다
+        /// </summary>
         private void EndEnemyTurn()
         {
             if (IsEnemyTurn)
@@ -133,16 +152,6 @@ namespace Game
         private void OnEnemyTurnExit(int turn)
         {
             
-        }
-        
-
-
-        public void ReadyEndPlayerTurn()
-        {
-            if (IsPlayerTurn)
-            {
-                isReadyToEndPlayerTurn = true;
-            }
         }
         
     }

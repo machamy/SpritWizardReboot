@@ -24,13 +24,17 @@ namespace Game
         [SerializeField] private Slime grassSlime;
         [SerializeField] private Slime fireSlime;
         [Header("Deck")]
-        [SerializeField] private bool initCardDataListByAllCardDataList = false;
-        [SerializeField] private List<CardMetaData> currentCardDataList;
         
+        [SerializeField,Tooltip("전체 카드를 현재 카드 리스트로 적용")] private bool initCardDataListByAllCardDataList = false;
+        [SerializeField,Tooltip("현재 게임에서의, 플레이어의 덱")] private List<CardMetaData> currentCardDataList;
+
+        /// <summary>
+        /// 현재 게임에서의, 플레이어의 덱
+        /// </summary>
         public List<CardMetaData> CurrentCardDataList => currentCardDataList;
         [Header("Battle")]
         [SerializeField] private bool isOnBattle = false;
-        [SerializeField] private IntVariableSO mana;
+        [SerializeField] private IntVariableSO mana; //TODO 마나구현
         [SerializeField] private IntVariableSO maxMana;
         [Header("Channel")]
         [SerializeField] private TurnEventChannelSO playerTurnEnterEvent;
@@ -50,6 +54,7 @@ namespace Game
 
         private void Start()
         {
+            // 게임 시작할때 전체 카드를 받아올지?
             if(initCardDataListByAllCardDataList)
                 InitCardDataListByAllCardDataList();
         }
@@ -63,6 +68,10 @@ namespace Game
             playerTurnEnterEvent.OnTurnEventRaised -= OnPlayerTurnEnter;
         }
 
+        /// <summary>
+        /// 덱을 현재 카드 리스트로 세팅하고, 초기화한다.
+        /// 그후 전투를 시작한다.
+        /// </summary>
         public void StartBattle()
         {
             isOnBattle = true;
@@ -71,12 +80,17 @@ namespace Game
             turnManager.StartGame();
         }
 
-        public void OnPlayerTurnEnter(int turn)
+        private void OnPlayerTurnEnter(int turn)
         {
             if(IsOnBattle == false)
                 return;
             handDeckManager.OnPlayerTurnEnter();
         }
+        /// <summary>
+        /// 해당 슬라임의 객체를 반환한다.
+        /// </summary>
+        /// <param name="caster"></param>
+        /// <returns></returns>
         public Slime GetSlime(SkillCaster caster)
         {
             return caster switch

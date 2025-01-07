@@ -43,6 +43,10 @@ using UnityEngine.Serialization;
         
         [FormerlySerializedAs("magicCardAction")] public BaseCardAction cardAction;
 
+        /// <summary>
+        /// 위치 정보가 없어도 시전이 가능한지 확인
+        /// </summary>
+        /// <returns></returns>
         public bool CanCast()
         {
             if(move == 0)
@@ -55,6 +59,13 @@ using UnityEngine.Serialization;
             }
         }
 
+        /// <summary>
+        /// 해당 위치로 시전이 가능한지 여부 확인
+        /// TODO : Rune 적용
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public bool CanCastTo(Vector2Int start, Vector2Int target)
         {
             int deltaX = Mathf.Abs(start.x - target.x);

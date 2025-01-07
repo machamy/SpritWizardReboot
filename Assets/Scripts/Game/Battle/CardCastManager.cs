@@ -9,9 +9,15 @@ using Game.Player;
 using UnityEngine;
 
 
+/// <summary>
+/// 카드 시전 관리 매니저
+/// </summary>
+/// <remarks>
+/// TODO : 카드 시전을 룬/마법 분리할 필요 없음. 개선 가능
+/// </remarks>
 public class CardCastManager : Singleton<CardCastManager>
 {
-    [SerializeField] private Card[] cards;
+    [SerializeField] private CardObject[] cards;
     
     private RuneEffectHolder _runeEffectHolder;
     
@@ -89,8 +95,10 @@ public class CardCastManager : Singleton<CardCastManager>
         return true;
     }
     
+    
     private bool UseRuneCard(CardMetaData cardMetaData)
     {
+        // TODO : 룬 적용도 카드 안에서 하도록 개선 가능
         var effectHolder = GetComponent<RuneEffectHolder>();
         CardData cardData = cardMetaData.cardData;
         if(!cardData.CanCast())
