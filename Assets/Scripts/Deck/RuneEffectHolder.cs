@@ -3,20 +3,29 @@ using UnityEngine;
 
 public class RuneEffectHolder : MonoBehaviour
 {
+    public enum RuneEffectType
+    {
+        damage,
+        attackCnt,
+        moveCnt,
+        MAX
+    }
+    
+    [SerializeField] private int[] runeEffect = new int[(int)RuneEffectType.MAX];
+    
     [SerializeField] private int damage = 0;
     [SerializeField] private int attackCnt = 0;
-
+    public void StackRuneEffect(RuneEffectType runeEffectType, CalculateType calculateType, int amount)
+    {
+        if (calculateType == CalculateType.add) runeEffect[(int)runeEffectType] += amount;
+        else if (calculateType == CalculateType.sub) runeEffect[(int)runeEffectType] -= amount;
+        else if (calculateType == CalculateType.mul) runeEffect[(int)runeEffectType] *= amount;
+        else Debug.Log("연산타입오류!");
+    }
     public void AddRuneEffect(CalculateType damageCalculateType, int damage, CalculateType attackCntCalculateType, int attackCnt)
     {
-        if (damageCalculateType == CalculateType.add) this.damage += damage;
-        else if (damageCalculateType == CalculateType.sub) this.damage -= damage;
-        else if (damageCalculateType == CalculateType.mul) this.damage *= damage;
-        else Debug.Log("연산타입오류!");
-        
-        if (attackCntCalculateType == CalculateType.add) this.attackCnt += attackCnt;
-        else if (attackCntCalculateType == CalculateType.sub) this.attackCnt -= attackCnt;
-        else if (attackCntCalculateType == CalculateType.mul) this.attackCnt *= attackCnt;
-        else Debug.Log("연산타입오류!");
+        StackRuneEffect(RuneEffectType.damage, damageCalculateType, damage);
+        StackRuneEffect(RuneEffectType.attackCnt, attackCntCalculateType, attackCnt);
     }
 
     public Dictionary<RuneEffect, int> GetRuneEffect()
