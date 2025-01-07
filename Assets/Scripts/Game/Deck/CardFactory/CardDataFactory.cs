@@ -1,6 +1,6 @@
 ﻿
 
-public interface CardDataFactory<T> where T : CardData
+public interface CardDataFactory<T> where T : CardMetaData
 {
     
 }

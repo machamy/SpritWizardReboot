@@ -71,7 +71,7 @@ namespace Game.World
         /// </summary>
         /// <param name="color"></param>
         /// <param name="duration"></param>
-        public void ShowDebugColor(Color color, float duration = 1.5f)
+        public void ShowDebugColor(Color color, float duration = 0.5f)
         {
             debugRenderer.color = color;
             if (colorDuration <= 0)

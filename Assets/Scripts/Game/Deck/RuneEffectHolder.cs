@@ -1,25 +1,35 @@
+using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RuneEffectHolder : MonoBehaviour
 {
+    [SerializeField] private IntVariableSO[] runeEffectChannel;
+    [SerializeField] private int[] runeEffectData = new int[(int)Define.RuneEffectType.MAX];
 
-    [SerializeField] private int[] runeEffect = new int[(int)Define.RuneEffectType.MAX];
-    
-    [SerializeField] private int damage = 0;
-    [SerializeField] private int attackCnt = 0;
+    public void StackRuneEffectRange(int[] runeEffectAmounts)
+    {
+        for (int i = 0; i < (int)Define.RuneEffectType.MAX; i++)
+        {
+            StackRuneEffect((Define.RuneEffectType)i, Define.CalculateType.add, runeEffectAmounts[i]);
+        }
+    }
     public void StackRuneEffect(Define.RuneEffectType runeEffectType, Define.CalculateType calculateType, int amount)
     {
         switch (calculateType)
         {
             case Define.CalculateType.add:
-                runeEffect[(int)runeEffectType] += amount;
+                runeEffectData[(int)runeEffectType] += amount;
+                runeEffectChannel[(int)runeEffectType].Value = runeEffectData[(int)runeEffectType];
                 break;
-            case Define.CalculateType.sub:
-                runeEffect[(int)runeEffectType] -= amount;
-                break;
+            // case Define.CalculateType.sub:
+            //     runeEffectData[(int)runeEffectType] -= amount;
+            //     break;
             case Define.CalculateType.mul:
-                runeEffect[(int)runeEffectType] *= amount;
+                runeEffectData[(int)runeEffectType] *= amount;
+                runeEffectChannel[(int)runeEffectType].Value = runeEffectData[(int)runeEffectType];
                 break;
         }
     }
@@ -27,18 +37,5 @@ public class RuneEffectHolder : MonoBehaviour
     {
         StackRuneEffect(Define.RuneEffectType.damage, damageCalculateType, damage);
         StackRuneEffect(Define.RuneEffectType.attackCnt, attackCntCalculateType, attackCnt);
-    }
-
-    public Dictionary<RuneEffect, int> GetRuneEffect()
-    {
-        Dictionary<RuneEffect, int> effect = new Dictionary<RuneEffect, int>();
-        effect[RuneEffect.damage] = damage;
-        effect[RuneEffect.attackCnt] = attackCnt;
-
-        // 룬 초기화
-        damage = 0;
-        attackCnt = 0;
-
-        return effect;
     }
 }

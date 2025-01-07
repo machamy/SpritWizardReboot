@@ -36,7 +36,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Execute(int turn)
     {
-        if (_entity.Position.x != 0)
+        if (_entity.Coordinate.x != 0)
         {
             _entity.MoveDirectionAnimated(Direction.L, 1,1f);
         }

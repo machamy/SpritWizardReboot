@@ -1,5 +1,7 @@
 using System;
 using DG.Tweening;
+using Game;
+using Game.Entity;
 using Game.World;
 using UnityEngine;
 using TMPro;
@@ -62,16 +64,20 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    public void DisplayCard(CardData card)
+    public void DisplayCard(CardMetaData cardMetaData)
     {
-        nameText.text = card.cardName;
-        descriptionText.text = card.description;
-        image.sprite = card.backImage;
-        costText.text = card.cost.ToString();
-        if(card.cardType == CardType.Attack)
+        if(cardMetaData == null)
         {
-            var attackCard = (card as MagicCardData);
-            moveText.text = attackCard?.move.ToString() ?? String.Empty;
+            Debug.LogError("Card is null");
+            return;
+        }
+        nameText.text = cardMetaData.cardName;
+        descriptionText.text = cardMetaData.description;
+        image.sprite = cardMetaData.backImage;
+        costText.text = cardMetaData.cost.ToString();
+        if(cardMetaData.cardType == CardType.Attack)
+        {
+            moveText.text = cardMetaData.cardData.move.ToString();
         }
         else
         {
@@ -113,9 +119,9 @@ public class CardDisplay : MonoBehaviour
     #endregion
 
     #region 이벤트 핸들러
-    private void OnCardDrawn(CardData cardSO)
+    private void OnCardDrawn(CardMetaData cardMetaSo)
     {
-        DisplayCard(cardSO);
+        DisplayCard(cardMetaSo);
         ShowDecay(0);
         transform.localScale = unfocusedScale * Vector3.one;
         transform.position = cardHolder.position;
@@ -140,7 +146,8 @@ public class CardDisplay : MonoBehaviour
     {
         if(cardSelect.IsUsed)
             return;
-        transform.DOScale(dragScale, dragScaleDuration); 
+        transform.DOScale(dragScale, dragScaleDuration);
+        image.DOFade(0.4f, dragScaleDuration);
     }
     
     public void OnDraggingUpdate(Vector3 mousePos)
@@ -198,6 +205,7 @@ public class CardDisplay : MonoBehaviour
             return;
         transform.DOScale(unfocusedScale, dragScaleDuration);
         transform.DOMove(cardHolder.position, dragReturnDuration);
+        image.DOFade(1f, dragScaleDuration);
         ShowDecay(0f);
     }
     
@@ -205,12 +213,32 @@ public class CardDisplay : MonoBehaviour
     {
         if(cardSelect.IsUsed)
             return;
+        var meta = card.CardMetaData;
+        if(meta.cardType == CardType.Rune)
+        {
+            tile.Focus(displaySetting.tileFocusOkColor);
+        }
+        else
+        {
+            var slime = BattleManager.Instance.GetSlime(meta.cardData.skillCaster);
+            if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates))
+            {
+                tile.Focus(displaySetting.tileFocusOkColor);
+            }
+            else
+            {
+                tile.Focus(displaySetting.tileFocusNoColor);
+            }
+        }
+
         
     }
     
     public void OnPointerTileExit(Tile tile)
     {
-        
+        if(cardSelect.IsUsed)
+            return;
+        tile.Unfocus();   
     }
     
     public void OnPointerTileUpdate(Tile tile)

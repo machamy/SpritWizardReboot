@@ -12,10 +12,10 @@ namespace DataStructure
     {
         [SerializeField] private TKey _defaultKey;
         [Serializable]
-        public class DictPair<TKey, TValue>
+        public class DictPair<K, V>
         {
-            public TKey Key;
-            public TValue Value;
+            public K Key;
+            public V Value;
         }
 
         [SerializeField] private List<DictPair<TKey, TValue>> _pairs = new ();

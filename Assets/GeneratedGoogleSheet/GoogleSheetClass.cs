@@ -8,6 +8,7 @@ public class GoogleSheetSO : ScriptableObject
 	public List<RawCombat> RawCombatList;
 	public List<RawRewardChance> RawRewardChanceList;
 	public List<RawAddCardWeight> RawAddCardWeightList;
+	public List<RawStorePrice> RawStorePriceList;
 	public List<RawRuneCard> RawRuneCardList;
 	public List<RawMagicCard> RawMagicCardList;
 	public List<RawSpecialEffect> RawSpecialEffectList;
@@ -54,6 +55,15 @@ public class RawAddCardWeight
 {
 	/// <summary>일반카드 가중치</summary>
 	public int rareCardWeight;
+}
+
+[Serializable]
+public class RawStorePrice
+{
+	/// <summary>가격 중간값</summary>
+	public int priceMiddle;
+	/// <summary>가격 폭</summary>
+	public int priceRange;
 }
 
 [Serializable]

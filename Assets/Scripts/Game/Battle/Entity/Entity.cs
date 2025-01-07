@@ -3,6 +3,7 @@ using DefaultNamespace;
 using DG.Tweening;
 using Game.World;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Math = Unity.Mathematics.Geometry.Math;
 
 namespace Game.Entity
@@ -11,10 +12,10 @@ namespace Game.Entity
     {
         private bool _isInitialized;
         private Board _board;
-        [SerializeField] private Vector2Int _position;
+        [FormerlySerializedAs("_position")] [SerializeField] private Vector2Int _coordinate;
         private Tile currentTile;
-        public Tile CurrentTile => _board.GetTile(_position);
-        public Vector2Int Position => _position;
+        public Tile CurrentTile => _board.GetTile(_coordinate);
+        public Vector2Int Coordinate => _coordinate;
 
         private void Start()
         {
@@ -34,61 +35,61 @@ namespace Game.Entity
         
         public void MoveTo(Vector2Int position)
         {
-            Tile currentTile = _board.GetTile(_position);
+            Tile currentTile = _board.GetTile(_coordinate);
             currentTile.RemoveEntity(this);
             Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
             Tile nextTile = _board.GetTile(clamped);
             nextTile.AddEntity(this);
-            _position = clamped;
+            _coordinate = clamped;
         }
 
         public void MoveToAnimated(Vector2Int position, float time = 1f)
         {
-            Tile currentTile = _board.GetTile(_position);
+            Tile currentTile = _board.GetTile(_coordinate);
             currentTile.RemoveEntity(this);
             Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
             Tile nextTile = _board.GetTile(clamped);
             nextTile.AddEntity(this);
-            _position = clamped;
+            _coordinate = clamped;
             transform.DOMove(_board.CellCenterToWorld(clamped), time);
         }
         
         public void MoveToImmediate(Vector2Int position)
         {
-            Tile currentTile = _board.GetTile(_position);
+            Tile currentTile = _board.GetTile(_coordinate);
             currentTile.RemoveEntity(this);
             Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
             Tile nextTile = _board.GetTile(clamped);
             nextTile.AddEntity(this);
-            _position = clamped;
+            _coordinate = clamped;
             transform.position = _board.CellCenterToWorld(clamped);
         }
         
         public void MoveDirection(Direction direction, int distance)
         {
-            Vector2Int newPosition = _position + direction.ToVectorInt() * distance;
+            Vector2Int newPosition = _coordinate + direction.ToVectorInt() * distance;
             MoveTo(newPosition);
         }
         
         public void MoveDirectionAnimated(Direction direction, int distance, float time = 1)
         {
-            Vector2Int newPosition = _position + direction.ToVectorInt() * distance;
+            Vector2Int newPosition = _coordinate + direction.ToVectorInt() * distance;
             MoveToAnimated(newPosition, time);
         }
         
         public void MoveDirectionImmediate(Direction direction, int distance)
         {
-            Vector2Int newPosition = _position + direction.ToVectorInt() * distance;
+            Vector2Int newPosition = _coordinate + direction.ToVectorInt() * distance;
             MoveToImmediate(newPosition);
         }
         
         public void MoveLeft(int distance)
         {
-            MoveTo(_position + Vector2Int.left * distance);
+            MoveTo(_coordinate + Vector2Int.left * distance);
         }
         public void MoveRight(int distance)
         {
-            MoveTo(_position + Vector2Int.left * distance);
+            MoveTo(_coordinate + Vector2Int.left * distance);
         }
 
         private void OnDestroy()

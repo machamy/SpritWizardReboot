@@ -13,7 +13,7 @@ public class HandDeckManager : MonoBehaviour
     /// 현재 소지한 카드들로 덱을 설정한다.
     /// </summary>
     /// <param name="cardDataList"></param>
-    public void InitDeck(List<CardData> cardDataList)
+    public void InitDeck(List<CardMetaData> cardDataList)
     {
         foreach (var cardData in cardDataList)
         {
@@ -38,7 +38,7 @@ public class HandDeckManager : MonoBehaviour
         {
             var card = cards[i];
             // if(card.CardSelect.IsUsed)
-            deck.AddCardToDiscardPool(card.CardData);
+            deck.AddCardToDiscardPool(card.CardMetaData);
             var drawnCard = deck.DrawCard();
             
             if (drawnCard == null)

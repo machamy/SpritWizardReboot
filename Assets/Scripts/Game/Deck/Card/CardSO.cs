@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "CardSO")]
 public class CardSO : ScriptableObject
 {
-    [SerializeField] public CardData cardData;
+    [FormerlySerializedAs("cardData")] [SerializeField] public CardMetaData cardMetaData;
 
 
 

@@ -23,9 +23,9 @@ namespace Game
         [SerializeField] private Slime fireSlime;
         [Header("Deck")]
         [SerializeField] private bool initCardDataListByAllCardDataList = false;
-        [SerializeField] private List<CardData> currentCardDataList;
+        [SerializeField] private List<CardMetaData> currentCardDataList;
         
-        public List<CardData> CurrentCardDataList => currentCardDataList;
+        public List<CardMetaData> CurrentCardDataList => currentCardDataList;
         [Header("Battle")]
         [SerializeField] private bool isOnBattle = false;
         [Header("Channel")]
@@ -89,7 +89,7 @@ namespace Game
         [ContextMenu("InitCardDataListByAllCardDataList")]
         public void InitCardDataListByAllCardDataList()
         {
-            currentCardDataList = new List<CardData>(Database.AllCards);
+            currentCardDataList = new List<CardMetaData>(Database.AllCardMetas);
         }
     }
 }

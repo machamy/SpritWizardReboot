@@ -44,7 +44,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         card.OnCardDrawn -= OnCardDrawn;
     }
     
-    private void OnCardDrawn(CardData cardSO)
+    private void OnCardDrawn(CardMetaData cardMetaSo)
     {
         isUsed = false;
     }
@@ -55,26 +55,33 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         OnDragStart?.Invoke();
     }
     
-    private Tile previousFocusedTile;
+    private Tile previousEnteredTile;
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
         OnDragging?.Invoke();
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Tile tile = board.GetTile(board.WorldToCell(mousePos));
-        if(tile != null && previousFocusedTile != tile)
+        if(tile != null && previousEnteredTile != tile)
         {
-            tile.Focus();
-            previousFocusedTile?.Unfocus();  
-            previousFocusedTile = tile;
+            if(previousEnteredTile != null)
+                OnPointerTileExit?.Invoke(previousEnteredTile);
+            previousEnteredTile = tile;
+            OnPointerTileEnter?.Invoke(tile);
+        }
+        else if(tile == null && previousEnteredTile != null)
+        {
+            OnPointerTileExit?.Invoke(previousEnteredTile);
+            previousEnteredTile = null;
         }
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        previousFocusedTile?.Unfocus();
+        if(previousEnteredTile != null)
+            OnPointerTileExit?.Invoke(previousEnteredTile);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int boardPos = board.WorldToCell(mousePos);
-        bool isSuccessful = CardCastManager.Instance.UseCard(card.CardData, boardPos);
+        bool isSuccessful = CardCastManager.Instance.UseCard(card.CardMetaData, boardPos);
         if(isSuccessful)
         {
             card.CardDisplay.ShowDecayDelayed(1);

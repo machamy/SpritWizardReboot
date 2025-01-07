@@ -49,7 +49,7 @@ namespace Test
         public void AttackSquare()
         {
             Board board = BattleManager.Instance.Board;
-            var tiles = board.GetTilesSquare(e.Position, squareSize/2);
+            var tiles = board.GetTilesSquare(e.Coordinate, squareSize/2);
             if (TryGetComponent(out HitHandler hitHandler))
             {
                 hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = 1});
@@ -59,7 +59,7 @@ namespace Test
         public void AttackBeam()
         {
             Board board = BattleManager.Instance.Board;
-            var tiles = board.GetTilesBeam(e.Position, direction, beamLength, beamWidth);
+            var tiles = board.GetTilesBeam(e.Coordinate, direction, beamLength, beamWidth);
             foreach (var tile in tiles)
             {
                 //TODO 딜넣기

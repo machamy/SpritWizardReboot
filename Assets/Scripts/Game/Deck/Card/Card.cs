@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour
 {
-    [SerializeField] private CardData cardData;
+    [FormerlySerializedAs("cardData")] [SerializeField] private CardMetaData cardMetaData;
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private CardSelect cardSelect;
 
-    public CardData CardData => cardData;
-    public event Action<CardData> OnCardDrawn;
+    public CardMetaData CardMetaData => cardMetaData;
+    public event Action<CardMetaData> OnCardDrawn;
     
     public CardDisplay CardDisplay => cardDisplay;
     public CardSelect CardSelect => cardSelect;
@@ -19,9 +20,9 @@ public class Card : MonoBehaviour
         cardSelect = GetComponent<CardSelect>();
     }
     
-    public void RaiseCardDrawn(CardData card)
+    public void RaiseCardDrawn(CardMetaData cardMeta)
     {
-        cardData = card;
-        OnCardDrawn?.Invoke(card);
+        cardMetaData = cardMeta;
+        OnCardDrawn?.Invoke(cardMeta);
     }
 }

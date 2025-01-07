@@ -15,7 +15,7 @@ public class EnemyAttackSO : EnemyBehaviourSO
         else if (action == EnemyBehaviour.RangeAttack)
         {
             EnemyProjectile obj = Instantiate(enemyProjectile);
-            obj.GetComponent<Entity>().Initialize(BattleManager.Instance.Board, new Vector2Int(entity.Position.x - 1, entity.Position.y));
+            obj.GetComponent<Entity>().Initialize(BattleManager.Instance.Board, new Vector2Int(entity.Coordinate.x - 1, entity.Coordinate.y));
             obj._dmg = value;
         }
     }

@@ -89,6 +89,44 @@
       "rareCardWeight": 0
     }
   ],
+  "storePrice": [
+    {
+      "priceMiddle": "가격 중간값",
+      "priceRange": "가격 폭"
+    },
+    {
+      "priceMiddle": "int",
+      "priceRange": "int"
+    },
+    {
+      "priceMiddle": 70,
+      "priceRange": 5
+    },
+    {
+      "priceMiddle": 110,
+      "priceRange": 10
+    },
+    {
+      "priceMiddle": 50,
+      "priceRange": 5
+    },
+    {
+      "priceMiddle": 80,
+      "priceRange": 5
+    },
+    {
+      "priceMiddle": 75,
+      "priceRange": 1
+    },
+    {
+      "priceMiddle": 60,
+      "priceRange": 3
+    },
+    {
+      "priceMiddle": 80,
+      "priceRange": 3
+    }
+  ],
   "runeCard": [
     {
       "id": "",

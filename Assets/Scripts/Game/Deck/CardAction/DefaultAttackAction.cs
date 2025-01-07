@@ -14,18 +14,19 @@ using UnityEngine;
 public class DefaultAttackAction :BaseCardAction
 {
     [SerializeField] private PlayerProjectile projectilePrefab;
-    public override bool Execute([CanBeNull] object caster, CardData card, Vector2Int targetPosition, out IEnumerator routine)
+    [SerializeField] private float delay = 0.75f;
+    public override bool Execute([CanBeNull] object caster, CardData cardData, Vector2Int targetPosition, out IEnumerator routine)
     {
-        if (card is not MagicCardData || caster is not Slime)
+        if (caster is not Slime)
         {
             routine = null;
             return false;
         }
         Slime slime = (Slime) caster;
-        routine = DefualtCardCastRoutine(slime.GetComponent<Entity>(),(MagicCardData) card, targetPosition);
+        routine = DefualtCardCastRoutine(slime.GetComponent<Entity>(),(CardData) cardData, targetPosition);
         return true;
     }
-    private IEnumerator DefualtCardCastRoutine(Entity entity, MagicCardData card, Vector2Int targetPosition)
+    private IEnumerator DefualtCardCastRoutine(Entity entity, CardData card, Vector2Int targetPosition)
     {
         Board board = BattleManager.Instance.Board;
         entity.MoveToImmediate(targetPosition);
@@ -41,6 +42,7 @@ public class DefaultAttackAction :BaseCardAction
                 PlayerProjectile projectile = Instantiate(projectilePrefab);
                 projectile.Initialize(direction, card.attackDamage, card.pierce);
                 projectile.transform.position = entity.transform.position;
+                
             }
             else
             {
@@ -52,21 +54,22 @@ public class DefaultAttackAction :BaseCardAction
                 }
                 else
                 {
-                    tiles = board.GetTilesSquare(targetPosition, card.spreadRange / 2);
+                    tiles = board.GetTilesSquareAbs(targetPosition, card.attackWidth, card.attackHeight);
                 }
                 foreach (var t in tiles)
+                {
+                    t.ShowDebugColor(new Color(1f, 0, 0, 0.5f));
+                    if (t.IsClear())
+                        continue;
+                    foreach (var e in t.GetEntities())
                     {
-                        t.ShowDebugColor(new Color(1f, 0, 0, 0.5f));
-                        if (t.IsClear())
-                            continue;
-                        foreach (var e in t.GetEntities())
+                        if (e.TryGetComponent(out HitHandler hitHandler))
                         {
-                            if (e.TryGetComponent(out HitHandler hitHandler))
-                            {
-                                hitHandler.Raise(this,new HitHandler.HitEventArgs(){dmg = 1});
-                            }
+                            hitHandler.Raise(this,new HitHandler.HitEventArgs(){dmg = 1});
                         }
                     }
+                }
+                yield return new WaitForSeconds(delay);
             }
             
             if (card.attackSpread == AttackSpread.radial)
@@ -74,8 +77,12 @@ public class DefaultAttackAction :BaseCardAction
                 direction = (Direction) ((int) ++direction % spreadMax);
                 if (direction == Direction.R)
                 {
-                    yield return new WaitForSeconds(0.75f);
+                    yield return new WaitForSeconds(delay);
                 }
+            }
+            else
+            {
+                yield return new WaitForSeconds(delay);
             }
         }
         yield break;

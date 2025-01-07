@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
         if (phase == Define.EnemyPhase.FirstPhase && mode == Define.EnemyAttackMode.Range)
         {
             // 1페 근거리
-            if (_entity.Position.x == 0)
+            if (_entity.Coordinate.x == 0)
             {
                 _curPatternList.Clear();
                 foreach (EnemyPatternSO element in _data.patternList)
@@ -179,7 +179,7 @@ public class Enemy : MonoBehaviour
         else if ((phase == Define.EnemyPhase.FirstPhase && mode == Define.EnemyAttackMode.Melee) ||
                     (phase == Define.EnemyPhase.SecondPhase && mode == Define.EnemyAttackMode.Range))
         {
-            if ((_hp <= _fullHp * _data.phaseSwitchHpRatio / 100) && (_entity.Position.x == 0))
+            if ((_hp <= _fullHp * _data.phaseSwitchHpRatio / 100) && (_entity.Coordinate.x == 0))
             {
                 _curPatternList.Clear();
                 _curPatternList = _data.patternList.Where(e => (e.phase == 2 && e.range == 0)).ToList();
@@ -203,7 +203,7 @@ public class Enemy : MonoBehaviour
         while (_behaviorQueue.Count < 3)
         {
             // 현재 State의 패턴중에 사정거리가 맞는 패턴들 선택
-            var availiablePattern = _curPatternList.Where(e => e.range >= _entity.Position.x);
+            var availiablePattern = _curPatternList.Where(e => e.range >= _entity.Coordinate.x);
             // 가중치 리스트
             int[] weightarray = new int[availiablePattern.ToArray().Length];
             // 가중치 선택
