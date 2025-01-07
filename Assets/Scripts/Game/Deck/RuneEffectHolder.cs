@@ -9,6 +9,28 @@ public class RuneEffectHolder : MonoBehaviour
     [SerializeField] private IntVariableSO[] runeEffectChannel;
     [SerializeField] private int[] runeEffectData = new int[(int)Define.RuneEffectType.MAX];
 
+    public int GetRuneEffect(Define.RuneEffectType runeEffectType)
+    {
+        return runeEffectData[(int)runeEffectType];
+    }
+    public void SetRuneEffect(Define.RuneEffectType runeEffectType, int amount)
+    {
+        runeEffectData[(int)runeEffectType] = amount;
+        runeEffectChannel[(int)runeEffectType].Value = amount;
+    }
+    public void ResetRuneEffect(Define.RuneEffectType runeEffectType)
+    {
+        runeEffectData[(int)runeEffectType] = 0;
+        runeEffectChannel[(int)runeEffectType].Value = 0;
+    }
+    public int PopRuneEffect(Define.RuneEffectType runeEffectType)
+    {
+        int amount = runeEffectData[(int)runeEffectType];
+        runeEffectData[(int)runeEffectType] = 0;
+        runeEffectChannel[(int)runeEffectType].Value = 0;
+        return amount;
+    }
+    
     public void StackRuneEffectRange(int[] runeEffectAmounts)
     {
         for (int i = 0; i < (int)Define.RuneEffectType.MAX; i++)
@@ -32,10 +54,5 @@ public class RuneEffectHolder : MonoBehaviour
                 runeEffectChannel[(int)runeEffectType].Value = runeEffectData[(int)runeEffectType];
                 break;
         }
-    }
-    public void AddRuneEffect(Define.CalculateType damageCalculateType, int damage, Define.CalculateType attackCntCalculateType, int attackCnt)
-    {
-        StackRuneEffect(Define.RuneEffectType.damage, damageCalculateType, damage);
-        StackRuneEffect(Define.RuneEffectType.attackCnt, attackCntCalculateType, attackCnt);
     }
 }

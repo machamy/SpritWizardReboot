@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 
 [Serializable]
-    public class CardData
+    public class CardData : ICloneable
     {
         [Header("MagicCardData")]
         /// <summary></summary>
@@ -59,33 +59,16 @@ using UnityEngine.Serialization;
         {
             int deltaX = Mathf.Abs(start.x - target.x);
             int deltaY = Mathf.Abs(start.y - target.y);
-            Debug.Log($"deltaX : {deltaX}, deltaY : {deltaY}");
+            // Debug.Log($"deltaX : {deltaX}, deltaY : {deltaY}");
             if ((deltaX == deltaY || deltaX * deltaY == 0) &&
                 Mathf.Abs(deltaX) <= move && Mathf.Abs(deltaY) <= move)
                 return true;
             return false;
         }
 
-        // public object Clone()
-        // {
-        //     Debug.Log("MagicCardData Clone");
-        //     return new MagicCardMetaData
-        //     {
-        //         skillCaster = skillCaster,
-        //         attackDamage = attackDamage,
-        //         attackCount = attackCount,
-        //         attackType = attackType,
-        //         runeEffectTypes = runeEffectTypes,
-        //         attackHeight = attackHeight,
-        //         attackWidth = attackWidth,
-        //         attackSpread = attackSpread,
-        //         spreadRange = spreadRange,
-        //         pierce = pierce,
-        //         move = move,
-        //         cost = cost,
-        //         specialEffectId = specialEffectId,
-        //         backImage = backImage,
-        //         cardAction = cardAction
-        //     };
-        // }
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+  
     }

@@ -123,6 +123,7 @@ public class CardDisplay : MonoBehaviour
     {
         DisplayCard(cardMetaSo);
         ShowDecay(0);
+        image.DOFade(1, 0);
         transform.localScale = unfocusedScale * Vector3.one;
         transform.position = cardHolder.position;
     }

@@ -15,7 +15,7 @@ public class DefaultAttackAction :BaseCardAction
 {
     [SerializeField] private PlayerProjectile projectilePrefab;
     [SerializeField] private float delay = 0.75f;
-    public override bool Execute([CanBeNull] object caster, CardData cardData, Vector2Int targetPosition, out IEnumerator routine)
+    public override bool Execute([CanBeNull] object caster, CardData cardData, Vector2Int targetPosition, out IEnumerator routine, RuneEffectHolder runeEffectHolder = null)
     {
         if (caster is not Slime)
         {
@@ -23,6 +23,7 @@ public class DefaultAttackAction :BaseCardAction
             return false;
         }
         Slime slime = (Slime) caster;
+        
         routine = DefualtCardCastRoutine(slime.GetComponent<Entity>(),(CardData) cardData, targetPosition);
         return true;
     }

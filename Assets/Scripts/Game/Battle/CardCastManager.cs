@@ -63,7 +63,26 @@ public class CardCastManager : Singleton<CardCastManager>
         {
             return false;
         }
-        if(cardData.cardAction.Execute(silme, cardData, targetPosition, out var routine))
+        
+        CardData runeAppliedCardData = cardData.Clone() as CardData;
+        foreach (var runeEffectType in cardData.runeEffectTypes)
+        {
+            int runeEffectAmount = _runeEffectHolder.PopRuneEffect(runeEffectType);
+            switch (runeEffectType)
+            {
+                case Define.RuneEffectType.damage:
+                    runeAppliedCardData.attackDamage += runeEffectAmount;
+                    break;
+                case Define.RuneEffectType.attackCnt:
+                    runeAppliedCardData.attackCount += runeEffectAmount;
+                    break;
+                case Define.RuneEffectType.moveCnt:
+                    runeAppliedCardData.move += runeEffectAmount;
+                    break;
+            }
+        }
+        
+        if(cardData.cardAction.Execute(silme, runeAppliedCardData, targetPosition, out var routine))
         {
             StartCoroutine(CastAndEndTurnRoutine(routine));
         }
