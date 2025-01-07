@@ -25,7 +25,14 @@ public class CardMetaData
     public Sprite backImage;
     [Header("CardData")]
     public CardData cardData;
-    //널체크 오버로딩
+    
+    
+    /// <summary>
+    /// 널체크 오버로딩. id가 같으면 같은 카드로 취급한다.
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
     public static bool operator ==(CardMetaData a, CardMetaData b)
     {
         if (ReferenceEquals(a, null) && ReferenceEquals(b, null))

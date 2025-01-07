@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-[ExecuteAlways]
+
 public class Database : MonoBehaviour
 {
     public bool isLoaded = false;

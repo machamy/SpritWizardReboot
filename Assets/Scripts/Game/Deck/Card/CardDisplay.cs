@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Card), typeof(CardSelect))]
+[RequireComponent(typeof(CardObject), typeof(CardSelect))]
 public class CardDisplay : MonoBehaviour
 {
     [Header("Focus Animation")]
@@ -30,10 +30,11 @@ public class CardDisplay : MonoBehaviour
     [Header("Display Setting")]
     [SerializeField] private CardDisplaySettingSO displaySetting;
     
+    [FormerlySerializedAs("card")]
     [FormerlySerializedAs("cardData")]
     [Header("References")]
-    [SerializeField] private Card card;
-    private CardSelect cardSelect => card.CardSelect;
+    [SerializeField] private CardObject cardObject;
+    private CardSelect cardSelect => cardObject.CardSelect;
     [SerializeField] private RectTransform cardHolder;
     [Header("Rendering")] 
     [SerializeField] private Image image;
@@ -51,7 +52,7 @@ public class CardDisplay : MonoBehaviour
     
     private void Awake()
     {
-        card = GetComponent<Card>();
+        cardObject = GetComponent<CardObject>();
         material = new Material(image.material);
         image.material = material;
     }
@@ -95,7 +96,7 @@ public class CardDisplay : MonoBehaviour
     
     private void OnEnable()
     {
-        card.OnCardDrawn += OnCardDrawn;
+        cardObject.OnCardDrawn += OnCardObjectDrawn;
         cardSelect.OnFocus += OnFocused;
         cardSelect.OnUnfocus += OnUnfocused;
         cardSelect.OnDragStart += OnDragStart;
@@ -107,7 +108,7 @@ public class CardDisplay : MonoBehaviour
     
     private void OnDisable()
     {
-        card.OnCardDrawn -= OnCardDrawn;
+        cardObject.OnCardDrawn -= OnCardObjectDrawn;
         cardSelect.OnFocus -= OnFocused;
         cardSelect.OnUnfocus -= OnUnfocused;
         cardSelect.OnDragStart -= OnDragStart;
@@ -119,7 +120,7 @@ public class CardDisplay : MonoBehaviour
     #endregion
 
     #region 이벤트 핸들러
-    private void OnCardDrawn(CardMetaData cardMetaSo)
+    private void OnCardObjectDrawn(CardMetaData cardMetaSo)
     {
         DisplayCard(cardMetaSo);
         ShowDecay(0);
@@ -128,14 +129,14 @@ public class CardDisplay : MonoBehaviour
         transform.position = cardHolder.position;
     }
 
-    public void OnFocused()
+    private void OnFocused()
     {
         if(cardSelect.IsUsed)
             return;
         transform.DOScale(focusedScale, focusDuration);
     }
     
-    public void OnUnfocused()
+    private void OnUnfocused()
     {
         if(cardSelect.IsUsed)
             return;
@@ -143,7 +144,7 @@ public class CardDisplay : MonoBehaviour
             transform.DOScale(unfocusedScale, unfocusDuration);
     }
 
-    public void OnDragStart()
+    private void OnDragStart()
     {
         if(cardSelect.IsUsed)
             return;
@@ -151,7 +152,7 @@ public class CardDisplay : MonoBehaviour
         image.DOFade(0.4f, dragScaleDuration);
     }
     
-    public void OnDraggingUpdate(Vector3 mousePos)
+    private void OnDraggingUpdate(Vector3 mousePos)
     {
         if(cardSelect.IsUsed)
             return;
@@ -175,7 +176,7 @@ public class CardDisplay : MonoBehaviour
         }
     }
     
-    public void ShowDecay(float decayScale)
+    private void ShowDecay(float decayScale)
     {
         if(dacayDOTweener is { active: true })
             dacayDOTweener.Kill();
@@ -210,11 +211,11 @@ public class CardDisplay : MonoBehaviour
         ShowDecay(0f);
     }
     
-    public void OnPointerTileEnter(Tile tile)
+    private void OnPointerTileEnter(Tile tile)
     {
         if(cardSelect.IsUsed)
             return;
-        var meta = card.CardMetaData;
+        var meta = cardObject.CardMetaData;
         if(meta.cardType == CardType.Rune)
         {
             tile.Focus(displaySetting.tileFocusOkColor);

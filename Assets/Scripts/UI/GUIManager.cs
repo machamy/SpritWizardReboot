@@ -5,20 +5,28 @@ using UnityEngine;
 
 public class GUIManager : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("UI Elements (Battle)")]
     [SerializeField] private TMPro.TextMeshProUGUI hpText;
     [SerializeField] private TMPro.TextMeshProUGUI timerText;
     [SerializeField] private TMPro.TextMeshProUGUI turnText;
+    [Header("UI Elements (Battle/Rune)")]
     [SerializeField] private TMPro.TextMeshProUGUI damageRunesText;
     [SerializeField] private TMPro.TextMeshProUGUI attackCountRunesText;
     [SerializeField] private TMPro.TextMeshProUGUI moveRunesText;
-    [Header("Event Channels")]
+    [Header("UI Elements (Battle/Deck)")]
+    [SerializeField] private TMPro.TextMeshProUGUI drawSizeText;
+    [SerializeField] private TMPro.TextMeshProUGUI discardSizeText;
+    [Header("Event Channels (Turn)")]
     [SerializeField] private EventChannel.TurnEventChannelSO playerTurnEnterEvent;
     [SerializeField] private EventChannel.TurnEventChannelSO enemyTurnEnterEvent;
+    [Header("Variables")]
     [SerializeField] private FloatVariableSO gateHP;
+    [Header("Variables(Read Only)")]
     [SerializeField] private IntVariableSO damageRune;
     [SerializeField] private IntVariableSO attackCountRune;
     [SerializeField] private IntVariableSO moveRune;
+    [SerializeField] private IntVariableSO drawSize;
+    [SerializeField] private IntVariableSO discardSize;
 
     private void OnEnable()
     {
@@ -28,6 +36,8 @@ public class GUIManager : MonoBehaviour
         damageRune.OnValueChanged += OnDamageRunesChanged;
         attackCountRune.OnValueChanged += OnAttackCountRunesChanged;
         moveRune.OnValueChanged += OnMoveRunesChanged;
+        drawSize.OnValueChanged += OnDrawSizeChanged;
+        discardSize.OnValueChanged += OnDiscardSizeChanged;
     }
     
     private void OnDisable()
@@ -38,6 +48,8 @@ public class GUIManager : MonoBehaviour
         damageRune.OnValueChanged -= OnDamageRunesChanged;
         attackCountRune.OnValueChanged -= OnAttackCountRunesChanged;
         moveRune.OnValueChanged -= OnMoveRunesChanged;
+        drawSize.OnValueChanged -= OnDrawSizeChanged;
+        discardSize.OnValueChanged -= OnDiscardSizeChanged;
     }
     
     
@@ -73,5 +85,15 @@ public class GUIManager : MonoBehaviour
     public void OnEnemyTurnTicking(float time)
     {
         timerText.text = $"Enemy Turn Remaining: {time}";
+    }
+    
+    private void OnDrawSizeChanged(int value)
+    {
+        drawSizeText.text = $"Draw deck : {value}";
+    }
+    
+    private void OnDiscardSizeChanged(int value)
+    {
+        discardSizeText.text = $"Discard deck : {value}";
     }
 }

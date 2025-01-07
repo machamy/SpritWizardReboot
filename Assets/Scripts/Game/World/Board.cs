@@ -136,6 +136,13 @@ public class Board : MonoBehaviour
           return tiles;
      }
 
+     /// <summary>
+     /// 해당 좌표를 중심으로 사각형 크기만큼 타일을 받아온다.
+     /// </summary>
+     /// <param name="center"></param>
+     /// <param name="width">가로</param>
+     /// <param name="height">세로</param>
+     /// <returns></returns>
      public List<Tile> GetTilesSquareAbs(Vector2Int center, int width, int height)
      {
           List<Tile> tiles = new List<Tile>();
