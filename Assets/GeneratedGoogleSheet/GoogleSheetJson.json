@@ -58,53 +58,160 @@
       "gateHpRestoreAmountVariation": 5,
       "goldMiddle": 20,
       "goldVariation": 6
+    },
+    {
+      "rewardType": "보스 보상",
+      "addRuneCardChance": 100,
+      "addMagicCardChance": 100,
+      "destroyCardChance": 20,
+      "upgradeCardChance": 30,
+      "gateHpRestoreChance": 100,
+      "gateHpRestoreAmountMiddle": 50,
+      "gateHpRestoreAmountVariation": 10,
+      "goldMiddle": 30,
+      "goldVariation": 6
     }
   ],
   "addCardWeight": [
     {
-      "변수명": "항목",
       "rareCardWeight": "일반카드 가중치"
     },
     {
-      "변수명": "타입",
       "rareCardWeight": "int"
     },
     {
-      "변수명": "일반 몬스터",
       "rareCardWeight": 4
     },
     {
-      "변수명": "엘리트 몬스터",
       "rareCardWeight": 1
     },
     {
-      "변수명": "보스 몬스터",
       "rareCardWeight": 0
+    }
+  ],
+  "runeCard": [
+    {
+      "id": "",
+      "name": "이름",
+      "describe": "설명",
+      "cost": "비용",
+      "calcType": "곱할거면 MUL",
+      "attack": "피해량",
+      "projectile": "투사체",
+      "movement": "이동"
+    },
+    {
+      "id": "string",
+      "name": "string",
+      "describe": "string",
+      "cost": "int",
+      "calcType": "string",
+      "attack": "int",
+      "projectile": "int",
+      "movement": "int"
+    },
+    {
+      "id": "temp01",
+      "name": "투지룬",
+      "describe": "ADD attack 3, projectile 0, movement 0",
+      "cost": 1,
+      "calcType": "ADD",
+      "attack": 3,
+      "projectile": 0,
+      "movement": 0
+    },
+    {
+      "id": "temp02",
+      "name": "명상룬",
+      "describe": "ADD attack 0, projectile 0, movement -1",
+      "cost": 0,
+      "calcType": "ADD",
+      "attack": 0,
+      "projectile": 0,
+      "movement": -1
+    },
+    {
+      "id": "temp03",
+      "name": "무형룬",
+      "describe": "ADD attack 0, projectile 0, movement 0",
+      "cost": 0,
+      "calcType": "ADD",
+      "attack": 0,
+      "projectile": 0,
+      "movement": 0
+    },
+    {
+      "id": "temp04",
+      "name": "평화룬",
+      "describe": "ADD attack -1, projectile 0, movement 0",
+      "cost": 0,
+      "calcType": "ADD",
+      "attack": -1,
+      "projectile": 0,
+      "movement": 0
+    },
+    {
+      "id": "temp05",
+      "name": "맹공룬",
+      "describe": "ADD attack 0, projectile 1, movement 0",
+      "cost": 1,
+      "calcType": "ADD",
+      "attack": 0,
+      "projectile": 1,
+      "movement": 0
+    },
+    {
+      "id": "temp06",
+      "name": "신속룬",
+      "describe": "ADD attack 1, projectile 0, movement 1",
+      "cost": 1,
+      "calcType": "ADD",
+      "attack": 1,
+      "projectile": 0,
+      "movement": 1
+    },
+    {
+      "id": "temp07",
+      "name": "격노룬",
+      "describe": "ADD attack 7, projectile 0, movement 0",
+      "cost": 2,
+      "calcType": "ADD",
+      "attack": 7,
+      "projectile": 0,
+      "movement": 0
+    },
+    {
+      "id": "temp08",
+      "name": "분화룬",
+      "describe": "ADD attack 0, projectile 3, movement 0",
+      "cost": 2,
+      "calcType": "ADD",
+      "attack": 0,
+      "projectile": 3,
+      "movement": 0
     }
   ],
   "magicCard": [
     {
-      "skillKoreanName": "스킬 이름",
       "id": "",
       "name": "",
       "describe": "",
       "skillCaster": "",
       "rarity": "",
-      "attackDamage": "",
-      "attackCount": "",
-      "attackType": "",
-      "attackHeight": "",
-      "attackWidth": "",
-      "attackSpread": "",
-      "spreadRange": "",
-      "pierce": "",
-      "move": "",
-      "cost": "",
+      "attackDamage": "피해량",
+      "attackCount": "공격횟수",
+      "attackType": "공격방식",
+      "attackHeight": "공격범위(세로)",
+      "attackWidth": "공격범위(가로)",
+      "attackSpread": "집중/퍼짐",
+      "spreadRange": "퍼짐 정도",
+      "pierce": "관통",
+      "move": "이동",
+      "cost": "비용",
       "specialEffectId": "특수효과"
     },
     {
-      "skillKoreanName": "_",
-      "id": "int",
+      "id": "string",
       "name": "string",
       "describe": "string",
       "skillCaster": "enum",
@@ -122,8 +229,7 @@
       "specialEffectId": "list"
     },
     {
-      "skillKoreanName": "더블샷",
-      "id": 11001,
+      "id": "magic_doubleShot",
       "name": "doubleShot",
       "describe": "더블~~샷",
       "skillCaster": "grassSlime",
@@ -141,8 +247,7 @@
       "specialEffectId": ""
     },
     {
-      "skillKoreanName": "멀티샷",
-      "id": 11002,
+      "id": "magic_tripleShot",
       "name": "tripleShot",
       "describe": "멀티~~~샷",
       "skillCaster": "grassSlime",
@@ -160,8 +265,7 @@
       "specialEffectId": ""
     },
     {
-      "skillKoreanName": "래피드 파이어",
-      "id": 11003,
+      "id": "magic_rapidFire",
       "name": "rapidFire",
       "describe": "와다다다다다다",
       "skillCaster": "grassSlime",
@@ -179,8 +283,7 @@
       "specialEffectId": ""
     },
     {
-      "skillKoreanName": "파이어볼!",
-      "id": 12001,
+      "id": "magic_fireball",
       "name": "fireball",
       "describe": "불공",
       "skillCaster": "fireSlime",
@@ -198,8 +301,7 @@
       "specialEffectId": ""
     },
     {
-      "skillKoreanName": "화염폭발",
-      "id": 12002,
+      "id": "magic_fireExplosion",
       "name": "fireExplosion",
       "describe": "펑~~~",
       "skillCaster": "fireSlime",
@@ -217,8 +319,7 @@
       "specialEffectId": ""
     },
     {
-      "skillKoreanName": "아이스 스캐터",
-      "id": 13001,
+      "id": "magic_iceScatter",
       "name": "iceScatter",
       "describe": "얼음 난사",
       "skillCaster": "iceSlime",
@@ -236,8 +337,7 @@
       "specialEffectId": "13001"
     },
     {
-      "skillKoreanName": "아이스 브레스",
-      "id": 13002,
+      "id": "magic_iceBeam",
       "name": "iceBeam",
       "describe": "얼음 빔",
       "skillCaster": "iceSlime",
@@ -257,9 +357,9 @@
   ],
   "specialEffect": [
     {
-      "id": "",
-      "effect": "",
-      "value": ""
+      "id": "특수효과 아이디",
+      "effect": "효과 이름",
+      "value": "값"
     },
     {
       "id": "int",
