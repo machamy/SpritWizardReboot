@@ -10,23 +10,26 @@ public class BattleReward : MonoBehaviour
     [Header("RewardChance")]
     [SerializeField] private RewardChanceSO normalRewardChance;
     [SerializeField] private RewardChanceSO eliteRewardChance;
+    [SerializeField] private RewardChanceSO bossRewardChance;
 
     [Header("RewardAmount")]
     [SerializeField] private RewardAmountSO normalRewardAmount;
     [SerializeField] private RewardAmountSO eliteRewardAmount;
+    [SerializeField] private RewardAmountSO bossRewardAmount;
 
     [Header("AddCardWeight")]
     [SerializeField] private AddCardWeightSO normalAddCardWeight;
     [SerializeField] private AddCardWeightSO eliteAddCardWeight;
     [SerializeField] private AddCardWeightSO bossAddCardWeight;
 
-    private IntWeightedRandomSelector<RewardType> normalRewardSelector;
-    private IntWeightedRandomSelector<RewardType> eliteRewardSelector;
+    private IntRandomSelector<RewardType> normalRewardSelector;
+    private IntRandomSelector<RewardType> eliteRewardSelector;
+    private IntRandomSelector<RewardType> bossRewardSelector;
 
     private IntWeightedRandomSelector<Rarity> normalCardRaritySelector;
     private IntWeightedRandomSelector<Rarity> eliteCardRaritySelector;
     private IntWeightedRandomSelector<Rarity> bossCardRaritySelector;
-
+    
     private void Start()
     {
         Init();
@@ -41,11 +44,12 @@ public class BattleReward : MonoBehaviour
     private void InitChanceSelector()
     {
         RewardType[] rewardTypes = (RewardType[])Enum.GetValues(typeof(RewardType));
-        List<RewardType> rewardList = new List<RewardType>(rewardTypes);
+        List<RewardType> rewardList = new List<RewardType>(rewardTypes); // None값 제거
         rewardList.RemoveAt(0);
         rewardTypes = rewardList.ToArray();
-        normalRewardSelector = new IntWeightedRandomSelector<RewardType>(rewardTypes, normalRewardChance.GetAllChances());
-        eliteRewardSelector = new IntWeightedRandomSelector<RewardType>(rewardTypes, eliteRewardChance.GetAllChances());
+        normalRewardSelector = new IntRandomSelector<RewardType>(rewardTypes, normalRewardChance.GetAllChances());
+        eliteRewardSelector = new IntRandomSelector<RewardType>(rewardTypes, eliteRewardChance.GetAllChances());
+        bossRewardSelector = new IntRandomSelector<RewardType>(rewardTypes, bossRewardChance.GetAllChances());
     }
 
     private void InitCardRaritySelector()
@@ -56,39 +60,31 @@ public class BattleReward : MonoBehaviour
         bossCardRaritySelector = new IntWeightedRandomSelector<Rarity>(rarities, bossAddCardWeight.GetAllCardWeight());
     }
 
-    public RewardType GetRewardType(SeedType seed)
+    public RewardType[] GetRewardType(SeedType seed)
     {
         return seed switch
         {
-            SeedType.normal => normalRewardSelector.GetRandomChoice(),
-            SeedType.hard => normalRewardSelector.GetRandomChoice(),
-            SeedType.elite => eliteRewardSelector.GetRandomChoice(),
-            SeedType.boss => RewardType.None, // TODO 보스 후 보상 기획
-            _ => RewardType.None
+            SeedType.normal => normalRewardSelector.GetRandomChoice().ToArray(),
+            SeedType.hard => normalRewardSelector.GetRandomChoice().ToArray(),
+            SeedType.elite => eliteRewardSelector.GetRandomChoice().ToArray(),
+            SeedType.boss => bossRewardSelector.GetRandomChoice().ToArray(),
+            _ => new RewardType[0]
         };
     }
-    
-    public int GetHpRestoreAmount(SeedType seed)
+
+    public Rarity GetNewCardRarity(SeedType seed)
     {
-        RewardAmountSO rewardAmount = GetRewardAmountSO(seed);
-        if (rewardAmount == null)
+        return seed switch
         {
-            Debug.Log("시드 오류");
-            return 0;
-        }
-
-        return GetRandomInVariation(rewardAmount.gateHpRestoreAmountMiddle, rewardAmount.gateHpRestoreAmountVariation);
+            SeedType.normal => normalCardRaritySelector.GetRandomChoice(),
+            SeedType.hard => normalCardRaritySelector.GetRandomChoice(),
+            SeedType.elite => eliteCardRaritySelector.GetRandomChoice(),
+            SeedType.boss => bossCardRaritySelector.GetRandomChoice(),
+            _ => Rarity.common
+        };
     }
 
-    public int GetGoldAmount(SeedType seed)
-    {
-        RewardAmountSO rewardAmount = GetRewardAmountSO(seed);
-        if (rewardAmount == null) return 0;
-
-        return GetRandomInVariation(rewardAmount.goldMiddle, rewardAmount.goldVariation);
-    }
-
-    private RewardAmountSO GetRewardAmountSO(SeedType seed)
+    public RewardAmountSO GetRewardAmountSO(SeedType seed)
     {
         if (seed == SeedType.normal || seed == SeedType.hard)
         {
@@ -98,14 +94,13 @@ public class BattleReward : MonoBehaviour
         {
             return eliteRewardAmount;
         }
+        else if (seed == SeedType.boss)
+        {
+            return bossRewardAmount;
+        }
         else
         {
-            return null;
+            return ScriptableObject.CreateInstance<RewardAmountSO>();
         }
-    }
-
-    private int GetRandomInVariation(int middle, int variation)
-    {
-        return Random.Range(middle - variation, middle + variation + 1);
     }
 }

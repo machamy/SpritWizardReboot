@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2531520297d5b514e9464fdcff3dcce0, type: 3}
   m_Name: NormalRewardAmount
   m_EditorClassIdentifier: 
-  gateHpRestoreAmountMiddle: 7
-  gateHpRestoreAmountVariation: 2
-  goldMiddle: 15
-  goldVariation: 3
+  gateHpRestoreAmount:
+    middle: 7
+    range: 2
+  gold:
+    middle: 15
+    range: 3

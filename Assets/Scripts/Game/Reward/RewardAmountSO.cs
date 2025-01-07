@@ -3,8 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RewardAmount", menuName = "Reward/RewardAmount")]
 public class RewardAmountSO : ScriptableObject
 {
-    public int gateHpRestoreAmountMiddle;
-    public int gateHpRestoreAmountVariation;
-    public int goldMiddle;
-    public int goldVariation;
+    public RangeValue gateHpRestoreAmount;
+    public RangeValue gold;
+
+    public RewardAmountSO()
+    {
+        gateHpRestoreAmount = new RangeValue();
+        gold = new RangeValue();
+    }
 }

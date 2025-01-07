@@ -4,37 +4,44 @@ public class RewardManager : MonoBehaviour
 {
     [SerializeField] private BattleReward battleReward;
 
-    private RewardType rewardType;
+    private RewardType[] rewardTypes;
 
     public void ReceiveReward(SeedType seed)
     {
-        rewardType = battleReward.GetRewardType(seed);
-        switch (rewardType)
+        rewardTypes = battleReward.GetRewardType(seed);
+        foreach (RewardType rewardType in rewardTypes)
         {
-            case RewardType.addRuneCard:
-                Debug.Log("룬 카드 추가");
-                break;
-            case RewardType.addAttackCard:
-                Debug.Log("공격 카드 추가");
-                break;
-            case RewardType.destroyCard:
-                Debug.Log("카드 제거");
-                break;
-            case RewardType.upgradeCard:
-                Debug.Log("카드 강화");
-                break;
-            case RewardType.gateHpRestore:
-                Debug.Log("회복");
-                GameManager.Instance.GateHP += battleReward.GetHpRestoreAmount(seed);
-                break;
+            switch (rewardType)
+            {
+                case RewardType.addRuneCard:
+                    AddCard(seed, CardType.Rune);
+                    Debug.Log("룬 카드 추가");
+                    break;
+                case RewardType.addAttackCard:
+                    AddCard(seed, CardType.Attack);
+                    Debug.Log("공격 카드 추가");
+                    break;
+                case RewardType.destroyCard:
+                    DestroyCard();
+                    Debug.Log("카드 제거");
+                    break;
+                case RewardType.upgradeCard:
+                    UpgradeCard();
+                    Debug.Log("카드 강화");
+                    break;
+                case RewardType.gateHpRestore:
+                    GameManager.Instance.GateHP += battleReward.GetRewardAmountSO(seed).gateHpRestoreAmount.GetRandomInRange();
+                    Debug.Log("회복");
+                    break;
+            }
         }
-        //Debug.Log(battleReward.GetGoldAmount(seed) + "원 획득");
+        Debug.Log(battleReward.GetRewardAmountSO(seed).gold.GetRandomInRange() + "원 획득");
     }
 
     // 카드 관련 코드는 기획이 확실히 나온 이후 작성
-    private void AddCard(CardType cardType)
+    private void AddCard(SeedType seed, CardType cardType)
     {
-        
+        Rarity rarity = battleReward.GetNewCardRarity(seed);
     }
 
     private void DestroyCard()
