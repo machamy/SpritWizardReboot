@@ -20,8 +20,10 @@ MonoBehaviour:
   dragScaleDuration: 0.2
   dragFollowSpeed: 10
   dragReturnDuration: 0.2
-  dragMaxHeightCoefficient: 0.37
-  drageDcayHeightStartCoefficient: 0.5
+  dragMaxHeightCoefficient: 1
+  drageDecayHeightStartCoefficient: 0.5
   dragDecayHeightMaxCoeefcient: 5
   dragDecayScale: 1
   decayDuration: 0.5
+  tileFocusOkColor: {r: 0.4, g: 1, b: 0, a: 0.6}
+  tileFocusNoColor: {r: 1, g: 0, b: 0, a: 0.6}
