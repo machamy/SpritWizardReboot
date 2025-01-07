@@ -3,7 +3,7 @@ using Game;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Card : MonoBehaviour
+public class CardObject : MonoBehaviour
 {
     private HandDeckManager _handDeckManager;
     
