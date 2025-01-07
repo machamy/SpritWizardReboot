@@ -3,7 +3,7 @@ using DataBase.DataClasses;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MagicCardFactory", menuName = "CardFactory/MagicCardFactory")]
-public class MagicCardDataFactorySo : ScriptableObject, CardDataFactory<MagicCardData>
+public class MagicCardDataFactorySO : ScriptableObject, CardDataFactory<MagicCardData>
 {
     public Sprite grassCardBack;
     public Sprite iceCardBack;
