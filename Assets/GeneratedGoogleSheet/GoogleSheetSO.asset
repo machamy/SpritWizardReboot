@@ -35,16 +35,102 @@ MonoBehaviour:
     gateHpRestoreAmountVariation: 5
     goldMiddle: 20
     goldVariation: 6
+  - rewardType: "\uBCF4\uC2A4 \uBCF4\uC0C1"
+    addRuneCardChance: 100
+    addMagicCardChance: 100
+    destroyCardChance: 20
+    upgradeCardChance: 30
+    gateHpRestoreChance: 100
+    gateHpRestoreAmountMiddle: 50
+    gateHpRestoreAmountVariation: 10
+    goldMiddle: 30
+    goldVariation: 6
   RawAddCardWeightList:
-  - "\uBCC0\uC218\uBA85": "\uC77C\uBC18 \uBAAC\uC2A4\uD130"
-    rareCardWeight: 4
-  - "\uBCC0\uC218\uBA85": "\uC5D8\uB9AC\uD2B8 \uBAAC\uC2A4\uD130"
-    rareCardWeight: 1
-  - "\uBCC0\uC218\uBA85": "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130"
-    rareCardWeight: 0
+  - rareCardWeight: 4
+  - rareCardWeight: 1
+  - rareCardWeight: 0
+  RawStorePriceList:
+  - priceMiddle: 70
+    priceRange: 5
+  - priceMiddle: 110
+    priceRange: 10
+  - priceMiddle: 50
+    priceRange: 5
+  - priceMiddle: 80
+    priceRange: 5
+  - priceMiddle: 75
+    priceRange: 1
+  - priceMiddle: 60
+    priceRange: 3
+  - priceMiddle: 80
+    priceRange: 3
+  RawRuneCardList:
+  - id: temp01
+    name: "\uD22C\uC9C0\uB8EC"
+    describe: ADD attack 3, projectile 0, movement 0
+    cost: 1
+    calcType: ADD
+    attack: 3
+    projectile: 0
+    movement: 0
+  - id: temp02
+    name: "\uBA85\uC0C1\uB8EC"
+    describe: ADD attack 0, projectile 0, movement -1
+    cost: 0
+    calcType: ADD
+    attack: 0
+    projectile: 0
+    movement: -1
+  - id: temp03
+    name: "\uBB34\uD615\uB8EC"
+    describe: ADD attack 0, projectile 0, movement 0
+    cost: 0
+    calcType: ADD
+    attack: 0
+    projectile: 0
+    movement: 0
+  - id: temp04
+    name: "\uD3C9\uD654\uB8EC"
+    describe: ADD attack -1, projectile 0, movement 0
+    cost: 0
+    calcType: ADD
+    attack: -1
+    projectile: 0
+    movement: 0
+  - id: temp05
+    name: "\uB9F9\uACF5\uB8EC"
+    describe: ADD attack 0, projectile 1, movement 0
+    cost: 1
+    calcType: ADD
+    attack: 0
+    projectile: 1
+    movement: 0
+  - id: temp06
+    name: "\uC2E0\uC18D\uB8EC"
+    describe: ADD attack 1, projectile 0, movement 1
+    cost: 1
+    calcType: ADD
+    attack: 1
+    projectile: 0
+    movement: 1
+  - id: temp07
+    name: "\uACA9\uB178\uB8EC"
+    describe: ADD attack 7, projectile 0, movement 0
+    cost: 2
+    calcType: ADD
+    attack: 7
+    projectile: 0
+    movement: 0
+  - id: temp08
+    name: "\uBD84\uD654\uB8EC"
+    describe: ADD attack 0, projectile 3, movement 0
+    cost: 2
+    calcType: ADD
+    attack: 0
+    projectile: 3
+    movement: 0
   RawMagicCardList:
-  - skillKoreanName: "\uB354\uBE14\uC0F7"
-    id: 11001
+  - id: magic_doubleShot
     name: doubleShot
     describe: "\uB354\uBE14~~\uC0F7"
     skillCaster: grassSlime
@@ -60,8 +146,7 @@ MonoBehaviour:
     move: 2
     cost: 1
     specialEffectId: 
-  - skillKoreanName: "\uBA40\uD2F0\uC0F7"
-    id: 11002
+  - id: magic_tripleShot
     name: tripleShot
     describe: "\uBA40\uD2F0~~~\uC0F7"
     skillCaster: grassSlime
@@ -77,8 +162,7 @@ MonoBehaviour:
     move: 2
     cost: 1
     specialEffectId: 
-  - skillKoreanName: "\uB798\uD53C\uB4DC \uD30C\uC774\uC5B4"
-    id: 11003
+  - id: magic_rapidFire
     name: rapidFire
     describe: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
     skillCaster: grassSlime
@@ -94,8 +178,7 @@ MonoBehaviour:
     move: 2
     cost: 1
     specialEffectId: 
-  - skillKoreanName: "\uD30C\uC774\uC5B4\uBCFC!"
-    id: 12001
+  - id: magic_fireball
     name: fireball
     describe: "\uBD88\uACF5"
     skillCaster: fireSlime
@@ -111,8 +194,7 @@ MonoBehaviour:
     move: 2
     cost: 1
     specialEffectId: 
-  - skillKoreanName: "\uD654\uC5FC\uD3ED\uBC1C"
-    id: 12002
+  - id: magic_fireExplosion
     name: fireExplosion
     describe: "\uD391~~~"
     skillCaster: fireSlime
@@ -128,8 +210,7 @@ MonoBehaviour:
     move: 2
     cost: 1
     specialEffectId: 
-  - skillKoreanName: "\uC544\uC774\uC2A4 \uC2A4\uCE90\uD130"
-    id: 13001
+  - id: magic_iceScatter
     name: iceScatter
     describe: "\uC5BC\uC74C \uB09C\uC0AC"
     skillCaster: iceSlime
@@ -145,8 +226,7 @@ MonoBehaviour:
     move: 2
     cost: 2
     specialEffectId: 13001
-  - skillKoreanName: "\uC544\uC774\uC2A4 \uBE0C\uB808\uC2A4"
-    id: 13002
+  - id: magic_iceBeam
     name: iceBeam
     describe: "\uC5BC\uC74C \uBE54"
     skillCaster: iceSlime
