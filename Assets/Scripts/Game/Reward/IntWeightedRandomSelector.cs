@@ -5,13 +5,16 @@ public class IntWeightedRandomSelector<T>
 
     public IntWeightedRandomSelector(T[] options, int[] weights)
     {
-        this.options = options;
-        cumulativeWeights = new int[weights.Length];
-
-        cumulativeWeights[0] = weights[0];
-        for (int i = 1; i < weights.Length; i++)
+        if (options.Length == weights.Length)
         {
-            cumulativeWeights[i] = cumulativeWeights[i - 1] + weights[i];
+            this.options = options;
+            cumulativeWeights = new int[weights.Length];
+
+            cumulativeWeights[0] = weights[0];
+            for (int i = 1; i < weights.Length; i++)
+            {
+                cumulativeWeights[i] = cumulativeWeights[i - 1] + weights[i];
+            }
         }
     }
 

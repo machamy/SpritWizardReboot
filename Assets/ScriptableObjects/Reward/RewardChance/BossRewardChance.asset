@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2531520297d5b514e9464fdcff3dcce0, type: 3}
-  m_Name: EliteRewardAmount
+  m_Script: {fileID: 11500000, guid: 233244a24918c5643ac70767a997fe30, type: 3}
+  m_Name: BossRewardChance
   m_EditorClassIdentifier: 
-  gateHpRestoreAmount:
-    middle: 12
-    range: 5
-  gold:
-    middle: 20
-    range: 6
+  addRuneCardChance: 100
+  addAttackCardChance: 100
+  destroyCaredChance: 20
+  upgradeCardChance: 30
+  gateHpRestoreChance: 100
