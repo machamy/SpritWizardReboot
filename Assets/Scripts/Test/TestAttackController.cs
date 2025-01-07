@@ -1,4 +1,5 @@
 using System;
+using Game;
 using Game.Entity;
 using UnityEngine;
 
@@ -47,8 +48,8 @@ namespace Test
         
         public void AttackSquare()
         {
-            Board board = Board.Instance;
-            var tiles = board.GetTilesSquare(e.Position, squareSize/2);
+            Board board = BattleManager.Instance.Board;
+            var tiles = board.GetTilesSquare(e.Coordinate, squareSize/2);
             if (TryGetComponent(out HitHandler hitHandler))
             {
                 hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = 1});
@@ -57,8 +58,8 @@ namespace Test
         
         public void AttackBeam()
         {
-            Board board = Board.Instance;
-            var tiles = board.GetTilesBeam(e.Position, direction, beamLength, beamWidth);
+            Board board = BattleManager.Instance.Board;
+            var tiles = board.GetTilesBeam(e.Coordinate, direction, beamLength, beamWidth);
             foreach (var tile in tiles)
             {
                 //TODO 딜넣기

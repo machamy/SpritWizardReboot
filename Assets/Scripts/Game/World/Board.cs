@@ -17,25 +17,11 @@ public class Board : MonoBehaviour
           public Tile[] tiles;
      }
      
-     public static Board Instance { get; private set; }
      
      [SerializeField] private Vector2Int gridSize;
      public Vector2Int GridSize => gridSize;
      private Tile[][] _tilemap;
      [SerializeField] private Grid _grid;
-     
-     private void Awake()
-     {
-          if (Instance == null)
-          {
-               Instance = this;
-               _grid = GetComponent<Grid>();
-          }
-          else
-          {
-               Destroy(gameObject);
-          }
-     }
      [SerializeField] private TileLine[] tileLines;
      public void Initialize(Tile[][] tilemap)
      {
@@ -57,7 +43,7 @@ public class Board : MonoBehaviour
                for (int j = 0; j < gridSize.x; j++)
                {
                     _tilemap[i][j] = tileLines[i].tiles[j];
-                    _tilemap[i][j].Initialize(new Vector2Int(i, j));
+                    _tilemap[i][j].Initialize(new Vector2Int(j,i));
                }
           }
      }
@@ -139,6 +125,23 @@ public class Board : MonoBehaviour
           for (int x = center.x - radius; x <= center.x + radius; x++)
           {
                for (int y = center.y - radius; y <= center.y + radius; y++)
+               {
+                    if (x < 0 || x >= gridSize.x || y < 0 || y >= gridSize.y)
+                    {
+                         continue;
+                    }
+                    tiles.Add(_tilemap[y][x]);
+               }
+          }
+          return tiles;
+     }
+
+     public List<Tile> GetTilesSquareAbs(Vector2Int center, int width, int height)
+     {
+          List<Tile> tiles = new List<Tile>();
+          for (int x = center.x - width; x <= center.x + width; x++)
+          {
+               for (int y = center.y - height; y <= center.y + height; y++)
                {
                     if (x < 0 || x >= gridSize.x || y < 0 || y >= gridSize.y)
                     {

@@ -6502,7 +6502,8 @@ PrefabInstance:
       propertyPath: cardHolder
       value: 
       objectReference: {fileID: 331999186}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 939863568173872661, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9910,6 +9911,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688c513858f22a74bb9982d0d4b9aea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1945084608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2894830226676736799, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
+  m_PrefabInstance: {fileID: 2986921339403321797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca0c4841ef632944a5d040b0595cc8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1945084609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5246788303398609451, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
+  m_PrefabInstance: {fileID: 2986921339403321797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d64406df48cea49b5e0a152171c896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1967824818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10657,6 +10680,14 @@ PrefabInstance:
       propertyPath: board
       value: 
       objectReference: {fileID: 1250133844}
+    - target: {fileID: 3488727681965259131, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
+      propertyPath: cardSelect
+      value: 
+      objectReference: {fileID: 1945084608}
+    - target: {fileID: 3488727681965259131, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
+      propertyPath: cardDisplay
+      value: 
+      objectReference: {fileID: 1945084609}
     - target: {fileID: 5246788303398609451, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
       propertyPath: cardHolder
       value: 

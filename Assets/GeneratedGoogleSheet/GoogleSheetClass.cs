@@ -8,6 +8,8 @@ public class GoogleSheetSO : ScriptableObject
 	public List<RawCombat> RawCombatList;
 	public List<RawRewardChance> RawRewardChanceList;
 	public List<RawAddCardWeight> RawAddCardWeightList;
+	public List<RawStorePrice> RawStorePriceList;
+	public List<RawRuneCard> RawRuneCardList;
 	public List<RawMagicCard> RawMagicCardList;
 	public List<RawSpecialEffect> RawSpecialEffectList;
 	public List<RawSpecialEffectDescribe> RawSpecialEffectDescribeList;
@@ -51,19 +53,45 @@ public class RawRewardChance
 [Serializable]
 public class RawAddCardWeight
 {
-	/// <summary>항목</summary>
-	public string 변수명;
 	/// <summary>일반카드 가중치</summary>
 	public int rareCardWeight;
 }
 
 [Serializable]
+public class RawStorePrice
+{
+	/// <summary>가격 중간값</summary>
+	public int priceMiddle;
+	/// <summary>가격 폭</summary>
+	public int priceRange;
+}
+
+[Serializable]
+public class RawRuneCard
+{
+	/// <summary></summary>
+	public string id;
+	/// <summary>이름</summary>
+	public string name;
+	/// <summary>설명</summary>
+	public string describe;
+	/// <summary>비용</summary>
+	public int cost;
+	/// <summary>곱할거면 MUL</summary>
+	public string calcType;
+	/// <summary>피해량</summary>
+	public int attack;
+	/// <summary>투사체</summary>
+	public int projectile;
+	/// <summary>이동</summary>
+	public int movement;
+}
+
+[Serializable]
 public class RawMagicCard
 {
-	/// <summary>스킬 이름</summary>
-	public string skillKoreanName;
 	/// <summary></summary>
-	public int id;
+	public string id;
 	/// <summary></summary>
 	public string name;
 	/// <summary></summary>
@@ -72,25 +100,25 @@ public class RawMagicCard
 	public string skillCaster;
 	/// <summary></summary>
 	public string rarity;
-	/// <summary></summary>
+	/// <summary>피해량</summary>
 	public int attackDamage;
-	/// <summary></summary>
+	/// <summary>공격횟수</summary>
 	public int attackCount;
-	/// <summary></summary>
+	/// <summary>공격방식</summary>
 	public string attackType;
-	/// <summary></summary>
+	/// <summary>공격범위(세로)</summary>
 	public int attackHeight;
-	/// <summary></summary>
+	/// <summary>공격범위(가로)</summary>
 	public int attackWidth;
-	/// <summary></summary>
+	/// <summary>집중/퍼짐</summary>
 	public string attackSpread;
-	/// <summary></summary>
+	/// <summary>퍼짐 정도</summary>
 	public int spreadRange;
-	/// <summary></summary>
+	/// <summary>관통</summary>
 	public int pierce;
-	/// <summary></summary>
+	/// <summary>이동</summary>
 	public int move;
-	/// <summary></summary>
+	/// <summary>비용</summary>
 	public int cost;
 	/// <summary>특수효과</summary>
 	public string specialEffectId;
@@ -99,11 +127,11 @@ public class RawMagicCard
 [Serializable]
 public class RawSpecialEffect
 {
-	/// <summary></summary>
+	/// <summary>특수효과 아이디</summary>
 	public int id;
-	/// <summary></summary>
+	/// <summary>효과 이름</summary>
 	public string effect;
-	/// <summary></summary>
+	/// <summary>값</summary>
 	public int value;
 }
 
