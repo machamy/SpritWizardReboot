@@ -1,4 +1,5 @@
 using System;
+using Game;
 using Game.Entity;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ namespace Test
         
         public void AttackSquare()
         {
-            Board board = Board.Instance;
+            Board board = BattleManager.Instance.Board;
             var tiles = board.GetTilesSquare(e.Position, squareSize/2);
             if (TryGetComponent(out HitHandler hitHandler))
             {
@@ -57,7 +58,7 @@ namespace Test
         
         public void AttackBeam()
         {
-            Board board = Board.Instance;
+            Board board = BattleManager.Instance.Board;
             var tiles = board.GetTilesBeam(e.Position, direction, beamLength, beamWidth);
             foreach (var tile in tiles)
             {

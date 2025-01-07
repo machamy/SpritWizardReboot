@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DataBase.DataClasses;
 using EventChannel;
 using Game;
 using Game.Player;
@@ -56,6 +55,11 @@ public class CardCastManager : Singleton<CardCastManager>
     
     public bool UseCard(CardData cardData, Vector2Int targetPosition)
     {
+        if(BattleManager.Instance.IsOnBattle == false)
+        {
+            Debug.Log("Not in battle");
+            return false;
+        }
         if (cardData == null)
         {
             Debug.Log("No card selected");

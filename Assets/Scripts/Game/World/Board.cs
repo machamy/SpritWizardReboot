@@ -17,25 +17,11 @@ public class Board : MonoBehaviour
           public Tile[] tiles;
      }
      
-     public static Board Instance { get; private set; }
      
      [SerializeField] private Vector2Int gridSize;
      public Vector2Int GridSize => gridSize;
      private Tile[][] _tilemap;
      [SerializeField] private Grid _grid;
-     
-     private void Awake()
-     {
-          if (Instance == null)
-          {
-               Instance = this;
-               _grid = GetComponent<Grid>();
-          }
-          else
-          {
-               Destroy(gameObject);
-          }
-     }
      [SerializeField] private TileLine[] tileLines;
      public void Initialize(Tile[][] tilemap)
      {

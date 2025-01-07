@@ -1,4 +1,4 @@
-using DataBase.DataClasses;
+
 using UnityEditor;
 using UnityEngine;
 
@@ -16,17 +16,19 @@ using UnityEngine;
             var cardName = property.FindPropertyRelative("cardName");
             var description = property.FindPropertyRelative("description");
             var rarity = property.FindPropertyRelative("rarity");
-            var damage = property.FindPropertyRelative("damage");
-            var attackCnt = property.FindPropertyRelative("attackCnt");
+            var damage = property.FindPropertyRelative("attackDamage");
+            var attackCnt = property.FindPropertyRelative("attackCount");
             var cost = property.FindPropertyRelative("cost");
-            var image = property.FindPropertyRelative("image");
+            var frontImage = property.FindPropertyRelative("frontImage");
+            var backImage = property.FindPropertyRelative("backImage");
             var skillCaster = property.FindPropertyRelative("skillCaster");
             var attackType = property.FindPropertyRelative("attackType");
-            var attackRange = property.FindPropertyRelative("attackRange");
+            var attackHeight = property.FindPropertyRelative("attackHeight");
+            var attackWidth = property.FindPropertyRelative("attackWidth");
             var attackSpread = property.FindPropertyRelative("attackSpread");
             var spreadRange = property.FindPropertyRelative("spreadRange");
             var pierce = property.FindPropertyRelative("pierce");
-            var projectilePrefab = property.FindPropertyRelative("projectilePrefab");
+            var projectilePrefabName = property.FindPropertyRelative("projectilePrefabName");
             var move = property.FindPropertyRelative("move");
         
             position.height = propHeight;
@@ -42,15 +44,20 @@ using UnityEngine;
             position.y += propHeight;
             EditorGUI.PropertyField(position, cost);
             position.y += propHeight;
-            EditorGUI.PropertyField(position, image);
+            EditorGUI.PropertyField(position, frontImage);
+            position.y += propHeight;
+            EditorGUI.PropertyField(position, backImage);
             position.y += propHeight;
             EditorGUI.PropertyField(position, skillCaster);
             position.y += propHeight;
         
             EditorGUI.PropertyField(position, attackType);
             position.y += propHeight;
-            EditorGUI.PropertyField(position, attackRange);
+            EditorGUI.PropertyField(position, attackHeight);
             position.y += propHeight;
+            EditorGUI.PropertyField(position, attackWidth);
+            position.y += propHeight;
+            
 
             AttackType attackTypeEnum = (AttackType)attackType.enumValueIndex;
 
@@ -68,7 +75,7 @@ using UnityEngine;
             {
                 EditorGUI.PropertyField(position, pierce);
                 position.y += propHeight;
-                EditorGUI.PropertyField(position, projectilePrefab);
+                EditorGUI.PropertyField(position, projectilePrefabName);
                 position.y += propHeight;
             }
         
@@ -77,8 +84,12 @@ using UnityEngine;
         
             // EditorGUI.PropertyField(position, property.FindPropertyRelative("specialEffectId"));
             // position.y += propHeight;
-
             EditorGUI.EndProperty();
+        }
+        
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return 12 * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
         }
     }
 

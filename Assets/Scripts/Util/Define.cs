@@ -12,4 +12,17 @@ public static class Define
         Range,
         Melee
     }
+    public enum RuneEffectType
+    {
+        damage,
+        attackCnt,
+        moveCnt,
+        MAX
+    }
+    public enum CalculateType
+    {
+        add,
+        sub,
+        mul
+    }
 }

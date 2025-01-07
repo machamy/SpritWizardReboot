@@ -3,29 +3,30 @@ using UnityEngine;
 
 public class RuneEffectHolder : MonoBehaviour
 {
-    public enum RuneEffectType
-    {
-        damage,
-        attackCnt,
-        moveCnt,
-        MAX
-    }
-    
-    [SerializeField] private int[] runeEffect = new int[(int)RuneEffectType.MAX];
+
+    [SerializeField] private int[] runeEffect = new int[(int)Define.RuneEffectType.MAX];
     
     [SerializeField] private int damage = 0;
     [SerializeField] private int attackCnt = 0;
-    public void StackRuneEffect(RuneEffectType runeEffectType, CalculateType calculateType, int amount)
+    public void StackRuneEffect(Define.RuneEffectType runeEffectType, Define.CalculateType calculateType, int amount)
     {
-        if (calculateType == CalculateType.add) runeEffect[(int)runeEffectType] += amount;
-        else if (calculateType == CalculateType.sub) runeEffect[(int)runeEffectType] -= amount;
-        else if (calculateType == CalculateType.mul) runeEffect[(int)runeEffectType] *= amount;
-        else Debug.Log("연산타입오류!");
+        switch (calculateType)
+        {
+            case Define.CalculateType.add:
+                runeEffect[(int)runeEffectType] += amount;
+                break;
+            case Define.CalculateType.sub:
+                runeEffect[(int)runeEffectType] -= amount;
+                break;
+            case Define.CalculateType.mul:
+                runeEffect[(int)runeEffectType] *= amount;
+                break;
+        }
     }
-    public void AddRuneEffect(CalculateType damageCalculateType, int damage, CalculateType attackCntCalculateType, int attackCnt)
+    public void AddRuneEffect(Define.CalculateType damageCalculateType, int damage, Define.CalculateType attackCntCalculateType, int attackCnt)
     {
-        StackRuneEffect(RuneEffectType.damage, damageCalculateType, damage);
-        StackRuneEffect(RuneEffectType.attackCnt, attackCntCalculateType, attackCnt);
+        StackRuneEffect(Define.RuneEffectType.damage, damageCalculateType, damage);
+        StackRuneEffect(Define.RuneEffectType.attackCnt, attackCntCalculateType, attackCnt);
     }
 
     public Dictionary<RuneEffect, int> GetRuneEffect()

@@ -1,15 +1,16 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using DataBase.DataClasses;
 using UnityEngine;
 
 
+
+[ExecuteAlways]
 public class Database : MonoBehaviour
 {
     public bool isLoaded = false;
-    public static List<CardData> allCards { get; private set; } = new List<CardData>();
-    public static List<MagicCardData> allMagicCards { get; private set; } = new List<MagicCardData>();
+    [field:SerializeField] public List<CardData> allCards { get; private set; } = new List<CardData>();
+    [field:SerializeField] public List<MagicCardData> allMagicCards { get; private set; } = new List<MagicCardData>();
     
     [Header("Data")]
     [SerializeField] private GoogleSheetSO googleSheetSO;
@@ -23,7 +24,9 @@ public class Database : MonoBehaviour
         LoadData();
     }
     
-    private void LoadData()
+
+    [ContextMenu("Load Data")]
+    public void LoadData()
     {
         foreach (var cardData in googleSheetSO.RawMagicCardList)
         {
@@ -35,5 +38,4 @@ public class Database : MonoBehaviour
             allCards.Add(cardData);
         }
     }
-    
 }

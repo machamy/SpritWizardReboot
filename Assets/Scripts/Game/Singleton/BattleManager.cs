@@ -6,6 +6,9 @@ namespace Game
     public class BattleManager : Singleton<BattleManager>
     {
         public Board Board => board;
+        [Header("Managers")]
+        [SerializeField] private TurnManager turnManager;
+        [SerializeField] private CardCastManager cardCastManager;
         [Header("References")]
         [SerializeField] private Board board;
         [Header("Slime")]
@@ -26,6 +29,13 @@ namespace Game
         private void Awake()
         {
             board = FindAnyObjectByType<Board>();
+        }
+        
+        public void StartBattle()
+        {
+            isOnBattle = true;
+            turnManager.StartGame();
+            
         }
         
         

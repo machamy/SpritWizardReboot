@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace DataBase.DataClasses
-{
+
     [Serializable]
     public class MagicCardData : CardData, ICloneable
     {
@@ -30,6 +29,11 @@ namespace DataBase.DataClasses
         public int move;
         /// <summary>특수효과</summary>
         public string specialEffectId;
+
+        /// <summary>
+        /// 임시
+        /// </summary>
+        public string projectilePrefabName;
         
         public BaseCardAction magicCardAction;
         public object Clone()
@@ -53,4 +57,3 @@ namespace DataBase.DataClasses
             };
         }
     }
-}

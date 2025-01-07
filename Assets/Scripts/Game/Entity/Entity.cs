@@ -20,7 +20,8 @@ namespace Game.Entity
         {
             if (!_isInitialized)
             {
-                Initialize(Board.Instance, Board.Instance.WorldToCell(transform.position));
+                _board = BattleManager.Instance.Board;
+                Initialize(_board, _board.WorldToCell(transform.position));
             }
         }
 

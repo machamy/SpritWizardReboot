@@ -1,5 +1,7 @@
 ﻿
-using DataBase.DataClasses;
+using System;
+using System.Collections.Generic;
+using DataStructure;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MagicCardFactory", menuName = "CardFactory/MagicCardFactory")]
@@ -9,6 +11,7 @@ public class MagicCardDataFactorySO : ScriptableObject, CardDataFactory<MagicCar
     public Sprite iceCardBack;
     public Sprite fireCardBack;
     public BaseCardAction defaultMagicCardAction;
+    public SerializableDict<string, BaseCardAction> magicCardActionDict;
 
     public MagicCardData CreateMagicCard(RawMagicCard rawMagicCard)
     {

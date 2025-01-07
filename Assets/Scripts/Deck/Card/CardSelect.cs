@@ -1,4 +1,5 @@
 using System;
+using Game;
 using Game.World;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -30,7 +31,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         card = GetComponent<Card>();
         rectTransform = GetComponent<RectTransform>();
         if(board == null)
-            board = Board.Instance;
+            board = BattleManager.Instance.Board;
     }
     
     private void OnEnable()

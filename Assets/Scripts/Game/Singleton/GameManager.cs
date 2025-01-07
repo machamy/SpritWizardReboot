@@ -13,7 +13,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private FloatVariableSO gateHP;
     
     [SerializeField] private GUIManager guiManager;
+    [SerializeField] private BattleManager battleManager;
     public GUIManager GUIManager => guiManager;
+    public BattleManager BattleManager => battleManager;
     public float GateHP
     {
         get => gateHP.Value;
