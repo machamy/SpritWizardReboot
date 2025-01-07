@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public CardData cardData { get; set; }
-    
+    [SerializeField] private CardData cardData;
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private CardSelect cardSelect;
 
+    public CardData CardData => cardData;
     public event Action<CardData> OnCardDrawn;
     
     public CardDisplay CardDisplay => cardDisplay;
@@ -19,8 +19,9 @@ public class Card : MonoBehaviour
         cardSelect = GetComponent<CardSelect>();
     }
     
-    public void RaiseCardDrawn(CardData cardSO)
+    public void RaiseCardDrawn(CardData card)
     {
-        OnCardDrawn?.Invoke(cardSO);
+        cardData = card;
+        OnCardDrawn?.Invoke(card);
     }
 }

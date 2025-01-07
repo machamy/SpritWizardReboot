@@ -1,6 +1,7 @@
 using System;
 using DataBase.DataClasses;
 using DG.Tweening;
+using Game.World;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
@@ -9,22 +10,22 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Card), typeof(CardSelect))]
 public class CardDisplay : MonoBehaviour
 {
-        [Header("Focus Animation")]
-        private float focusedScale => displaySetting.focusedScale;
-        private float focusDuration => displaySetting.focusDuration;
-         private float unfocusedScale => displaySetting.unfocusedScale;
-        private float unfocusDuration => displaySetting.unfocusDuration;
-        [Header("Drag Animation")]
-        private float dragScale => displaySetting.dragScale;
-        private float dragScaleDuration => displaySetting.dragScaleDuration;
-        private float dragFollowSpeed => displaySetting.dragFollowSpeed;
-        private float dragReturnDuration => displaySetting.dragReturnDuration;
-        private float dragMaxHeightCoefficient => displaySetting.dragMaxHeightCoefficient;
-        [Header("Decay Animation")]
-        public float drageDcayHeightStartCoefficient => displaySetting.drageDcayHeightStartCoefficient;
-        private float dragDecayHeightMaxCoeefcient => displaySetting.dragDecayHeightMaxCoeefcient;
-        private float dragDecayScale => displaySetting.dragDecayScale;
-         private float decayDuration => displaySetting.decayDuration;
+    [Header("Focus Animation")]
+    private float focusedScale => displaySetting.focusedScale;
+    private float focusDuration => displaySetting.focusDuration;
+     private float unfocusedScale => displaySetting.unfocusedScale;
+    private float unfocusDuration => displaySetting.unfocusDuration;
+    [Header("Drag Animation")]
+    private float dragScale => displaySetting.dragScale;
+    private float dragScaleDuration => displaySetting.dragScaleDuration;
+    private float dragFollowSpeed => displaySetting.dragFollowSpeed;
+    private float dragReturnDuration => displaySetting.dragReturnDuration;
+    private float dragMaxHeightCoefficient => displaySetting.dragMaxHeightCoefficient;
+    [Header("Decay Animation")]
+    public float drageDcayHeightStartCoefficient => displaySetting.drageDcayHeightStartCoefficient;
+    private float dragDecayHeightMaxCoeefcient => displaySetting.dragDecayHeightMaxCoeefcient;
+    private float dragDecayScale => displaySetting.dragDecayScale;
+     private float decayDuration => displaySetting.decayDuration;
     [Header("Display Setting")]
     [SerializeField] private CardDisplaySettingSO displaySetting;
     
@@ -64,7 +65,6 @@ public class CardDisplay : MonoBehaviour
 
     public void DisplayCard(CardData card)
     {
-        this.card.cardData = card;
         nameText.text = card.cardName;
         descriptionText.text = card.description;
         image.sprite = card.backImage;
@@ -79,7 +79,15 @@ public class CardDisplay : MonoBehaviour
             moveText.text = String.Empty;
         }
     }
+    public void CancelUse()
+    {
+        
+    }
+    #region 이벤트 등록
 
+    
+
+    
     private void OnEnable()
     {
         card.OnCardDrawn += OnCardDrawn;
@@ -88,6 +96,8 @@ public class CardDisplay : MonoBehaviour
         cardSelect.OnDragStart += OnDragStart;
         cardSelect.OnDragging += OnDragging;
         cardSelect.OnDragEnd += OnDragEnd;
+        cardSelect.OnPointerTileEnter += OnPointerTileEnter;
+        cardSelect.OnPointerTileExit += OnPointerTileExit;
     }
     
     private void OnDisable()
@@ -98,8 +108,12 @@ public class CardDisplay : MonoBehaviour
         cardSelect.OnDragStart -= OnDragStart;
         cardSelect.OnDragging -= OnDragging;
         cardSelect.OnDragEnd -= OnDragEnd;
+        cardSelect.OnPointerTileEnter -= OnPointerTileEnter;
+        cardSelect.OnPointerTileExit -= OnPointerTileExit;
     }
-    
+    #endregion
+
+    #region 이벤트 핸들러
     private void OnCardDrawn(CardData cardSO)
     {
         DisplayCard(cardSO);
@@ -187,4 +201,23 @@ public class CardDisplay : MonoBehaviour
         transform.DOMove(cardHolder.position, dragReturnDuration);
         ShowDecay(0f);
     }
+    
+    public void OnPointerTileEnter(Tile tile)
+    {
+        if(cardSelect.IsUsed)
+            return;
+        
+    }
+    
+    public void OnPointerTileExit(Tile tile)
+    {
+        
+    }
+    
+    public void OnPointerTileUpdate(Tile tile)
+    {
+        
+    }
+    #endregion
+
 }

@@ -1468,6 +1468,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 963303438342105240, guid: e263bacea58049740a61053b4b588b54, type: 3}
   m_PrefabInstance: {fileID: 195776718}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &205358147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205358149}
+  - component: {fileID: 205358148}
+  m_Layer: 0
+  m_Name: Database
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &205358148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205358147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48c5f2b5a9649018b42ef720eb105a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoaded: 0
+  googleSheetSO: {fileID: 11400000, guid: 357c84c433735e64683baf29c14873ba, type: 2}
+  magicCardDataFactory: {fileID: 0}
+--- !u!4 &205358149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205358147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 971.89246, y: 540.94336, z: -0.2137297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &208282511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2882,11 +2929,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 455270553}
-  - component: {fileID: 455270552}
-  - component: {fileID: 455270551}
   - component: {fileID: 455270550}
   m_Layer: 0
-  m_Name: '@DeckManager'
+  m_Name: '@CardCastManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2908,37 +2953,7 @@ MonoBehaviour:
   - {fileID: 1945084607}
   - {fileID: 1099517257}
   - {fileID: 1024172048}
-  board: {fileID: 1250133844}
-  iceSlime: {fileID: 1451867}
-  grassSlime: {fileID: 826956904}
-  fireSlime: {fileID: 1494916432}
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
---- !u!114 &455270551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455270549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37dfbaed08fa0314b8b3164b474de2a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  attackCnt: 0
---- !u!114 &455270552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455270549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e3e567cafac4d41a657d240338285b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &455270553
 Transform:
   m_ObjectHideFlags: 0
@@ -6705,6 +6720,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8911515486056838684, guid: e8476516d07bfa04e910a57fc60c924c, type: 3}
   m_PrefabInstance: {fileID: 1156837578}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1161261476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161261478}
+  - component: {fileID: 1161261477}
+  m_Layer: 0
+  m_Name: '@BattleManager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1161261477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161261476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b0dafb507b46cf905b6647d7426250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 0}
+  iceSlime: {fileID: 1451867}
+  grassSlime: {fileID: 826956904}
+  fireSlime: {fileID: 1494916432}
+  isOnBattle: 0
+--- !u!4 &1161261478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161261476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 971.89246, y: 540.94336, z: -0.2137297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1174751397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10704,9 +10768,11 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 519420032}
   - {fileID: 627437650}
+  - {fileID: 205358149}
   - {fileID: 851348453}
-  - {fileID: 969431409}
   - {fileID: 107048625}
+  - {fileID: 1161261478}
+  - {fileID: 969431409}
   - {fileID: 455270553}
   - {fileID: 434779875}
   - {fileID: 225857588}

@@ -23,4 +23,7 @@ public class CardDisplaySettingSO : ScriptableObject
     public float dragDecayScale = 0.5f;
     public float decayDuration = 0.5f;
 
+    [Header("Tile Highlight")]
+    public Color tileFocusOkColor = new Color(0.4f, 1f, 0f, 0.6f);
+    public Color tileFocusNoColor = new Color(1f, 0f, 0f, 0.6f);
 }

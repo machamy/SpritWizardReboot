@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private Card cardData;
+    private Card card;
     [SerializeField] private Board board;
     private RectTransform rectTransform;
     
@@ -20,10 +20,14 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public event Action OnDragEnd;
     public event Action OnFocus;
     public event Action OnUnfocus;
+    
+    public event Action<Tile> OnPointerTileEnter;
+    public event Action<Tile> OnPointerTileExit;
+    
 
     void Awake()
     {
-        cardData = GetComponent<Card>();
+        card = GetComponent<Card>();
         rectTransform = GetComponent<RectTransform>();
         if(board == null)
             board = Board.Instance;
@@ -31,12 +35,12 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     
     private void OnEnable()
     {
-        cardData.OnCardDrawn += OnCardDrawn;
+        card.OnCardDrawn += OnCardDrawn;
     }
     
     private void OnDisable()
     { 
-        cardData.OnCardDrawn -= OnCardDrawn;
+        card.OnCardDrawn -= OnCardDrawn;
     }
     
     private void OnCardDrawn(CardData cardSO)
@@ -69,10 +73,10 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         previousFocusedTile?.Unfocus();
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2Int boardPos = board.WorldToCell(mousePos);
-        bool isSuccessful = CardManager.Instance.UseCard(cardData.cardData, boardPos);
+        bool isSuccessful = CardCastManager.Instance.UseCard(card.CardData, boardPos);
         if(isSuccessful)
         {
-            cardData.CardDisplay.ShowDecayDelayed(1);
+            card.CardDisplay.ShowDecayDelayed(1);
             isUsed = true;
         }
         isDragging = false;
