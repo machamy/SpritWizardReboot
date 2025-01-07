@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CommonMagicPrice
   m_EditorClassIdentifier: 
   storePrice:
-    middle: 0
-    range: 0
+    middle: 70
+    range: 5

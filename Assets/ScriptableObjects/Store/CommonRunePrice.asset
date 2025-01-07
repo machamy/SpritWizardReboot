@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CommonRunePrice
   m_EditorClassIdentifier: 
   storePrice:
-    middle: 0
-    range: 0
+    middle: 50
+    range: 5

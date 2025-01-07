@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DestroyCardPrice
   m_EditorClassIdentifier: 
   storePrice:
-    middle: 0
-    range: 0
+    middle: 75
+    range: 1

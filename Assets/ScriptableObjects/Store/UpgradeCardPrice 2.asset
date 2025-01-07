@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UpgradeCardPrice 2
   m_EditorClassIdentifier: 
   storePrice:
-    middle: 0
-    range: 0
+    middle: 80
+    range: 3
