@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public class Deck
 {
     public List<CardData> allCards { get; private set; } = new List<CardData>();
     
