@@ -5,6 +5,7 @@ using DefaultNamespace;
 using System.Linq;
 using TMPro;
 using EventChannel;
+using UnityEngine.Serialization;
 
 [RequireComponent (typeof(Entity), typeof(HitHandler))]
 public class Enemy : MonoBehaviour
@@ -41,8 +42,8 @@ public class Enemy : MonoBehaviour
     private Sprite _moveSprite;
 
 
-    public TurnEventChannelSO enemyTurnChannelSO;
-    public TurnEventChannelSO playerTurnExitEvent;
+    [FormerlySerializedAs("enemyTurnChannelSO")] public TurnEventChannelSO enemyTurnEnterChannelSO;
+    [FormerlySerializedAs("playerTurnExitEvent")] [FormerlySerializedAs("enemyTurnEnterEvent")] public TurnEventChannelSO playerTurnExitEventSO;
 
     private void Start()
     {
@@ -84,12 +85,12 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        enemyTurnChannelSO.OnTurnEventRaised += Execute;
+        enemyTurnEnterChannelSO.OnTurnEventRaised += Execute;
         GetComponent<HitHandler>().Handler += OnHit;
     }
     private void OnDisable()
     {
-        enemyTurnChannelSO.OnTurnEventRaised -= Execute;
+        enemyTurnEnterChannelSO.OnTurnEventRaised -= Execute;
     }
     private void AllBehaviourQueueUI()
     {
@@ -220,22 +221,22 @@ public class Enemy : MonoBehaviour
         //TODO
         //몬스터 데미지 구현
         _hp -= e.dmg;
-        if (_hp <= 0)
+        if (_hp <= 0 && !_entity.IsDeath)
         {
-            Ondeath();
-            playerTurnExitEvent.OnTurnEventRaised += OnPlayerturnEnd;
+            _entity.Delete();
+            enemyTurnEnterChannelSO.OnTurnEventRaised += OnPlayerturnEnd;
         }
         CheckState();
     }
 
-    private void Ondeath()
-    {
-        
-        //애니메이션 출력
-    }
+    // private void Ondeath()
+    // {
+    //     
+    //     //애니메이션 출력
+    // }
     private void OnPlayerturnEnd(int turn)
     {
-        playerTurnExitEvent.OnTurnEventRaised -= OnPlayerturnEnd;
+        enemyTurnEnterChannelSO.OnTurnEventRaised -= OnPlayerturnEnd;
         if (gameObject != null) 
             Destroy(gameObject);
     }

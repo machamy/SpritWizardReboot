@@ -5,6 +5,11 @@ namespace Game.Entity
 {
     public class HitHandler : MonoBehaviour
     {
+        
+        public bool isInvincible = false;
+        public bool isDeath = false;
+        public bool IsNotHittable => isInvincible || isDeath;
+        
         public class HitEventArgs : EventArgs
         {
             public int dmg;
@@ -12,6 +17,12 @@ namespace Game.Entity
 
         public EventHandler<HitEventArgs> Handler;
 
-        public void Raise(object sender, HitEventArgs hitEventArgs) => Handler.Invoke(sender, hitEventArgs);
+        public bool Raise(object sender, HitEventArgs hitEventArgs)
+        {
+            if (IsNotHittable)
+                return false;
+            Handler.Invoke(sender, hitEventArgs);
+            return true;
+        }
     }
 }

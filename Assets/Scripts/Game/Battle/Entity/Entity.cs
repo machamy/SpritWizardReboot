@@ -16,7 +16,9 @@ namespace Game.Entity
         private Tile currentTile;
         public Tile CurrentTile => _board.GetTile(_coordinate);
         public Vector2Int Coordinate => _coordinate;
-        public event Action<Entity> OnDestroyEvent;
+
+        private bool isDeath = true;
+        public bool IsDeath => isDeath;
 
         private void Start()
         {
@@ -85,12 +87,18 @@ namespace Game.Entity
         {
             MoveTo(_coordinate + Vector2Int.left * distance);
         }
-
-        private void OnDestroy()
+        
+        /// <summary>
+        /// Destroy 대신 이걸 사용해야함
+        /// </summary>
+        public void Delete()
         {
-            OnDestroyEvent?.Invoke(this);
+            isDeath = true;
+            if(TryGetComponent(out HitHandler hitHandler))
+                hitHandler.isDeath = true;
             if(CurrentTile != null)
                 CurrentTile.RemoveEntity(this);
         }
+        
     }
 }

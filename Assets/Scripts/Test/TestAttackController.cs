@@ -12,6 +12,7 @@ namespace Test
         
         public Direction direction = Direction.R;
         public bool changeDirection = false;
+        public int dmg = 5;
         [Header("Projectile")]
         public PlayerProjectile projectilePrefab;
         public int projectileCount = 1;
@@ -40,7 +41,7 @@ namespace Test
         public void SpawnProjectile()
         {
             var projectile = Instantiate(projectilePrefab);
-            projectile.Initialize(direction , 1);
+            projectile.Initialize(direction , dmg);
             projectile.transform.position = transform.position;
             if (changeDirection)
                 direction = (Direction)((int)++direction % (int)Direction.MAX);
@@ -52,7 +53,7 @@ namespace Test
             var tiles = board.GetTilesSquare(e.Coordinate, squareSize/2);
             if (TryGetComponent(out HitHandler hitHandler))
             {
-                hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = 1});
+                hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = dmg});
             }
         }
         
@@ -68,7 +69,7 @@ namespace Test
                 {
                     if (TryGetComponent(out HitHandler hitHandler))
                     {
-                        hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = 1});
+                        hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = dmg});
                     }
                 }
             }

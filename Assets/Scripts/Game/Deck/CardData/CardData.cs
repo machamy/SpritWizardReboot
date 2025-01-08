@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -41,7 +42,7 @@ using UnityEngine.Serialization;
         public int[] runeEffectAmounts = new int[(int)Define.RuneEffectType.MAX];
         public Define.CalculateType calculateType;
         
-        [FormerlySerializedAs("magicCardAction")] public BaseCardAction cardAction;
+        public BaseCardAction cardAction;
 
         /// <summary>
         /// 위치 정보가 없어도 시전이 가능한지 확인
@@ -61,7 +62,6 @@ using UnityEngine.Serialization;
 
         /// <summary>
         /// 해당 위치로 시전이 가능한지 여부 확인
-        /// TODO : Rune 적용
         /// </summary>
         /// <param name="start"></param>
         /// <param name="target"></param>
@@ -77,7 +77,7 @@ using UnityEngine.Serialization;
                 return true;
             return false;
         }
-
+        
         public object Clone()
         {
             return MemberwiseClone();

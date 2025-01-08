@@ -50,8 +50,9 @@ namespace Game.Entity
                 }
                 if (e.TryGetComponent(out HitHandler hitHandler))
                 {
-                    hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = this.dmg});
-                    penestration--;
+                    bool hitSuccese = hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = this.dmg});
+                    if(hitSuccese)
+                        penestration--;
                 }
             }
             
