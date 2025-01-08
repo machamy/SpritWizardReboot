@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,9 @@ public class DefaultAttackAction :BaseCardAction
 {
     [SerializeField] private PlayerProjectile projectilePrefab;
     [SerializeField] private float delay = 0.75f;
+
+    private List<PlayerProjectile> projectileList = new List<PlayerProjectile>();
+
     public override bool Execute([CanBeNull] object caster, CardData cardData, Vector2Int targetPosition, out IEnumerator routine, RuneEffectHolder runeEffectHolder = null)
     {
         if (caster is not Slime)
@@ -43,7 +46,7 @@ public class DefaultAttackAction :BaseCardAction
                 PlayerProjectile projectile = Instantiate(projectilePrefab);
                 projectile.Initialize(direction, card.attackDamage, card.pierce);
                 projectile.transform.position = entity.transform.position;
-                
+                projectileList.Add(projectile);
             }
             else
             {
@@ -86,6 +89,15 @@ public class DefaultAttackAction :BaseCardAction
                 yield return new WaitForSeconds(delay);
             }
         }
+
+        while (projectileList.Count > 0)
+        {
+            projectileList.RemoveAll(item => item == null);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(delay);
+
         yield break;
     }
 }

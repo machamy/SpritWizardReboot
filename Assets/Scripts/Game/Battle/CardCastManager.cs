@@ -60,12 +60,18 @@ public class CardCastManager : Singleton<CardCastManager>
         }
         return false;
     }
+
+    public int GetMoveCntRuneEffect(CardData cardData)
+    {
+        return _runeEffectHolder.GetRuneEffect(Define.RuneEffectType.moveCnt);
+    }
     
     private bool UseAttackCard(CardMetaData cardMetaData, Vector2Int targetPosition)
     {
         CardData cardData = cardMetaData.cardData;
         Slime silme = BattleManager.Instance.GetSlime(cardData.skillCaster);
-        if(!cardData.CanCastTo(silme.GetComponent<Entity>().Coordinate, targetPosition))
+
+        if(!cardData.CanCastTo(silme.GetComponent<Entity>().Coordinate, targetPosition, GetMoveCntRuneEffect(cardData)))
         {
             return false;
         }

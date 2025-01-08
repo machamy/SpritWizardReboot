@@ -66,13 +66,14 @@ using UnityEngine.Serialization;
         /// <param name="start"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public bool CanCastTo(Vector2Int start, Vector2Int target)
+        public bool CanCastTo(Vector2Int start, Vector2Int target, int additionalMoveCnt = 0)
         {
+        int moveCnt = move + additionalMoveCnt;
             int deltaX = Mathf.Abs(start.x - target.x);
             int deltaY = Mathf.Abs(start.y - target.y);
             // Debug.Log($"deltaX : {deltaX}, deltaY : {deltaY}");
             if ((deltaX == deltaY || deltaX * deltaY == 0) &&
-                Mathf.Abs(deltaX) <= move && Mathf.Abs(deltaY) <= move)
+                Mathf.Abs(deltaX) <= moveCnt && Mathf.Abs(deltaY) <= moveCnt)
                 return true;
             return false;
         }

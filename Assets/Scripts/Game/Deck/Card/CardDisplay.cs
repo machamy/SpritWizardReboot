@@ -223,7 +223,7 @@ public class CardDisplay : MonoBehaviour
         else
         {
             var slime = BattleManager.Instance.GetSlime(meta.cardData.skillCaster);
-            if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates))
+            if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates, CardCastManager.Instance.GetMoveCntRuneEffect(meta.cardData)))
             {
                 tile.Focus(displaySetting.tileFocusOkColor);
             }

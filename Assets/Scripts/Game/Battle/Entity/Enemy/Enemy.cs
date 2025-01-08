@@ -236,7 +236,7 @@ public class Enemy : MonoBehaviour
     private void OnPlayerturnEnd(int turn)
     {
         playerTurnExitEvent.OnTurnEventRaised -= OnPlayerturnEnd;
-        Destroy(gameObject);
+        if (gameObject != null) Destroy(gameObject);
     }
     [ContextMenu("Reset")]
     public void Reset()
