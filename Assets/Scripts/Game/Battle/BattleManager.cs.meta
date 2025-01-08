@@ -3,7 +3,15 @@ guid: f7b0dafb507b46cf905b6647d7426250
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - turnManager: {instanceID: 0}
+  - cardCastManager: {instanceID: 0}
+  - handDeckManager: {instanceID: 0}
+  - board: {instanceID: 0}
+  - iceSlime: {instanceID: 0}
+  - grassSlime: {instanceID: 0}
+  - fireSlime: {instanceID: 0}
+  - playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
   executionOrder: -101
   icon: {instanceID: 0}
   userData: 

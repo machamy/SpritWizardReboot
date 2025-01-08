@@ -34,8 +34,6 @@ namespace Game
         public List<CardMetaData> CurrentCardDataList => currentCardDataList;
         [Header("Battle")]
         [SerializeField] private bool isOnBattle = false;
-        [SerializeField] private IntVariableSO mana; //TODO 마나구현
-        [SerializeField] private IntVariableSO maxMana;
         [Header("Channel")]
         [SerializeField] private TurnEventChannelSO playerTurnEnterEvent;
         public bool IsOnBattle => isOnBattle;

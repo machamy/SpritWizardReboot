@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 900807520614608079}
   - component: {fileID: 2752846751472750159}
   - component: {fileID: 1902072419433256322}
+  - component: {fileID: 3851861948789066712}
   m_Layer: 7
   m_Name: PlayerProjectile
   m_TagString: Untagged
@@ -102,7 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6359a3c438264f228631fab375d7be8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 1
   speed: 10
+  penestration: 1
 --- !u!58 &2752846751472750159
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,3 +169,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3851861948789066712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750158380189996803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde0fdd3ef0c45baa3010fc342250f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitsForEndPlayerTurn: {fileID: 11400000, guid: b9d9d10d99c679f43aa931e6192a9114, type: 2}

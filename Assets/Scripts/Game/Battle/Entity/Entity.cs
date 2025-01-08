@@ -16,6 +16,7 @@ namespace Game.Entity
         private Tile currentTile;
         public Tile CurrentTile => _board.GetTile(_coordinate);
         public Vector2Int Coordinate => _coordinate;
+        public event Action<Entity> OnDestroyEvent;
 
         private void Start()
         {
@@ -45,42 +46,35 @@ namespace Game.Entity
 
         public void MoveToAnimated(Vector2Int position, float time = 1f)
         {
-            Tile currentTile = _board.GetTile(_coordinate);
-            currentTile.RemoveEntity(this);
-            Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
-            Tile nextTile = _board.GetTile(clamped);
-            nextTile.AddEntity(this);
-            _coordinate = clamped;
-            transform.DOMove(_board.CellCenterToWorld(clamped), time);
+            MoveTo(position);
+            transform.DOMove(_board.CellCenterToWorld(_coordinate), time);
         }
         
         public void MoveToImmediate(Vector2Int position)
         {
-            Tile currentTile = _board.GetTile(_coordinate);
-            currentTile.RemoveEntity(this);
-            Vector2Int clamped = Utilities.Vector2IntClamp(position, Vector2Int.zero, _board.GridSize - Vector2Int.one);
-            Tile nextTile = _board.GetTile(clamped);
-            nextTile.AddEntity(this);
-            _coordinate = clamped;
-            transform.position = _board.CellCenterToWorld(clamped);
+            MoveTo(position);
+            transform.position = _board.CellCenterToWorld(_coordinate);
         }
         
-        public void MoveDirection(Direction direction, int distance)
+        public Vector2Int MoveDirection(Direction direction, int distance)
         {
             Vector2Int newPosition = _coordinate + direction.ToVectorInt() * distance;
             MoveTo(newPosition);
+            return newPosition;
         }
         
-        public void MoveDirectionAnimated(Direction direction, int distance, float time = 1)
+        public Vector2Int  MoveDirectionAnimated(Direction direction, int distance, float time = 1)
         {
             Vector2Int newPosition = _coordinate + direction.ToVectorInt() * distance;
             MoveToAnimated(newPosition, time);
+            return newPosition;
         }
         
-        public void MoveDirectionImmediate(Direction direction, int distance)
+        public Vector2Int MoveDirectionImmediate(Direction direction, int distance)
         {
             Vector2Int newPosition = _coordinate + direction.ToVectorInt() * distance;
             MoveToImmediate(newPosition);
+            return newPosition;
         }
         
         public void MoveLeft(int distance)
@@ -94,6 +88,7 @@ namespace Game.Entity
 
         private void OnDestroy()
         {
+            OnDestroyEvent?.Invoke(this);
             if(CurrentTile != null)
                 CurrentTile.RemoveEntity(this);
         }

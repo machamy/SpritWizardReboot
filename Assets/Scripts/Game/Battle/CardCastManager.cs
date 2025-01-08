@@ -28,9 +28,15 @@ public class CardCastManager : Singleton<CardCastManager>
     
     public bool UseCard(CardMetaData cardMetaData, Vector2Int targetPosition)
     {
-        if(BattleManager.Instance.IsOnBattle == false)
+        var bm = BattleManager.Instance;
+        if(bm.IsOnBattle == false)
         {
             Debug.Log("Not in battle");
+            return false;
+        }
+        if (!bm.TurnManager.IsPlayerTurn)
+        {
+            Debug.Log("Not player turn");
             return false;
         }
         if (cardMetaData == null)
@@ -38,14 +44,7 @@ public class CardCastManager : Singleton<CardCastManager>
             Debug.Log("No card selected");
             return false;
         }
-        // TODO 현재 마나 확인
-        if (cardMetaData.cost > 9999)
-        {
-            Debug.Log("Not enough mana");
-            return false;
-        }
-
-        if (BattleManager.Instance.Board.GetTile(targetPosition) == null)
+        if (bm.Board.GetTile(targetPosition) == null)
         {
             Debug.Log("No target position");
             return false;
@@ -96,7 +95,7 @@ public class CardCastManager : Singleton<CardCastManager>
         
         if(cardData.cardAction.Execute(silme, runeAppliedCardData, targetPosition, out var routine))
         {
-            StartCoroutine(CastAndEndTurnRoutine(routine));
+            StartCoroutine(CastAndEndTurnRoutine(routine, cardMetaData.cost));
         }
         return true;
     }
@@ -112,7 +111,7 @@ public class CardCastManager : Singleton<CardCastManager>
             return false;
         }
         effectHolder.StackRuneEffectRange(cardData.runeEffectAmounts);
-        StartCoroutine(CastAndEndTurnRoutine(1.0f));
+        StartCoroutine(CastAndEndTurnRoutine(1.0f,cardMetaData.cost));
         return true;
     }
     /// <summary>
@@ -120,20 +119,20 @@ public class CardCastManager : Singleton<CardCastManager>
     /// </summary>
     /// <param name="routine"></param>
     /// <returns></returns>
-    private IEnumerator CastAndEndTurnRoutine(float time)
+    private IEnumerator CastAndEndTurnRoutine(float time, int usedCost)
     {
         yield return new WaitForSeconds(time);
-        BattleManager.Instance.TurnManager.ReadyToEndPlayerTurn();
+        BattleManager.Instance.TurnManager.ReadyToEndPlayerTurn(usedCost);
     }
     /// <summary>
     /// 해당 시전 루틴이 끝난 후에 턴을 넘긴다.
     /// </summary>
     /// <param name="routine"></param>
     /// <returns></returns>
-    private IEnumerator CastAndEndTurnRoutine(IEnumerator routine)
+    private IEnumerator CastAndEndTurnRoutine(IEnumerator routine, int usedCost)
     {
         yield return routine;
-        BattleManager.Instance.TurnManager.ReadyToEndPlayerTurn();
+        BattleManager.Instance.TurnManager.ReadyToEndPlayerTurn(usedCost);
     }
     
 }

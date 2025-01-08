@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,17 +14,20 @@ namespace Game
         public float EnemyTurnTime => enemyTurnTime;
         [Header( "Turn" )]
         public int currentRawTurn = 1;
-        public int notMovedEntity = 0;
-        [FormerlySerializedAs("readyToEndPlayerTurn")] [FormerlySerializedAs("ready2endTurn")] [SerializeField]private bool isReadyToEndPlayerTurn = false;
-        public int CurrentTurn => currentRawTurn / 2;
-        public bool IsPlayerTurn => currentRawTurn % 2 == 0;
-        public bool IsEnemyTurn => currentRawTurn % 2 == 1;
+        [SerializeField]private bool isReadyToEndPlayerTurn = false;
+        [SerializeField]private int remainEnemyTurn = 0;
+        [SerializeField]private IntVariableSO waitsForEndPlayerTurn;
+        private int playerUsedCost;
+        public int CurrentTurn => currentRawTurn;
+        private bool isPlayerTurn = false;
+        public bool IsPlayerTurn => isPlayerTurn;
+        public bool IsEnemyTurn => !isPlayerTurn;
         [Header("Event Channels")]
         [SerializeField] private EventChannel.TurnEventChannelSO playerTurnEnterEvent;
         [SerializeField] private EventChannel.TurnEventChannelSO playerTurnExitEvent;
         [SerializeField] private EventChannel.TurnEventChannelSO enemyTurnEnterEvent;
         [SerializeField] private EventChannel.TurnEventChannelSO enemyTurnExitEvent;
-        
+
 
         // /// <summary>
         // /// 테스트용, 사용금지
@@ -53,6 +57,7 @@ namespace Game
         /// </summary>
         public void StartGame()
         {
+            isPlayerTurn = true;
             currentRawTurn = 2;
             playerTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
         }
@@ -61,27 +66,53 @@ namespace Game
         /// 턴을 종료할 준비를 한다.
         /// TODO : 현재로선 바로 종료됨. 애니메이션/모든 행동 이 끝난 후 종료되도록 수정 필요
         /// </summary>
-        public void ReadyToEndPlayerTurn()
+        public void ReadyToEndPlayerTurn(int usedCost)
         {
             if (IsPlayerTurn)
             {
                 isReadyToEndPlayerTurn = true;
-                // 애니메이션 조건
-                // 행동 조건
-                EndPlayerTurn();
+                playerUsedCost = usedCost;
+                waitsForEndPlayerTurn.OnValueChanged -= CheckWaitsForEndPlayerTurn;
+                waitsForEndPlayerTurn.OnValueChanged += CheckWaitsForEndPlayerTurn;
+                CheckWaitsForEndPlayerTurn(waitsForEndPlayerTurn.Value);
             }
+        }
+        
+        private void CheckWaitsForEndPlayerTurn(int val)
+        {
+            if (isReadyToEndPlayerTurn && val <= 0)
+            {
+                EndPlayerTurn(playerUsedCost); // 순서 바뀌면 무한 재귀에 빠짐
+                waitsForEndPlayerTurn.Value = 0;
+            }
+        }
+        
+        /// <summary>
+        /// 대기열에 플레이어 턴 종료를 기다리는 수를 추가한다.
+        /// </summary>
+        public void AddWaitsForEndPlayerTurn()
+        {
+            waitsForEndPlayerTurn.Value += 1;
+        }
+        /// <summary>
+        /// 대기열에 플레이어 턴 종료를 기다리는 수를 제거한다.
+        /// </summary>
+        public void RemoveWaitsForEndPlayerTurn()
+        {
+            waitsForEndPlayerTurn.Value -= 1;
         }
         
         /// <summary>
         /// 플레이어의 턴을 끝낸다.
         /// </summary>
-        private void EndPlayerTurn()
+        private void EndPlayerTurn(int usedCost)
         {
             if (isReadyToEndPlayerTurn)
             {
                 isReadyToEndPlayerTurn = false;
                 playerTurnExitEvent.RaiseTurnEvent(CurrentTurn);
-                currentRawTurn++;
+                remainEnemyTurn = usedCost;
+                isPlayerTurn = false;
                 enemyTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
             }
         }
@@ -113,8 +144,18 @@ namespace Game
             if (IsEnemyTurn)
             {
                 enemyTurnExitEvent.RaiseTurnEvent(CurrentTurn);
-                currentRawTurn++;
-                playerTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
+                if(remainEnemyTurn > 0)
+                {
+                    remainEnemyTurn--;
+                    enemyTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
+                }
+                else
+                {
+                    currentRawTurn++;
+                    isPlayerTurn = true;
+                    playerTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
+                }
+                
             }
         }
 

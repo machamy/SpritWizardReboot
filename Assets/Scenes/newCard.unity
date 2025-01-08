@@ -5356,8 +5356,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTurnTime: 1
   currentRawTurn: 0
-  notMovedEntity: 0
   isReadyToEndPlayerTurn: 0
+  remainEnemyTurn: 0
+  waitsForEndPlayerTurn: {fileID: 11400000, guid: b9d9d10d99c679f43aa931e6192a9114, type: 2}
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
   playerTurnExitEvent: {fileID: 11400000, guid: 74a9d209f490a174d9899b88ba77234d, type: 2}
   enemyTurnEnterEvent: {fileID: 11400000, guid: e3bbc31977c14bb4494865e038c4ac9d, type: 2}
@@ -7050,8 +7051,6 @@ MonoBehaviour:
       calculateType: 0
       cardAction: {fileID: 0}
   isOnBattle: 0
-  mana: {fileID: 0}
-  maxMana: {fileID: 0}
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
 --- !u!4 &1161261478
 Transform:
