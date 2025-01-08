@@ -11,9 +11,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CardObject), typeof(CardSelect))]
 public class CardDisplay : MonoBehaviour
 {
+    private RectTransform rectTransform;
+    
     [Header("Focus Animation")]
     private float focusedScale => displaySetting.focusedScale;
     private float focusDuration => displaySetting.focusDuration;
+    private bool focusCardVisible => displaySetting.focusCardVisible;
      private float unfocusedScale => displaySetting.unfocusedScale;
     private float unfocusDuration => displaySetting.unfocusDuration;
     [Header("Drag Animation")]
@@ -46,6 +49,8 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI moveText;
 
+
+    private Vector3 previousPosition;
     
     
     private int _DissolveAmount = Shader.PropertyToID("_DissolveAmount");
@@ -53,8 +58,10 @@ public class CardDisplay : MonoBehaviour
     private void Awake()
     {
         cardObject = GetComponent<CardObject>();
+        rectTransform = GetComponent<RectTransform>();
         material = new Material(image.material);
         image.material = material;
+        previousPosition = transform.position;
     }
 
     private void Update()
@@ -63,6 +70,8 @@ public class CardDisplay : MonoBehaviour
         {
             OnDraggingUpdate(Input.mousePosition);
         }
+        previousPosition = transform.position;
+        // FollowTilt();
     }
 
     public void DisplayCard(CardMetaData cardMetaData)
@@ -85,6 +94,20 @@ public class CardDisplay : MonoBehaviour
             moveText.text = String.Empty;
         }
     }
+
+    
+    // private Vector3 smoothedRotation = Vector3.zero;
+    // /// <summary>
+    // /// 이동 거리에 따라 카드의 기울기를 조절한다.
+    // /// </summary>
+    // private void FollowTilt()
+    // {
+    //     Vector3 delta = transform.position - previousPosition;
+    //     Vector3 rotation = delta * displaySetting.followTiltAmount;
+    //     smoothedRotation = Vector3.Lerp(smoothedRotation, rotation, Time.deltaTime * displaySetting.followTiltSpeed);
+    //     transform.eulerAngles = smoothedRotation;
+    // }
+    
     public void CancelUse()
     {
         
@@ -120,6 +143,7 @@ public class CardDisplay : MonoBehaviour
     #endregion
 
     #region 이벤트 핸들러
+    
     private void OnCardObjectDrawn(CardMetaData cardMetaSo)
     {
         DisplayCard(cardMetaSo);
@@ -131,9 +155,15 @@ public class CardDisplay : MonoBehaviour
 
     private void OnFocused()
     {
-        if(cardSelect.IsUsed)
+        if(cardSelect.IsUsed || cardSelect.IsDragging)
             return;
+        print($"{name} focused");
         transform.DOScale(focusedScale, focusDuration);
+        if(focusCardVisible)
+        {
+            var targetY = Mathf.Max(transform.position.y, rectTransform.rect.height * 0.5f * focusedScale);
+            transform.DOMoveY(targetY, .15f);
+        }
     }
     
     private void OnUnfocused()
@@ -141,7 +171,10 @@ public class CardDisplay : MonoBehaviour
         if(cardSelect.IsUsed)
             return;
         if(!cardSelect.IsDragging)
+        {
             transform.DOScale(unfocusedScale, unfocusDuration);
+            transform.DOMove(cardHolder.position, .15f);
+        }
     }
 
     private void OnDragStart()

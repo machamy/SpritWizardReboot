@@ -8,6 +8,7 @@ public class CardDisplaySettingSO : ScriptableObject
     [Header("Focus Animation")]
     public float focusedScale = 1.2f;
     public float focusDuration = 0.2f;
+    public bool focusCardVisible = true;
     public float unfocusedScale = 1f;
     public float unfocusDuration = 0.2f;
 
@@ -15,6 +16,8 @@ public class CardDisplaySettingSO : ScriptableObject
     [Tooltip("드래그시 크기")]public float dragScale = 1.5f;
     [Tooltip("크기 변화 시간")]public float dragScaleDuration = 0.2f;
     [Tooltip("카드 따라오는 속도")]public float dragFollowSpeed = 10f;
+    // [Tooltip("카드 따라온 기울임 정도")]public float followTiltAmount = 10f;
+    // public float followTiltSpeed = 20f;
     [Tooltip("카드 돌아가는 속도")]public float dragReturnDuration = 0.2f;
     [Tooltip("최대 드래그 가능한 상대 위치")]public float dragMaxHeightCoefficient = 0.5f;
 

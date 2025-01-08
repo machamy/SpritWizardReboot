@@ -8442,6 +8442,7 @@ MonoBehaviour:
   e: {fileID: 1396638847}
   direction: 0
   changeDirection: 1
+  dmg: 5
   projectilePrefab: {fileID: 900807520614608079, guid: c35f2562d5d7dd14bbf9252c068e4447, type: 3}
   projectileCount: 1
   spawnKey: 32
@@ -12979,6 +12980,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 869547911}
+  - {fileID: 823207968}
+  - {fileID: 1396638846}
   - {fileID: 1544727887}
   - {fileID: 627437650}
   - {fileID: 434779875}
@@ -12999,9 +13003,6 @@ SceneRoots:
   - {fileID: 1113957887}
   - {fileID: 1970474374}
   - {fileID: 1250133843}
-  - {fileID: 869547911}
-  - {fileID: 823207968}
-  - {fileID: 1396638846}
   - {fileID: 461369767}
   - {fileID: 1494916431}
   - {fileID: 826956903}
