@@ -69,7 +69,7 @@ public class DefaultAttackAction :BaseCardAction
                     {
                         if (e.TryGetComponent(out HitHandler hitHandler))
                         {
-                            hitHandler.Raise(this,new HitHandler.HitEventArgs(){dmg = 1});
+                            bool hitSuccess =  hitHandler.Raise(this,new HitHandler.HitEventArgs(){dmg = card.attackDamage});
                         }
                     }
                 }
