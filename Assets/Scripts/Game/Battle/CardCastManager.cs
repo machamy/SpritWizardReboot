@@ -34,7 +34,7 @@ public class CardCastManager : Singleton<CardCastManager>
             Debug.Log("Not in battle");
             return false;
         }
-        if (!bm.TurnManager.IsPlayerTurn)
+        if (!bm.TurnManager.IsPlayerTurnStrict)
         {
             Debug.Log("Not player turn");
             return false;

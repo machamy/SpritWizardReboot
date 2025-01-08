@@ -21,6 +21,7 @@ namespace Game
         public int CurrentTurn => currentRawTurn;
         private bool isPlayerTurn = false;
         public bool IsPlayerTurn => isPlayerTurn;
+        public bool IsPlayerTurnStrict => isPlayerTurn && !isReadyToEndPlayerTurn;
         public bool IsEnemyTurn => !isPlayerTurn;
         [Header("Event Channels")]
         [SerializeField] private EventChannel.TurnEventChannelSO playerTurnEnterEvent;
