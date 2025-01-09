@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Game;
 using Game.World;
 using UnityEngine;
@@ -6,21 +7,24 @@ using UnityEngine.EventSystems;
 
 public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private CardObject _cardObject;
+    [HideInInspector] public CardObject _cardObject;
     [SerializeField] private Board board;
     private RectTransform rectTransform;
+    private Canvas canvas;
     
-    
+    public bool isDraggable = true;
     private bool isUsed = false;
     public bool IsUsed => isUsed;
     private bool isDragging = false;
     public bool IsDragging => isDragging;
+    private bool isFocused = false;
+    public bool IsFocused => isFocused;
     //[Header("Events")]
-    public event Action OnDragStart;
-    public event Action OnDragging;
-    public event Action OnDragEnd;
-    public event Action OnFocus;
-    public event Action OnUnfocus;
+    public event Action<CardSelect> OnDragStart;
+    public event Action<CardSelect> OnDragging;
+    public event Action<CardSelect> OnDragEnd;
+    public event Action<CardSelect> OnFocus;
+    public event Action<CardSelect> OnUnfocus;
     
     public event Action<Tile> OnPointerTileEnter;
     public event Action<Tile> OnPointerTileExit;
@@ -28,10 +32,11 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void Awake()
     {
-        _cardObject = GetComponent<CardObject>();
+        canvas = GetComponentInParent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         if(board == null)
             board = BattleManager.Instance.Board;
+        _cardObject = GetComponent<CardObject>();
     }
     
     private void OnEnable()
@@ -44,6 +49,8 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         _cardObject.OnCardDrawn -= OnCardObjectDrawn;
     }
     
+    
+    
     private void OnCardObjectDrawn(CardMetaData cardMetaSo)
     {
         isUsed = false;
@@ -51,16 +58,21 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
+        if(!isDraggable)
+            return;
         isDragging = true;
-        OnDragStart?.Invoke();
+        OnDragStart?.Invoke(this);
     }
     
     private Tile previousEnteredTile;
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        OnDragging?.Invoke();
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Tile tile = board.GetTile(board.WorldToCell(mousePos));
+        if(!isDraggable)
+            return;
+        OnDragging?.Invoke(this);
+        Vector3 screenToWorldPoint = Camera.main.ScreenToWorldPoint(eventData.position);
+        rectTransform.position = eventData.position;
+        Tile tile = board.GetTile(board.WorldToCell(screenToWorldPoint));
         if(tile != null && previousEnteredTile != tile)
         {
             if(previousEnteredTile != null)
@@ -77,6 +89,8 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
+        if(!isDraggable)
+            return;
         if(previousEnteredTile != null)
             OnPointerTileExit?.Invoke(previousEnteredTile);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -87,19 +101,31 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             _cardObject.CardDisplay.ShowDecayDelayed(1);
             isUsed = true;
             _cardObject.Discard();
+            // StartCoroutine(DelayedDestroy());
+            // IEnumerator DelayedDestroy()
+            // {
+            //     yield return new WaitForSeconds(1);
+            //     _cardObject.Discard();
+            // }
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
         }
         isDragging = false;
-        OnDragEnd?.Invoke();
+        OnDragEnd?.Invoke(this);
     }
 
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        OnFocus?.Invoke();
+        isFocused = true;
+        OnFocus?.Invoke(this);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        OnUnfocus?.Invoke();
+        isFocused = false;
+        OnUnfocus?.Invoke(this);
     }
 }

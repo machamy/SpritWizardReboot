@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75e89e2e7a18f441b3a9eb6582e0c8d, type: 3}
   m_Name: DefaultCardDisplaySetting
   m_EditorClassIdentifier: 
-  focusedScale: 2
+  focusedScale: 2.5
   focusDuration: 0.2
+  focusCardVisible: 1
   unfocusedScale: 1
   unfocusDuration: 0.2
-  dragScale: 2.5
-  dragScaleDuration: 0.2
-  dragFollowSpeed: 10
+  followAnimation: 1
+  followSpeed: 10
   dragReturnDuration: 0.2
+  dragScale: 1
+  dragScaleDuration: 0.2
   dragMaxHeightCoefficient: 1
   drageDecayHeightStartCoefficient: 0.5
   dragDecayHeightMaxCoeefcient: 5
