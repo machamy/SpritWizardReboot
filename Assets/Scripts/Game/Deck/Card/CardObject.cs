@@ -7,7 +7,11 @@ public class CardObject : MonoBehaviour
 {
     private HandDeckManager _handDeckManager;
     
-    [FormerlySerializedAs("cardData")] [SerializeField] private CardMetaData cardMetaData;
+    [Header("Initialization")]
+    public bool hasToBeInitializeDisplay = true;
+    [SerializeField] private CardDisplay cardDisplayPrefab;
+    [Header("References")]
+    [SerializeField] private CardMetaData cardMetaData;
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private CardSelect cardSelect;
 
@@ -19,8 +23,16 @@ public class CardObject : MonoBehaviour
 
     private void Awake()
     {
-        cardDisplay = GetComponent<CardDisplay>();
-        cardSelect = GetComponent<CardSelect>();
+        
+        if(!hasToBeInitializeDisplay) 
+            return;
+        Transform cardDisplayParent = CardDisplayParent.Instance?.transform;
+        if (cardDisplayParent == null)
+        {
+            cardDisplayParent = FindFirstObjectByType<Canvas>().transform;
+        }
+        cardDisplay = Instantiate(cardDisplayPrefab,cardDisplayParent);
+        cardDisplay.cardObject = this;
     }
 
     private void Start()

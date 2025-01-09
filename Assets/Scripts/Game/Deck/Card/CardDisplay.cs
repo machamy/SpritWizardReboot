@@ -8,7 +8,6 @@ using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CardObject), typeof(CardSelect))]
 public class CardDisplay : MonoBehaviour
 {
     private RectTransform rectTransform;
@@ -36,7 +35,7 @@ public class CardDisplay : MonoBehaviour
     [FormerlySerializedAs("card")]
     [FormerlySerializedAs("cardData")]
     [Header("References")]
-    [SerializeField] private CardObject cardObject;
+    [SerializeField] public CardObject cardObject;
     private CardSelect cardSelect => cardObject.CardSelect;
     [SerializeField] private RectTransform cardHolder;
     [Header("Rendering")] 
@@ -50,28 +49,27 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moveText;
 
 
-    private Vector3 previousPosition;
+    private Vector3 cardObjectPos;
     
     
     private int _DissolveAmount = Shader.PropertyToID("_DissolveAmount");
     
     private void Awake()
     {
-        cardObject = GetComponent<CardObject>();
         rectTransform = GetComponent<RectTransform>();
         material = new Material(image.material);
         image.material = material;
-        previousPosition = transform.position;
+    }
+
+    private void Start()
+    {
+        cardObjectPos = cardObject.transform.position;
     }
 
     private void Update()
     {
-        if (cardSelect.IsDragging)
-        {
-            OnDraggingUpdate(Input.mousePosition);
-        }
-        previousPosition = transform.position;
-        // FollowTilt();
+        cardObjectPos = cardObject.transform.position;
+        FollowCard();
     }
 
     public void DisplayCard(CardMetaData cardMetaData)
@@ -93,6 +91,40 @@ public class CardDisplay : MonoBehaviour
         {
             moveText.text = String.Empty;
         }
+    }
+    
+    private void FollowCard()
+    {
+        if(cardSelect.IsUsed)
+            return;
+        Vector3 targetPos = cardObjectPos;
+        if (cardSelect.IsDragging)
+        {
+            var dragMaxHeight = cardHolder.position.y + cardHolder.position.y * dragMaxHeightCoefficient;
+            var rawTargetPos = Vector3.Lerp(transform.position, targetPos, dragFollowSpeed * Time.deltaTime);
+            float clampedY = Mathf.Clamp(rawTargetPos.y, 0, dragMaxHeight);
+            targetPos = new Vector3(rawTargetPos.x, clampedY, rawTargetPos.z);
+            
+            if(cardObjectPos.y > dragMaxHeight)
+            {
+                float decayStartHeight = cardHolder.position.y + cardHolder.position.y * DrageDecayHeightStartCoefficient;
+                float decayMaxHeight = cardHolder.position.y + cardHolder.position.y * dragDecayHeightMaxCoeefcient;
+                float range = decayMaxHeight - decayStartHeight;
+
+                var decayScale = Mathf.Lerp(0f, dragDecayScale, (targetPos.y - decayStartHeight) / range);
+                ShowDecay(decayScale);
+            }
+            else
+            {
+                ShowDecay(0);
+            }
+        }
+        else
+        {
+            targetPos = Vector3.Lerp(transform.position, targetPos, dragFollowSpeed * Time.deltaTime);
+            ShowDecay(0);
+        }
+        transform.position = targetPos;
     }
 
     
@@ -153,7 +185,7 @@ public class CardDisplay : MonoBehaviour
         transform.position = cardHolder.position;
     }
 
-    private void OnFocused()
+    private void OnFocused(CardSelect cardSelect)
     {
         if(cardSelect.IsUsed || cardSelect.IsDragging)
             return;
@@ -166,7 +198,7 @@ public class CardDisplay : MonoBehaviour
         }
     }
     
-    private void OnUnfocused()
+    private void OnUnfocused(CardSelect cardSelect)
     {
         if(cardSelect.IsUsed)
             return;
@@ -177,7 +209,7 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    private void OnDragStart()
+    private void OnDragStart(CardSelect cardSelect)
     {
         if(cardSelect.IsUsed)
             return;
@@ -187,26 +219,7 @@ public class CardDisplay : MonoBehaviour
     
     private void OnDraggingUpdate(Vector3 mousePos)
     {
-        if(cardSelect.IsUsed)
-            return;
-        var dragMaxHeight = cardHolder.position.y + cardHolder.position.y * dragMaxHeightCoefficient;
-        var rawTargetPos = Vector3.Lerp(transform.position, mousePos, dragFollowSpeed * Time.deltaTime);
-        float clampedY = Mathf.Clamp(rawTargetPos.y, 0, dragMaxHeight);
-        var targetPos = new Vector3(rawTargetPos.x, clampedY, rawTargetPos.z);
-        transform.position = targetPos;
-        if(rawTargetPos.y > dragMaxHeight)
-        {
-            float decayStartHeight = cardHolder.position.y + cardHolder.position.y * DrageDecayHeightStartCoefficient;
-            float decayMaxHeight = cardHolder.position.y + cardHolder.position.y * dragDecayHeightMaxCoeefcient;
-            float range = decayMaxHeight - decayStartHeight;
 
-            var decayScale = Mathf.Lerp(0f, dragDecayScale, (mousePos.y - decayStartHeight) / range);
-                ShowDecay(decayScale);
-        }
-        else
-        {
-            ShowDecayDelayed(0f, decayDuration);
-        }
     }
     
     private void ShowDecay(float decayScale)
@@ -229,12 +242,12 @@ public class CardDisplay : MonoBehaviour
         dacayDOTweener = anim;
     }
     
-    public void OnDragging()
+    public void OnDragging(CardSelect cardSelect)
     {
         
     }
     
-    public void OnDragEnd()
+    public void OnDragEnd(CardSelect cardSelect)
     {
         if(cardSelect.IsUsed)
             return;
