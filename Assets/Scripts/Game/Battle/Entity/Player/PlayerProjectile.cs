@@ -48,6 +48,8 @@ namespace Game.Entity
                 {
                     break;
                 }
+                if(e.IsDeath)
+                    continue;
                 if (e.TryGetComponent(out HitHandler hitHandler))
                 {
                     bool hitSuccese = hitHandler.Raise(this, new HitHandler.HitEventArgs(){dmg = this.dmg});

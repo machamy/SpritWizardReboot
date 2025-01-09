@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Game.Entity;
 using EventChannel;
@@ -43,15 +44,15 @@ public class EnemyProjectile : MonoBehaviour
         else
         {
             GameManager.Instance.GateHP -= _dmg;
+            playerTurnExitEvent.OnTurnEventRaised += OnPlayerturnEnd;
             _entity.Delete();
-            Destroy(this.gameObject);
         }
     }
 
     public void OnHit(object caller, HitHandler.HitEventArgs e)
     {
         HP -= e.dmg;
-        if (_hp <= 0)
+        if (_hp <= 0 && !_entity.IsDeath)
         {
             Ondeath();
             _entity.Delete();
@@ -68,5 +69,10 @@ public class EnemyProjectile : MonoBehaviour
         //애니메이션 출력
         
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        playerTurnExitEvent.OnTurnEventRaised -= OnPlayerturnEnd;
     }
 }

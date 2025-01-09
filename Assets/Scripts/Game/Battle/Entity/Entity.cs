@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DefaultNamespace;
 using DG.Tweening;
 using Game.World;
@@ -17,7 +18,7 @@ namespace Game.Entity
         public Tile CurrentTile => _board.GetTile(_coordinate);
         public Vector2Int Coordinate => _coordinate;
 
-        private bool isDeath = true;
+        private bool isDeath = false;
         public bool IsDeath => isDeath;
 
         private void Start()
@@ -96,8 +97,13 @@ namespace Game.Entity
             isDeath = true;
             if(TryGetComponent(out HitHandler hitHandler))
                 hitHandler.isDeath = true;
-            if(CurrentTile != null)
-                CurrentTile.RemoveEntity(this);
+            StartCoroutine(RemoveFromTile());
+            IEnumerator RemoveFromTile()
+            {
+                yield return new WaitForEndOfFrame();
+                if(CurrentTile != null)
+                    CurrentTile.RemoveEntity(this);
+            }
         }
         
     }
