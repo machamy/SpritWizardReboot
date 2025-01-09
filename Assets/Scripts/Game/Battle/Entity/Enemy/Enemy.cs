@@ -224,7 +224,7 @@ public class Enemy : MonoBehaviour
         if (_hp <= 0 && !_entity.IsDeath)
         {
             _entity.Delete();
-            enemyTurnEnterChannelSO.OnTurnEventRaised += OnPlayerturnEnd;
+            enemyTurnEnterChannelSO.OnTurnEventRaised += OnEnemyTurnEnter;
         }
         CheckState();
     }
@@ -234,9 +234,9 @@ public class Enemy : MonoBehaviour
     //     
     //     //애니메이션 출력
     // }
-    private void OnPlayerturnEnd(int turn)
+    private void OnEnemyTurnEnter(int turn)
     {
-        enemyTurnEnterChannelSO.OnTurnEventRaised -= OnPlayerturnEnd;
+        enemyTurnEnterChannelSO.OnTurnEventRaised -= OnEnemyTurnEnter;
         if (gameObject != null) 
             Destroy(gameObject);
     }

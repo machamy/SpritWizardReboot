@@ -43,7 +43,8 @@ public class EnemyProjectile : MonoBehaviour
         else
         {
             GameManager.Instance.GateHP -= _dmg;
-            Destroy(gameObject);
+            _entity.Delete();
+            Destroy(this.gameObject);
         }
     }
 
@@ -53,6 +54,7 @@ public class EnemyProjectile : MonoBehaviour
         if (_hp <= 0)
         {
             Ondeath();
+            _entity.Delete();
             playerTurnExitEvent.OnTurnEventRaised += OnPlayerturnEnd;
         }
     }
@@ -64,5 +66,7 @@ public class EnemyProjectile : MonoBehaviour
     private void Ondeath()
     {
         //애니메이션 출력
+        
+        Destroy(gameObject);
     }
 }
