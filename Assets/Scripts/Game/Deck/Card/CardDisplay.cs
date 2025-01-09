@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using Game;
 using Game.Entity;
@@ -13,15 +14,15 @@ public class CardDisplay : MonoBehaviour
     private RectTransform rectTransform;
     
     [Header("Focus Animation")]
-    private float focusedScale => displaySetting.focusedScale;
+    public float focusedScale => displaySetting.focusedScale;
     private float focusDuration => displaySetting.focusDuration;
-    private bool focusCardVisible => displaySetting.focusCardVisible;
-     private float unfocusedScale => displaySetting.unfocusedScale;
+    public bool focusCardVisible => displaySetting.focusCardVisible;
+    public float unfocusedScale => displaySetting.unfocusedScale;
     private float unfocusDuration => displaySetting.unfocusDuration;
     [Header("Drag Animation")]
     private float dragScale => displaySetting.dragScale;
     private float dragScaleDuration => displaySetting.dragScaleDuration;
-    private float dragFollowSpeed => displaySetting.dragFollowSpeed;
+    private float FollowSpeed => displaySetting.followSpeed;
     private float dragReturnDuration => displaySetting.dragReturnDuration;
     private float dragMaxHeightCoefficient => displaySetting.dragMaxHeightCoefficient;
     [Header("Decay Animation")]
@@ -29,18 +30,22 @@ public class CardDisplay : MonoBehaviour
     private float dragDecayHeightMaxCoeefcient => displaySetting.dragDecayHeightMaxCoeefcient;
     private float dragDecayScale => displaySetting.dragDecayScale;
      private float decayDuration => displaySetting.decayDuration;
-    [Header("Display Setting")]
+    [Header("Display Setting (SO)")]
     [SerializeField] private CardDisplaySettingSO displaySetting;
-    
+
+    [Header("Display Setting (Current)")] 
+    public bool DoFollowAnimation = true;
+    [Tooltip("따라가지 않는다")]public bool DoNotFollow = false;
     [FormerlySerializedAs("card")]
     [FormerlySerializedAs("cardData")]
     [Header("References")]
     [SerializeField] public CardObject cardObject;
     private CardSelect cardSelect => cardObject.CardSelect;
-    [SerializeField] private RectTransform cardHolder;
     [Header("Rendering")] 
     [SerializeField] private Image image;
     private Material material;
+    [SerializeField] private bool isAnimating = false;
+    public bool IsAnimating => isAnimating || DOTween.IsTweening(transform) || DOTween.IsTweening(image);
     
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI nameText;
@@ -72,6 +77,11 @@ public class CardDisplay : MonoBehaviour
         FollowCard();
     }
 
+    public void Initialize()
+    {
+        DisplayCard(cardObject.CardMetaData);
+    }
+
     public void DisplayCard(CardMetaData cardMetaData)
     {
         if(cardMetaData == null)
@@ -95,20 +105,26 @@ public class CardDisplay : MonoBehaviour
     
     private void FollowCard()
     {
-        if(cardSelect.IsUsed)
+        if(cardSelect.IsUsed || DoNotFollow)
             return;
+        if (!displaySetting.followAnimation || !DoFollowAnimation)
+        {
+            transform.position = cardObjectPos;
+            print($"{cardObjectPos} {transform.position}");
+            return;
+        }
         Vector3 targetPos = cardObjectPos;
         if (cardSelect.IsDragging)
         {
-            var dragMaxHeight = cardHolder.position.y + cardHolder.position.y * dragMaxHeightCoefficient;
-            var rawTargetPos = Vector3.Lerp(transform.position, targetPos, dragFollowSpeed * Time.deltaTime);
+            var dragMaxHeight = cardObjectPos.y + cardObjectPos.y * dragMaxHeightCoefficient;
+            var rawTargetPos = Vector3.Lerp(transform.position, targetPos, FollowSpeed * Time.deltaTime);
             float clampedY = Mathf.Clamp(rawTargetPos.y, 0, dragMaxHeight);
             targetPos = new Vector3(rawTargetPos.x, clampedY, rawTargetPos.z);
             
             if(cardObjectPos.y > dragMaxHeight)
             {
-                float decayStartHeight = cardHolder.position.y + cardHolder.position.y * DrageDecayHeightStartCoefficient;
-                float decayMaxHeight = cardHolder.position.y + cardHolder.position.y * dragDecayHeightMaxCoeefcient;
+                float decayStartHeight = cardObjectPos.y + cardObjectPos.y * DrageDecayHeightStartCoefficient;
+                float decayMaxHeight = cardObjectPos.y + cardObjectPos.y * dragDecayHeightMaxCoeefcient;
                 float range = decayMaxHeight - decayStartHeight;
 
                 var decayScale = Mathf.Lerp(0f, dragDecayScale, (targetPos.y - decayStartHeight) / range);
@@ -121,7 +137,7 @@ public class CardDisplay : MonoBehaviour
         }
         else
         {
-            targetPos = Vector3.Lerp(transform.position, targetPos, dragFollowSpeed * Time.deltaTime);
+            targetPos = Vector3.Lerp(transform.position, targetPos, FollowSpeed * Time.deltaTime);
             ShowDecay(0);
         }
         transform.position = targetPos;
@@ -140,10 +156,25 @@ public class CardDisplay : MonoBehaviour
     //     transform.eulerAngles = smoothedRotation;
     // }
     
+    public void SetTransformIndex(int index)
+    {
+        rectTransform.SetSiblingIndex(index);
+    }
+    
+    public void UpdateTransformIndex()
+    {
+        rectTransform.SetSiblingIndex(cardObject.transform.parent.GetSiblingIndex());
+    }
+    
     public void CancelUse()
     {
         
     }
+
+    public float GetMinVisiblePos(float postion){
+        return Mathf.Max(postion, rectTransform.rect.height * 0.5f * focusedScale);
+    }
+
     #region 이벤트 등록
 
     
@@ -151,14 +182,22 @@ public class CardDisplay : MonoBehaviour
     
     private void OnEnable()
     {
-        cardObject.OnCardDrawn += OnCardObjectDrawn;
-        cardSelect.OnFocus += OnFocused;
-        cardSelect.OnUnfocus += OnUnfocused;
-        cardSelect.OnDragStart += OnDragStart;
-        cardSelect.OnDragging += OnDragging;
-        cardSelect.OnDragEnd += OnDragEnd;
-        cardSelect.OnPointerTileEnter += OnPointerTileEnter;
-        cardSelect.OnPointerTileExit += OnPointerTileExit;
+        
+        StartCoroutine(DelayedOnEnable());
+        IEnumerator DelayedOnEnable()
+        {
+            yield return new WaitForEndOfFrame();
+            
+            cardObject.OnCardDrawn += OnCardObjectDrawn;
+            cardSelect.OnFocus += OnFocused;
+            cardSelect.OnUnfocus += OnUnfocused;
+            cardSelect.OnDragStart += OnDragStart;
+            cardSelect.OnDragging += OnDragging;
+            cardSelect.OnDragEnd += OnDragEnd;
+            cardSelect.OnPointerTileEnter += OnPointerTileEnter;
+            cardSelect.OnPointerTileExit += OnPointerTileExit;
+            
+        }
     }
     
     private void OnDisable()
@@ -182,20 +221,19 @@ public class CardDisplay : MonoBehaviour
         ShowDecay(0);
         image.DOFade(1, 0);
         transform.localScale = unfocusedScale * Vector3.one;
-        transform.position = cardHolder.position;
     }
 
     private void OnFocused(CardSelect cardSelect)
     {
         if(cardSelect.IsUsed || cardSelect.IsDragging)
             return;
-        print($"{name} focused");
+        // print($"{name} focused");
         transform.DOScale(focusedScale, focusDuration);
-        if(focusCardVisible)
-        {
-            var targetY = Mathf.Max(transform.position.y, rectTransform.rect.height * 0.5f * focusedScale);
-            transform.DOMoveY(targetY, .15f);
-        }
+        // if(focusCardVisible)
+        // {
+        //     var targetY = GetMinVisiblePos(cardObjectPos.y); 
+        //     transform.DOMoveY(targetY, .15f);
+        // }
     }
     
     private void OnUnfocused(CardSelect cardSelect)
@@ -205,7 +243,6 @@ public class CardDisplay : MonoBehaviour
         if(!cardSelect.IsDragging)
         {
             transform.DOScale(unfocusedScale, unfocusDuration);
-            transform.DOMove(cardHolder.position, .15f);
         }
     }
 
@@ -215,11 +252,6 @@ public class CardDisplay : MonoBehaviour
             return;
         transform.DOScale(dragScale, dragScaleDuration);
         image.DOFade(0.4f, dragScaleDuration);
-    }
-    
-    private void OnDraggingUpdate(Vector3 mousePos)
-    {
-
     }
     
     private void ShowDecay(float decayScale)
@@ -238,7 +270,10 @@ public class CardDisplay : MonoBehaviour
     {
         if(dacayDOTweener is { active: true })
             dacayDOTweener.Kill();
-        var anim = image.materialForRendering.DOFloat(decayScale, _DissolveAmount, duration);
+        isAnimating = true;
+        var anim = image.materialForRendering
+            .DOFloat(decayScale, _DissolveAmount, duration)
+            .OnComplete(() => isAnimating = false);
         dacayDOTweener = anim;
     }
     
@@ -252,7 +287,7 @@ public class CardDisplay : MonoBehaviour
         if(cardSelect.IsUsed)
             return;
         transform.DOScale(unfocusedScale, dragScaleDuration);
-        transform.DOMove(cardHolder.position, dragReturnDuration);
+        // transform.DOMove(cardHolder.position, dragReturnDuration);
         image.DOFade(1f, dragScaleDuration);
         ShowDecay(0f);
     }

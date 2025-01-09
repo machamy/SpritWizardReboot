@@ -5,7 +5,8 @@ using UnityEngine;
 public class HandDeckManager : MonoBehaviour
 {
     [SerializeField] private Deck deck;
-    [SerializeField] private List<CardObject> cards;
+    [SerializeField] private BaseCardHolder cardHolder;
+    [SerializeField] int handSize = 3;
     
     /// <summary>
     /// 현재 소지한 카드들로 덱을 설정한다.
@@ -18,7 +19,18 @@ public class HandDeckManager : MonoBehaviour
             Debug.Log($"[HandDeckManager::InitDeck] : {cardData.cardName}");
             deck.AddCard(cardData);
         }
-        
+    }
+    
+    public CardObject AddCardToHand(CardMetaData cardMetaData)
+    {
+        var res = cardHolder.AddCardWithSlot(cardMetaData);
+        return res;
+    }
+    
+    public void DrawCard()
+    {
+        CardMetaData cardMetaData = deck.DrawCard();
+        AddCardToHand(cardMetaData).RaiseCardDrawn(cardMetaData);
     }
     
     /// <summary>
@@ -28,40 +40,36 @@ public class HandDeckManager : MonoBehaviour
     {
         deck.SetupForBattle();
         deck.ShuffleDrawPool();
+        for (int i = 0; i < handSize; i++)
+        {
+            DrawCard();
+        }
     }
     
-    /// <summary>
-    /// 해당 카드를 버릴 카드 더미로 넣는다.
-    /// TODO : 카드 자체에서 할 수 있지 않을까? metadata에 deck정보 넣기는 좀...
-    /// </summary>
-    /// <param name="cardMetaData"></param>
-    public void DiscardCard(CardMetaData cardMetaData)
+    // /// <summary>
+    // /// 해당 카드를 버릴 카드 더미로 넣는다.
+    // /// TODO : 카드 자체에서 할 수 있지 않을까? metadata에 deck정보 넣기는 좀...
+    // /// </summary>
+    // /// <param name="cardMetaData"></param>
+    // public void DiscardCard(CardMetaData cardMetaData)
+    // {
+    //     deck.AddCardToDiscardPool(cardMetaData);
+    // }
+
+    public void OnPlayerTurnEnd()
     {
-        deck.AddCardToDiscardPool(cardMetaData);
+        while(cardHolder.CardCount > 0)
+        {
+            CardObject cardObject = cardHolder[0];
+            cardObject.Discard();
+        }
     }
     
     public void OnPlayerTurnEnter()
     {
-        // TODO 카드 버리기/ 뽑기 분리
-        for (int i = 0; i < 3; i++)
+        for (int i = cardHolder.CardCount; i < handSize; i++)
         {
-            var card = cards[i];
-            var drawnCard = deck.DrawCard();
-            if(card.CardMetaData != null && !card.CardSelect.IsUsed)
-                card.Discard();
-            
-            if (drawnCard == null)
-            {
-                Debug.Log($"[HandDeckManager::OnPlayerTurnEnter] no card to draw");
-                card.gameObject.SetActive(false);
-            }
-            else
-            {
-                Debug.Log($"[HandDeckManager::OnPlayerTurnEnter] draw card : {drawnCard.cardName}");
-                card.gameObject.SetActive(true);
-                cards[i].RaiseCardDrawn(drawnCard);
-            }
-           
+            DrawCard();
         }
     }
 }

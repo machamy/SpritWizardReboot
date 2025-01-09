@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Game;
 using Game.World;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public bool IsUsed => isUsed;
     private bool isDragging = false;
     public bool IsDragging => isDragging;
+    private bool isFocused = false;
+    public bool IsFocused => isFocused;
     //[Header("Events")]
     public event Action<CardSelect> OnDragStart;
     public event Action<CardSelect> OnDragging;
@@ -46,6 +49,8 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         _cardObject.OnCardDrawn -= OnCardObjectDrawn;
     }
     
+    
+    
     private void OnCardObjectDrawn(CardMetaData cardMetaSo)
     {
         isUsed = false;
@@ -65,9 +70,9 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if(!isDraggable)
             return;
         OnDragging?.Invoke(this);
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        rectTransform.position = mousePos;
-        Tile tile = board.GetTile(board.WorldToCell(mousePos));
+        Vector3 screenToWorldPoint = Camera.main.ScreenToWorldPoint(eventData.position);
+        rectTransform.position = eventData.position;
+        Tile tile = board.GetTile(board.WorldToCell(screenToWorldPoint));
         if(tile != null && previousEnteredTile != tile)
         {
             if(previousEnteredTile != null)
@@ -96,6 +101,16 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             _cardObject.CardDisplay.ShowDecayDelayed(1);
             isUsed = true;
             _cardObject.Discard();
+            // StartCoroutine(DelayedDestroy());
+            // IEnumerator DelayedDestroy()
+            // {
+            //     yield return new WaitForSeconds(1);
+            //     _cardObject.Discard();
+            // }
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
         }
         isDragging = false;
         OnDragEnd?.Invoke(this);
@@ -104,11 +119,13 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        isFocused = true;
         OnFocus?.Invoke(this);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
+        isFocused = false;
         OnUnfocus?.Invoke(this);
     }
 }

@@ -17,10 +17,11 @@ MonoBehaviour:
   focusCardVisible: 1
   unfocusedScale: 1
   unfocusDuration: 0.2
+  followAnimation: 1
+  followSpeed: 10
+  dragReturnDuration: 0.2
   dragScale: 1
   dragScaleDuration: 0.2
-  dragFollowSpeed: 10
-  dragReturnDuration: 0.2
   dragMaxHeightCoefficient: 1
   drageDecayHeightStartCoefficient: 0.5
   dragDecayHeightMaxCoeefcient: 5

@@ -36,6 +36,7 @@ namespace Game
         [SerializeField] private bool isOnBattle = false;
         [Header("Channel")]
         [SerializeField] private TurnEventChannelSO playerTurnEnterEvent;
+        [SerializeField] private TurnEventChannelSO playerTurnEndEvent;
         public bool IsOnBattle => isOnBattle;
         
         private void Awake()
@@ -59,11 +60,13 @@ namespace Game
         private void OnEnable()
         {
             playerTurnEnterEvent.OnTurnEventRaised += OnPlayerTurnEnter;
+            playerTurnEndEvent.OnTurnEventRaised += OnPlayerTurnEnd;
         }
         
         private void OnDisable()
         {
             playerTurnEnterEvent.OnTurnEventRaised -= OnPlayerTurnEnter;
+            playerTurnEndEvent.OnTurnEventRaised -= OnPlayerTurnEnd;
         }
 
         /// <summary>
@@ -83,6 +86,13 @@ namespace Game
             if(IsOnBattle == false)
                 return;
             handDeckManager.OnPlayerTurnEnter();
+        }
+        
+        private void OnPlayerTurnEnd(int turn)
+        {
+            if(IsOnBattle == false)
+                return;
+            handDeckManager.OnPlayerTurnEnd();
         }
         /// <summary>
         /// 해당 슬라임의 객체를 반환한다.

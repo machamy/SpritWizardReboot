@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using DG.Tweening;
 using Game;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,6 +20,7 @@ public class CardObject : MonoBehaviour
 
     public CardMetaData CardMetaData => cardMetaData;
     public event Action<CardMetaData> OnCardDrawn;
+    public event Action<CardObject> OnCardDiscarded; 
     
     public CardDisplay CardDisplay => cardDisplay;
     public CardSelect CardSelect => cardSelect;
@@ -39,15 +43,23 @@ public class CardObject : MonoBehaviour
     {
         _handDeckManager = BattleManager.Instance.HandDeckManager;
     }
-
+    
+    public void Initialize(CardMetaData cardMetaData)
+    {
+        name = cardMetaData.cardName;
+        this.cardMetaData = cardMetaData;
+        cardDisplay.Initialize();
+    }
+    
     public void RaiseCardDrawn(CardMetaData cardMeta)
     {
-        cardMetaData = cardMeta;
         OnCardDrawn?.Invoke(cardMeta);
     }
     
     public void Discard()
     {
-        _handDeckManager.DiscardCard(cardMetaData);
+        Debug.Log($"[CardObject::Discard] : {cardMetaData.cardName}");
+        OnCardDiscarded?.Invoke(this);
     }
+    
 }
