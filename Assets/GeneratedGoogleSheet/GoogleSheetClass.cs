@@ -53,8 +53,10 @@ public class RawRewardChance
 [Serializable]
 public class RawAddCardWeight
 {
+	/// <summary>희귀카드 가중치</summary>
+	public string rareCardWeight;
 	/// <summary>일반카드 가중치</summary>
-	public int rareCardWeight;
+	public int commonCardWeight;
 }
 
 [Serializable]

@@ -46,9 +46,12 @@ MonoBehaviour:
     goldMiddle: 30
     goldVariation: 6
   RawAddCardWeightList:
-  - rareCardWeight: 4
   - rareCardWeight: 1
-  - rareCardWeight: 0
+    commonCardWeight: 4
+  - rareCardWeight: 1
+    commonCardWeight: 1
+  - rareCardWeight: 1
+    commonCardWeight: 0
   RawStorePriceList:
   - priceMiddle: 70
     priceRange: 5
