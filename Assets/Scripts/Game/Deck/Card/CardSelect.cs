@@ -179,7 +179,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         float pointerUpTime = Time.time;
         
         bool isClick = pointerUpTime - pointerDownTime < 0.25f && !wasDragged;
-        if(isClick)
+        if(isClick && cardSetting.isSelectable)
         {
             isSelected = !isSelected;
         }

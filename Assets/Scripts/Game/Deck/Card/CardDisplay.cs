@@ -349,7 +349,7 @@ public class CardDisplay : MonoBehaviour
     }
     public void OnPointerUp(CardSelect cardSelect, bool isClick)
     {
-        if(!outline)
+        if(!outline || !setting.sellectOutline)
             return;
         
         if (isClick && cardSelect.IsSelected)
