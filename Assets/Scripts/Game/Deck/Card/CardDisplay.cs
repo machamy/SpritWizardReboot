@@ -347,8 +347,12 @@ public class CardDisplay : MonoBehaviour
     }
     public void OnPointerUp(CardSelect cardSelect, bool isClick)
     {
+        if(!outline)
+            return;
+        
         if (isClick && cardSelect.IsSelected)
         {
+            
             outline.enabled = true;
             outline.effectColor = setting.selectOutlineColor;
             outline.DOScale(setting.selectOutlineWidth * Vector3.one, setting.selectAnimationDuration);
