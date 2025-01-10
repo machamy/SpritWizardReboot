@@ -51,14 +51,5 @@ namespace Game.Deck.CardHolder
                 base.OnCardDiscard(cardObject);
             }
         }
-
-        public void UpdateAllCardIndex()
-        {
-            foreach (var cardObject in cardObjects)
-            {
-                var cardDisplay = cardObject.CardDisplay;
-                cardDisplay.UpdateTransformIndex();
-            }
-        }
     }
 }

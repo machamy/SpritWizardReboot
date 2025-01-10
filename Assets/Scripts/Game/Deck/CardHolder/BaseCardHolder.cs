@@ -30,14 +30,15 @@ public class BaseCardHolder : MonoBehaviour
     {
         foreach (var co in cardObjects)
         {
-            var parent = co.transform.parent;
-            if(parent.CompareTag("Slot"))
-                Destroy(parent.gameObject);
+            Destroy(co.CardDisplay.gameObject);
+            if(co.transform.parent.CompareTag("Slot"))
+                Destroy(co.transform.parent.gameObject);
+            else
+                Destroy(co.gameObject);
         }
         cardObjects = new List<CardObject>();
         foreach (var cardData in initialCards)
         {
-            var slot = Instantiate(cardSlotPrefab, transform);
             AddCardWithSlot(cardData);
         }
     }
@@ -68,8 +69,7 @@ public class BaseCardHolder : MonoBehaviour
         var slot = Instantiate(cardSlotPrefab, transform);
         var cardObject = slot.GetComponentInChildren<CardObject>();
         cardObjects.Add(cardObject);
-        cardObject.cardSetting = cardSetting;
-        cardObject.Initialize(cardData);
+        cardObject.Initialize(cardData,cardSetting);
         cardObject.CardSelect.OnFocus += OnFocusBase;
         cardObject.CardSelect.OnUnfocus += OnUnfocusBase;
         cardObject.CardSelect.OnDragStart += OnCardDraggStartBase;
@@ -116,15 +116,31 @@ public class BaseCardHolder : MonoBehaviour
     public void DestoryCard(CardObject cardObject)
     {
         // int index = cardObjects.IndexOf(cardObject);
-        cardObjects.Remove(cardObject);
-        Destroy(cardObject.transform.parent.gameObject);
+        var parent = cardObject.transform.parent;
+        Destroy(cardObject.CardDisplay.gameObject);
+        if(parent.CompareTag("Slot"))
+            Destroy(parent.gameObject);
+        else
+            Destroy(cardObject.gameObject);
+        
     }
     
     public CardObject this[int index]
     {
         get => cardObjects[index];
     }
-
+    
+    /// <summary>
+    /// CardSlot 순서에 따라 Display 순서를 배치
+    /// </summary>
+    public void UpdateAllCardIndex()
+    {
+        foreach (var cardObject in cardObjects)
+        {
+            var cardDisplay = cardObject.CardDisplay;
+            cardDisplay.UpdateTransformIndex();
+        }
+    }
     #region Event Handlers
     
 

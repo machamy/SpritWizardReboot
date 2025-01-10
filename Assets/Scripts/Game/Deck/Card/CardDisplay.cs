@@ -75,6 +75,7 @@ public class CardDisplay : MonoBehaviour
     private void Start()
     {
         cardObjectPos = cardObject.transform.position;
+        InitializeDisplayState();
     }
 
     private void Update()
@@ -109,6 +110,7 @@ public class CardDisplay : MonoBehaviour
         }
     }
     
+    [ContextMenu("InitializeDisplayState")]
     public void InitializeDisplayState()
     {
         ShowDecay(0);

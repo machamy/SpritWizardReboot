@@ -21,7 +21,25 @@ public class BaseCardSellectableHolder : BaseCardHolder
     /// </summary>
     public event Action<BaseCardSellectableHolder> OnExitCanceled;
 
-
+    protected override void OnFocus(CardSelect cardSelect)
+    {
+        base.OnFocus(cardSelect);
+        CardDisplay cardDisplay = cardSelect._cardObject.CardDisplay;
+        if(!cardDisplay.focusCardVisible)
+            return;
+        float focusedY = cardDisplay.GetClampedVisiblePos(cardSelect.transform.position.y);
+        cardSelect.transform.position = new Vector3(cardSelect.transform.position.x, focusedY, cardSelect.transform.position.z);
+        cardSelect.transform.localScale = Vector3.one * cardDisplay.focusedScale;
+        cardDisplay.transform.SetAsLastSibling();
+    }
+        
+    protected override void OnUnfocus(CardSelect cardSelect)
+    {
+        cardSelect.transform.localPosition = Vector3.zero;
+        cardSelect.transform.localScale = cardSelect._cardObject.CardDisplay.unfocusedScale * Vector3.one;
+        UpdateAllCardIndex();
+        base.OnUnfocus(cardSelect);
+    }
 
     protected override void OnCardPointerUp(CardSelect cardSelect, bool isClick)
     {
@@ -73,7 +91,7 @@ public class BaseCardSellectableHolder : BaseCardHolder
     
     public void ExitCanceled()
     {
-        Disable();
+        gameObject.SetActive(false);
         OnExitCanceled?.Invoke(this);
     }
 }

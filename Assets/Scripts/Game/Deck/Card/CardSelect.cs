@@ -53,7 +53,11 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if(board == null)
             board = BattleManager.Instance.Board;
         _cardObject = GetComponent<CardObject>();
+        
+    }
 
+    private void Start()
+    {
         StartCoroutine(WaitFrame());
         IEnumerator WaitFrame()
         {
@@ -61,7 +65,7 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             transform.localScale = Vector3.one * cardSetting.unfocusedScale;
         }
     }
-    
+
     private void OnEnable()
     {
         _cardObject.OnCardDrawn += OnCardObjectDrawn;
