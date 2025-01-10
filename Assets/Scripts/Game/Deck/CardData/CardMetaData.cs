@@ -6,6 +6,35 @@ using UnityEngine.Serialization;
 [Serializable]
 public class CardMetaData
 {
+    protected bool Equals(CardMetaData other)
+    {
+        return cardId == other.cardId && cardKoreanName == other.cardKoreanName && cardName == other.cardName && description == other.description && cardType == other.cardType && rarity == other.rarity && cost == other.cost && Equals(frontImage, other.frontImage) && Equals(backImage, other.backImage) && Equals(cardData, other.cardData);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is null) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != GetType()) return false;
+        return Equals((CardMetaData)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = new HashCode();
+        hashCode.Add(cardId);
+        hashCode.Add(cardKoreanName);
+        hashCode.Add(cardName);
+        hashCode.Add(description);
+        hashCode.Add((int)cardType);
+        hashCode.Add((int)rarity);
+        hashCode.Add(cost);
+        hashCode.Add(frontImage);
+        hashCode.Add(backImage);
+        hashCode.Add(cardData);
+        return hashCode.ToHashCode();
+    }
+
     [Header("CardMetaData")]
     /// <summary></summary>
     public string cardId;
