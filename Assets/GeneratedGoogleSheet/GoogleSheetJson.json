@@ -74,19 +74,24 @@
   ],
   "addCardWeight": [
     {
-      "rareCardWeight": "일반카드 가중치"
+      "rareCardWeight": "희귀카드 가중치",
+      "commonCardWeight": "일반카드 가중치"
     },
     {
-      "rareCardWeight": "int"
+      "rareCardWeight": " int",
+      "commonCardWeight": "int"
     },
     {
-      "rareCardWeight": 4
+      "rareCardWeight": 1,
+      "commonCardWeight": 4
     },
     {
-      "rareCardWeight": 1
+      "rareCardWeight": 1,
+      "commonCardWeight": 1
     },
     {
-      "rareCardWeight": 0
+      "rareCardWeight": 1,
+      "commonCardWeight": 0
     }
   ],
   "storePrice": [
