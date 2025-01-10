@@ -2419,7 +2419,7 @@ MonoBehaviour:
   gateHP: {fileID: 11400000, guid: 734ba7d875bf93d4186922b4404fdaa3, type: 2}
   guiManager: {fileID: 107048624}
   battleManager: {fileID: 1161261477}
-  playerDataSO: {fileID: 0}
+  playerDataSO: {fileID: 11400000, guid: c1b7420f7bf1ccb459fea381005c7368, type: 2}
 --- !u!4 &434779875
 Transform:
   m_ObjectHideFlags: 0

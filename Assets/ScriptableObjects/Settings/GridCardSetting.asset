@@ -15,7 +15,7 @@ MonoBehaviour:
   focusedScale: 1.2
   focusDuration: 0.2
   focusCardVisible: 1
-  unfocusedScale: 1
+  unfocusedScale: 0.5
   unfocusDuration: 0.2
   isSelectable: 1
   selectAnimation: 1
@@ -26,6 +26,7 @@ MonoBehaviour:
   followAnimation: 1
   followSpeed: 10
   dragReturnDuration: 0.2
+  isDraggable: 0
   dragScale: 1.5
   dragScaleDuration: 0.2
   dragMaxHeightCoefficient: 0.5
