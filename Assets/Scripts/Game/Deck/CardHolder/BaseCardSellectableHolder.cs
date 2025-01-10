@@ -21,6 +21,12 @@ public class BaseCardSellectableHolder : BaseCardHolder
     /// </summary>
     public event Action<BaseCardSellectableHolder> OnExitCanceled;
 
+    public override void Initialize(List<CardMetaData> initialCards)
+    {
+        sellectedCardObjects.Clear();
+        base.Initialize(initialCards);
+    }
+
     protected override void OnFocus(CardSelect cardSelect)
     {
         base.OnFocus(cardSelect);

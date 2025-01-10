@@ -26,7 +26,7 @@ public class BaseCardHolder : MonoBehaviour
     /// 해당 카드들로 카드를 초기화함. 필수아님
     /// </summary>
     /// <param name="initialCards"></param>
-    public void Initialize(List<CardMetaData> initialCards)
+    public virtual void Initialize(List<CardMetaData> initialCards)
     {
         foreach (var co in cardObjects)
         {
