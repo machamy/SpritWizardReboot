@@ -1,3 +1,14 @@
 fileFormatVersion: 2
 guid: 4f00f4f879204c4794f21f01774c5641
-timeCreated: 1736443589
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cardDisplaySetting: {fileID: 11400000, guid: 6405a45f4c0dc224c87e15663b673559, type: 2}
+  - cardobjectPrefab: {fileID: 902408350992602833, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
+  - cardSlotPrefab: {fileID: 2610414694314858173, guid: c9e4d3327f9c28341a8fa4d53f978351, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

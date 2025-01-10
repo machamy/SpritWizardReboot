@@ -1,0 +1,405 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519d092749e3492a85718abb74e34e19, type: 3}
+  m_Name: PlayerDataSO
+  m_EditorClassIdentifier: 
+  CardList:
+  - cardId: magic_doubleShot
+    cardKoreanName: doubleShot
+    cardName: doubleShot
+    description: "\uB354\uBE14~~\uC0F7"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+    cardData:
+      skillCaster: 1
+      attackDamage: 3
+      attackCount: 2
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_tripleShot
+    cardKoreanName: tripleShot
+    cardName: tripleShot
+    description: "\uBA40\uD2F0~~~\uC0F7"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+    cardData:
+      skillCaster: 1
+      attackDamage: 2
+      attackCount: 3
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 1
+      spreadRange: 3
+      pierce: 2
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_rapidFire
+    cardKoreanName: rapidFire
+    cardName: rapidFire
+    description: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    cardType: 0
+    rarity: 1
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+    cardData:
+      skillCaster: 1
+      attackDamage: 1
+      attackCount: 5
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_fireball
+    cardKoreanName: fireball
+    cardName: fireball
+    description: "\uBD88\uACF5"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
+    cardData:
+      skillCaster: 2
+      attackDamage: 4
+      attackCount: 1
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 1
+      spreadRange: 3
+      pierce: 1
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_fireExplosion
+    cardKoreanName: fireExplosion
+    cardName: fireExplosion
+    description: "\uD391~~~"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
+    cardData:
+      skillCaster: 2
+      attackDamage: 5
+      attackCount: 1
+      attackType: 2
+      runeEffectTypes: 0000000002000000
+      attackHeight: 3
+      attackWidth: 3
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_iceScatter
+    cardKoreanName: iceScatter
+    cardName: iceScatter
+    description: "\uC5BC\uC74C \uB09C\uC0AC"
+    cardType: 0
+    rarity: 1
+    cost: 2
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 1
+      attackCount: 8
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 1
+      spreadRange: 8
+      pierce: 0
+      move: 2
+      specialEffectId: 13001
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_iceBeam
+    cardKoreanName: iceBeam
+    cardName: iceBeam
+    description: "\uC5BC\uC74C \uBE54"
+    cardType: 0
+    rarity: 1
+    cost: 2
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 4
+      attackCount: 2
+      attackType: 1
+      runeEffectTypes: 0000000002000000
+      attackHeight: 2
+      attackWidth: 5
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 13002
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: temp01
+    cardKoreanName: "\uD22C\uC9C0\uB8EC"
+    cardName: "\uD22C\uC9C0\uB8EC"
+    description: ADD attack 3, projectile 0, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 030000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp02
+    cardKoreanName: "\uBA85\uC0C1\uB8EC"
+    cardName: "\uBA85\uC0C1\uB8EC"
+    description: ADD attack 0, projectile 0, movement -1
+    cardType: 1
+    rarity: 0
+    cost: 0
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 0000000000000000ffffffff
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp03
+    cardKoreanName: "\uBB34\uD615\uB8EC"
+    cardName: "\uBB34\uD615\uB8EC"
+    description: ADD attack 0, projectile 0, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 0
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp04
+    cardKoreanName: "\uD3C9\uD654\uB8EC"
+    cardName: "\uD3C9\uD654\uB8EC"
+    description: ADD attack -1, projectile 0, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 0
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: ffffffff0000000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp05
+    cardKoreanName: "\uB9F9\uACF5\uB8EC"
+    cardName: "\uB9F9\uACF5\uB8EC"
+    description: ADD attack 0, projectile 1, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000100000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp06
+    cardKoreanName: "\uC2E0\uC18D\uB8EC"
+    cardName: "\uC2E0\uC18D\uB8EC"
+    description: ADD attack 1, projectile 0, movement 1
+    cardType: 1
+    rarity: 0
+    cost: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 010000000000000001000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp07
+    cardKoreanName: "\uACA9\uB178\uB8EC"
+    cardName: "\uACA9\uB178\uB8EC"
+    description: ADD attack 7, projectile 0, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 2
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 070000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp08
+    cardKoreanName: "\uBD84\uD654\uB8EC"
+    cardName: "\uBD84\uD654\uB8EC"
+    description: ADD attack 0, projectile 3, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 2
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000300000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}

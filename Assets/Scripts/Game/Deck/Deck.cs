@@ -15,6 +15,10 @@ public class Deck
     Queue<CardMetaData> discardCardQueue = new Queue<CardMetaData>();
     
     
+    public List<CardMetaData> CardDataListRef => cardDataList;
+    public Queue<CardMetaData> DrawCardQueueRef => drawCardQueue;
+    public Queue<CardMetaData> DiscardCardQueueRef => discardCardQueue;
+    
     /// <summary>
     /// 뽑을 카드 더미에서 카드를 하나 뽑는다.
     /// 만약 더미가 비어있으면 버린 카드 더미를 섞어서 더미로 옮긴다.

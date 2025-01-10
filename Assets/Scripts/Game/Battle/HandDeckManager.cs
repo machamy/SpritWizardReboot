@@ -1,13 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class HandDeckManager : MonoBehaviour
 {
     [SerializeField] private Deck deck;
-    [SerializeField] private BaseCardHolder cardHolder;
+    [SerializeReference] private BaseCardHolder cardHolder;
+    [FormerlySerializedAs("gridCardSellectableHolder")] [FormerlySerializedAs("gridCardHolder")] [SerializeReference] private BaseCardSellectableHolder baseCardSellectableHolder;
     [SerializeField] int handSize = 3;
-    
+
+
+
     /// <summary>
     /// 현재 소지한 카드들로 덱을 설정한다.
     /// </summary>
@@ -30,7 +36,31 @@ public class HandDeckManager : MonoBehaviour
     public void DrawCard()
     {
         CardMetaData cardMetaData = deck.DrawCard();
-        AddCardToHand(cardMetaData).RaiseCardDrawn(cardMetaData);
+        CardObject cardObject = AddCardToHand(cardMetaData);
+        // 만약 Pool을 사용한다면, 함수로 바꾸어 구독 해제 기능도 넣어야함
+        cardObject.OnCardDiscarded += co => deck.AddCardToDiscardPool(co.CardMetaData);
+        cardObject.RaiseCardDrawn(cardMetaData);
+    }
+    
+    public void ShowInitialDeck()
+    {
+        ShowCardList(deck.CardDataListRef);
+    }
+    
+    public void ShowDiscardDeck()
+    {
+        ShowCardList(new List<CardMetaData>(deck.DiscardCardQueueRef));
+    }
+    
+    public void ShowDrawDeck()
+    {
+        ShowCardList(new List<CardMetaData>(deck.DrawCardQueueRef));   
+    }
+    
+    public void ShowCardList(List<CardMetaData> cardDataList)
+    {
+        baseCardSellectableHolder.Enable();
+        baseCardSellectableHolder.Initialize(cardDataList);
     }
     
     /// <summary>

@@ -3,20 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class BaseCardHolder : MonoBehaviour
 {
+    /// <summary>
+    /// 비활성화 될시 비활성화 될 오브젝트
+    /// null 이면 자기 자신이 비활성화 됨
+    /// 현재 구현은 BaseCardSellectableHolder에서만 사용함
+    /// </summary>
+    [SerializeField,Tooltip("비활성화 될시 비활성화 될 오브젝트\n null 이면 자기 자신이 비활성화 됨\n현재 구현은 BaseCardSellectableHolder에서만 사용함")] protected GameObject parent;
+    [SerializeField] private CardSettingSO cardSetting;
     [SerializeField] private GameObject cardobjectPrefab;
     [SerializeField] private GameObject cardSlotPrefab;
     
-    protected List<CardObject> cardObjects;
+    protected List<CardObject> cardObjects = new List<CardObject>();
     public int CardCount => cardObjects.Count;
-
-    private void Awake()
-    {
-        cardObjects = new List<CardObject>();
-    }
+    
 
     /// <summary>
     /// 해당 카드들로 카드를 초기화함. 필수아님
@@ -24,12 +28,34 @@ public class BaseCardHolder : MonoBehaviour
     /// <param name="initialCards"></param>
     public void Initialize(List<CardMetaData> initialCards)
     {
+        foreach (var co in cardObjects)
+        {
+            var parent = co.transform.parent;
+            if(parent.CompareTag("Slot"))
+                Destroy(parent.gameObject);
+        }
         cardObjects = new List<CardObject>();
         foreach (var cardData in initialCards)
         {
             var slot = Instantiate(cardSlotPrefab, transform);
             AddCardWithSlot(cardData);
         }
+    }
+    
+    public void Enable()
+    {
+        if(parent != null)
+            parent.SetActive(true);
+        else
+            gameObject.SetActive(true);
+    }
+    
+    public void Disable()
+    {
+        if(parent != null)
+            parent.SetActive(false);
+        else
+            gameObject.SetActive(false);
     }
     
     /// <summary>
@@ -42,6 +68,7 @@ public class BaseCardHolder : MonoBehaviour
         var slot = Instantiate(cardSlotPrefab, transform);
         var cardObject = slot.GetComponentInChildren<CardObject>();
         cardObjects.Add(cardObject);
+        cardObject.cardSetting = cardSetting;
         cardObject.Initialize(cardData);
         cardObject.CardSelect.OnFocus += OnFocusBase;
         cardObject.CardSelect.OnUnfocus += OnUnfocusBase;
@@ -49,6 +76,8 @@ public class BaseCardHolder : MonoBehaviour
         cardObject.CardSelect.OnDragging += OnCardDraggingBase;
         cardObject.CardSelect.OnDragEnd += OnCardDragEndBase;
         cardObject.OnCardDiscarded += OnCardDiscardBase;
+        cardObject.CardSelect.OnPointerDown += OnCardPointerDownBase;
+        cardObject.CardSelect.OnPointerUp += OnCardPointerUpBase;
         
         return cardObject;
     }
@@ -73,6 +102,9 @@ public class BaseCardHolder : MonoBehaviour
         cardObject.CardSelect.OnDragging -= OnCardDraggingBase;
         cardObject.CardSelect.OnDragEnd -= OnCardDragEndBase;
         cardObject.OnCardDiscarded -= OnCardDiscardBase;
+        cardObject.CardSelect.OnPointerDown -= OnCardPointerDownBase;
+        cardObject.CardSelect.OnPointerUp -= OnCardPointerUpBase;
+        
         cardObject.transform.SetParent(transform.parent);
         Destroy(slot);
     }
@@ -137,12 +169,26 @@ public class BaseCardHolder : MonoBehaviour
         }
     }
     
+    protected virtual void OnCardPointerDown(CardSelect cardSelect)
+    {
+        
+    }
+    
+    protected virtual void OnCardPointerUp(CardSelect cardSelect,bool isClick)
+    {
+        
+    }
+    
     private void OnFocusBase (CardSelect cardSelect) => OnFocus(cardSelect);
     private void OnUnfocusBase (CardSelect cardSelect) => OnUnfocus(cardSelect);
     private void OnCardDraggStartBase (CardSelect cardSelect) => OnCardDraggStart(cardSelect);
     private void OnCardDraggingBase (CardSelect cardSelect) => OnCardDragging(cardSelect);
     private void OnCardDragEndBase (CardSelect cardSelect) => OnCardDragEnd(cardSelect);
     private void OnCardDiscardBase(CardObject cardSelect) => OnCardDiscard(cardSelect);
+    
+    private void OnCardPointerDownBase(CardSelect cardSelect) => OnCardPointerDown(cardSelect);
+    
+    private void OnCardPointerUpBase(CardSelect cardSelect,bool isClick) => OnCardPointerUp(cardSelect,isClick);
     
     #endregion
 

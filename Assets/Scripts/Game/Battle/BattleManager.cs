@@ -24,14 +24,11 @@ namespace Game
         [SerializeField] private Slime grassSlime;
         [SerializeField] private Slime fireSlime;
         [Header("Deck")]
-        
-        [SerializeField,Tooltip("전체 카드를 현재 카드 리스트로 적용")] private bool initCardDataListByAllCardDataList = false;
-        [SerializeField,Tooltip("현재 게임에서의, 플레이어의 덱")] private List<CardMetaData> currentCardDataList;
-
+        [SerializeField] private PlayerDataSO playerDataSO;
         /// <summary>
         /// 현재 게임에서의, 플레이어의 덱
         /// </summary>
-        public List<CardMetaData> CurrentCardDataList => currentCardDataList;
+        public List<CardMetaData> CurrentCardDataList => playerDataSO.CardList;
         [Header("Battle")]
         [SerializeField] private bool isOnBattle = false;
         [Header("Channel")]
@@ -50,13 +47,7 @@ namespace Game
             if(board == null)
                 board = FindAnyObjectByType<Board>();
         }
-
-        private void Start()
-        {
-            // 게임 시작할때 전체 카드를 받아올지?
-            if(initCardDataListByAllCardDataList)
-                InitCardDataListByAllCardDataList();
-        }
+        
         private void OnEnable()
         {
             playerTurnEnterEvent.OnTurnEventRaised += OnPlayerTurnEnter;
@@ -76,7 +67,7 @@ namespace Game
         public void StartBattle()
         {
             isOnBattle = true;
-            handDeckManager.InitDeck(currentCardDataList);
+            handDeckManager.InitDeck(CurrentCardDataList);
             handDeckManager.SetupForBattle();
             turnManager.StartGame();
         }
@@ -108,14 +99,6 @@ namespace Game
                 SkillCaster.Fire => fireSlime,
                 _ => null
             };
-        }
-        
-        
-        
-        [ContextMenu("InitCardDataListByAllCardDataList")]
-        public void InitCardDataListByAllCardDataList()
-        {
-            currentCardDataList = new List<CardMetaData>(Database.AllCardMetas);
         }
     }
 }

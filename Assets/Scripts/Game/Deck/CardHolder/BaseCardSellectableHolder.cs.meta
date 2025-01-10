@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8b22f74468ea4200bb43b12e2483f5c2
+guid: 2337a68b63d3409f93b71912c95d8d81
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - cardDisplaySetting: {fileID: 11400000, guid: 6405a45f4c0dc224c87e15663b673559, type: 2}
+  - cardDisplaySetting: {fileID: 11400000, guid: dcb758919bd031b4689779a341887186, type: 2}
   - cardobjectPrefab: {fileID: 902408350992602833, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
   - cardSlotPrefab: {fileID: 2610414694314858173, guid: c9e4d3327f9c28341a8fa4d53f978351, type: 3}
   executionOrder: 0

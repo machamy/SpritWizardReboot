@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     
     [SerializeField] private GUIManager guiManager;
     [SerializeField] private BattleManager battleManager;
+    
+    [SerializeField] private PlayerDataSO playerDataSO;
     public GUIManager GUIManager => guiManager;
     public BattleManager BattleManager => battleManager;
     public float GateHP

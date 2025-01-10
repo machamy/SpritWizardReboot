@@ -67,8 +67,11 @@ public class EnemyProjectile : MonoBehaviour
     private void Ondeath()
     {
         //애니메이션 출력
+        //
+        // Destroy(gameObject);
         
-        Destroy(gameObject);
+        
+        //TODO Destory 가능하도록 설정, Destory를 여기서 하면 안됨!!!
     }
 
     private void OnDestroy()

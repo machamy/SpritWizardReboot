@@ -17,6 +17,7 @@ public class CardObject : MonoBehaviour
     [SerializeField] private CardMetaData cardMetaData;
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private CardSelect cardSelect;
+    [SerializeField] public CardSettingSO cardSetting;
 
     public CardMetaData CardMetaData => cardMetaData;
     public event Action<CardMetaData> OnCardDrawn;

@@ -15,7 +15,12 @@ public class CardSettingSO : ScriptableObject
     public float unfocusedScale = 1f;
     public float unfocusDuration = 0.2f;
     [Header("Select Parameters")]
+    public bool isSelectable = false;
     public bool selectAnimation = true;
+    public bool sellectOutline = true;
+    public Color selectOutlineColor = new Color(0.4f, 1f, 0f, 0.6f);
+    public int selectOutlineWidth = 5;
+    public float selectAnimationDuration = 0.2f;
     
     
     [Header("Follow Parameters")]
@@ -23,6 +28,7 @@ public class CardSettingSO : ScriptableObject
     [Tooltip("카드 따라오는 속도")]public float followSpeed = 10f;
     [Tooltip("카드 돌아가는 속도")]public float dragReturnDuration = 0.2f;
     [Header("Drag Parameters")]
+    public bool isDraggable = true;
     [Tooltip("드래그시 크기")]public float dragScale = 1.5f;
     [Tooltip("크기 변화 시간")]public float dragScaleDuration = 0.2f;
     [Tooltip("최대 드래그 가능한 상대 위치")]public float dragMaxHeightCoefficient = 0.5f;

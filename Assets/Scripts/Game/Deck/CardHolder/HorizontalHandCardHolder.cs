@@ -14,7 +14,7 @@ namespace Game.Deck.CardHolder
             CardDisplay cardDisplay = cardSelect._cardObject.CardDisplay;
             if(!cardDisplay.focusCardVisible)
                 return;
-            float focusedY = cardDisplay.GetMinVisiblePos(cardSelect.transform.position.y);
+            float focusedY = cardDisplay.GetClampedVisiblePos(cardSelect.transform.position.y);
             cardSelect.transform.position = new Vector3(cardSelect.transform.position.x, focusedY, cardSelect.transform.position.z);
             cardSelect.transform.localScale = Vector3.one * cardDisplay.focusedScale;
             cardDisplay.transform.SetAsLastSibling();

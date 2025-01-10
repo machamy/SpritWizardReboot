@@ -12,29 +12,33 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     private RectTransform rectTransform;
-    
+
+    #region Setting 접근용
     [Header("Focus Animation")]
-    public float focusedScale => displaySetting.focusedScale;
-    private float focusDuration => displaySetting.focusDuration;
-    public bool focusCardVisible => displaySetting.focusCardVisible;
-    public float unfocusedScale => displaySetting.unfocusedScale;
-    private float unfocusDuration => displaySetting.unfocusDuration;
+    public float focusedScale => setting.focusedScale;
+    private float focusDuration => setting.focusDuration;
+    public bool focusCardVisible => setting.focusCardVisible;
+    public float unfocusedScale => setting.unfocusedScale;
+    private float unfocusDuration => setting.unfocusDuration;
     [Header("Drag Animation")]
-    private float dragScale => displaySetting.dragScale;
-    private float dragScaleDuration => displaySetting.dragScaleDuration;
-    private float FollowSpeed => displaySetting.followSpeed;
-    private float dragReturnDuration => displaySetting.dragReturnDuration;
-    private float dragMaxHeightCoefficient => displaySetting.dragMaxHeightCoefficient;
+    private float dragScale => setting.dragScale;
+    private float dragScaleDuration => setting.dragScaleDuration;
+    private float FollowSpeed => setting.followSpeed;
+    private float dragReturnDuration => setting.dragReturnDuration;
+    private float dragMaxHeightCoefficient => setting.dragMaxHeightCoefficient;
     [Header("Decay Animation")]
-    public float DrageDecayHeightStartCoefficient => displaySetting.drageDecayHeightStartCoefficient;
-    private float dragDecayHeightMaxCoeefcient => displaySetting.dragDecayHeightMaxCoeefcient;
-    private float dragDecayScale => displaySetting.dragDecayScale;
-     private float decayDuration => displaySetting.decayDuration;
+    public float DrageDecayHeightStartCoefficient => setting.drageDecayHeightStartCoefficient;
+    private float dragDecayHeightMaxCoeefcient => setting.dragDecayHeightMaxCoeefcient;
+    private float dragDecayScale => setting.dragDecayScale;
+     private float decayDuration => setting.decayDuration;
+     #endregion
+    
     [Header("Display Setting (SO)")]
-    [SerializeField] private CardDisplaySettingSO displaySetting;
+    private CardSettingSO setting => cardObject.cardSetting;
 
     [Header("Display Setting (Current)")] 
     public bool DoFollowAnimation = true;
+    public Vector3 RawDefaultSize => Vector3.one * unfocusedScale;
     [Tooltip("따라가지 않는다")]public bool DoNotFollow = false;
     [FormerlySerializedAs("card")]
     [FormerlySerializedAs("cardData")]
@@ -44,6 +48,7 @@ public class CardDisplay : MonoBehaviour
     [Header("Rendering")] 
     [SerializeField] private Image image;
     private Material material;
+    private Outline outline;
     [SerializeField] private bool isAnimating = false;
     public bool IsAnimating => isAnimating || DOTween.IsTweening(transform) || DOTween.IsTweening(image);
     
@@ -62,6 +67,7 @@ public class CardDisplay : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        outline = GetComponent<Outline>();
         material = new Material(image.material);
         image.material = material;
     }
@@ -103,11 +109,18 @@ public class CardDisplay : MonoBehaviour
         }
     }
     
+    public void InitializeDisplayState()
+    {
+        ShowDecay(0);
+        image.DOFade(1, 0);
+        transform.localScale = unfocusedScale * Vector3.one;
+    }
+    
     private void FollowCard()
     {
         if(cardSelect.IsUsed || DoNotFollow)
             return;
-        if (!displaySetting.followAnimation || !DoFollowAnimation)
+        if (!setting.followAnimation || !DoFollowAnimation)
         {
             transform.position = cardObjectPos;
             print($"{cardObjectPos} {transform.position}");
@@ -171,8 +184,10 @@ public class CardDisplay : MonoBehaviour
         
     }
 
-    public float GetMinVisiblePos(float postion){
-        return Mathf.Max(postion, rectTransform.rect.height * 0.5f * focusedScale);
+    public float GetClampedVisiblePos(float postion){
+        return Mathf.Clamp(postion
+            , rectTransform.rect.height * 0.5f * focusedScale
+            , Screen.height - rectTransform.rect.height * 0.5f * focusedScale);
     }
 
     #region 이벤트 등록
@@ -196,6 +211,8 @@ public class CardDisplay : MonoBehaviour
             cardSelect.OnDragEnd += OnDragEnd;
             cardSelect.OnPointerTileEnter += OnPointerTileEnter;
             cardSelect.OnPointerTileExit += OnPointerTileExit;
+            cardSelect.OnPointerDown += OnPointerDown;
+            cardSelect.OnPointerUp += OnPointerUp;
             
         }
     }
@@ -210,6 +227,8 @@ public class CardDisplay : MonoBehaviour
         cardSelect.OnDragEnd -= OnDragEnd;
         cardSelect.OnPointerTileEnter -= OnPointerTileEnter;
         cardSelect.OnPointerTileExit -= OnPointerTileExit;
+        cardSelect.OnPointerDown -= OnPointerDown;
+        cardSelect.OnPointerUp -= OnPointerUp;
     }
     #endregion
 
@@ -218,9 +237,7 @@ public class CardDisplay : MonoBehaviour
     private void OnCardObjectDrawn(CardMetaData cardMetaSo)
     {
         DisplayCard(cardMetaSo);
-        ShowDecay(0);
-        image.DOFade(1, 0);
-        transform.localScale = unfocusedScale * Vector3.one;
+        InitializeDisplayState();
     }
 
     private void OnFocused(CardSelect cardSelect)
@@ -299,18 +316,18 @@ public class CardDisplay : MonoBehaviour
         var meta = cardObject.CardMetaData;
         if(meta.cardType == CardType.Rune)
         {
-            tile.Focus(displaySetting.tileFocusOkColor);
+            tile.Focus(setting.tileFocusOkColor);
         }
         else
         {
             var slime = BattleManager.Instance.GetSlime(meta.cardData.skillCaster);
             if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates, CardCastManager.Instance.GetMoveCntRuneEffect(meta.cardData)))
             {
-                tile.Focus(displaySetting.tileFocusOkColor);
+                tile.Focus(setting.tileFocusOkColor);
             }
             else
             {
-                tile.Focus(displaySetting.tileFocusNoColor);
+                tile.Focus(setting.tileFocusNoColor);
             }
         }
 
@@ -324,9 +341,23 @@ public class CardDisplay : MonoBehaviour
         tile.Unfocus();   
     }
     
-    public void OnPointerTileUpdate(Tile tile)
+    public void OnPointerDown(CardSelect cardSelect)
     {
         
+    }
+    public void OnPointerUp(CardSelect cardSelect, bool isClick)
+    {
+        if (isClick && cardSelect.IsSelected)
+        {
+            outline.enabled = true;
+            outline.effectColor = setting.selectOutlineColor;
+            outline.DOScale(setting.selectOutlineWidth * Vector3.one, setting.selectAnimationDuration);
+        }
+        else
+        {
+            outline.DOScale(Vector2.zero, setting.selectAnimationDuration)
+                .OnComplete(() => outline.enabled = false);
+        }
     }
     #endregion
 
