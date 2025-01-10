@@ -5327,9 +5327,9 @@ MonoBehaviour:
   cardSetting: {fileID: 11400000, guid: dcb758919bd031b4689779a341887186, type: 2}
   cardobjectPrefab: {fileID: 902408350992602833, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
   cardSlotPrefab: {fileID: 2610414694314858173, guid: c9e4d3327f9c28341a8fa4d53f978351, type: 3}
-  autoExit: 0
+  autoExit: 1
   isCardSelectable: 1
-  maxSellactableCardCount: 1
+  maxSellactableCardCount: 2
   sellectedCardObjects: []
 --- !u!114 &922694487
 MonoBehaviour:

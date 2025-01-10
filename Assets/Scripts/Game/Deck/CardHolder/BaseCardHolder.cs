@@ -43,20 +43,29 @@ public class BaseCardHolder : MonoBehaviour
         }
     }
     
-    public void Enable()
+    public virtual void Enable()
     {
         if(parent != null)
             parent.SetActive(true);
         else
             gameObject.SetActive(true);
+
+        foreach (var co in cardObjects)
+        {
+            co.CardDisplay.gameObject.SetActive(true);
+        }
     }
     
-    public void Disable()
+    public virtual void Disable()
     {
         if(parent != null)
             parent.SetActive(false);
         else
             gameObject.SetActive(false);
+        foreach (var co in cardObjects)
+        {
+            co.CardDisplay.gameObject.SetActive(false);
+        }
     }
     
     /// <summary>

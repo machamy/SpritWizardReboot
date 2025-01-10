@@ -85,8 +85,9 @@ public class BaseCardSellectableHolder : BaseCardHolder
     
     public void ExitSuccessfully()
     {
-        Disable();
+        print($"[BaseCardSellactableHolder::ExitSuccessfully] sellectedCardObjects.Count : {sellectedCardObjects.Count} first : {sellectedCardObjects[0].CardMetaData.cardName}");
         OnExitSuccessfully?.Invoke(this);
+        Disable();
     }
     
     public void ExitCanceled()

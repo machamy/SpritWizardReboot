@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 123314264821064530}
   - component: {fileID: 4617919579360872857}
   - component: {fileID: 5246788303398609451}
+  - component: {fileID: 3194407843966421791}
   m_Layer: 5
   m_Name: CardDisplay
   m_TagString: Untagged
@@ -180,13 +181,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d64406df48cea49b5e0a152171c896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displaySetting: {fileID: 11400000, guid: 6405a45f4c0dc224c87e15663b673559, type: 2}
+  DoFollowAnimation: 1
+  DoNotFollow: 0
   cardObject: {fileID: 0}
   image: {fileID: 4617919579360872857}
+  isAnimating: 0
   nameText: {fileID: 3064187954410584177}
   descriptionText: {fileID: 6083774120610233879}
   costText: {fileID: 6743268400879272807}
   moveText: {fileID: 3573806866315959893}
+--- !u!114 &3194407843966421791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902408350992602833}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.039849162, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1336354865821844406
 GameObject:
   m_ObjectHideFlags: 0
