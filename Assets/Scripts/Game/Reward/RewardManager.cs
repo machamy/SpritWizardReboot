@@ -1,14 +1,24 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
-    [SerializeField] private BattleReward battleReward;
+    //[SerializeField] private BattleReward battleReward;
 
+    private SeedType[] rewardExistInSeed = { SeedType.normal, SeedType.elite, SeedType.boss };
     private RewardType[] rewardTypes;
+
+    private void Start()
+    {
+    }
 
     public void ReceiveReward(SeedType seed)
     {
-        rewardTypes = battleReward.GetRewardType(seed);
+        if (seed == SeedType.hard) seed = SeedType.normal; // hard와 normal은 보상이 같음
+        if (!Array.Exists(rewardExistInSeed, v => v == seed)) return; // rest, store는 보상 없음
+
+        rewardTypes = Database.AllRewardChance[seed].GetRandomChoice().ToArray();
         foreach (RewardType rewardType in rewardTypes)
         {
             switch (rewardType)
@@ -30,18 +40,18 @@ public class RewardManager : MonoBehaviour
                     Debug.Log("카드 강화");
                     break;
                 case RewardType.gateHpRestore:
-                    GameManager.Instance.GateHP += battleReward.GetRewardAmountSO(seed).gateHpRestoreAmount.GetRandomInRange();
+                    GameManager.Instance.GateHP += Database.AllRewardAmount[seed].gateHpRestoreAmount.GetRandomInRange();
                     Debug.Log("회복");
                     break;
             }
         }
-        Debug.Log(battleReward.GetRewardAmountSO(seed).gold.GetRandomInRange() + "원 획득");
+        Debug.Log(Database.AllRewardAmount[seed].gold.GetRandomInRange() + "원 획득");
     }
 
     // 카드 관련 코드는 기획이 확실히 나온 이후 작성
     private void AddCard(SeedType seed, CardType cardType)
     {
-        Rarity rarity = battleReward.GetNewCardRarity(seed);
+        Rarity rarity = Database.AllAddCardWeight[seed].GetRandomChoice();
     }
 
     private void DestroyCard()

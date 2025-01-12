@@ -9,8 +9,8 @@ public class StoreManager : MonoBehaviour
     private TextMeshProUGUI[] priceTexts;
 
     [Header("Costs")]
-    [SerializeField] private StorePriceSO[] cardPrices; // 0 -> commonMagic, 1 -> rareMagic, 2 -> commonRune, 3 -> rareRune
-    [SerializeField] private StorePriceSO[] editCardPrices; // 0 -> destroy, 1 -> upgrade1, 2 -> upgrade2
+    private List<StorePriceData> cardPrices; // 0 -> commonMagic, 1 -> rareMagic, 2 -> commonRune, 3 -> rareRune
+    private List<StorePriceData> editCardPrices; // 0 -> destroy, 1 -> upgrade1, 2 -> upgrade2
 
     private void Awake()
     {
@@ -20,6 +20,9 @@ public class StoreManager : MonoBehaviour
             priceTexts[i] = storeProducts.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
         }
 
+        cardPrices = Database.AllCardPrice;
+        editCardPrices = Database.AllEditCardPrice;
+
         SetPrices();
     }
 
@@ -27,14 +30,14 @@ public class StoreManager : MonoBehaviour
     {
         int rareIdx = Random.Range(0, 4); // 마법2 + 룬2 중 하나가 rare
 
-        for (int i = 0; i < cardPrices.Length; i++)
+        for (int i = 0; i < cardPrices.Count; i++)
         {
             priceTexts[i].text = cardPrices[i/2*2].storePrice.GetRandomInRange().ToString();
         }
         priceTexts[rareIdx].text = cardPrices[rareIdx/2*2 + 1].storePrice.GetRandomInRange().ToString();
-        for (int i = 0; i < editCardPrices.Length; i++)
+        for (int i = 0; i < editCardPrices.Count; i++)
         {
-            priceTexts[i + cardPrices.Length].text = editCardPrices[i].storePrice.GetRandomInRange().ToString();
+            priceTexts[i + cardPrices.Count].text = editCardPrices[i].storePrice.GetRandomInRange().ToString();
         }
     }
 }

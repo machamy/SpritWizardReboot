@@ -13,6 +13,7 @@ public class RewardChanceDataFactorySO : ScriptableObject
             upgradeCardChance = rawRewardChance.upgradeCardChance,
             gateHpRestoreChance = rawRewardChance.gateHpRestoreChance,
         };
+        chance.SetValue();
 
         return chance;
     }

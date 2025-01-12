@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class RewardChanceData
+public class RewardChanceData : IntRandomSelector<RewardType>
 {
     public int addRuneCardChance;
     public int addMagicCardChance;
@@ -9,8 +9,8 @@ public class RewardChanceData
     public int upgradeCardChance;
     public int gateHpRestoreChance;
 
-    public int[] GetAllChances()
+    public void SetValue()
     {
-        return new int[] { addRuneCardChance, addMagicCardChance, destroyCaredChance, upgradeCardChance, gateHpRestoreChance };
+        SetValue(new int[] { 0, addRuneCardChance, addMagicCardChance, destroyCaredChance, upgradeCardChance, gateHpRestoreChance });
     }
 }

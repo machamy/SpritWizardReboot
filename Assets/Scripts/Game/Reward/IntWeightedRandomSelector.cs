@@ -1,13 +1,15 @@
-public class IntWeightedRandomSelector<T>
+using System;
+
+public class IntWeightedRandomSelector<T> where T : Enum
 {
     private int[] cumulativeWeights;
     private T[] options;
 
-    public IntWeightedRandomSelector(T[] options, int[] weights)
+    protected void SetValue(int[] weights)
     {
+        options = (T[])Enum.GetValues(typeof(T));
         if (options.Length == weights.Length)
         {
-            this.options = options;
             cumulativeWeights = new int[weights.Length];
 
             cumulativeWeights[0] = weights[0];

@@ -1,18 +1,19 @@
+using System;
 using System.Collections.Generic;
 
-public class IntRandomSelector<T>
+public class IntRandomSelector<T> where T : Enum
 {
     private int len;
     private int[] chances;
     private T[] options;
 
-    public IntRandomSelector(T[] options, int[] chances)
+    protected void SetValue(int[] chances)
     {
+        options = (T[])Enum.GetValues(typeof(T));
         if (options.Length == chances.Length)
         {
             len = options.Length;
             this.chances = chances;
-            this.options = options;
         }
     }
 
