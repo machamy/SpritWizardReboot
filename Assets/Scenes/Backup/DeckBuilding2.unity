@@ -6268,7 +6268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48c5f2b5a9649018b42ef720eb105a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoaded: 1
+  isLoaded: 0
   <allCardMetas>k__BackingField:
   - cardId: magic_doubleShot
     cardKoreanName: doubleShot
@@ -6901,6 +6901,72 @@ MonoBehaviour:
     runeEffectAmounts: 000000000300000000000000
     calculateType: 0
     cardAction: {fileID: 0}
+  <allRewardChance>k__BackingField:
+    _defaultKey: 1
+    _pairs:
+    - Key: 1
+      Value:
+        addRuneCardChance: 100
+        addMagicCardChance: 100
+        destroyCaredChance: 3
+        upgradeCardChance: 10
+        gateHpRestoreChance: 3
+    - Key: 3
+      Value:
+        addRuneCardChance: 100
+        addMagicCardChance: 100
+        destroyCaredChance: 15
+        upgradeCardChance: 20
+        gateHpRestoreChance: 10
+    - Key: 6
+      Value:
+        addRuneCardChance: 100
+        addMagicCardChance: 100
+        destroyCaredChance: 20
+        upgradeCardChance: 30
+        gateHpRestoreChance: 100
+  <allRewardAmount>k__BackingField:
+    _defaultKey: 1
+    _pairs:
+    - Key: 1
+      Value:
+        gateHpRestoreAmount:
+          middle: 7
+          range: 2
+        gold:
+          middle: 15
+          range: 3
+    - Key: 3
+      Value:
+        gateHpRestoreAmount:
+          middle: 12
+          range: 5
+        gold:
+          middle: 20
+          range: 6
+    - Key: 6
+      Value:
+        gateHpRestoreAmount:
+          middle: 50
+          range: 10
+        gold:
+          middle: 30
+          range: 6
+  <allAddCardWeight>k__BackingField:
+    _defaultKey: 0
+    _pairs:
+    - Key: 1
+      Value:
+        commonCardWeight: 4
+        rareCardWeight: 1
+    - Key: 3
+      Value:
+        commonCardWeight: 1
+        rareCardWeight: 1
+    - Key: 6
+      Value:
+        commonCardWeight: 0
+        rareCardWeight: 1
   <allCardPrice>k__BackingField:
   - storePrice:
       middle: 70

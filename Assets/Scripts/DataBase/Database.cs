@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using DataStructure;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ public class Database : MonoBehaviour
     private static Database instance;
     [field:SerializeField] public List<CardMetaData> allCardMetas { get; private set; } = new List<CardMetaData>();
     [field:SerializeField] public List<CardData> allCardData { get; private set; } = new List<CardData>();
-    [field: SerializeField] public Dictionary<SeedType, RewardChanceData> allRewardChance { get; private set; } = new Dictionary<SeedType, RewardChanceData>();
-    [field: SerializeField] public Dictionary<SeedType, RewardAmountData> allRewardAmount { get; private set; } = new Dictionary<SeedType, RewardAmountData>();
-    [field: SerializeField] public Dictionary<SeedType, AddCardWeightData> allAddCardWeight { get; private set; } = new Dictionary<SeedType, AddCardWeightData>();
+    [field: SerializeField] public SerializableDict<SeedType, RewardChanceData> allRewardChance { get; private set; } = new SerializableDict<SeedType, RewardChanceData>();
+    [field: SerializeField] public SerializableDict<SeedType, RewardAmountData> allRewardAmount { get; private set; } = new SerializableDict<SeedType, RewardAmountData>();
+    [field: SerializeField] public SerializableDict<SeedType, AddCardWeightData> allAddCardWeight { get; private set; } = new SerializableDict<SeedType, AddCardWeightData>();
     [field:SerializeField] public List<StorePriceData> allCardPrice { get; private set; } = new List<StorePriceData>();
     [field:SerializeField] public List<StorePriceData> allEditCardPrice { get; private set; } = new List<StorePriceData>();
     public static List<CardMetaData> AllCardMetas => instance.allCardMetas;
@@ -39,7 +40,6 @@ public class Database : MonoBehaviour
 
     private void Awake()
     {
-        LoadDictData(); // TODO => Dictionary라서 inspector에 제대로 저장이 안되서 필요시 다른 방법으로 불러오게 해야함
         if(isLoaded)
             return;
         isLoaded = true;
@@ -91,10 +91,6 @@ public class Database : MonoBehaviour
                 allEditCardPrice.Add(storePrice);
             }
         }
-    }
-
-    public void LoadDictData()
-    {
         for (int i = 0; i < googleSheetSO.RawRewardChanceList.Count;)
         {
             var rawRewardChance = googleSheetSO.RawRewardChanceList[i];
