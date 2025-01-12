@@ -19,6 +19,9 @@ public class Database : MonoBehaviour
     [field: SerializeField] public SerializableDict<SeedType, AddCardWeightData> allAddCardWeight { get; private set; } = new SerializableDict<SeedType, AddCardWeightData>();
     [field:SerializeField] public List<StorePriceData> allCardPrice { get; private set; } = new List<StorePriceData>();
     [field:SerializeField] public List<StorePriceData> allEditCardPrice { get; private set; } = new List<StorePriceData>();
+    [field:SerializeField] public List<EnemyData> allEnemyData { get; private set; } = new List<EnemyData>();
+    [field:SerializeField] public List<EnemyPatternData> allEnemyPatternData { get; private set; } = new List<EnemyPatternData>();
+    [field: SerializeField] public List<EnemyActionData> allEnemyActionData { get; private set; } = new List<EnemyActionData>();
     public static List<CardMetaData> AllCardMetas => instance.allCardMetas;
     public static List<CardData> AllCardData => instance.allCardData;
     public static Dictionary<SeedType, RewardChanceData> AllRewardChance => instance.allRewardChance;
@@ -26,6 +29,9 @@ public class Database : MonoBehaviour
     public static Dictionary<SeedType, AddCardWeightData> AllAddCardWeight => instance.allAddCardWeight;
     public static List<StorePriceData> AllCardPrice => instance.allCardPrice;
     public static List<StorePriceData> AllEditCardPrice => instance.allEditCardPrice;
+    public static List<EnemyData> AllEnemyData => instance.allEnemyData;
+    public static List<EnemyPatternData> AllEnemyPatternData => instance.allEnemyPatternData;
+    public static List<EnemyActionData> AllEnemyActionData => instance.allEnemyActionData;
 
 
     [Header("Data")]
@@ -37,6 +43,9 @@ public class Database : MonoBehaviour
     [SerializeField] private RewardAmountDataFactorySO rewardAmountDataFactory;
     [SerializeField] private AddCardWeightDataFactorySO addCardWeightDataFactory;
     [SerializeField] private StorePriceDataFactorySO storePriceDataFactory;
+    [SerializeField] private EnemyDataFactorySO enemyDataFactory;
+    [SerializeField] private EnemyPatternFactorySO enemyPatternFactory;
+    [SerializeField] private EnemyActionFactorySO enemyActionDataFactory;
 
     private void Awake()
     {
@@ -53,7 +62,7 @@ public class Database : MonoBehaviour
             instance = this;
         }
     }
-    
+
     [ContextMenu("Load Data")]
     public void LoadData()
     {
@@ -104,6 +113,21 @@ public class Database : MonoBehaviour
 
             var addCardWeight = addCardWeightDataFactory.Create(rawAddCardWeight);
             allAddCardWeight.Add(seedType, addCardWeight);
+        }
+        foreach (var rawEnemy in googleSheetSO.RawMonsterList)
+        {
+            var enemy = enemyDataFactory.Create(rawEnemy);
+            allEnemyData.Add(enemy);
+        }
+        foreach (var rawEnemyAction in googleSheetSO.RawMonsterActionList)
+        {
+            var Action = enemyActionDataFactory.Create(rawEnemyAction);
+            allEnemyActionData.Add(Action);
+        }
+        foreach (var rawEnemyPattern in googleSheetSO.RawMonsterPatternList)
+        {
+            var pattern = enemyPatternFactory.Create(rawEnemyPattern);
+            allEnemyPatternData.Add(pattern);
         }
     }
 }

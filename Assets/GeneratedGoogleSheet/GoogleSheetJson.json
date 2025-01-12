@@ -78,7 +78,7 @@
       "commonCardWeight": "일반카드 가중치"
     },
     {
-      "rareCardWeight": " int",
+      "rareCardWeight": "int",
       "commonCardWeight": "int"
     },
     {
@@ -588,8 +588,8 @@
       "sosok": "",
       "dragonSwordMemo": "string",
       "id": "string",
-      "action": "string",
-      "value": "string"
+      "action": "enum",
+      "value": "int"
     },
     {
       "sosok": "범용",

@@ -191,63 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e51ace564b44dc1912ee7b3e5600bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1981931
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.466454
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.4541874
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128414107513714339, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_Name
-      value: Enemy (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
 --- !u!1001 &3760726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1585,9 +1528,398 @@ MonoBehaviour:
     runeEffectAmounts: 000000000300000000000000
     calculateType: 0
     cardAction: {fileID: 0}
+  <allRewardChance>k__BackingField:
+    _defaultKey: 0
+    _pairs:
+    - Key: 1
+      Value:
+        addRuneCardChance: 100
+        addMagicCardChance: 100
+        destroyCaredChance: 3
+        upgradeCardChance: 10
+        gateHpRestoreChance: 3
+    - Key: 3
+      Value:
+        addRuneCardChance: 100
+        addMagicCardChance: 100
+        destroyCaredChance: 15
+        upgradeCardChance: 20
+        gateHpRestoreChance: 10
+    - Key: 6
+      Value:
+        addRuneCardChance: 100
+        addMagicCardChance: 100
+        destroyCaredChance: 20
+        upgradeCardChance: 30
+        gateHpRestoreChance: 100
+  <allRewardAmount>k__BackingField:
+    _defaultKey: 0
+    _pairs:
+    - Key: 1
+      Value:
+        gateHpRestoreAmount:
+          middle: 7
+          range: 2
+        gold:
+          middle: 15
+          range: 3
+    - Key: 3
+      Value:
+        gateHpRestoreAmount:
+          middle: 12
+          range: 5
+        gold:
+          middle: 20
+          range: 6
+    - Key: 6
+      Value:
+        gateHpRestoreAmount:
+          middle: 50
+          range: 10
+        gold:
+          middle: 30
+          range: 6
+  <allAddCardWeight>k__BackingField:
+    _defaultKey: 0
+    _pairs:
+    - Key: 1
+      Value:
+        commonCardWeight: 4
+        rareCardWeight: 1
+    - Key: 3
+      Value:
+        commonCardWeight: 1
+        rareCardWeight: 1
+    - Key: 6
+      Value:
+        commonCardWeight: 0
+        rareCardWeight: 1
+  <allCardPrice>k__BackingField:
+  - storePrice:
+      middle: 70
+      range: 5
+  - storePrice:
+      middle: 110
+      range: 10
+  - storePrice:
+      middle: 50
+      range: 5
+  - storePrice:
+      middle: 80
+      range: 5
+  <allEditCardPrice>k__BackingField:
+  - storePrice:
+      middle: 75
+      range: 1
+  - storePrice:
+      middle: 60
+      range: 3
+  - storePrice:
+      middle: 80
+      range: 3
+  <allEnemyData>k__BackingField:
+  - name: strikeShade
+    id: 20001
+    sprite: 
+    size: 1
+    hpMiddle: 20
+    hpVariation: 1
+    pattern:
+    - 20001-1
+    - 20001-2
+    - 20001-3
+    - 20001-4
+    - 20001-5
+    initPattern: 20001-1, 20001-2, 20001-3, 20001-4, 20001-5
+    phaseSwitchHpRatio: 0
+  - name: blowgunShade
+    id: 20002
+    sprite: 
+    size: 1
+    hpMiddle: 15
+    hpVariation: 1
+    pattern:
+    - 20002-1
+    - 20002-2
+    - 20002-3
+    initPattern: 20002-1, 20002-2, 20002-3
+    phaseSwitchHpRatio: 0
+  <allEnemyPatternData>k__BackingField:
+  - id: 20001-1
+    range: 15
+    actionSequence:
+    - 1
+    phase: 1
+    weight: 3
+  - id: 20001-2
+    range: 5
+    actionSequence:
+    - 2
+    - 0
+    phase: 1
+    weight: 1
+  - id: 20001-3
+    range: 0
+    actionSequence:
+    - 20001-1-1
+    phase: 1
+    weight: 1
+  - id: 20001-4
+    range: 0
+    actionSequence:
+    - 20001-1-2
+    phase: 1
+    weight: 2
+  - id: 20001-5
+    range: 15
+    actionSequence:
+    - 2
+    - 0
+    phase: 1
+    weight: 0
+  - id: 20002-1
+    range: 15
+    actionSequence:
+    - 1
+    phase: 1
+    weight: 1
+  - id: 20002-2
+    range: 15
+    actionSequence:
+    - 20002-1-1
+    - 0
+    - 0
+    phase: 1
+    weight: 3
+  - id: 20002-3
+    range: 9
+    actionSequence:
+    - 20002-1-2
+    - 0
+    phase: 1
+    weight: 1
+  - id: 20001-1
+    range: 15
+    actionSequence:
+    - 1
+    phase: 1
+    weight: 3
+  - id: 20001-2
+    range: 5
+    actionSequence:
+    - 2
+    - 0
+    phase: 1
+    weight: 1
+  - id: 20001-3
+    range: 0
+    actionSequence:
+    - 20001-1-1
+    phase: 1
+    weight: 1
+  - id: 20001-4
+    range: 0
+    actionSequence:
+    - 20001-1-2
+    phase: 1
+    weight: 2
+  - id: 20001-5
+    range: 15
+    actionSequence:
+    - 2
+    - 0
+    phase: 1
+    weight: 0
+  - id: 20002-1
+    range: 15
+    actionSequence:
+    - 1
+    phase: 1
+    weight: 1
+  - id: 20002-2
+    range: 15
+    actionSequence:
+    - 20002-1-1
+    - 0
+    - 0
+    phase: 1
+    weight: 3
+  - id: 20002-3
+    range: 9
+    actionSequence:
+    - 20002-1-2
+    - 0
+    phase: 1
+    weight: 1
+  - id: 20001-1
+    range: 15
+    actionSequence:
+    - 1
+    phase: 1
+    weight: 3
+  - id: 20001-2
+    range: 5
+    actionSequence:
+    - 2
+    - 0
+    phase: 1
+    weight: 1
+  - id: 20001-3
+    range: 0
+    actionSequence:
+    - 20001-1-1
+    phase: 1
+    weight: 1
+  - id: 20001-4
+    range: 0
+    actionSequence:
+    - 20001-1-2
+    phase: 1
+    weight: 2
+  - id: 20001-5
+    range: 15
+    actionSequence:
+    - 2
+    - 0
+    phase: 1
+    weight: 0
+  - id: 20002-1
+    range: 15
+    actionSequence:
+    - 1
+    phase: 1
+    weight: 1
+  - id: 20002-2
+    range: 15
+    actionSequence:
+    - 20002-1-1
+    - 0
+    - 0
+    phase: 1
+    weight: 3
+  - id: 20002-3
+    range: 9
+    actionSequence:
+    - 20002-1-2
+    - 0
+    phase: 1
+    weight: 1
+  <allEnemyActionData>k__BackingField:
+  - id: 0
+    action: 3
+    value: 0
+  - id: 1
+    action: 2
+    value: 1
+  - id: 2
+    action: 2
+    value: 2
+  - id: 3
+    action: 2
+    value: 3
+  - id: +020000-12-31T15:00:00.000Z
+    action: 3
+    value: 12
+  - id: +020001-01-01T15:00:00.000Z
+    action: 3
+    value: 4
+  - id: +020001-12-31T15:00:00.000Z
+    action: 3
+    value: 5
+  - id: 0
+    action: 3
+    value: 0
+  - id: 1
+    action: 2
+    value: 1
+  - id: 2
+    action: 2
+    value: 2
+  - id: 3
+    action: 2
+    value: 3
+  - id: +020000-12-31T15:00:00.000Z
+    action: 3
+    value: 12
+  - id: +020001-01-01T15:00:00.000Z
+    action: 3
+    value: 4
+  - id: +020001-12-31T15:00:00.000Z
+    action: 3
+    value: 5
+  - id: 0
+    action: 3
+    value: 0
+  - id: 1
+    action: 2
+    value: 1
+  - id: 2
+    action: 2
+    value: 2
+  - id: 3
+    action: 2
+    value: 3
+  - id: +020000-12-31T15:00:00.000Z
+    action: 3
+    value: 12
+  - id: +020001-01-01T15:00:00.000Z
+    action: 3
+    value: 4
+  - id: +020001-12-31T15:00:00.000Z
+    action: 3
+    value: 5
+  - id: 0
+    action: 3
+    value: 0
+  - id: 1
+    action: 2
+    value: 1
+  - id: 2
+    action: 2
+    value: 2
+  - id: 3
+    action: 2
+    value: 3
+  - id: +020000-12-31T15:00:00.000Z
+    action: 3
+    value: 12
+  - id: +020001-01-01T15:00:00.000Z
+    action: 3
+    value: 4
+  - id: +020001-12-31T15:00:00.000Z
+    action: 3
+    value: 5
+  - id: 0
+    action: 3
+    value: 0
+  - id: 1
+    action: 2
+    value: 1
+  - id: 2
+    action: 2
+    value: 2
+  - id: 3
+    action: 2
+    value: 3
+  - id: +020000-12-31T15:00:00.000Z
+    action: 3
+    value: 12
+  - id: +020001-01-01T15:00:00.000Z
+    action: 3
+    value: 4
+  - id: +020001-12-31T15:00:00.000Z
+    action: 3
+    value: 5
   googleSheetSO: {fileID: 11400000, guid: 357c84c433735e64683baf29c14873ba, type: 2}
   magicCardDataFactory: {fileID: 11400000, guid: 736cbc6dccabc954e87788e4c15234af, type: 2}
   runeCardDataFactory: {fileID: 11400000, guid: 93eb7fc0136441f4f844598364c9b315, type: 2}
+  rewardChanceDataFactory: {fileID: 11400000, guid: 41166ba79c8c88249b446f2fc5ebe62b, type: 2}
+  rewardAmountDataFactory: {fileID: 11400000, guid: 8885c0e449943eb489b57edbf7590074, type: 2}
+  addCardWeightDataFactory: {fileID: 11400000, guid: 930555b204819da4b99f7c04ebbc2dfb, type: 2}
+  storePriceDataFactory: {fileID: 11400000, guid: 8ada33482d8026743b1109b3304e8914, type: 2}
+  enemyDataFactory: {fileID: 11400000, guid: e29a3cd36b68694489713bc3dc97fdb4, type: 2}
+  enemyPatternFactory: {fileID: 11400000, guid: 63a99d2606e79c842a3d1d4b986bf9be, type: 2}
+  enemyActionDataFactory: {fileID: 11400000, guid: 1ea46ad78a12bab45a84c19e2d35d74c, type: 2}
 --- !u!4 &205358149
 Transform:
   m_ObjectHideFlags: 0
@@ -4050,6 +4382,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1792592383267928196, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
+      propertyPath: enemyAni
+      value: 
+      objectReference: {fileID: 1785387702}
     - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.541207
@@ -11268,6 +11604,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8911515486056838684, guid: e8476516d07bfa04e910a57fc60c924c, type: 3}
   m_PrefabInstance: {fileID: 1771353525}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1785387702 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5393457419546899319, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
+  m_PrefabInstance: {fileID: 791534804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1834387059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12844,63 +13185,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8911515486056838684, guid: e8476516d07bfa04e910a57fc60c924c, type: 3}
   m_PrefabInstance: {fileID: 2075447746}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2101873747
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2023198642023854675, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128414107513714339, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
-      propertyPath: m_Name
-      value: Enemy (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bf160c13dedf9e046b8783e46ffba83c, type: 3}
 --- !u!1001 &2116391602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13253,5 +13537,3 @@ SceneRoots:
   - {fileID: 826956903}
   - {fileID: 1451866}
   - {fileID: 791534804}
-  - {fileID: 2101873747}
-  - {fileID: 1981931}

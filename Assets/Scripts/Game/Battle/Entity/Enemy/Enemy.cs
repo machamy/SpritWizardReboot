@@ -11,9 +11,8 @@ using UnityEngine.Serialization;
 public class Enemy : MonoBehaviour
 {
     private string _name;
-    [SerializeField]
-    private int _hp;
-    private int _fullHp;
+    public int _hp;
+    public int _fullHp;
 
     private Queue<EnemyBehaviourSO> _behaviorQueue = new Queue<EnemyBehaviourSO>();
     [SerializeField]
@@ -41,6 +40,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Sprite _moveSprite;
 
+    private EnemyHpbarController _hpController;
+
+    public Animator enemyAni;
 
     [FormerlySerializedAs("enemyTurnChannelSO")] public TurnEventChannelSO enemyTurnEnterChannelSO;
     [FormerlySerializedAs("playerTurnExitEvent")] [FormerlySerializedAs("enemyTurnEnterEvent")] public TurnEventChannelSO playerTurnExitEventSO;
@@ -54,6 +56,7 @@ public class Enemy : MonoBehaviour
         _hp = Random.Range((int)maxhp, (int)minhp + 1);
         _fullHp = _hp;
         _entity = GetComponent<Entity>();
+        _hpController = GetComponent<EnemyHpbarController>();
 
 
         // 시작 패턴 설정할것
@@ -217,10 +220,8 @@ public class Enemy : MonoBehaviour
     }
     public void OnHit(object caller, HitHandler.HitEventArgs e)
     {
-
-        //TODO
-        //몬스터 데미지 구현
         _hp -= e.dmg;
+        _hpController.UpdateHealthBar(_hp, _fullHp);
         if (_hp <= 0 && !_entity.IsDeath)
         {
             _entity.Delete();
@@ -265,5 +266,10 @@ public class Enemy : MonoBehaviour
                 Debug.Log(behaviour.name);
             }
         }
+    }
+    [ContextMenu("PlayAni")]
+    public void PlayAni()
+    {
+        enemyAni.SetTrigger("RangeAttack");
     }
 }

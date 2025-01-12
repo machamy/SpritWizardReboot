@@ -44,6 +44,10 @@ namespace Game.Entity
                 return;
             foreach (var e in tile.GetEntities())
             {
+                if(e == null)
+                {
+                    continue;
+                }
                 if (penestration < 0)
                 {
                     break;

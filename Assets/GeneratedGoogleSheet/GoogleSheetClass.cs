@@ -200,6 +200,6 @@ public class RawMonsterAction
 	/// <summary>행동 형태</summary>
 	public string action;
 	/// <summary></summary>
-	public string value;
+	public int value;
 }
 
