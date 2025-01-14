@@ -22,7 +22,7 @@ public class SeedManager : MonoBehaviour
 
     public void PrintSeed()
     {
-        rewardManager.ReceiveReward(GetSeed());
+        rewardManager.InitReward(GetSeed());
     }
 
     public SeedType GetSeed()
@@ -41,8 +41,7 @@ public class SeedManager : MonoBehaviour
     {
         for (int i = 0; i < seeds.Length; i++)
         {
-            seeds[i].SeedQueue = nodePlanner.GetWeekSeed();
-            seeds[i].DisplaySeed();
+            seeds[i].DisplaySeed(nodePlanner.GetWeekSeed());
         }
     }
 

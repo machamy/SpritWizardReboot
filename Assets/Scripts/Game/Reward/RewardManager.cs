@@ -1,66 +1,132 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
-    //[SerializeField] private BattleReward battleReward;
+    [SerializeField] private Deck deck;
+    [SerializeField] private BaseCardSellectableHolder baseCardSellectableHolder;
 
     private SeedType[] rewardExistInSeed = { SeedType.normal, SeedType.elite, SeedType.boss };
-    private RewardType[] rewardTypes;
+    private Queue<RewardType> rewardQueue;
+    private RewardType currentRewardType;
+    private SeedType currentSeed;
+    private bool isProcessingReward = false;
 
-    private void Start()
+    private void OnEnable()
     {
+        baseCardSellectableHolder.OnExitSuccessfully += OnCardSelected;
     }
 
-    public void ReceiveReward(SeedType seed)
+    private void OnDisable()
+    {
+        baseCardSellectableHolder.OnExitSuccessfully -= OnCardSelected;
+    }
+
+    public void InitReward(SeedType seed)
     {
         if (seed == SeedType.hard) seed = SeedType.normal; // hard와 normal은 보상이 같음
         if (!Array.Exists(rewardExistInSeed, v => v == seed)) return; // rest, store는 보상 없음
 
-        rewardTypes = Database.AllRewardChance[seed].GetRandomChoice().ToArray();
-        foreach (RewardType rewardType in rewardTypes)
+        currentSeed = seed;
+        rewardQueue = new Queue<RewardType>(Database.AllRewardChance[seed].GetRandomChoice());
+
+        ProcessRewards();
+    }
+
+    private void ProcessRewards()
+    {
+        if (rewardQueue == null) return;
+        Debug.Log("부여프로세스");
+        while (rewardQueue.Count > 0 && !isProcessingReward)
         {
-            switch (rewardType)
+            isProcessingReward = true;
+
+            currentRewardType = rewardQueue.Dequeue();
+            switch (currentRewardType)
             {
                 case RewardType.addRuneCard:
-                    AddCard(seed, CardType.Rune);
-                    Debug.Log("룬 카드 추가");
-                    break;
+                    SelectCard(CardType.Rune);
+                    return;
                 case RewardType.addAttackCard:
-                    AddCard(seed, CardType.Attack);
-                    Debug.Log("공격 카드 추가");
-                    break;
+                    SelectCard(CardType.Attack);
+                    return;
                 case RewardType.destroyCard:
-                    DestroyCard();
-                    Debug.Log("카드 제거");
-                    break;
                 case RewardType.upgradeCard:
-                    UpgradeCard();
-                    Debug.Log("카드 강화");
-                    break;
+                    SelectFronMyCard();
+                    return;
                 case RewardType.gateHpRestore:
-                    GameManager.Instance.GateHP += Database.AllRewardAmount[seed].gateHpRestoreAmount.GetRandomInRange();
-                    Debug.Log("회복");
+                    GameManager.Instance.GateHP += Database.AllRewardAmount[currentSeed].gateHpRestoreAmount.GetRandomInRange();
+                    isProcessingReward = false;
                     break;
             }
         }
-        Debug.Log(Database.AllRewardAmount[seed].gold.GetRandomInRange() + "원 획득");
+
+        if (rewardQueue.Count == 0)
+        {
+            Debug.Log(Database.AllRewardAmount[currentSeed].gold.GetRandomInRange() + "원 획득");
+            isProcessingReward = false;
+            rewardQueue = null;
+        }
     }
 
-    // 카드 관련 코드는 기획이 확실히 나온 이후 작성
-    private void AddCard(SeedType seed, CardType cardType)
+    /// <summary>
+    /// 보상 종류에 따른 선택된 카드 관리
+    /// </summary>
+    private void OnCardSelected(BaseCardSellectableHolder baseCardSellectableHolder)
     {
-        Rarity rarity = Database.AllAddCardWeight[seed].GetRandomChoice();
+        CardMetaData cardMetaData = baseCardSellectableHolder.sellectedCardObjects[0].CardMetaData;
+        switch (currentRewardType)
+        {
+            case RewardType.addRuneCard:
+            case RewardType.addAttackCard:
+                AddCard(cardMetaData);
+                break;
+            case RewardType.destroyCard:
+                DestroyCard(cardMetaData);
+                break;
+            case RewardType.upgradeCard:
+                UpgradeCard(cardMetaData);
+                break;
+        }
+
+        isProcessingReward = false;
+        Invoke(nameof(ProcessRewards), 1);
     }
 
-    private void DestroyCard()
+    private void ShowCardList(List<CardMetaData> cards)
     {
-        
+        baseCardSellectableHolder.Enable();
+        baseCardSellectableHolder.Initialize(cards);
     }
 
-    private void UpgradeCard()
+    private void SelectCard(CardType cardType)
     {
+        ShowCardList(Database.AllCardMetas.Where(e => e.cardType == cardType).ToList());
+    }
 
+    private void SelectFronMyCard() // 덱부분 제대로 안가져와서인지 못불러옴
+    {
+        ShowCardList(deck.CardDataListRef); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
+    }
+
+    private void AddCard(CardMetaData cardMeta)
+    {
+        Debug.Log("카드추가" + cardMeta.cardKoreanName);
+        //deck.AddCardToDrawPool(cardMeta);
+    }
+
+    private void DestroyCard(CardMetaData cardMeta)
+    {
+        Debug.Log("카드제거" + cardMeta.cardKoreanName);
+        // 카드 제거 기능 필요
+    }
+
+    private void UpgradeCard(CardMetaData cardMeta)
+    {
+        Debug.Log("카드강화" + cardMeta.cardKoreanName);
+        // TODO => 딜 상승 등등 카드 강화효과 적용 => 기획 나와야함
     }
 }

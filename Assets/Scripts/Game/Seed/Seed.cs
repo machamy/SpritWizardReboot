@@ -5,7 +5,7 @@ using UnityEngine;
 public class Seed : MonoBehaviour
 {
     private Queue<Queue<SeedType>> seedQueue;
-    public Queue<Queue<SeedType>> SeedQueue { get => seedQueue; set => seedQueue = value; }
+    public Queue<Queue<SeedType>> SeedQueue { get => seedQueue; }
 
     private TextMeshProUGUI[] seedTexts;
 
@@ -30,5 +30,11 @@ public class Seed : MonoBehaviour
             }
             idx++;
         }
+    }
+
+    public void DisplaySeed(Queue<Queue<SeedType>> seeds)
+    {
+        seedQueue = seeds;
+        DisplaySeed();
     }
 }
