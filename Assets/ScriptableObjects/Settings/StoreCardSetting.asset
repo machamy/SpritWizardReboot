@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e89e2e7a18f441b3a9eb6582e0c8d, type: 3}
+  m_Name: StoreCardSetting
+  m_EditorClassIdentifier: 
+  focusedScale: 1.2
+  focusDuration: 0.2
+  focusCardVisible: 1
+  unfocusedScale: 0.5
+  unfocusDuration: 0.2
+  isSelectable: 1
+  selectAnimation: 1
+  sellectOutline: 1
+  selectOutlineColor: {r: 0.4, g: 1, b: 0, a: 0.6}
+  selectOutlineWidth: 5
+  selectAnimationDuration: 0.2
+  followAnimation: 1
+  followSpeed: 10
+  dragReturnDuration: 0.2
+  isDraggable: 0
+  dragScale: 1.5
+  dragScaleDuration: 0.2
+  dragMaxHeightCoefficient: 0.5
+  drageDecayHeightStartCoefficient: 0.5
+  dragDecayHeightMaxCoeefcient: 0.75
+  dragDecayScale: 0.5
+  decayDuration: 0.5
+  tileFocusOkColor: {r: 0.4, g: 1, b: 0, a: 0.6}
+  tileFocusNoColor: {r: 1, g: 0, b: 0, a: 0.6}

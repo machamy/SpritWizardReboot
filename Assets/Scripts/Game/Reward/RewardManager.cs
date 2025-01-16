@@ -1,3 +1,4 @@
+using EventChannel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,8 @@ using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
-    [SerializeField] private Deck deck;
     [SerializeField] private BaseCardSellectableHolder baseCardSellectableHolder;
+    [SerializeField] private PhaseEventChannelSO endPhaseEvent;
 
     private SeedType[] rewardExistInSeed = { SeedType.normal, SeedType.elite, SeedType.boss };
     private Queue<RewardType> rewardQueue;
@@ -18,11 +19,13 @@ public class RewardManager : MonoBehaviour
     private void OnEnable()
     {
         baseCardSellectableHolder.OnExitSuccessfully += OnCardSelected;
+        endPhaseEvent.OnPhaseEventRaised += InitReward;
     }
 
     private void OnDisable()
     {
         baseCardSellectableHolder.OnExitSuccessfully -= OnCardSelected;
+        endPhaseEvent.OnPhaseEventRaised -= InitReward;
     }
 
     public void InitReward(SeedType seed)
@@ -104,12 +107,13 @@ public class RewardManager : MonoBehaviour
 
     private void SelectCard(CardType cardType)
     {
-        ShowCardList(Database.AllCardMetas.Where(e => e.cardType == cardType).ToList());
+        Rarity rarity = Database.AllAddCardWeight[currentSeed].GetRandomChoice();
+        ShowCardList(Database.AllCardMetas.Where(e => e.cardType == cardType && e.rarity == rarity).ToList());
     }
 
     private void SelectFronMyCard() // 덱부분 제대로 안가져와서인지 못불러옴
     {
-        ShowCardList(deck.CardDataListRef); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
+        //ShowCardList(); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
     }
 
     private void AddCard(CardMetaData cardMeta)
