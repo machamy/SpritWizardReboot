@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74a4b9ea87a47b48b56e570c3c94f33, type: 3}
+  m_Name: SmithedMagicCardFactory
+  m_EditorClassIdentifier: 
+  grassCardBack: {fileID: 0}
+  iceCardBack: {fileID: 0}
+  fireCardBack: {fileID: 0}
+  defaultMagicCardAction: {fileID: 0}
+  magicCardActionDict:
+    _defaultKey: 
+    _pairs: []

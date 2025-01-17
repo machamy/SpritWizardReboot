@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -49,6 +49,8 @@ public class CardMetaData
 
     /// <summary></summary>
     public int cost;
+
+    public bool isSmithed = false;
 
     public Sprite frontImage;
     public Sprite backImage;

@@ -130,6 +130,8 @@ public class RewardManager : MonoBehaviour
 
     private void UpgradeCard(CardMetaData cardMeta)
     {
+        DestroyCard(cardMeta); // 기존 제거 후 새 강화 카드 추가
+        CardMetaData newCard = Database.AllSmithedCardMetas.Where(e => e.isSmithed && e.cardId == cardMeta.cardId).ToList()[0];
         Debug.Log("카드강화" + cardMeta.cardKoreanName);
         // TODO => 딜 상승 등등 카드 강화효과 적용 => 기획 나와야함
     }

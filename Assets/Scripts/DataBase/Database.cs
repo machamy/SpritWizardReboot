@@ -14,6 +14,8 @@ public class Database : MonoBehaviour
     private static Database instance;
     [field:SerializeField] public List<CardMetaData> allCardMetas { get; private set; } = new List<CardMetaData>();
     [field:SerializeField] public List<CardData> allCardData { get; private set; } = new List<CardData>();
+    [field: SerializeField] public List<CardMetaData> allSmithedCardMetas { get; private set; } = new List<CardMetaData>();
+    [field: SerializeField] public List<CardData> allSmithedCardData { get; private set; } = new List<CardData>();
     [field: SerializeField] public SerializableDict<SeedType, RewardChanceData> allRewardChance { get; private set; } = new SerializableDict<SeedType, RewardChanceData>();
     [field: SerializeField] public SerializableDict<SeedType, RewardAmountData> allRewardAmount { get; private set; } = new SerializableDict<SeedType, RewardAmountData>();
     [field: SerializeField] public SerializableDict<SeedType, AddCardWeightData> allAddCardWeight { get; private set; } = new SerializableDict<SeedType, AddCardWeightData>();
@@ -24,6 +26,8 @@ public class Database : MonoBehaviour
     [field: SerializeField] public List<EnemyActionData> allEnemyActionData { get; private set; } = new List<EnemyActionData>();
     public static List<CardMetaData> AllCardMetas => instance.allCardMetas;
     public static List<CardData> AllCardData => instance.allCardData;
+    public static List<CardMetaData> AllSmithedCardMetas => instance.allSmithedCardMetas;
+    public static List<CardData> AllSmithedCardData => instance.allSmithedCardData;
     public static Dictionary<SeedType, RewardChanceData> AllRewardChance => instance.allRewardChance;
     public static Dictionary<SeedType, RewardAmountData> AllRewardAmount => instance.allRewardAmount;
     public static Dictionary<SeedType, AddCardWeightData> AllAddCardWeight => instance.allAddCardWeight;
@@ -39,6 +43,8 @@ public class Database : MonoBehaviour
     [Header("Factory")]
     [SerializeField] private MagicCardDataFactorySO magicCardDataFactory;
     [SerializeField] private RuneCardDataFactorySO runeCardDataFactory;
+    [SerializeField] private SmithedMagicCardDataFactorySO smithedMagicCardDataFactory;
+    [SerializeField] private SmithedRuneCardDataFactory smithedRuneCardDataFactory;
     [SerializeField] private RewardChanceDataFactorySO rewardChanceDataFactory;
     [SerializeField] private RewardAmountDataFactorySO rewardAmountDataFactory;
     [SerializeField] private AddCardWeightDataFactorySO addCardWeightDataFactory;
@@ -85,6 +91,18 @@ public class Database : MonoBehaviour
             var card = runeCardDataFactory.Create(rawCard);
             allCardMetas.Add(card);
             allCardData.Add(card.cardData);
+        }
+        foreach (var rawCard in googleSheetSO.RawSmithedMagicCardList)
+        {
+            var card = smithedMagicCardDataFactory.Create(rawCard);
+            allSmithedCardMetas.Add(card);
+            allSmithedCardData.Add(card.cardData);
+        }
+        foreach (var rawCard in googleSheetSO.RawSmithedRuneCardList)
+        {
+            var card = smithedRuneCardDataFactory.Create(rawCard);
+            allSmithedCardMetas.Add(card);
+            allSmithedCardData.Add(card.cardData);
         }
         for (int i = 0; i < googleSheetSO.RawStorePriceList.Count; i++)
         {

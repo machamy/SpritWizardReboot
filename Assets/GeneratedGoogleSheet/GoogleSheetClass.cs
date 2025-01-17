@@ -10,7 +10,9 @@ public class GoogleSheetSO : ScriptableObject
 	public List<RawAddCardWeight> RawAddCardWeightList;
 	public List<RawStorePrice> RawStorePriceList;
 	public List<RawRuneCard> RawRuneCardList;
+	public List<RawSmithedRuneCard> RawSmithedRuneCardList;
 	public List<RawMagicCard> RawMagicCardList;
+	public List<RawSmithedMagicCard> RawSmithedMagicCardList;
 	public List<RawSpecialEffect> RawSpecialEffectList;
 	public List<RawSpecialEffectDescribe> RawSpecialEffectDescribeList;
 	public List<RawMonster> RawMonsterList;
@@ -90,7 +92,65 @@ public class RawRuneCard
 }
 
 [Serializable]
+public class RawSmithedRuneCard
+{
+	/// <summary></summary>
+	public string id;
+	/// <summary>이름</summary>
+	public string name;
+	/// <summary>설명</summary>
+	public string describe;
+	/// <summary>비용</summary>
+	public int cost;
+	/// <summary>곱할거면 MUL</summary>
+	public string calcType;
+	/// <summary>피해량</summary>
+	public int attack;
+	/// <summary>투사체</summary>
+	public int projectile;
+	/// <summary>이동</summary>
+	public int movement;
+}
+
+[Serializable]
 public class RawMagicCard
+{
+	/// <summary></summary>
+	public string id;
+	/// <summary></summary>
+	public string name;
+	/// <summary></summary>
+	public string describe;
+	/// <summary></summary>
+	public string skillCaster;
+	/// <summary></summary>
+	public string rarity;
+	/// <summary>피해량</summary>
+	public int attackDamage;
+	/// <summary>공격횟수</summary>
+	public int attackCount;
+	/// <summary>공격방식</summary>
+	public string attackType;
+	/// <summary>공격범위(세로)</summary>
+	public int attackHeight;
+	/// <summary>공격범위(가로)</summary>
+	public int attackWidth;
+	/// <summary>집중/퍼짐</summary>
+	public string attackSpread;
+	/// <summary>퍼짐 정도</summary>
+	public int spreadRange;
+	/// <summary>관통</summary>
+	public int pierce;
+	/// <summary>이동</summary>
+	public int move;
+	/// <summary>비용</summary>
+	public int cost;
+	/// <summary>특수효과</summary>
+	public string specialEffectId;
+}
+
+[Serializable]
+public class RawSmithedMagicCard
 {
 	/// <summary></summary>
 	public string id;

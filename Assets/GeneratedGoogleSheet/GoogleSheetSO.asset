@@ -132,6 +132,71 @@ MonoBehaviour:
     attack: 0
     projectile: 3
     movement: 0
+  RawSmithedRuneCardList:
+  - id: temp01
+    name: "\uD22C\uC9C0\uB8EC+"
+    describe: ADD attack 4, projectile 0, movement 0
+    cost: 1
+    calcType: ADD
+    attack: 4
+    projectile: 0
+    movement: 0
+  - id: temp02
+    name: "\uBA85\uC0C1\uB8EC+"
+    describe: ADD attack 1, projectile 0, movement -1
+    cost: 0
+    calcType: ADD
+    attack: 1
+    projectile: 0
+    movement: -1
+  - id: temp03
+    name: "\uBB34\uD615\uB8EC+"
+    describe: ADD attack 0, projectile 1, movement 0
+    cost: 0
+    calcType: ADD
+    attack: 0
+    projectile: 1
+    movement: 0
+  - id: temp04
+    name: "\uD3C9\uD654\uB8EC+"
+    describe: ADD attack -1, projectile 1, movement 0
+    cost: 0
+    calcType: ADD
+    attack: -1
+    projectile: 1
+    movement: 0
+  - id: temp05
+    name: "\uB9F9\uACF5\uB8EC+"
+    describe: ADD attack 0, projectile 2, movement 0
+    cost: 1
+    calcType: ADD
+    attack: 0
+    projectile: 2
+    movement: 0
+  - id: temp06
+    name: "\uC2E0\uC18D\uB8EC+"
+    describe: ADD attack 2, projectile 0, movement 1
+    cost: 1
+    calcType: ADD
+    attack: 2
+    projectile: 0
+    movement: 1
+  - id: temp07
+    name: "\uACA9\uB178\uB8EC+"
+    describe: ADD attack 10, projectile 0, movement 0
+    cost: 2
+    calcType: ADD
+    attack: 10
+    projectile: 0
+    movement: 0
+  - id: temp08
+    name: "\uBD84\uD654\uB8EC+"
+    describe: ADD attack 0, projectile 3, movement 0
+    cost: 1
+    calcType: ADD
+    attack: 0
+    projectile: 3
+    movement: 0
   RawMagicCardList:
   - id: magic_doubleShot
     name: doubleShot
@@ -236,6 +301,119 @@ MonoBehaviour:
     rarity: rare
     attackDamage: 4
     attackCount: 2
+    attackType: beam
+    attackHeight: 2
+    attackWidth: 5
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 2
+    specialEffectId: 13002
+  RawSmithedMagicCardList:
+  - id: magic_doubleShot
+    name: doubleShot+
+    describe: "\uB354\uBE14~~\uC0F7"
+    skillCaster: grassSlime
+    rarity: normal
+    attackDamage: 5
+    attackCount: 2
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - id: magic_tripleShot
+    name: tripleShot+
+    describe: "\uBA40\uD2F0~~~\uC0F7"
+    skillCaster: grassSlime
+    rarity: normal
+    attackDamage: 2
+    attackCount: 4
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: radial
+    spreadRange: 3
+    pierce: 2
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - id: magic_rapidFire
+    name: rapidFire+
+    describe: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    skillCaster: grassSlime
+    rarity: rare
+    attackDamage: 1
+    attackCount: 7
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - id: magic_fireball
+    name: fireball+
+    describe: "\uBD88\uACF5"
+    skillCaster: fireSlime
+    rarity: normal
+    attackDamage: 6
+    attackCount: 1
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: radial
+    spreadRange: 3
+    pierce: 1
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - id: magic_fireExplosion
+    name: fireExplosion+
+    describe: "\uD391~~~"
+    skillCaster: fireSlime
+    rarity: normal
+    attackDamage: 5
+    attackCount: 1
+    attackType: explosion
+    attackHeight: 5
+    attackWidth: 5
+    attackSpread: focused
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 
+  - id: magic_iceScatter
+    name: iceScatter+
+    describe: "\uC5BC\uC74C \uB09C\uC0AC"
+    skillCaster: iceSlime
+    rarity: rare
+    attackDamage: 1
+    attackCount: 8
+    attackType: projectile
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: radial
+    spreadRange: 8
+    pierce: 0
+    move: 2
+    cost: 1
+    specialEffectId: 13001
+  - id: magic_iceBeam
+    name: iceBeam+
+    describe: "\uC5BC\uC74C \uBE54"
+    skillCaster: iceSlime
+    rarity: rare
+    attackDamage: 4
+    attackCount: 3
     attackType: beam
     attackHeight: 2
     attackWidth: 5
