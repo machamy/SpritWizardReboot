@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74a4b9ea87a47b48b56e570c3c94f33, type: 3}
   m_Name: SmithedMagicCardFactory
   m_EditorClassIdentifier: 
-  grassCardBack: {fileID: 0}
-  iceCardBack: {fileID: 0}
-  fireCardBack: {fileID: 0}
-  defaultMagicCardAction: {fileID: 0}
+  grassCardBack: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+  iceCardBack: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
+  fireCardBack: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
+  defaultMagicCardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
   magicCardActionDict:
-    _defaultKey: 
-    _pairs: []
+    _defaultKey: tempActionName
+    _pairs:
+    - Key: c_action_default
+      Value: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}

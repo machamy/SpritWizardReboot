@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
+    [SerializeField] private PlayerDataSO playerDataSO;
     [SerializeField] private BaseCardSellectableHolder baseCardSellectableHolder;
     [SerializeField] private PhaseEventChannelSO endPhaseEvent;
 
@@ -28,6 +29,9 @@ public class RewardManager : MonoBehaviour
         endPhaseEvent.OnPhaseEventRaised -= InitReward;
     }
 
+    /// <summary>
+    /// 보상 부여 시작
+    /// </summary>
     public void InitReward(SeedType seed)
     {
         if (seed == SeedType.hard) seed = SeedType.normal; // hard와 normal은 보상이 같음
@@ -39,10 +43,13 @@ public class RewardManager : MonoBehaviour
         ProcessRewards();
     }
 
+    /// <summary>
+    /// 보상 부여 작업
+    /// </summary>
     private void ProcessRewards()
     {
         if (rewardQueue == null) return;
-        Debug.Log("부여프로세스");
+
         while (rewardQueue.Count > 0 && !isProcessingReward)
         {
             isProcessingReward = true;
@@ -80,59 +87,79 @@ public class RewardManager : MonoBehaviour
     /// </summary>
     private void OnCardSelected(BaseCardSellectableHolder baseCardSellectableHolder)
     {
-        CardMetaData cardMetaData = baseCardSellectableHolder.sellectedCardObjects[0].CardMetaData;
-        switch (currentRewardType)
+        if (baseCardSellectableHolder.sellectedCardObjects.Count > 0)
         {
-            case RewardType.addRuneCard:
-            case RewardType.addAttackCard:
-                AddCard(cardMetaData);
-                break;
-            case RewardType.destroyCard:
-                DestroyCard(cardMetaData);
-                break;
-            case RewardType.upgradeCard:
-                UpgradeCard(cardMetaData);
-                break;
+            CardMetaData cardMetaData = baseCardSellectableHolder.sellectedCardObjects[0].CardMetaData;
+            switch (currentRewardType)
+            {
+                case RewardType.addRuneCard:
+                case RewardType.addAttackCard:
+                    AddCard(cardMetaData);
+                    break;
+                case RewardType.destroyCard:
+                    DestroyCard(cardMetaData);
+                    break;
+                case RewardType.upgradeCard:
+                    UpgradeCard(cardMetaData);
+                    break;
+            }
         }
 
         isProcessingReward = false;
-        Invoke(nameof(ProcessRewards), 1);
+        Invoke(nameof(ProcessRewards), 1); // 카드 홀더 닫자마자 바로 불러오기 하면 오류가 생기기에 각 보상 사이에 1초 지연시간 줌
     }
 
+    /// <summary>
+    /// 카드 선책창 띄우기
+    /// </summary>
     private void ShowCardList(List<CardMetaData> cards)
     {
         baseCardSellectableHolder.Enable();
         baseCardSellectableHolder.Initialize(cards);
     }
-
+    
+    /// <summary>
+    /// 게임 내 전체 카드에서 선택할 카드 불러오기
+    /// </summary>
     private void SelectCard(CardType cardType)
     {
         Rarity rarity = Database.AllAddCardWeight[currentSeed].GetRandomChoice();
         ShowCardList(Database.AllCardMetas.Where(e => e.cardType == cardType && e.rarity == rarity).ToList());
     }
 
-    private void SelectFronMyCard() // 덱부분 제대로 안가져와서인지 못불러옴
+    /// <summary>
+    /// 플레이어가 가진 카드 중에서 선택할 카드 불러오기
+    /// </summary>
+    private void SelectFronMyCard()
     {
-        //ShowCardList(); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
+        ShowCardList(playerDataSO.CardList); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
     }
 
+    /// <summary>
+    /// 카드 추가
+    /// </summary>
     private void AddCard(CardMetaData cardMeta)
     {
         Debug.Log("카드추가" + cardMeta.cardKoreanName);
-        //deck.AddCardToDrawPool(cardMeta);
+        playerDataSO.CardList.Add(cardMeta);
     }
 
+    /// <summary>
+    /// 카드 제거
+    /// </summary>
     private void DestroyCard(CardMetaData cardMeta)
     {
         Debug.Log("카드제거" + cardMeta.cardKoreanName);
-        // 카드 제거 기능 필요
+        playerDataSO.CardList.Remove(cardMeta);
     }
 
+    /// <summary>
+    /// 기존 카드 제거 후 새 강화 카드 추가
+    /// </summary>
     private void UpgradeCard(CardMetaData cardMeta)
     {
-        DestroyCard(cardMeta); // 기존 제거 후 새 강화 카드 추가
-        CardMetaData newCard = Database.AllSmithedCardMetas.Where(e => e.isSmithed && e.cardId == cardMeta.cardId).ToList()[0];
         Debug.Log("카드강화" + cardMeta.cardKoreanName);
-        // TODO => 딜 상승 등등 카드 강화효과 적용 => 기획 나와야함
+        DestroyCard(cardMeta);
+        AddCard(Database.AllSmithedCardMetas.Where(e => e.isSmithed && e.cardId == cardMeta.cardId).ToList()[0]);
     }
 }

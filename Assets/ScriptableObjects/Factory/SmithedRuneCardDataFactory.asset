@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba10a97ddedaff40815a20a22b66df5, type: 3}
   m_Name: SmithedRuneCardDataFactory
   m_EditorClassIdentifier: 
-  backImage: {fileID: 0}
+  backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
