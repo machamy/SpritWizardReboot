@@ -35,7 +35,7 @@ public class SeedManager : MonoBehaviour
         // startPhaseEvent.RaisePhaseEvent(seed); TODO => 씬 어떻게 쓸지 확실히 정한 후 Invoke타이밍 결정
     }
 
-    public void PrintSeed()
+    public void PrintSeed() // 나중에 전투 종료후 InitReward을 실행시켜야 하므로 제거 해야함
     {
         rewardManager.InitReward(GetSeed());
     }

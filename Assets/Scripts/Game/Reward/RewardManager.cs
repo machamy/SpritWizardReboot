@@ -15,6 +15,7 @@ public class RewardManager : MonoBehaviour
     private Queue<RewardType> rewardQueue;
     private RewardType currentRewardType;
     private SeedType currentSeed;
+    private CardType currentCardType;
     private bool isProcessingReward = false;
 
     private void OnEnable()
@@ -123,8 +124,17 @@ public class RewardManager : MonoBehaviour
     /// </summary>
     private void SelectCard(CardType cardType)
     {
+        currentCardType = cardType;
         Rarity rarity = Database.AllAddCardWeight[currentSeed].GetRandomChoice();
         ShowCardList(Database.AllCardMetas.Where(e => e.cardType == cardType && e.rarity == rarity).ToList());
+    }
+
+    /// <summary>
+    /// 카드 리롤 기능
+    /// </summary>
+    public void ReRollCard()
+    {
+        SelectCard(currentCardType);
     }
 
     /// <summary>

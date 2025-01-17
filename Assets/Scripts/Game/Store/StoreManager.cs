@@ -7,6 +7,7 @@ public class StoreManager : MonoBehaviour
 {
     [SerializeField] private Transform storeProducts;
     [SerializeField] private BaseCardSellectableHolder cardHolder;
+    [SerializeField] private PlayerDataSO playerDataSO;
 
     private TextMeshProUGUI[] priceTexts;
 
@@ -80,6 +81,9 @@ public class StoreManager : MonoBehaviour
 
     public void BuyCard(BaseCardSellectableHolder cardholder)
     {
-        // 덱에 카드 추가 스크립트 추가
+        foreach (CardObject co in cardholder.sellectedCardObjects)
+        {
+            playerDataSO.CardList.Add(co.CardMetaData);
+        }
     }
 }
