@@ -38,13 +38,14 @@ public class SeedDataSO : ScriptableObject
     }
 }
 
+
 [System.Serializable]
 public class SerializableSeedData
 {
     public List<List<SeedType>> weekSeedData;
     public List<SeedType> daySeedData;
 }
-
+#if UNITY_EDITOR //TODO : Editor 디렉토리로 이동
 [CustomEditor(typeof(SeedDataSO))]
 public class SeedDataEditor : Editor
 {
@@ -61,3 +62,4 @@ public class SeedDataEditor : Editor
         }
     }
 }
+#endif
