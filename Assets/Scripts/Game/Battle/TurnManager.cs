@@ -15,8 +15,13 @@ namespace Game
         [Header( "Turn" )]
         public int currentRawTurn = 1;
         [SerializeField]private bool isReadyToEndPlayerTurn = false;
-        [SerializeField]private int remainEnemyTurn = 0;
-        [SerializeField]private IntVariableSO waitsForEndPlayerTurn;
+        [SerializeField]private IntVariableSO remainEnemyTurnSO;
+        private int remainEnemyTurn
+        {
+            get => remainEnemyTurnSO.Value;
+            set => remainEnemyTurnSO.Value = value;
+        } 
+        [FormerlySerializedAs("waitsForEndPlayerTurn")] [SerializeField]private IntVariableSO waitsForEndPlayerTurnSO;
         private int playerUsedCost;
         public int CurrentTurn => currentRawTurn;
         private bool isPlayerTurn = false;
@@ -59,7 +64,7 @@ namespace Game
         public void StartGame()
         {
             isPlayerTurn = true;
-            currentRawTurn = 2;
+            currentRawTurn = 1;
             playerTurnEnterEvent.RaiseTurnEvent(CurrentTurn);
         }
         
@@ -73,18 +78,18 @@ namespace Game
             {
                 isReadyToEndPlayerTurn = true;
                 playerUsedCost = usedCost;
-                waitsForEndPlayerTurn.OnValueChanged -= CheckWaitsForEndPlayerTurn;
-                waitsForEndPlayerTurn.OnValueChanged += CheckWaitsForEndPlayerTurn;
-                CheckWaitsForEndPlayerTurn(waitsForEndPlayerTurn.Value);
+                waitsForEndPlayerTurnSO.OnValueChanged -= CheckWaitsForEndPlayerTurnSo;
+                waitsForEndPlayerTurnSO.OnValueChanged += CheckWaitsForEndPlayerTurnSo;
+                CheckWaitsForEndPlayerTurnSo(waitsForEndPlayerTurnSO.Value);
             }
         }
         
-        private void CheckWaitsForEndPlayerTurn(int val)
+        private void CheckWaitsForEndPlayerTurnSo(int val)
         {
             if (isReadyToEndPlayerTurn && val <= 0)
             {
                 EndPlayerTurn(playerUsedCost); // 순서 바뀌면 무한 재귀에 빠짐
-                waitsForEndPlayerTurn.Value = 0;
+                waitsForEndPlayerTurnSO.Value = 0;
             }
         }
         
@@ -93,14 +98,14 @@ namespace Game
         /// </summary>
         public void AddWaitsForEndPlayerTurn()
         {
-            waitsForEndPlayerTurn.Value += 1;
+            waitsForEndPlayerTurnSO.Value += 1;
         }
         /// <summary>
         /// 대기열에 플레이어 턴 종료를 기다리는 수를 제거한다.
         /// </summary>
         public void RemoveWaitsForEndPlayerTurn()
         {
-            waitsForEndPlayerTurn.Value -= 1;
+            waitsForEndPlayerTurnSO.Value -= 1;
         }
         
         /// <summary>
@@ -127,7 +132,7 @@ namespace Game
         {
             while (time > 0)
             {
-                GameManager.Instance.GUIManager.OnEnemyTurnTicking(time);
+                GameManager.Instance.GUIManager.OnEnemyTurnTicking(time, enemyTurnTime);
                 time -= Time.deltaTime;
                 yield return null;
             }

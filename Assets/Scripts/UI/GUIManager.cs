@@ -7,8 +7,9 @@ public class GUIManager : MonoBehaviour
 {
     [Header("UI Elements (Battle)")]
     [SerializeField] private TMPro.TextMeshProUGUI hpText;
-    [SerializeField] private TMPro.TextMeshProUGUI timerText;
-    [SerializeField] private TMPro.TextMeshProUGUI turnText;
+    [SerializeField] private TurnIndicatingSlider turnSlider;
+    // [SerializeField] private TMPro.TextMeshProUGUI timerText;
+    // [SerializeField] private TMPro.TextMeshProUGUI turnText;
     [Header("UI Elements (Battle/Rune)")]
     [SerializeField] private TMPro.TextMeshProUGUI damageRunesText;
     [SerializeField] private TMPro.TextMeshProUGUI attackCountRunesText;
@@ -75,18 +76,18 @@ public class GUIManager : MonoBehaviour
     
     private void OnPlayerTurnEnter(int turn)
     {
-        turnText.text = $"Player Turn {turn}";
+        turnSlider.IsPlayerTurn = true;
+        turnSlider.SetValue(1);
     }
     private void OnEnemyTurnEnter(int turn)
     {
-        timerText.text = $"Enemy Turn {turn}";
+        turnSlider.IsPlayerTurn = false;
     }
     
-    public void OnEnemyTurnTicking(float time)
+    public void OnEnemyTurnTicking(float time, float maxTime)
     {
-        timerText.text = $"Enemy Turn Remaining: {time}";
+        turnSlider.SetValue(time / maxTime);
     }
-    
     private void OnDrawSizeChanged(int value)
     {
         drawSizeText.text = $"Draw deck : {value}";
