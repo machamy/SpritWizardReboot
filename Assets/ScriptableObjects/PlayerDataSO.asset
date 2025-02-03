@@ -16,10 +16,11 @@ MonoBehaviour:
   - cardId: magic_doubleShot
     cardKoreanName: doubleShot
     cardName: doubleShot
-    description: "\uB354\uBE14~~\uC0F7"
+    description: "\uD53C\uD5743 \uD69F\uC2182 \uC9D1\uC911"
     cardType: 0
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
     cardData:
@@ -42,10 +43,11 @@ MonoBehaviour:
   - cardId: magic_tripleShot
     cardKoreanName: tripleShot
     cardName: tripleShot
-    description: "\uBA40\uD2F0~~~\uC0F7"
+    description: "\uD53C\uD5742 \uD69F\uC2183 \uBC29\uC0AC3"
     cardType: 0
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
     cardData:
@@ -68,10 +70,11 @@ MonoBehaviour:
   - cardId: magic_rapidFire
     cardKoreanName: rapidFire
     cardName: rapidFire
-    description: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    description: "\uD53C\uD5741 \uD69F\uC2185 \uC9D1\uC911"
     cardType: 0
     rarity: 1
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
     cardData:
@@ -94,10 +97,11 @@ MonoBehaviour:
   - cardId: magic_fireball
     cardKoreanName: fireball
     cardName: fireball
-    description: "\uBD88\uACF5"
+    description: "\uD53C\uD5744 \uD69F\uC2181 \uAD00\uD1B51"
     cardType: 0
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
     cardData:
@@ -120,10 +124,11 @@ MonoBehaviour:
   - cardId: magic_fireExplosion
     cardKoreanName: fireExplosion
     cardName: fireExplosion
-    description: "\uD391~~~"
+    description: "\uD53C\uD5745 \uD69F\uC2181 \uD3ED\uBC1C3x3"
     cardType: 0
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
     cardData:
@@ -146,10 +151,11 @@ MonoBehaviour:
   - cardId: magic_iceScatter
     cardKoreanName: iceScatter
     cardName: iceScatter
-    description: "\uC5BC\uC74C \uB09C\uC0AC"
+    description: "\uD53C\uD5741 \uD69F\uC2188 \uBC29\uC0AC8"
     cardType: 0
     rarity: 1
     cost: 2
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
     cardData:
@@ -172,10 +178,11 @@ MonoBehaviour:
   - cardId: magic_iceBeam
     cardKoreanName: iceBeam
     cardName: iceBeam
-    description: "\uC5BC\uC74C \uBE54"
+    description: "\uD53C\uD5744 \uD69F\uC2182 \uBE542x5 \uC9D1\uC911"
     cardType: 0
     rarity: 1
     cost: 2
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
     cardData:
@@ -202,6 +209,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -228,6 +236,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 0
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -254,6 +263,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 0
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -280,6 +290,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 0
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -306,6 +317,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -332,6 +344,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 1
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -358,6 +371,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 2
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:
@@ -384,6 +398,7 @@ MonoBehaviour:
     cardType: 1
     rarity: 0
     cost: 2
+    isSmithed: 0
     frontImage: {fileID: 0}
     backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
     cardData:

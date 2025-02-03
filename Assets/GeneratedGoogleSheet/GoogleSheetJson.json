@@ -376,7 +376,7 @@
     {
       "id": "magic_doubleShot",
       "name": "doubleShot",
-      "describe": "더블~~샷",
+      "describe": "피해3 횟수2 집중",
       "skillCaster": "grassSlime",
       "rarity": "normal",
       "attackDamage": 3,
@@ -394,7 +394,7 @@
     {
       "id": "magic_tripleShot",
       "name": "tripleShot",
-      "describe": "멀티~~~샷",
+      "describe": "피해2 횟수3 방사3",
       "skillCaster": "grassSlime",
       "rarity": "normal",
       "attackDamage": 2,
@@ -412,7 +412,7 @@
     {
       "id": "magic_rapidFire",
       "name": "rapidFire",
-      "describe": "와다다다다다다",
+      "describe": "피해1 횟수5 집중",
       "skillCaster": "grassSlime",
       "rarity": "rare",
       "attackDamage": 1,
@@ -430,7 +430,7 @@
     {
       "id": "magic_fireball",
       "name": "fireball",
-      "describe": "불공",
+      "describe": "피해4 횟수1 관통1",
       "skillCaster": "fireSlime",
       "rarity": "normal",
       "attackDamage": 4,
@@ -448,7 +448,7 @@
     {
       "id": "magic_fireExplosion",
       "name": "fireExplosion",
-      "describe": "펑~~~",
+      "describe": "피해5 횟수1 폭발3x3",
       "skillCaster": "fireSlime",
       "rarity": "normal",
       "attackDamage": 5,
@@ -466,7 +466,7 @@
     {
       "id": "magic_iceScatter",
       "name": "iceScatter",
-      "describe": "얼음 난사",
+      "describe": "피해1 횟수8 방사8",
       "skillCaster": "iceSlime",
       "rarity": "rare",
       "attackDamage": 1,
@@ -484,7 +484,7 @@
     {
       "id": "magic_iceBeam",
       "name": "iceBeam",
-      "describe": "얼음 빔",
+      "describe": "피해4 횟수2 빔2x5 집중",
       "skillCaster": "iceSlime",
       "rarity": "rare",
       "attackDamage": 4,

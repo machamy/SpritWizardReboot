@@ -2004,8 +2004,8 @@ MonoBehaviour:
   googleSheetSO: {fileID: 11400000, guid: 357c84c433735e64683baf29c14873ba, type: 2}
   magicCardDataFactory: {fileID: 11400000, guid: 736cbc6dccabc954e87788e4c15234af, type: 2}
   runeCardDataFactory: {fileID: 11400000, guid: 93eb7fc0136441f4f844598364c9b315, type: 2}
-  smithedMagicCardDataFactory: {fileID: 0}
-  smithedRuneCardDataFactory: {fileID: 0}
+  smithedMagicCardDataFactory: {fileID: 11400000, guid: fd68cb3cd64313448871b28a45782a79, type: 2}
+  smithedRuneCardDataFactory: {fileID: 11400000, guid: 366790460b297f247938ff28d53f7484, type: 2}
   rewardChanceDataFactory: {fileID: 11400000, guid: 41166ba79c8c88249b446f2fc5ebe62b, type: 2}
   rewardAmountDataFactory: {fileID: 11400000, guid: 8885c0e449943eb489b57edbf7590074, type: 2}
   addCardWeightDataFactory: {fileID: 11400000, guid: 930555b204819da4b99f7c04ebbc2dfb, type: 2}

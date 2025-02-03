@@ -200,7 +200,7 @@ MonoBehaviour:
   RawMagicCardList:
   - id: magic_doubleShot
     name: doubleShot
-    describe: "\uB354\uBE14~~\uC0F7"
+    describe: "\uD53C\uD5743 \uD69F\uC2182 \uC9D1\uC911"
     skillCaster: grassSlime
     rarity: normal
     attackDamage: 3
@@ -216,7 +216,7 @@ MonoBehaviour:
     specialEffectId: 
   - id: magic_tripleShot
     name: tripleShot
-    describe: "\uBA40\uD2F0~~~\uC0F7"
+    describe: "\uD53C\uD5742 \uD69F\uC2183 \uBC29\uC0AC3"
     skillCaster: grassSlime
     rarity: normal
     attackDamage: 2
@@ -232,7 +232,7 @@ MonoBehaviour:
     specialEffectId: 
   - id: magic_rapidFire
     name: rapidFire
-    describe: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    describe: "\uD53C\uD5741 \uD69F\uC2185 \uC9D1\uC911"
     skillCaster: grassSlime
     rarity: rare
     attackDamage: 1
@@ -248,7 +248,7 @@ MonoBehaviour:
     specialEffectId: 
   - id: magic_fireball
     name: fireball
-    describe: "\uBD88\uACF5"
+    describe: "\uD53C\uD5744 \uD69F\uC2181 \uAD00\uD1B51"
     skillCaster: fireSlime
     rarity: normal
     attackDamage: 4
@@ -264,7 +264,7 @@ MonoBehaviour:
     specialEffectId: 
   - id: magic_fireExplosion
     name: fireExplosion
-    describe: "\uD391~~~"
+    describe: "\uD53C\uD5745 \uD69F\uC2181 \uD3ED\uBC1C3x3"
     skillCaster: fireSlime
     rarity: normal
     attackDamage: 5
@@ -280,7 +280,7 @@ MonoBehaviour:
     specialEffectId: 
   - id: magic_iceScatter
     name: iceScatter
-    describe: "\uC5BC\uC74C \uB09C\uC0AC"
+    describe: "\uD53C\uD5741 \uD69F\uC2188 \uBC29\uC0AC8"
     skillCaster: iceSlime
     rarity: rare
     attackDamage: 1
@@ -296,7 +296,7 @@ MonoBehaviour:
     specialEffectId: 13001
   - id: magic_iceBeam
     name: iceBeam
-    describe: "\uC5BC\uC74C \uBE54"
+    describe: "\uD53C\uD5744 \uD69F\uC2182 \uBE542x5 \uC9D1\uC911"
     skillCaster: iceSlime
     rarity: rare
     attackDamage: 4
