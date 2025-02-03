@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,9 +8,14 @@ using UnityEngine.Serialization;
 
 public class HandDeckManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Deck deck;
     [SerializeReference] private BaseCardHolder cardHolder;
-    [FormerlySerializedAs("gridCardSellectableHolder")] [FormerlySerializedAs("gridCardHolder")] [SerializeReference] private BaseCardSellectableHolder baseCardSellectableHolder;
+    [SerializeReference] private BaseCardSellectableHolder baseCardSellectableHolder;
+    [Header("Variables")]
+    [SerializeField] private int maxRerollCount = 2;
+    [SerializeField] private IntVariableSO rerollCount;
+    [Header("Settings")]
     [SerializeField] int handSize = 3;
 
 
@@ -68,12 +74,35 @@ public class HandDeckManager : MonoBehaviour
     /// </summary>
     public void SetupForBattle()
     {
+        rerollCount.Value = maxRerollCount;
         deck.SetupForBattle();
         deck.ShuffleDrawPool();
         for (int i = 0; i < handSize; i++)
         {
             DrawCard();
         }
+    }
+
+    public void RerollCard()
+    {
+        // TODO : 플레이어 턴이 아니더라도 실행 가능함...
+        if (rerollCount.Value <= 0)
+        {
+            Debug.Log("더이상 뽑을 수 없습니다.");
+            return;
+        }
+        // while로 처리했다간, 어떤 오류땜에 무한 루프에 빠질 수 있음
+        int cardCount = cardHolder.CardCount;
+        for (int i = 0; i < cardCount; i++)
+        {
+            CardObject cardObject = cardHolder[0];
+            cardObject.Discard();
+        }
+        for (int i = 0; i < handSize; i++)
+        {
+            DrawCard();
+        }
+        rerollCount.Value--;
     }
     
     // /// <summary>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Game;
 using Game.Entity;
@@ -231,6 +232,7 @@ public class CardDisplay : MonoBehaviour
         cardSelect.OnPointerTileExit -= OnPointerTileExit;
         cardSelect.OnPointerDown -= OnPointerDown;
         cardSelect.OnPointerUp -= OnPointerUp;
+        UnfocusTargetTiles();
     }
     #endregion
 
@@ -311,6 +313,7 @@ public class CardDisplay : MonoBehaviour
         ShowDecay(0f);
     }
     
+    private List<Tile> targetTiles = new List<Tile>();
     private void OnPointerTileEnter(Tile tile)
     {
         if(cardSelect.IsUsed)
@@ -318,30 +321,44 @@ public class CardDisplay : MonoBehaviour
         var meta = cardObject.CardMetaData;
         if(meta.cardType == CardType.Rune)
         {
-            tile.Focus(setting.tileFocusOkColor);
+            tile.Focus(setting.tileFocusOkColor, Tile.FocusState.MoveOk);
         }
         else
         {
             var slime = BattleManager.Instance.GetSlime(meta.cardData.skillCaster);
-            if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates, CardCastManager.Instance.GetMoveCntRuneEffect(meta.cardData)))
+            var runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
+            if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates, runeEffectHolder))
             {
-                tile.Focus(setting.tileFocusOkColor);
+                targetTiles = meta.cardData.GetTargetTiles(tile.Coordinates, runeEffectHolder);
+                foreach (var t in targetTiles)
+                {
+                    t.Focus(setting.tileFocusTargetColor, Tile.FocusState.Target);
+                }
+                tile.Focus(setting.tileFocusOkColor, Tile.FocusState.MoveOk);
             }
             else
             {
-                tile.Focus(setting.tileFocusNoColor);
+                tile.Focus(setting.tileFocusNoColor, Tile.FocusState.Error);
             }
         }
-
-        
     }
     
     public void OnPointerTileExit(Tile tile)
     {
         if(cardSelect.IsUsed)
             return;
-        tile.Unfocus();   
+        tile.Unfocus();
+        UnfocusTargetTiles();
     }
+    
+    private void UnfocusTargetTiles()
+    {
+        foreach (var t in targetTiles)
+        {
+            t.Unfocus();
+        }
+    }
+    
     
     public void OnPointerDown(CardSelect cardSelect)
     {

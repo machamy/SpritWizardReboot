@@ -9,9 +9,21 @@ namespace Game.World
 {
     public class Tile : MonoBehaviour
     {
+        public enum FocusState
+        {
+            NotFocused,
+            Default,
+            MoveOk,
+            Target,
+            Error
+        }
+        
         [SerializeField] private Vector2Int coordinates;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private SpriteRenderer focusRenderer;
+        
+        private FocusState focusType = FocusState.Default;
+        public FocusState FocusType => focusType;
         private List<Entity.Entity> entities = new List<Entity.Entity>();
         public Vector2Int Coordinates
         {
@@ -51,14 +63,16 @@ namespace Game.World
         }
 
         public void Focus() => Focus(new Color(0.7f, 1f, 0f, 0.5f));
-        public void Focus(Color focusColor)
+        public void Focus(Color focusColor, FocusState focusState = FocusState.Default)
         {
             spriteRenderer.color = focusColor;
+            this.focusType = focusState;
         }
         
         public void Unfocus()
         {
             spriteRenderer.color = defaultColor;
+            focusType = FocusState.NotFocused;
         }
         
         

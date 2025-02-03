@@ -58,8 +58,8 @@ public class CardObject : MonoBehaviour
         name = cardMetaData.cardName;
         this.cardMetaData = cardMetaData;
         cardDisplay.Initialize();
-        if(cardSetting)
-            print($"{name} cardSetting : {cardSetting.name}");
+        // if(cardSetting)
+        //     print($"{name} cardSetting : {cardSetting.name}");
     }
     
     public void RaiseCardDrawn(CardMetaData cardMeta)

@@ -200,6 +200,20 @@ public class Board : MonoBehaviour
           return tiles;
      }
      
+     public void UnFocusAllTiles(Tile.FocusState focusType)
+     {
+          foreach (Tile[] line in _tilemap)
+          {
+               foreach (Tile tile in line)
+               {
+                    if (tile.FocusType == focusType)
+                    {
+                         tile.Unfocus();
+                    }
+               }
+          }
+     }
+     
      #if UNITY_EDITOR
      public void Clear()
      {

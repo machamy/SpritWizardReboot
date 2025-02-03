@@ -48,6 +48,11 @@ public static class DirectionHelper
                 return Direction.R;
         }
     }
+
+    public static Direction Next(this Direction direction)
+    {
+        return (Direction)(((int)direction + 1) % (int)Direction.MAX);
+    }
     
     public static Direction Turn90ClockWise(this Direction direction)
     {

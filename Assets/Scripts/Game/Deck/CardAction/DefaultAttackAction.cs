@@ -50,6 +50,7 @@ public class DefaultAttackAction :BaseCardAction
             }
             else
             {
+                // 
                 List<Tile> tiles;
                 if (card.attackType == AttackType.beam)
                 {

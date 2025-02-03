@@ -30,6 +30,7 @@ namespace Game
         /// </summary>
         public List<CardMetaData> CurrentCardDataList => playerDataSO.CardList;
         [Header("Battle")]
+        [SerializeField] private bool startOnEnable = false;
         [SerializeField] private bool isOnBattle = false;
         [Header("Channel")]
         [SerializeField] private TurnEventChannelSO playerTurnEnterEvent;
@@ -52,6 +53,8 @@ namespace Game
         {
             playerTurnEnterEvent.OnTurnEventRaised += OnPlayerTurnEnter;
             playerTurnEndEvent.OnTurnEventRaised += OnPlayerTurnEnd;
+            if(startOnEnable)
+                StartBattle();
         }
         
         private void OnDisable()
