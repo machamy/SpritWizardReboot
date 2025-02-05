@@ -127,18 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1741717747579994683, guid: 21207e11f37102c4fbfcbbe66b127224, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1171593709, guid: 73e40ac688253f34dae2b50794e2acaa, type: 3}
-    - target: {fileID: 2954571298215279757, guid: 21207e11f37102c4fbfcbbe66b127224, type: 3}
-      propertyPath: testCard
-      value: 
-      objectReference: {fileID: 11400000, guid: aafc5dde946b88343b51689d28ca29e0, type: 2}
-    - target: {fileID: 6404074982671350005, guid: 21207e11f37102c4fbfcbbe66b127224, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: d02cd1c988a51af4d821781297ba64a2, type: 2}
     - target: {fileID: 7631386085898312195, guid: 21207e11f37102c4fbfcbbe66b127224, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.51
@@ -4953,26 +4941,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1295414932342810387, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
-      propertyPath: testCard
-      value: 
-      objectReference: {fileID: 11400000, guid: aafc5dde946b88343b51689d28ca29e0, type: 2}
-    - target: {fileID: 2364760225197054373, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -162613810, guid: 5dc8c9afce79c3d4da0955b250e8e59c, type: 3}
-    - target: {fileID: 2364760225197054373, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364760225197054373, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364760225197054373, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4639569313456103903, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
       propertyPath: m_Name
       value: GrassSlime
@@ -5017,10 +4985,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6928044418951766891, guid: 5bc5c6360f854634c8161caf465cfae5, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: 15f1275d0597c554aa6811abfb09e944, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9756,18 +9720,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2894820257318928057, guid: 70d326de3991e264ca99a36b2ccf8325, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: 6e52f31f2da7d5d4bb1905aa1925e917, type: 2}
-    - target: {fileID: 6481543096019565249, guid: 70d326de3991e264ca99a36b2ccf8325, type: 3}
-      propertyPath: testCard
-      value: 
-      objectReference: {fileID: 11400000, guid: aafc5dde946b88343b51689d28ca29e0, type: 2}
-    - target: {fileID: 7554925795688432759, guid: 70d326de3991e264ca99a36b2ccf8325, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1472339547, guid: 5dc8c9afce79c3d4da0955b250e8e59c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
