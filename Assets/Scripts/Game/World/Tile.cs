@@ -65,13 +65,15 @@ namespace Game.World
         public void Focus() => Focus(new Color(0.7f, 1f, 0f, 0.5f));
         public void Focus(Color focusColor, FocusState focusState = FocusState.Default)
         {
-            spriteRenderer.color = focusColor;
+            focusRenderer.gameObject.SetActive(true);
+            focusRenderer.color = focusColor;
             this.focusType = focusState;
         }
         
         public void Unfocus()
         {
-            spriteRenderer.color = defaultColor;
+            focusRenderer.gameObject.SetActive(false);
+            focusRenderer.color = defaultColor;
             focusType = FocusState.NotFocused;
         }
         
