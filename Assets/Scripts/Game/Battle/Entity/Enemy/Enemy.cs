@@ -6,6 +6,7 @@ using System.Linq;
 using TMPro;
 using EventChannel;
 using UnityEngine.Serialization;
+using UnityEngine.Animations;
 
 [RequireComponent (typeof(Entity), typeof(HitHandler))]
 public class Enemy : MonoBehaviour
@@ -220,6 +221,7 @@ public class Enemy : MonoBehaviour
     }
     public void OnHit(object caller, HitHandler.HitEventArgs e)
     {
+        enemyAni.SetTrigger("OnHit");
         _hp -= e.dmg;
         _hpController.UpdateHealthBar(_hp, _fullHp);
         if (_hp <= 0 && !_entity.IsDeath)
@@ -270,6 +272,7 @@ public class Enemy : MonoBehaviour
     [ContextMenu("PlayAni")]
     public void PlayAni()
     {
-        enemyAni.SetTrigger("RangeAttack");
+        enemyAni.SetTrigger("OnHit");
     }
+
 }
