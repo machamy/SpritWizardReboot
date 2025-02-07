@@ -106,7 +106,7 @@ using UnityEngine.Serialization;
                 while (--atackCnt > 0)
                 {
                     //TODO List가 아닌 반복자를 받아오는게 나은듯?
-                    dir = dir.Next();
+                    dir = (Direction) ((int)(dir + 1) % spreadRange);
                     targetTiles.AddRange(board.GetTilesBeam(castPosition, dir, attackWidth, attackHeight));
                 }
             }
