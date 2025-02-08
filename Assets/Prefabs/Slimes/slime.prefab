@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7216887261068735547}
   - component: {fileID: 209217538648141446}
   - component: {fileID: -3094846664857662835}
+  - component: {fileID: 2653609664455085813}
+  - component: {fileID: 6146898900351976512}
   m_Layer: 0
   m_Name: slime
   m_TagString: Untagged
@@ -101,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c445071cff48d6b25079e1ca10c553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _position: {x: 0, y: 0}
+  _coordinate: {x: 0, y: 0}
 --- !u!114 &-3094846664857662835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,3 +117,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCaster: 0
+--- !u!95 &2653609664455085813
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330407551907023937}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!210 &6146898900351976512
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330407551907023937}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
