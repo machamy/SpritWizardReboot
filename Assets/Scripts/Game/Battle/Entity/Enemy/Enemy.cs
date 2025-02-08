@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;
 using Game.Entity;
 using DefaultNamespace;
@@ -11,7 +12,13 @@ using UnityEngine.Animations;
 [RequireComponent (typeof(Entity), typeof(HitHandler))]
 public class Enemy : MonoBehaviour
 {
+    [Header("SO 선택")]
+    [SerializeField]
+    private EnemyDataSO _data;
+
+    
     private string _name;
+    [Header("적 정보")]
     public int _hp;
     public int _fullHp;
 
@@ -19,8 +26,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private List<EnemyPatternSO> _curPatternList = new List<EnemyPatternSO>();
 
-    [SerializeField]
-    private EnemyDataSO _data;
+
     [SerializeField]
     private GameObject _queueObj;
 
@@ -32,6 +38,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject _behaviourPrefab;
 
+    [Header("행동시 스프라이트 변경")]
     [SerializeField]
     private Sprite _rangeAttackSprite;
     [SerializeField]
@@ -44,6 +51,9 @@ public class Enemy : MonoBehaviour
     private EnemyHpbarController _hpController;
 
     public Animator enemyAni;
+
+    private SpriteRenderer sprite;
+    private string spritePath = "Assets/Sprites/Enemy/";
 
     [FormerlySerializedAs("enemyTurnChannelSO")] public TurnEventChannelSO enemyTurnEnterChannelSO;
     [FormerlySerializedAs("playerTurnExitEvent")] [FormerlySerializedAs("enemyTurnEnterEvent")] public TurnEventChannelSO playerTurnExitEventSO;
@@ -59,6 +69,19 @@ public class Enemy : MonoBehaviour
         _entity = GetComponent<Entity>();
         _hpController = GetComponent<EnemyHpbarController>();
 
+        // 스프라이트 변경
+        sprite = GetComponent<SpriteRenderer>();
+        string spriteFullPath = $"{spritePath + _data.spriteName}.png";
+        Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(spriteFullPath);
+        if (texture != null)
+        {
+            Sprite newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            sprite.sprite = newSprite;
+        }
+        else
+        {
+            Debug.Log("이미지 불러오기 실패");
+        }
 
         // 시작 패턴 설정할것
         foreach (EnemyBehaviourSO element in _data.initPattern.actionSequence)

@@ -438,7 +438,7 @@ MonoBehaviour:
   RawMonsterList:
   - name: strikeShade
     id: 20001
-    sprite: 
+    sprite: ghost-blowgun_idle
     size: 1
     hpMiddle: 20
     hpVariation: 1
@@ -447,12 +447,12 @@ MonoBehaviour:
     phaseSwitchHpRatio: 0
   - name: blowgunShade
     id: 20002
-    sprite: 
+    sprite: ghost-blowgun_idle
     size: 1
     hpMiddle: 15
     hpVariation: 1
     pattern: 20002-1, 20002-2, 20002-3
-    initPattern: 0
+    initPattern: 20002-1
     phaseSwitchHpRatio: 0
   RawMonsterPatternList:
   - sosok: "\uADFC\uC811 \uC720\uB839"

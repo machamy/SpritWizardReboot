@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e62951ea732804b97d3372781c38f6, type: 3}
+  m_Name: strikeShade
+  m_EditorClassIdentifier: 
+  enemyName: strikeShade
+  enemyId: 20001
+  spriteName: ghost-blowgun_idle
+  size: 1
+  hpMiddle: 20
+  hpVariation: 1
+  patternList:
+  - {fileID: 11400000, guid: 6314cdf83e24cac4b8a41706f5c0c877, type: 2}
+  - {fileID: 11400000, guid: 4a28eb3b8cb553c498ba8739eeac7c1d, type: 2}
+  - {fileID: 11400000, guid: 91ca314ddad3b414cb02a2713530bfe2, type: 2}
+  - {fileID: 11400000, guid: 99f7a98a1a3807b4eb795f6b3d558e6b, type: 2}
+  - {fileID: 11400000, guid: c53b7fbe648944e4fbda848ecc8a94f8, type: 2}
+  initPattern: {fileID: 11400000, guid: c53b7fbe648944e4fbda848ecc8a94f8, type: 2}
+  phaseSwitchHpRatio: 0

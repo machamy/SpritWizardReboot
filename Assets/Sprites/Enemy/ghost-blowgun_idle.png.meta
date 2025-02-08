@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ghost-blowgun_idle_0: -2396068698305933251
+      ghost-blowgun_idle_1: -3715540603871432466
+      ghost-blowgun_idle_2: -5529887639567425789
+      ghost-blowgun_idle_3: 1430142752482112548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

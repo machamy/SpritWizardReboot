@@ -3,7 +3,7 @@ using Game.Entity;
 
 public abstract class EnemyBehaviourSO : ScriptableObject
 {
-    public int id;
+    public string id;
     public EnemyBehaviour action;
     public int value;
 

@@ -80,6 +80,10 @@ public class Database : MonoBehaviour
         allAddCardWeight.Clear();
         allCardPrice.Clear();
         allEditCardPrice.Clear();
+        allEnemyData.Clear();
+        allEnemyActionData.Clear();
+        allEnemyPatternData.Clear();
+
         foreach (var rawCard in googleSheetSO.RawMagicCardList)
         {
             var card = magicCardDataFactory.Create(rawCard);

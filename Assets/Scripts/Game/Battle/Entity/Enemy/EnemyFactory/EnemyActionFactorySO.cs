@@ -11,8 +11,8 @@ public class EnemyActionFactorySO : ScriptableObject
             action = rawEnemyAction.action.ToLowerInvariant() switch
             {
                 "move" => EnemyBehaviour.Move,
-                "meleeAttack" => EnemyBehaviour.MeleeAttack,
-                "rangedAttack" => EnemyBehaviour.RangeAttack,
+                "meleeattack" => EnemyBehaviour.MeleeAttack,
+                "rangedattack" => EnemyBehaviour.RangeAttack,
                 "rest" => EnemyBehaviour.Rest,
                 _ => EnemyBehaviour.Rest
             },

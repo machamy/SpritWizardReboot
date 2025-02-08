@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e62951ea732804b97d3372781c38f6, type: 3}
+  m_Name: blowgunShade
+  m_EditorClassIdentifier: 
+  enemyName: blowgunShade
+  enemyId: 20002
+  spriteName: ghost-blowgun_idle
+  size: 1
+  hpMiddle: 15
+  hpVariation: 1
+  patternList:
+  - {fileID: 11400000, guid: f957d0846e196e749a3eb626dbd944a7, type: 2}
+  - {fileID: 11400000, guid: 5dfb9fdbd2aaba6409a4b0eea2c141b1, type: 2}
+  - {fileID: 11400000, guid: e1b98c7a14be3284abd43fe8556cc3a6, type: 2}
+  initPattern: {fileID: 11400000, guid: f957d0846e196e749a3eb626dbd944a7, type: 2}
+  phaseSwitchHpRatio: 0

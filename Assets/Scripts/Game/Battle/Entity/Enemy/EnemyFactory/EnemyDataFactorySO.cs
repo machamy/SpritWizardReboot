@@ -16,7 +16,7 @@ public class EnemyDataFactorySO : ScriptableObject
             hpMiddle = rawEnemy.hpMiddle,
             hpVariation = rawEnemy.hpVariation,
             pattern = splitPattern,
-            initPattern = rawEnemy.pattern,
+            initPattern = rawEnemy.initPattern,
             phaseSwitchHpRatio = rawEnemy.phaseSwitchHpRatio
         };
         return enemy;
