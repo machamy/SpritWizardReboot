@@ -32,6 +32,7 @@ public class CardSettingSO : ScriptableObject
     [Tooltip("드래그시 크기")]public float dragScale = 1.5f;
     [Tooltip("크기 변화 시간")]public float dragScaleDuration = 0.2f;
     [Tooltip("최대 드래그 가능한 상대 위치")]public float dragMaxHeightCoefficient = 0.5f;
+    [Tooltip("카드 사용 판정 상대 위치")]public float dragUseHeightCoefficient = 0.75f;
 
     [Header("Decay Parameters")]
     [Tooltip("해당 상대 위치부터 사라지기 시작")]public float drageDecayHeightStartCoefficient = 0.5f;

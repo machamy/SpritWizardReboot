@@ -102,19 +102,25 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             return;
         OnDragging?.Invoke(this);
         Vector3 screenToWorldPoint = Camera.main.ScreenToWorldPoint(eventData.position);
-        rectTransform.position = eventData.position;
-        Tile tile = board.GetTile(board.WorldToCell(screenToWorldPoint));
-        if(tile != null && previousEnteredTile != tile)
+        // rectTransform.position = eventData.position;
+        
+        
+        if(CardUseArea.GetCardUseArea(eventData.position))
         {
-            if(previousEnteredTile != null)
+            // 카드 사용 영역에 들어왔을 때만 타일 체크
+            Tile tile = board.GetTile(board.WorldToCell(screenToWorldPoint));
+            if (tile != null && previousEnteredTile != tile)
+            {
+                if (previousEnteredTile != null)
+                    OnPointerTileExit?.Invoke(previousEnteredTile);
+                previousEnteredTile = tile;
+                OnPointerTileEnter?.Invoke(tile);
+            }
+            else if (tile == null && previousEnteredTile != null)
+            {
                 OnPointerTileExit?.Invoke(previousEnteredTile);
-            previousEnteredTile = tile;
-            OnPointerTileEnter?.Invoke(tile);
-        }
-        else if(tile == null && previousEnteredTile != null)
-        {
-            OnPointerTileExit?.Invoke(previousEnteredTile);
-            previousEnteredTile = null;
+                previousEnteredTile = null;
+            }
         }
     }
 
@@ -131,10 +137,11 @@ public class CardSelect : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             yield return new WaitForEndOfFrame();
             wasDragged = false;
         }
+
         
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2Int boardPos = board.WorldToCell(mousePos);
-        bool isSuccessful = CardCastManager.Instance.UseCard(_cardObject.CardMetaData, boardPos);
+        CardUseArea cardUseArea = CardUseArea.GetCardUseArea(eventData.position);
+        bool isSuccessful = cardUseArea != null &&
+                            cardUseArea.UseCard(_cardObject.CardMetaData, eventData.position);
         if(isSuccessful)
         {
             _cardObject.CardDisplay.ShowDecayDelayed(1);

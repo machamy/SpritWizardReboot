@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ghost-fast_change_0: 3565255842166721513
+      ghost-fast_change_1: 2097345635364127361
+      ghost-fast_change_2: -631139021270543528
+      ghost-fast_change_3: -8620629006179739652
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -129,18 +129,22 @@ public class CardDisplay : MonoBehaviour
             print($"{cardObjectPos} {transform.position}");
             return;
         }
-        Vector3 targetPos = cardObjectPos;
+
+        Vector3 targetPos;
+        float GetHeightByCoefficient(float coefficient) => cardObjectPos.y + cardObjectPos.y * coefficient;
         if (cardSelect.IsDragging)
         {
-            var dragMaxHeight = cardObjectPos.y + cardObjectPos.y * dragMaxHeightCoefficient;
+            targetPos = Input.mousePosition;
+            var dragMaxHeight = GetHeightByCoefficient(dragMaxHeightCoefficient);
             var rawTargetPos = Vector3.Lerp(transform.position, targetPos, FollowSpeed * Time.deltaTime);
+            // print($"{dragMaxHeight} {rawTargetPos.y}");
             float clampedY = Mathf.Clamp(rawTargetPos.y, 0, dragMaxHeight);
             targetPos = new Vector3(rawTargetPos.x, clampedY, rawTargetPos.z);
             
             if(cardObjectPos.y > dragMaxHeight)
             {
-                float decayStartHeight = cardObjectPos.y + cardObjectPos.y * DrageDecayHeightStartCoefficient;
-                float decayMaxHeight = cardObjectPos.y + cardObjectPos.y * dragDecayHeightMaxCoeefcient;
+                float decayStartHeight = GetHeightByCoefficient(DrageDecayHeightStartCoefficient);
+                float decayMaxHeight = GetHeightByCoefficient(dragDecayHeightMaxCoeefcient);
                 float range = decayMaxHeight - decayStartHeight;
 
                 var decayScale = Mathf.Lerp(0f, dragDecayScale, (targetPos.y - decayStartHeight) / range);
@@ -153,7 +157,7 @@ public class CardDisplay : MonoBehaviour
         }
         else
         {
-            targetPos = Vector3.Lerp(transform.position, targetPos, FollowSpeed * Time.deltaTime);
+            targetPos = Vector3.Lerp(transform.position, cardObjectPos, FollowSpeed * Time.deltaTime);
             ShowDecay(0);
         }
         transform.position = targetPos;
@@ -321,7 +325,7 @@ public class CardDisplay : MonoBehaviour
         var meta = cardObject.CardMetaData;
         if(meta.cardType == CardType.Rune)
         {
-            tile.Focus(setting.tileFocusOkColor, Tile.FocusState.MoveOk);
+            // tile.Focus(setting.tileFocusOkColor, Tile.FocusState.MoveOk);
         }
         else
         {

@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using EventChannel;
@@ -18,15 +19,36 @@ using UnityEngine;
 public class CardCastManager : Singleton<CardCastManager>
 {
     [SerializeField] private CardObject[] cards;
-    
+    [SerializeField] private CardUseArea cardUseArea;
     private RuneEffectHolder _runeEffectHolder;
     public RuneEffectHolder RuneEffectHolder => _runeEffectHolder;
+    
     
     private void Start()
     {
         _runeEffectHolder = GetComponent<RuneEffectHolder>();
     }
+
+    private void OnEnable()
+    {
+        cardUseArea.SetListener(OnCardUse);
+    }
     
+    private void OnDisable()
+    {
+        cardUseArea.ClearListener();
+    }
+    
+    private bool OnCardUse(CardMetaData cardMetaData, Vector2 targetPosition, bool isWorldPosition)
+    {
+        if (!isWorldPosition)
+        {
+            targetPosition = Camera.main.ScreenToWorldPoint(targetPosition);
+        }
+        Vector2Int boardPosition = BattleManager.Instance.Board.WorldToCell(targetPosition);
+        return UseCard(cardMetaData, boardPosition);
+    }
+
     public bool UseCard(CardMetaData cardMetaData, Vector2Int targetPosition)
     {
         var bm = BattleManager.Instance;
@@ -45,7 +67,7 @@ public class CardCastManager : Singleton<CardCastManager>
             Debug.Log("No card selected");
             return false;
         }
-        if (bm.Board.GetTile(targetPosition) == null)
+        if (cardMetaData.cardType == CardType.Attack && bm.Board.GetTile(targetPosition) == null)
         {
             Debug.Log("No target position");
             return false;
@@ -103,7 +125,7 @@ public class CardCastManager : Singleton<CardCastManager>
         // TODO : 룬 적용도 카드 안에서 하도록 개선 가능
         var effectHolder = GetComponent<RuneEffectHolder>();
         CardData cardData = cardMetaData.cardData;
-        if(!cardData.CanCast())
+        if(!cardData.CanCastWithoutTarget())
         {
             return false;
         }

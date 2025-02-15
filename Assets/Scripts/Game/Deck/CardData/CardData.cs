@@ -49,9 +49,11 @@ using UnityEngine.Serialization;
 
         /// <summary>
         /// 위치 정보가 없어도 시전이 가능한지 확인
+        /// move가 0이면 true
+        /// Rune여부는 확인하지 않는다
         /// </summary>
         /// <returns></returns>
-        public bool CanCast()
+        public bool CanCastWithoutTarget()
         {
             if(move == 0)
             {

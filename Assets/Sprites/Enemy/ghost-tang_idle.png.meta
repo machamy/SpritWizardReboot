@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ghost-tang_idle_0: 1657203175431952098
+      ghost-tang_idle_1: -3257518560981734332
+      ghost-tang_idle_2: -5479903980005199353
+      ghost-tang_idle_3: 2458572768949228513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
