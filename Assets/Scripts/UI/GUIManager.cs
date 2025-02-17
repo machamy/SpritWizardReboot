@@ -3,8 +3,13 @@ using DefaultNamespace;
 using UnityEngine;
 
 
+/// <summary>
+/// GUI 매니저
+/// 역할을 줄여 나갈 예정임
+/// </summary>
 public class GUIManager : MonoBehaviour
 {
+    
     [Header("UI Elements (Battle)")]
     [SerializeField] private TMPro.TextMeshProUGUI hpText;
     [SerializeField] private TurnIndicatingSlider turnSlider;

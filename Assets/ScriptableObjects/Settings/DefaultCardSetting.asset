@@ -30,9 +30,11 @@ MonoBehaviour:
   dragScale: 1
   dragScaleDuration: 0.2
   dragMaxHeightCoefficient: 1
+  dragUseHeightCoefficient: 0
   drageDecayHeightStartCoefficient: 0.5
   dragDecayHeightMaxCoeefcient: 5
   dragDecayScale: 1
   decayDuration: 0.5
   tileFocusOkColor: {r: 0.4, g: 1, b: 0, a: 0.6}
   tileFocusNoColor: {r: 1, g: 0, b: 0, a: 0.6}
+  tileFocusTargetColor: {r: 1, g: 1, b: 0, a: 0.6}
