@@ -83,7 +83,7 @@ public class StoreManager : MonoBehaviour
     {
         foreach (CardObject co in cardholder.sellectedCardObjects)
         {
-            playerDataSO.CardList.Add(co.CardMetaData);
+            playerDataSO.Deck.AddCard(co.CardMetaData);
         }
     }
 }

@@ -142,7 +142,7 @@ public class RewardManager : MonoBehaviour
     /// </summary>
     private void SelectFronMyCard()
     {
-        ShowCardList(playerDataSO.CardList); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
+        ShowCardList(playerDataSO.Deck.GetCopidList()); // TODO => 전투 종료 후 카드들이 어떻게 될건지 기획 나오고 그에 따라 수정 -> 아래의 카드제어 기능들도 마찬가지
     }
 
     /// <summary>
@@ -151,7 +151,7 @@ public class RewardManager : MonoBehaviour
     private void AddCard(CardMetaData cardMeta)
     {
         Debug.Log("카드추가" + cardMeta.cardKoreanName);
-        playerDataSO.CardList.Add(cardMeta);
+        playerDataSO.Deck.AddCard(cardMeta);
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ public class RewardManager : MonoBehaviour
     private void DestroyCard(CardMetaData cardMeta)
     {
         Debug.Log("카드제거" + cardMeta.cardKoreanName);
-        playerDataSO.CardList.Remove(cardMeta);
+        playerDataSO.Deck.RemoveCard(cardMeta);
     }
 
     /// <summary>

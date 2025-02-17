@@ -24,11 +24,13 @@ namespace Game
         [SerializeField] private Slime grassSlime;
         [SerializeField] private Slime fireSlime;
         [Header("Deck")]
+        [SerializeField] private bool initDeckByDBonEnable = false;
         [SerializeField] private PlayerDataSO playerDataSO;
+
         /// <summary>
         /// 현재 게임에서의, 플레이어의 덱
         /// </summary>
-        public List<CardMetaData> CurrentCardDataList => playerDataSO.CardList;
+        public Deck CurrentDeck => playerDataSO.Deck;
         [Header("Battle")]
         [SerializeField] private bool startOnEnable = false;
         [SerializeField] private bool isOnBattle = false;
@@ -53,6 +55,8 @@ namespace Game
         {
             playerTurnEnterEvent.OnTurnEventRaised += OnPlayerTurnEnter;
             playerTurnEndEvent.OnTurnEventRaised += OnPlayerTurnEnd;
+            if(initDeckByDBonEnable)
+                playerDataSO.InitDeckByDB();
             if(startOnEnable)
                 StartBattle();
         }
@@ -70,7 +74,7 @@ namespace Game
         public void StartBattle()
         {
             isOnBattle = true;
-            handDeckManager.InitDeck(CurrentCardDataList);
+            handDeckManager.InitDeck(CurrentDeck.GetCopidList());
             handDeckManager.SetupForBattle();
             turnManager.StartGame();
         }

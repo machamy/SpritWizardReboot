@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519d092749e3492a85718abb74e34e19, type: 3}
+  m_Name: PlayerDataSO
+  m_EditorClassIdentifier: 
+  gold: {fileID: 11400000, guid: c15198955d58caa4cbe83299c8aced53, type: 2}
+  gateHp: {fileID: 11400000, guid: 734ba7d875bf93d4186922b4404fdaa3, type: 2}
+  clearCount: {fileID: 11400000, guid: 7ec749faf57113a43a0d26d49b9e7c75, type: 2}
+  deck: {fileID: 11400000, guid: 8039198e1952e7c448d4d9b0a934d102, type: 2}

@@ -8,8 +8,12 @@ using UnityEngine.Serialization;
 
 public class HandDeckManager : MonoBehaviour
 {
+    [FormerlySerializedAs("deckContainer")]
+    [FormerlySerializedAs("deckManager")]
+    [FormerlySerializedAs("deckController")]
+    [FormerlySerializedAs("deck")]
     [Header("References")]
-    [SerializeField] private Deck deck;
+    [SerializeField] private BattleDeckContainer battleDeckContainer;
     [SerializeReference] private BaseCardHolder cardHolder;
     [SerializeReference] private BaseCardSellectableHolder baseCardSellectableHolder;
     [Header("Variables")]
@@ -29,7 +33,7 @@ public class HandDeckManager : MonoBehaviour
         foreach (var cardData in cardDataList)
         {
             Debug.Log($"[HandDeckManager::InitDeck] : {cardData.cardName}");
-            deck.AddCard(cardData);
+            battleDeckContainer.AddCard(cardData);
         }
     }
     
@@ -41,26 +45,31 @@ public class HandDeckManager : MonoBehaviour
     
     public void DrawCard()
     {
-        CardMetaData cardMetaData = deck.DrawCard();
+        CardMetaData cardMetaData = battleDeckContainer.DrawCard();
+        if (cardMetaData == null)
+        {
+            Debug.Log("더이상 뽑을 수 없습니다.");
+            return;
+        }
         CardObject cardObject = AddCardToHand(cardMetaData);
         // 만약 Pool을 사용한다면, 함수로 바꾸어 구독 해제 기능도 넣어야함
-        cardObject.OnCardDiscarded += co => deck.AddCardToDiscardPool(co.CardMetaData);
+        cardObject.OnCardDiscarded += co => battleDeckContainer.AddCardToDiscardPool(co.CardMetaData);
         cardObject.RaiseCardDrawn(cardMetaData);
     }
     
     public void ShowInitialDeck()
     {
-        ShowCardList(deck.CardDataListRef);
+        ShowCardList(battleDeckContainer.CardDataListRef);
     }
     
     public void ShowDiscardDeck()
     {
-        ShowCardList(new List<CardMetaData>(deck.DiscardCardQueueRef));
+        ShowCardList(new List<CardMetaData>(battleDeckContainer.DiscardCardQueueRef));
     }
     
     public void ShowDrawDeck()
     {
-        ShowCardList(new List<CardMetaData>(deck.DrawCardQueueRef));   
+        ShowCardList(new List<CardMetaData>(battleDeckContainer.DrawCardQueueRef));   
     }
     
     public void ShowCardList(List<CardMetaData> cardDataList)
@@ -75,8 +84,8 @@ public class HandDeckManager : MonoBehaviour
     public void SetupForBattle()
     {
         rerollCount.Value = maxRerollCount;
-        deck.SetupForBattle();
-        deck.ShuffleDrawPool();
+        battleDeckContainer.SetupForBattle();
+        battleDeckContainer.ShuffleDrawPool();
         for (int i = 0; i < handSize; i++)
         {
             DrawCard();

@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Game.Deck.CardHolder
+namespace Game
 {
     public class HorizontalHandCardHolder : BaseCardHolder
     {

@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 using DataStructure;
+using Game;
 using NUnit.Framework;
 using UnityEngine;
 
 
 
 
-public class Database : MonoBehaviour
+public class Database : Singleton<Database>
 {
     public bool isLoaded = false;
-    private static Database instance;
     [field:SerializeField] public List<CardMetaData> allCardMetas { get; private set; } = new List<CardMetaData>();
     [field:SerializeField] public List<CardData> allCardData { get; private set; } = new List<CardData>();
     [field: SerializeField] public List<CardMetaData> allSmithedCardMetas { get; private set; } = new List<CardMetaData>();
@@ -24,18 +24,18 @@ public class Database : MonoBehaviour
     [field:SerializeField] public List<EnemyData> allEnemyData { get; private set; } = new List<EnemyData>();
     [field:SerializeField] public List<EnemyPatternData> allEnemyPatternData { get; private set; } = new List<EnemyPatternData>();
     [field: SerializeField] public List<EnemyActionData> allEnemyActionData { get; private set; } = new List<EnemyActionData>();
-    public static List<CardMetaData> AllCardMetas => instance.allCardMetas;
-    public static List<CardData> AllCardData => instance.allCardData;
-    public static List<CardMetaData> AllSmithedCardMetas => instance.allSmithedCardMetas;
-    public static List<CardData> AllSmithedCardData => instance.allSmithedCardData;
-    public static Dictionary<SeedType, RewardChanceData> AllRewardChance => instance.allRewardChance;
-    public static Dictionary<SeedType, RewardAmountData> AllRewardAmount => instance.allRewardAmount;
-    public static Dictionary<SeedType, AddCardWeightData> AllAddCardWeight => instance.allAddCardWeight;
-    public static List<StorePriceData> AllCardPrice => instance.allCardPrice;
-    public static List<StorePriceData> AllEditCardPrice => instance.allEditCardPrice;
-    public static List<EnemyData> AllEnemyData => instance.allEnemyData;
-    public static List<EnemyPatternData> AllEnemyPatternData => instance.allEnemyPatternData;
-    public static List<EnemyActionData> AllEnemyActionData => instance.allEnemyActionData;
+    public static List<CardMetaData> AllCardMetas => Instance.allCardMetas;
+    public static List<CardData> AllCardData => Instance.allCardData;
+    public static List<CardMetaData> AllSmithedCardMetas => Instance.allSmithedCardMetas;
+    public static List<CardData> AllSmithedCardData => Instance.allSmithedCardData;
+    public static Dictionary<SeedType, RewardChanceData> AllRewardChance => Instance.allRewardChance;
+    public static Dictionary<SeedType, RewardAmountData> AllRewardAmount => Instance.allRewardAmount;
+    public static Dictionary<SeedType, AddCardWeightData> AllAddCardWeight => Instance.allAddCardWeight;
+    public static List<StorePriceData> AllCardPrice => Instance.allCardPrice;
+    public static List<StorePriceData> AllEditCardPrice => Instance.allEditCardPrice;
+    public static List<EnemyData> AllEnemyData => Instance.allEnemyData;
+    public static List<EnemyPatternData> AllEnemyPatternData => Instance.allEnemyPatternData;
+    public static List<EnemyActionData> AllEnemyActionData => Instance.allEnemyActionData;
 
 
     [Header("Data")]
@@ -61,18 +61,9 @@ public class Database : MonoBehaviour
         LoadData();
     }
 
-    private void OnEnable()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
     [ContextMenu("Load Data")]
     public void LoadData()
     {
-        instance = this;
         allCardMetas.Clear();
         allCardData.Clear();
         allRewardChance.Clear();
