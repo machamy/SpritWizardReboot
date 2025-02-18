@@ -4,14 +4,13 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - displaySetting: {fileID: 11400000, guid: 6405a45f4c0dc224c87e15663b673559, type: 2}
-  - cardData: {instanceID: 0}
-  - cardHolder: {instanceID: 0}
+  - cardObject: {instanceID: 0}
   - image: {instanceID: 0}
   - nameText: {instanceID: 0}
   - descriptionText: {instanceID: 0}
   - costText: {instanceID: 0}
-  - damageText: {instanceID: 0}
+  - moveText: {instanceID: 0}
+  - guiEventChannel: {fileID: 11400000, guid: 02e6965a935657b4eb00dd3e8a0337f8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -14,9 +14,9 @@ public static class Define
     }
     public enum RuneEffectType
     {
-        damage,
-        attackCnt,
-        moveCnt,
+        Damage,
+        AttackCnt,
+        MoveCnt,
         MAX
     }
     public enum CalculateType

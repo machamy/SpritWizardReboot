@@ -73,7 +73,7 @@ public class CardData : ICloneable
     /// <returns></returns>
     public bool CanCastTo(Vector2Int start, Vector2Int target, RuneEffectHolder runeEffectHolder)
     {
-        int moveCnt = move + runeEffectHolder.GetRuneEffect(Define.RuneEffectType.moveCnt);
+        int moveCnt = move + runeEffectHolder.GetRuneEffect(Define.RuneEffectType.MoveCnt);
         int deltaX = Mathf.Abs(start.x - target.x);
         int deltaY = Mathf.Abs(start.y - target.y);
         // Debug.Log($"deltaX : {deltaX}, deltaY : {deltaY}");
@@ -87,7 +87,7 @@ public class CardData : ICloneable
     public List<Tile> GetTargetTiles(Vector2Int castPosition, RuneEffectHolder runeEffectHolder)
     {
         Board board = BattleManager.Instance.Board;
-        int atackCnt = attackCount + runeEffectHolder.GetRuneEffect(Define.RuneEffectType.attackCnt);
+        int atackCnt = attackCount + runeEffectHolder.GetRuneEffect(Define.RuneEffectType.AttackCnt);
         int attackWidth = this.attackWidth;
         int attackHeight = this.attackHeight;
         List<Tile> targetTiles;

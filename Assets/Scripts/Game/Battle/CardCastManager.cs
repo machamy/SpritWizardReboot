@@ -100,13 +100,13 @@ public class CardCastManager : Singleton<CardCastManager>
             int runeEffectAmount = _runeEffectHolder.PopRuneEffect(runeEffectType);
             switch (runeEffectType)
             {
-                case Define.RuneEffectType.damage:
+                case Define.RuneEffectType.Damage:
                     runeAppliedCardData.attackDamage += runeEffectAmount;
                     break;
-                case Define.RuneEffectType.attackCnt:
+                case Define.RuneEffectType.AttackCnt:
                     runeAppliedCardData.attackCount += runeEffectAmount;
                     break;
-                case Define.RuneEffectType.moveCnt:
+                case Define.RuneEffectType.MoveCnt:
                     runeAppliedCardData.move += runeEffectAmount;
                     break;
             }

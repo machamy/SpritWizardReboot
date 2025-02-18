@@ -529,11 +529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ee5986f1ec485399579ee9f46c1337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiEventChannel: {fileID: 11400000, guid: 02e6965a935657b4eb00dd3e8a0337f8, type: 2}
   hpText: {fileID: 1579053043}
   turnSlider: {fileID: 1832423776}
-  damageRunesText: {fileID: 1751500686}
-  attackCountRunesText: {fileID: 1625358266}
-  moveRunesText: {fileID: 227900610}
+  runesHUD: {fileID: 2089865831}
   drawSizeText: {fileID: 878783816}
   discardSizeText: {fileID: 1933525425}
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
@@ -1046,7 +1045,7 @@ MonoBehaviour:
   - cardId: magic_doubleShot
     cardKoreanName: doubleShot
     cardName: doubleShot
-    description: "\uB354\uBE14~~\uC0F7"
+    description: "\uD53C\uD5743 \uD69F\uC2182 \uC9D1\uC911"
     cardType: 0
     rarity: 0
     cost: 1
@@ -1073,7 +1072,7 @@ MonoBehaviour:
   - cardId: magic_tripleShot
     cardKoreanName: tripleShot
     cardName: tripleShot
-    description: "\uBA40\uD2F0~~~\uC0F7"
+    description: "\uD53C\uD5742 \uD69F\uC2183 \uBC29\uC0AC3"
     cardType: 0
     rarity: 0
     cost: 1
@@ -1100,7 +1099,7 @@ MonoBehaviour:
   - cardId: magic_rapidFire
     cardKoreanName: rapidFire
     cardName: rapidFire
-    description: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    description: "\uD53C\uD5741 \uD69F\uC2185 \uC9D1\uC911"
     cardType: 0
     rarity: 1
     cost: 1
@@ -1127,7 +1126,7 @@ MonoBehaviour:
   - cardId: magic_fireball
     cardKoreanName: fireball
     cardName: fireball
-    description: "\uBD88\uACF5"
+    description: "\uD53C\uD5744 \uD69F\uC2181 \uAD00\uD1B51"
     cardType: 0
     rarity: 0
     cost: 1
@@ -1154,7 +1153,7 @@ MonoBehaviour:
   - cardId: magic_fireExplosion
     cardKoreanName: fireExplosion
     cardName: fireExplosion
-    description: "\uD391~~~"
+    description: "\uD53C\uD5745 \uD69F\uC2181 \uD3ED\uBC1C3x3"
     cardType: 0
     rarity: 0
     cost: 1
@@ -1181,7 +1180,7 @@ MonoBehaviour:
   - cardId: magic_iceScatter
     cardKoreanName: iceScatter
     cardName: iceScatter
-    description: "\uC5BC\uC74C \uB09C\uC0AC"
+    description: "\uD53C\uD5741 \uD69F\uC2188 \uBC29\uC0AC8"
     cardType: 0
     rarity: 1
     cost: 2
@@ -1208,7 +1207,7 @@ MonoBehaviour:
   - cardId: magic_iceBeam
     cardKoreanName: iceBeam
     cardName: iceBeam
-    description: "\uC5BC\uC74C \uBE54"
+    description: "\uD53C\uD5744 \uD69F\uC2182 \uBE542x5 \uC9D1\uC911"
     cardType: 0
     rarity: 1
     cost: 2
@@ -1689,8 +1688,653 @@ MonoBehaviour:
     runeEffectAmounts: 000000000300000000000000
     calculateType: 0
     cardAction: {fileID: 0}
-  <allSmithedCardMetas>k__BackingField: []
-  <allSmithedCardData>k__BackingField: []
+  <allSmithedCardMetas>k__BackingField:
+  - cardId: magic_doubleShot
+    cardKoreanName: doubleShot+
+    cardName: doubleShot+
+    description: "\uB354\uBE14~~\uC0F7"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+    cardData:
+      skillCaster: 1
+      attackDamage: 5
+      attackCount: 2
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_tripleShot
+    cardKoreanName: tripleShot+
+    cardName: tripleShot+
+    description: "\uBA40\uD2F0~~~\uC0F7"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+    cardData:
+      skillCaster: 1
+      attackDamage: 2
+      attackCount: 4
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 1
+      spreadRange: 3
+      pierce: 2
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_rapidFire
+    cardKoreanName: rapidFire+
+    cardName: rapidFire+
+    description: "\uC640\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4\uB2E4"
+    cardType: 0
+    rarity: 1
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: -672169207927346403, guid: cc52de4e040e73145ac69fb32116dde8, type: 3}
+    cardData:
+      skillCaster: 1
+      attackDamage: 1
+      attackCount: 7
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_fireball
+    cardKoreanName: fireball+
+    cardName: fireball+
+    description: "\uBD88\uACF5"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
+    cardData:
+      skillCaster: 2
+      attackDamage: 6
+      attackCount: 1
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 1
+      spreadRange: 3
+      pierce: 1
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_fireExplosion
+    cardKoreanName: fireExplosion+
+    cardName: fireExplosion+
+    description: "\uD391~~~"
+    cardType: 0
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 2644d727ce18a884fa6ff0255584ed41, type: 3}
+    cardData:
+      skillCaster: 2
+      attackDamage: 5
+      attackCount: 1
+      attackType: 2
+      runeEffectTypes: 0000000002000000
+      attackHeight: 5
+      attackWidth: 5
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_iceScatter
+    cardKoreanName: iceScatter+
+    cardName: iceScatter+
+    description: "\uC5BC\uC74C \uB09C\uC0AC"
+    cardType: 0
+    rarity: 1
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 1
+      attackCount: 8
+      attackType: 0
+      runeEffectTypes: 000000000100000002000000
+      attackHeight: -1
+      attackWidth: -1
+      attackSpread: 1
+      spreadRange: 8
+      pierce: 0
+      move: 2
+      specialEffectId: 13001
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: magic_iceBeam
+    cardKoreanName: iceBeam+
+    cardName: iceBeam+
+    description: "\uC5BC\uC74C \uBE54"
+    cardType: 0
+    rarity: 1
+    cost: 2
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 4c3aff28256645b4694a4b670ea24554, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 4
+      attackCount: 3
+      attackType: 1
+      runeEffectTypes: 0000000002000000
+      attackHeight: 2
+      attackWidth: 5
+      attackSpread: 0
+      spreadRange: 1
+      pierce: 0
+      move: 2
+      specialEffectId: 13002
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - cardId: temp01
+    cardKoreanName: "\uD22C\uC9C0\uB8EC+"
+    cardName: "\uD22C\uC9C0\uB8EC+"
+    description: ADD attack 4, projectile 0, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 040000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp02
+    cardKoreanName: "\uBA85\uC0C1\uB8EC+"
+    cardName: "\uBA85\uC0C1\uB8EC+"
+    description: ADD attack 1, projectile 0, movement -1
+    cardType: 1
+    rarity: 0
+    cost: 0
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 0100000000000000ffffffff
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp03
+    cardKoreanName: "\uBB34\uD615\uB8EC+"
+    cardName: "\uBB34\uD615\uB8EC+"
+    description: ADD attack 0, projectile 1, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 0
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000100000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp04
+    cardKoreanName: "\uD3C9\uD654\uB8EC+"
+    cardName: "\uD3C9\uD654\uB8EC+"
+    description: ADD attack -1, projectile 1, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 0
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: ffffffff0100000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp05
+    cardKoreanName: "\uB9F9\uACF5\uB8EC+"
+    cardName: "\uB9F9\uACF5\uB8EC+"
+    description: ADD attack 0, projectile 2, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000200000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp06
+    cardKoreanName: "\uC2E0\uC18D\uB8EC+"
+    cardName: "\uC2E0\uC18D\uB8EC+"
+    description: ADD attack 2, projectile 0, movement 1
+    cardType: 1
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 020000000000000001000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp07
+    cardKoreanName: "\uACA9\uB178\uB8EC+"
+    cardName: "\uACA9\uB178\uB8EC+"
+    description: ADD attack 10, projectile 0, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 2
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 0a0000000000000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  - cardId: temp08
+    cardKoreanName: "\uBD84\uD654\uB8EC+"
+    cardName: "\uBD84\uD654\uB8EC+"
+    description: ADD attack 0, projectile 3, movement 0
+    cardType: 1
+    rarity: 0
+    cost: 1
+    isSmithed: 1
+    frontImage: {fileID: 0}
+    backImage: {fileID: 21300000, guid: 8a6ba6e50fa249c47a91a2f15c10a463, type: 3}
+    cardData:
+      skillCaster: 0
+      attackDamage: 0
+      attackCount: 0
+      attackType: 0
+      runeEffectTypes: 
+      attackHeight: 0
+      attackWidth: 0
+      attackSpread: 0
+      spreadRange: 0
+      pierce: 0
+      move: 0
+      specialEffectId: 
+      projectilePrefabName: 
+      runeEffectAmounts: 000000000300000000000000
+      calculateType: 0
+      cardAction: {fileID: 0}
+  <allSmithedCardData>k__BackingField:
+  - skillCaster: 1
+    attackDamage: 5
+    attackCount: 2
+    attackType: 0
+    runeEffectTypes: 000000000100000002000000
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: 0
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 1
+    attackDamage: 2
+    attackCount: 4
+    attackType: 0
+    runeEffectTypes: 000000000100000002000000
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: 1
+    spreadRange: 3
+    pierce: 2
+    move: 2
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 1
+    attackDamage: 1
+    attackCount: 7
+    attackType: 0
+    runeEffectTypes: 000000000100000002000000
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: 0
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 2
+    attackDamage: 6
+    attackCount: 1
+    attackType: 0
+    runeEffectTypes: 000000000100000002000000
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: 1
+    spreadRange: 3
+    pierce: 1
+    move: 2
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 2
+    attackDamage: 5
+    attackCount: 1
+    attackType: 2
+    runeEffectTypes: 0000000002000000
+    attackHeight: 5
+    attackWidth: 5
+    attackSpread: 0
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 0
+    attackDamage: 1
+    attackCount: 8
+    attackType: 0
+    runeEffectTypes: 000000000100000002000000
+    attackHeight: -1
+    attackWidth: -1
+    attackSpread: 1
+    spreadRange: 8
+    pierce: 0
+    move: 2
+    specialEffectId: 13001
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 0
+    attackDamage: 4
+    attackCount: 3
+    attackType: 1
+    runeEffectTypes: 0000000002000000
+    attackHeight: 2
+    attackWidth: 5
+    attackSpread: 0
+    spreadRange: 1
+    pierce: 0
+    move: 2
+    specialEffectId: 13002
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 11400000, guid: 4e1b2f466795cd6489e5cbaae4ad1d2a, type: 2}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 040000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 0100000000000000ffffffff
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000100000000000000
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: ffffffff0100000000000000
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000200000000000000
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 020000000000000001000000
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 0a0000000000000000000000
+    calculateType: 0
+    cardAction: {fileID: 0}
+  - skillCaster: 0
+    attackDamage: 0
+    attackCount: 0
+    attackType: 0
+    runeEffectTypes: 
+    attackHeight: 0
+    attackWidth: 0
+    attackSpread: 0
+    spreadRange: 0
+    pierce: 0
+    move: 0
+    specialEffectId: 
+    projectilePrefabName: 
+    runeEffectAmounts: 000000000300000000000000
+    calculateType: 0
+    cardAction: {fileID: 0}
   <allRewardChance>k__BackingField:
     _defaultKey: 0
     _pairs:
@@ -1708,7 +2352,7 @@ MonoBehaviour:
         destroyCaredChance: 15
         upgradeCardChance: 20
         gateHpRestoreChance: 10
-    - Key: 0
+    - Key: 6
       Value:
         addRuneCardChance: 100
         addMagicCardChance: 100
@@ -1783,7 +2427,7 @@ MonoBehaviour:
   <allEnemyData>k__BackingField:
   - name: strikeShade
     id: 20001
-    sprite: 
+    sprite: ghost-blowgun_idle
     size: 1
     hpMiddle: 20
     hpVariation: 1
@@ -1793,11 +2437,11 @@ MonoBehaviour:
     - 20001-3
     - 20001-4
     - 20001-5
-    initPattern: 20001-1, 20001-2, 20001-3, 20001-4, 20001-5
+    initPattern: 20001-5
     phaseSwitchHpRatio: 0
   - name: blowgunShade
     id: 20002
-    sprite: 
+    sprite: ghost-blowgun_idle
     size: 1
     hpMiddle: 15
     hpVariation: 1
@@ -1805,115 +2449,9 @@ MonoBehaviour:
     - 20002-1
     - 20002-2
     - 20002-3
-    initPattern: 20002-1, 20002-2, 20002-3
+    initPattern: 20002-1
     phaseSwitchHpRatio: 0
   <allEnemyPatternData>k__BackingField:
-  - id: 20001-1
-    range: 15
-    actionSequence:
-    - 1
-    phase: 1
-    weight: 3
-  - id: 20001-2
-    range: 5
-    actionSequence:
-    - 2
-    - 0
-    phase: 1
-    weight: 1
-  - id: 20001-3
-    range: 0
-    actionSequence:
-    - 20001-1-1
-    phase: 1
-    weight: 1
-  - id: 20001-4
-    range: 0
-    actionSequence:
-    - 20001-1-2
-    phase: 1
-    weight: 2
-  - id: 20001-5
-    range: 15
-    actionSequence:
-    - 2
-    - 0
-    phase: 1
-    weight: 0
-  - id: 20002-1
-    range: 15
-    actionSequence:
-    - 1
-    phase: 1
-    weight: 1
-  - id: 20002-2
-    range: 15
-    actionSequence:
-    - 20002-1-1
-    - 0
-    - 0
-    phase: 1
-    weight: 3
-  - id: 20002-3
-    range: 9
-    actionSequence:
-    - 20002-1-2
-    - 0
-    phase: 1
-    weight: 1
-  - id: 20001-1
-    range: 15
-    actionSequence:
-    - 1
-    phase: 1
-    weight: 3
-  - id: 20001-2
-    range: 5
-    actionSequence:
-    - 2
-    - 0
-    phase: 1
-    weight: 1
-  - id: 20001-3
-    range: 0
-    actionSequence:
-    - 20001-1-1
-    phase: 1
-    weight: 1
-  - id: 20001-4
-    range: 0
-    actionSequence:
-    - 20001-1-2
-    phase: 1
-    weight: 2
-  - id: 20001-5
-    range: 15
-    actionSequence:
-    - 2
-    - 0
-    phase: 1
-    weight: 0
-  - id: 20002-1
-    range: 15
-    actionSequence:
-    - 1
-    phase: 1
-    weight: 1
-  - id: 20002-2
-    range: 15
-    actionSequence:
-    - 20002-1-1
-    - 0
-    - 0
-    phase: 1
-    weight: 3
-  - id: 20002-3
-    range: 9
-    actionSequence:
-    - 20002-1-2
-    - 0
-    phase: 1
-    weight: 1
   - id: 20001-1
     range: 15
     actionSequence:
@@ -1981,97 +2519,13 @@ MonoBehaviour:
     action: 2
     value: 3
   - id: +020000-12-31T15:00:00.000Z
-    action: 3
+    action: 1
     value: 12
   - id: +020001-01-01T15:00:00.000Z
-    action: 3
+    action: 1
     value: 4
   - id: +020001-12-31T15:00:00.000Z
-    action: 3
-    value: 5
-  - id: 0
-    action: 3
-    value: 0
-  - id: 1
-    action: 2
-    value: 1
-  - id: 2
-    action: 2
-    value: 2
-  - id: 3
-    action: 2
-    value: 3
-  - id: +020000-12-31T15:00:00.000Z
-    action: 3
-    value: 12
-  - id: +020001-01-01T15:00:00.000Z
-    action: 3
-    value: 4
-  - id: +020001-12-31T15:00:00.000Z
-    action: 3
-    value: 5
-  - id: 0
-    action: 3
-    value: 0
-  - id: 1
-    action: 2
-    value: 1
-  - id: 2
-    action: 2
-    value: 2
-  - id: 3
-    action: 2
-    value: 3
-  - id: +020000-12-31T15:00:00.000Z
-    action: 3
-    value: 12
-  - id: +020001-01-01T15:00:00.000Z
-    action: 3
-    value: 4
-  - id: +020001-12-31T15:00:00.000Z
-    action: 3
-    value: 5
-  - id: 0
-    action: 3
-    value: 0
-  - id: 1
-    action: 2
-    value: 1
-  - id: 2
-    action: 2
-    value: 2
-  - id: 3
-    action: 2
-    value: 3
-  - id: +020000-12-31T15:00:00.000Z
-    action: 3
-    value: 12
-  - id: +020001-01-01T15:00:00.000Z
-    action: 3
-    value: 4
-  - id: +020001-12-31T15:00:00.000Z
-    action: 3
-    value: 5
-  - id: 0
-    action: 3
-    value: 0
-  - id: 1
-    action: 2
-    value: 1
-  - id: 2
-    action: 2
-    value: 2
-  - id: 3
-    action: 2
-    value: 3
-  - id: +020000-12-31T15:00:00.000Z
-    action: 3
-    value: 12
-  - id: +020001-01-01T15:00:00.000Z
-    action: 3
-    value: 4
-  - id: +020001-12-31T15:00:00.000Z
-    action: 3
+    action: 0
     value: 5
   googleSheetSO: {fileID: 11400000, guid: 357c84c433735e64683baf29c14873ba, type: 2}
   magicCardDataFactory: {fileID: 11400000, guid: 736cbc6dccabc954e87788e4c15234af, type: 2}
@@ -2131,142 +2585,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &227900608
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 227900609}
-  - component: {fileID: 227900611}
-  - component: {fileID: 227900610}
-  m_Layer: 5
-  m_Name: Rune Movement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &227900609
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227900608}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2089865830}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -26}
-  m_SizeDelta: {x: 313.6332, y: 61.3633}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &227900610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227900608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Rune Movement
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &227900611
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227900608}
-  m_CullTransparentMesh: 1
 --- !u!1 &231041970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,11 +3392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37dfbaed08fa0314b8b3164b474de2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runeEffectChannel:
-  - {fileID: 11400000, guid: 6dfc1c3cfbc981243994c332e6fc8cfa, type: 2}
-  - {fileID: 11400000, guid: f79f4320003bf4a4d802eafc10465dae, type: 2}
-  - {fileID: 11400000, guid: effe6fcb923d3c84ba2ca387a4b96edc, type: 2}
+  tmpRuneEffectData: 000000000000000000000000
   runeEffectData: 000000000000000000000000
+  guiEventChannel: {fileID: 11400000, guid: 02e6965a935657b4eb00dd3e8a0337f8, type: 2}
 --- !u!114 &455270555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6343,7 +6659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 687317513}
-  cardSetting: {fileID: 11400000, guid: 6405a45f4c0dc224c87e15663b673559, type: 2}
+  cardSetting: {fileID: 11400000, guid: 126e93ecded8a1c429fcd238c98f33fa, type: 2}
   cardobjectPrefab: {fileID: 902408350992602833, guid: 6cf270324c1f4e444bd07ec973d7deb3, type: 3}
   cardSlotPrefab: {fileID: 2610414694314858173, guid: c9e4d3327f9c28341a8fa4d53f978351, type: 3}
 --- !u!114 &975145067
@@ -11118,144 +11434,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1 &1625358264
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625358265}
-  - component: {fileID: 1625358267}
-  - component: {fileID: 1625358266}
-  m_Layer: 5
-  m_Name: Rune AtkCnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1625358265
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625358264}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2089865830}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 313.6332, y: 61.3633}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1625358266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625358264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Runes Cnt
-
-'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1625358267
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625358264}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1661901223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11967,142 +12145,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8911515486056838684, guid: e8476516d07bfa04e910a57fc60c924c, type: 3}
   m_PrefabInstance: {fileID: 1748156147}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1751500684
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1751500685}
-  - component: {fileID: 1751500687}
-  - component: {fileID: 1751500686}
-  m_Layer: 5
-  m_Name: Rune AtkDmg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1751500685
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751500684}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2089865830}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 121.31836}
-  m_SizeDelta: {x: 313.6332, y: 61.3633}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1751500686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751500684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Rune Attack
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1751500687
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751500684}
-  m_CullTransparentMesh: 1
 --- !u!1 &1753889946
 GameObject:
   m_ObjectHideFlags: 0
@@ -14303,44 +14345,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8911515486056838684, guid: e8476516d07bfa04e910a57fc60c924c, type: 3}
   m_PrefabInstance: {fileID: 2075447746}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2089865829
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2089865830}
-  m_Layer: 5
-  m_Name: Runes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2089865830
+--- !u!224 &2089865830 stripped
 RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+  m_PrefabInstance: {fileID: 6020560270250138150}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089865829}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1751500685}
-  - {fileID: 1625358265}
-  - {fileID: 227900609}
-  m_Father: {fileID: 1465441037}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -658.18335, y: -385}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2089865831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5657308448899975773, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+  m_PrefabInstance: {fileID: 6020560270250138150}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9871fd736a2530a46a2b41ac6725c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2116391602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14877,6 +14897,147 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8326919473347568082, guid: 9c45569a4076d3a46b3c53e341d2da80, type: 3}
   m_PrefabInstance: {fileID: 8794475127080733285}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6020560270250138150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1465441037}
+    m_Modifications:
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300.5258
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 197.61041
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 147
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618257308593490800, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679075444031500848, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_Name
+      value: Runes
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276437816997243711, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276437816997243711, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276437816997243711, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276437816997243711, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492490130160502835, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492490130160502835, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492490130160502835, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492490130160502835, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564665738706351420, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564665738706351420, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564665738706351420, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 83cd7f49809e6474d8aaa980a3c0950e, type: 3}
 --- !u!1001 &7838445793442492432
 PrefabInstance:
   m_ObjectHideFlags: 0

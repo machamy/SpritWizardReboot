@@ -73,9 +73,9 @@ public class MagicCardDataFactorySO : ScriptableObject, CardDataFactory<CardMeta
             cardAction = defaultMagicCardAction
         };
         if(magicCard.attackType == AttackType.projectile)
-            magicCard.runeEffectTypes = new[] {Define.RuneEffectType.damage, Define.RuneEffectType.attackCnt, Define.RuneEffectType.moveCnt};
+            magicCard.runeEffectTypes = new[] {Define.RuneEffectType.Damage, Define.RuneEffectType.AttackCnt, Define.RuneEffectType.MoveCnt};
         else
-            magicCard.runeEffectTypes = new[] {Define.RuneEffectType.damage, Define.RuneEffectType.moveCnt};
+            magicCard.runeEffectTypes = new[] {Define.RuneEffectType.Damage, Define.RuneEffectType.MoveCnt};
         
         meta.cardData = magicCard;
         return meta;

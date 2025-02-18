@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using EventChannel;
 using Game;
 using Game.Entity;
 using Game.World;
@@ -58,7 +59,8 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI moveText;
-
+    [Header("Channel")]
+    [SerializeField] GUIEventChannelSO guiEventChannel;
 
     private Vector3 cardObjectPos;
     
@@ -254,6 +256,8 @@ public class CardDisplay : MonoBehaviour
             return;
         // print($"{name} focused");
         transform.DOScale(focusedScale, focusDuration);
+        
+        OnHoverd();
         // if(focusCardVisible)
         // {
         //     var targetY = GetMinVisiblePos(cardObjectPos.y); 
@@ -267,7 +271,36 @@ public class CardDisplay : MonoBehaviour
             return;
         if(!cardSelect.IsDragging)
         {
+            transform.DOKill();
             transform.DOScale(unfocusedScale, unfocusDuration);
+            OnUnhoverd();
+        }
+    }
+
+    private void OnHoverd()
+    {
+        // TODO : 룬카드/마법카드 호버링 처리
+        switch (cardObject.CardMetaData.cardType)
+        {
+            case CardType.Attack:
+                break;
+            case CardType.Rune:
+                RuneEffectHolder runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
+                runeEffectHolder.StackTempRuneEffectRange(cardObject.CardMetaData.cardData.runeEffectAmounts);
+                break;
+        }
+    }
+    
+    private void OnUnhoverd()
+    {
+        switch (cardObject.CardMetaData.cardType)
+        {
+            case CardType.Attack:
+                break;
+            case CardType.Rune:
+                RuneEffectHolder runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
+                runeEffectHolder.ResetAllTempRuneEffect();
+                break;
         }
     }
 
@@ -314,6 +347,7 @@ public class CardDisplay : MonoBehaviour
         transform.DOScale(unfocusedScale, dragScaleDuration);
         // transform.DOMove(cardHolder.position, dragReturnDuration);
         image.DOFade(1f, dragScaleDuration);
+        OnHoverd();
         ShowDecay(0f);
     }
     
