@@ -363,7 +363,7 @@ public class CardDisplay : MonoBehaviour
         }
         else
         {
-            var slime = BattleManager.Instance.GetSlime(meta.cardData.skillCaster);
+            var slime = meta.cardData.GetSkillCaster();
             var runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
             if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates, runeEffectHolder))
             {

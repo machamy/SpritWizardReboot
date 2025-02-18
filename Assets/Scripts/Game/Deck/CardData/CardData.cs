@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game;
+using Game.Player;
 using Game.World;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -116,6 +117,11 @@ public class CardData : ICloneable
         
         
         return targetTiles;
+    }
+    
+    public Slime GetSkillCaster()
+    {
+        return BattleManager.Instance.GetSlime(skillCaster);
     }
     
     public object Clone()
