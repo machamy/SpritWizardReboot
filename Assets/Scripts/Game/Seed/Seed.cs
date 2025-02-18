@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
-    private Queue<Queue<SeedType>> seedQueue;
-    public Queue<Queue<SeedType>> SeedQueue { get => seedQueue; }
+    private List<List<SeedType>> seedList;
+    public List<List<SeedType>> SeedList => seedList;
 
     private TextMeshProUGUI[] seedTexts;
 
@@ -21,7 +21,7 @@ public class Seed : MonoBehaviour
     public void DisplaySeed()
     {
         int idx = 0;
-        foreach (Queue<SeedType> seedTypes in seedQueue)
+        foreach (List<SeedType> seedTypes in seedList)
         {
             seedTexts[idx].text = "";
             foreach (SeedType seed in seedTypes)
@@ -32,9 +32,9 @@ public class Seed : MonoBehaviour
         }
     }
 
-    public void DisplaySeed(Queue<Queue<SeedType>> seeds)
+    public void DisplaySeed(List<List<SeedType>> seeds)
     {
-        seedQueue = seeds;
+        seedList = seeds;
         DisplaySeed();
     }
 }

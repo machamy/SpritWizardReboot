@@ -1691,6 +1691,7 @@ MonoBehaviour:
   descriptionText: {fileID: 1910390478}
   costText: {fileID: 1856923164}
   moveText: {fileID: 0}
+  guiEventChannel: {fileID: 0}
 --- !u!114 &148219822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5247,7 +5248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &481695874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5260,11 +5261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc2029458254bd682247def89eca017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck:
+  battleDeckContainer:
     discardSize: {fileID: 11400000, guid: f84b70add8c9629449019ba82ca75559, type: 2}
     drawSize: {fileID: 11400000, guid: ffb9c7a51dc23c4418116cded4be7bc5, type: 2}
   cardHolder: {fileID: 795763285}
   baseCardSellectableHolder: {fileID: 2134246059}
+  maxRerollCount: 2
+  rerollCount: {fileID: 0}
   handSize: 3
 --- !u!114 &481695875
 MonoBehaviour:
@@ -5278,11 +5281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37dfbaed08fa0314b8b3164b474de2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runeEffectChannel:
-  - {fileID: 11400000, guid: 6dfc1c3cfbc981243994c332e6fc8cfa, type: 2}
-  - {fileID: 11400000, guid: f79f4320003bf4a4d802eafc10465dae, type: 2}
-  - {fileID: 11400000, guid: effe6fcb923d3c84ba2ca387a4b96edc, type: 2}
+  tmpRuneEffectData: 000000000000000000000000
   runeEffectData: 000000000000000000000000
+  guiEventChannel: {fileID: 11400000, guid: 02e6965a935657b4eb00dd3e8a0337f8, type: 2}
 --- !u!114 &481695876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5299,6 +5300,7 @@ MonoBehaviour:
   - {fileID: 1823485647}
   - {fileID: 1248342828}
   - {fileID: 148219822}
+  cardUseArea: {fileID: 0}
 --- !u!4 &481695877
 Transform:
   m_ObjectHideFlags: 0
@@ -13514,12 +13516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ee5986f1ec485399579ee9f46c1337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiEventChannel: {fileID: 0}
   hpText: {fileID: 71293246}
-  timerText: {fileID: 0}
-  turnText: {fileID: 977902741}
-  damageRunesText: {fileID: 0}
-  attackCountRunesText: {fileID: 0}
-  moveRunesText: {fileID: 0}
+  turnSlider: {fileID: 0}
+  runesHUD: {fileID: 0}
   drawSizeText: {fileID: 0}
   discardSizeText: {fileID: 0}
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
@@ -13932,6 +13932,7 @@ MonoBehaviour:
   descriptionText: {fileID: 1310912688}
   costText: {fileID: 360643110}
   moveText: {fileID: 0}
+  guiEventChannel: {fileID: 0}
 --- !u!114 &1248342828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16751,7 +16752,9 @@ MonoBehaviour:
   iceSlime: {fileID: 901941490}
   grassSlime: {fileID: 1937742820}
   fireSlime: {fileID: 1440557914}
+  initDeckByDBonEnable: 0
   playerDataSO: {fileID: 11400000, guid: c1b7420f7bf1ccb459fea381005c7368, type: 2}
+  startOnEnable: 0
   isOnBattle: 0
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
   playerTurnEndEvent: {fileID: 11400000, guid: 74a9d209f490a174d9899b88ba77234d, type: 2}
@@ -18350,7 +18353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storeProducts: {fileID: 455644214}
   cardHolder: {fileID: 1436646196}
-  playerDataSO: {fileID: 0}
+  playerDataSO: {fileID: 11400000, guid: c1b7420f7bf1ccb459fea381005c7368, type: 2}
 --- !u!4 &1644228812
 Transform:
   m_ObjectHideFlags: 0
@@ -19418,8 +19421,8 @@ MonoBehaviour:
   enemyTurnTime: 1
   currentRawTurn: 0
   isReadyToEndPlayerTurn: 0
-  remainEnemyTurn: 0
-  waitsForEndPlayerTurn: {fileID: 11400000, guid: b9d9d10d99c679f43aa931e6192a9114, type: 2}
+  remainEnemyTurnSO: {fileID: 0}
+  waitsForEndPlayerTurnSO: {fileID: 11400000, guid: b9d9d10d99c679f43aa931e6192a9114, type: 2}
   playerTurnEnterEvent: {fileID: 11400000, guid: c7ea739922fac8b48a603912a208af98, type: 2}
   playerTurnExitEvent: {fileID: 11400000, guid: 74a9d209f490a174d9899b88ba77234d, type: 2}
   enemyTurnEnterEvent: {fileID: 11400000, guid: e3bbc31977c14bb4494865e038c4ac9d, type: 2}
@@ -21168,6 +21171,7 @@ MonoBehaviour:
   descriptionText: {fileID: 1704059877}
   costText: {fileID: 1901817251}
   moveText: {fileID: 0}
+  guiEventChannel: {fileID: 0}
 --- !u!114 &1823485647
 MonoBehaviour:
   m_ObjectHideFlags: 0

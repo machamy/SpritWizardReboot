@@ -26,23 +26,23 @@ public class NodePlanner : MonoBehaviour
     /// <summary>
     /// 일주일치 시드 반환
     /// </summary>
-    public Queue<Queue<SeedType>> GetWeekSeed()
+    public List<List<SeedType>> GetWeekSeed()
     {
-        Queue<SeedType>[] weekSeed = new Queue<SeedType>[7];
-        for (int i = 0; i < weekSeed.Length; i++)
+        List<List<SeedType>> weekSeed = new List<List<SeedType>>();
+        for (int i = 0; i < 7; i++)
         {
-            weekSeed[i] = new Queue<SeedType>();
+            weekSeed.Add(new List<SeedType>());
         }
 
         int ran = 2; // 난수 저장용 변수
 
         // 월요일
-        weekSeed[0].Enqueue(SeedType.normal); // 노말 1개
+        weekSeed[0].Add(SeedType.normal); // 노말 1개
 
         // 화요일
         for (int i = 0; i < Random.Range(1, 3); i++) // 노말 1개 + 50% 확률로 하드 1개
         {
-            weekSeed[1].Enqueue((SeedType)(i+1));
+            weekSeed[1].Add((SeedType)(i+1));
         }
 
         // 수, 목, 금, 토요일
@@ -143,13 +143,13 @@ public class NodePlanner : MonoBehaviour
 
         for (int i = 0; i < nodeCnt.Count; i++)
         {
-            weekSeed[i + 2] = new Queue<SeedType>(seeds[i]);
+            weekSeed[i + 2] = seeds[i];
         }
 
         // 일요일
-        weekSeed[6].Enqueue(SeedType.boss);
+        weekSeed[6].Add(SeedType.boss);
 
-        return new Queue<Queue<SeedType>>(weekSeed);
+        return weekSeed;
     }
     
     /// <summary>

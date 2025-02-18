@@ -2,8 +2,8 @@ using EventChannel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RewardManager : MonoBehaviour
 {
@@ -126,7 +126,10 @@ public class RewardManager : MonoBehaviour
     {
         currentCardType = cardType;
         Rarity rarity = Database.AllAddCardWeight[currentSeed].GetRandomChoice();
-        ShowCardList(Database.AllCardMetas.Where(e => e.cardType == cardType && e.rarity == rarity).ToList());
+        List<CardMetaData> cards = Database.AllCardMetas.Where(e => e.cardType == cardType && e.rarity == rarity).ToList();
+        int[] index = GetRandomIndex(cards.Count);
+
+        ShowCardList(index.Select(i => cards[i]).ToList());
     }
 
     /// <summary>
@@ -171,5 +174,24 @@ public class RewardManager : MonoBehaviour
         Debug.Log("카드강화" + cardMeta.cardKoreanName);
         DestroyCard(cardMeta);
         AddCard(Database.AllSmithedCardMetas.Where(e => e.isSmithed && e.cardId == cardMeta.cardId).ToList()[0]);
+    }
+
+    private int[] GetRandomIndex(int cnt)
+    {
+        int[] index = new int[3];
+
+        int i = 0;
+        while (i < 3)
+        {
+            int t = Random.Range(0, cnt);
+            if (Array.Exists<int>(index, e => e == t))
+            {
+                continue;
+            }
+
+            index[i++] = t;
+        }
+
+        return index;
     }
 }
