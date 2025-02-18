@@ -84,6 +84,20 @@ public class CardData : ICloneable
         return false;
     }
     
+    public List<Tile> GetCastableTiles(Vector2Int start, RuneEffectHolder runeEffectHolder)
+    {
+        Board board = BattleManager.Instance.Board;
+        int moveCnt = move + runeEffectHolder.GetRuneEffect(Define.RuneEffectType.MoveCnt);
+        List<Tile> res = new List<Tile>();
+        res.Add(board.GetTile(start));
+        Debug.Log($"start : {start} moveCnt : {moveCnt}");
+        for(Direction dir = Direction.R; dir < Direction.MAX; dir++)
+        {
+            res.AddRange(board.GetTilesLine(start, dir, moveCnt,false));
+        }
+        return res;
+    }
+    
 
     public List<Tile> GetTargetTiles(Vector2Int castPosition, RuneEffectHolder runeEffectHolder)
     {

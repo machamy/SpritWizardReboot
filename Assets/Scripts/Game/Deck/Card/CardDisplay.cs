@@ -5,6 +5,7 @@ using DG.Tweening;
 using EventChannel;
 using Game;
 using Game.Entity;
+using Game.Player;
 using Game.World;
 using UnityEngine;
 using TMPro;
@@ -283,6 +284,11 @@ public class CardDisplay : MonoBehaviour
         switch (cardObject.CardMetaData.cardType)
         {
             case CardType.Attack:
+                Slime slime = cardObject.CardMetaData.cardData.GetSkillCaster();
+                Entity entity = slime.GetComponent<Entity>();
+                UnfocusTargetTiles();
+                targetTiles = ShowAttackTargetTiles(entity.Coordinate);
+                targetTiles.AddRange(ShowMovableTargetTiles(entity.Coordinate));
                 break;
             case CardType.Rune:
                 RuneEffectHolder runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
@@ -296,6 +302,7 @@ public class CardDisplay : MonoBehaviour
         switch (cardObject.CardMetaData.cardType)
         {
             case CardType.Attack:
+                UnfocusTargetTiles();
                 break;
             case CardType.Rune:
                 RuneEffectHolder runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
@@ -308,6 +315,7 @@ public class CardDisplay : MonoBehaviour
     {
         if(cardSelect.IsUsed)
             return;
+        UnfocusTargetTiles();
         transform.DOScale(dragScale, dragScaleDuration);
         image.DOFade(0.4f, dragScaleDuration);
     }
@@ -367,15 +375,12 @@ public class CardDisplay : MonoBehaviour
             var runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
             if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, tile.Coordinates, runeEffectHolder))
             {
-                targetTiles = meta.cardData.GetTargetTiles(tile.Coordinates, runeEffectHolder);
-                foreach (var t in targetTiles)
-                {
-                    t.Focus(setting.tileFocusTargetColor, Tile.FocusState.Target);
-                }
+                targetTiles = ShowAttackTargetTiles(tile.Coordinates);
                 tile.Focus(setting.tileFocusOkColor, Tile.FocusState.MoveOk);
             }
             else
             {
+                targetTiles = ShowMovableTargetTiles(slime.GetComponent<Entity>().Coordinate);
                 tile.Focus(setting.tileFocusNoColor, Tile.FocusState.Error);
             }
         }
@@ -395,6 +400,34 @@ public class CardDisplay : MonoBehaviour
         {
             t.Unfocus();
         }
+    }
+    
+    private List<Tile> ShowMovableTargetTiles(Vector2Int targetPos)
+    {
+        var meta = cardObject.CardMetaData;
+        var runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
+        var res = meta.cardData.GetCastableTiles(targetPos, runeEffectHolder);
+        foreach (var t in res)
+        {
+            t.Focus(setting.tileFocusCastableColor, Tile.FocusState.Target);
+        }
+        return res;
+    }
+    
+    private List<Tile> ShowAttackTargetTiles(Vector2Int targetPos)
+    {
+        var meta = cardObject.CardMetaData;
+        // var slime = meta.cardData.GetSkillCaster();
+        var runeEffectHolder = CardCastManager.Instance.RuneEffectHolder;
+        // if(meta.cardData.CanCastTo(slime.GetComponent<Entity>().Coordinate, targetPos, runeEffectHolder))
+
+        var res = meta.cardData.GetTargetTiles(targetPos, runeEffectHolder);
+        foreach (var t in res)
+        {
+            t.Focus(setting.tileFocusTargetColor, Tile.FocusState.Target);
+        }
+        
+        return res;
     }
     
     

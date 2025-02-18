@@ -160,11 +160,15 @@ public class Board : MonoBehaviour
           return tiles;
      }
 
-     public List<Tile> GetTilesLine(Vector2Int start, Direction direction,int distance)
+     public List<Tile> GetTilesLine(Vector2Int start, Direction direction,int distance,bool cotainStart = true)
      {
           List<Tile> tiles = new List<Tile>();
           Vector2Int dir = direction.ToVectorInt();
-          for (int i = 0; i < distance; i++)
+          if (cotainStart)
+          {
+               tiles.Add(_tilemap[start.y][start.x]);
+          }
+          for (int i = 1; i < distance; i++)
           {
                Vector2Int pos = start + dir * i;
                if (pos.x < 0 || pos.x >= gridSize.x || pos.y < 0 || pos.y >= gridSize.y)

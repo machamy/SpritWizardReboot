@@ -41,7 +41,8 @@ public class CardSettingSO : ScriptableObject
     [Tooltip("사용시, 사라지는 시간")]public float decayDuration = 0.5f;
 
     [Header("Tile Highlight")]
-   public Color tileFocusOkColor = new Color(0.4f, 1f, 0f, 0.6f);
+    public Color tileFocusOkColor = new Color(0.4f, 1f, 0f, 0.6f);
     public Color tileFocusNoColor = new Color(1f, 0f, 0f, 0.6f);
     public Color tileFocusTargetColor = new Color(1f, 1f, 0f, 0.6f);
+    public Color tileFocusCastableColor = new Color(0f, 0.86f, 1f, 0.6f);
 }
