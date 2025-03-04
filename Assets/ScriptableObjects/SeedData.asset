@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf06183c9820a4d4599fda700e465dea, type: 3}
   m_Name: SeedData
   m_EditorClassIdentifier: 
-  weekIdx: 7
-  dayIdx: 0
+  weekIdx: 0
+  dayIdx: 6
+  seedIdx: 1

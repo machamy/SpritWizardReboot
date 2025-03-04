@@ -5,16 +5,19 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "SeedData", menuName = "SeedDataSO")]
 public class SeedDataSO : ScriptableObject
 {
-    public List<List<SeedType>> weekSeedData;
+    public List<List<List<SeedType>>> SeedData;
+    public List<List<SeedType>> WeekSeed => SeedData[weekIdx];
 
     public int weekIdx;
     public int dayIdx;
+    public int seedIdx;
 
     public void ResetData()
     {
-        weekSeedData = new List<List<SeedType>>();
+        SeedData = new List<List<List<SeedType>>>();
         weekIdx = 0;
         dayIdx = 0;
+        seedIdx = 0;
 
         Debug.Log("시드 데이터 제거 완료");
     }
@@ -26,9 +29,10 @@ public class SeedDataSO : ScriptableObject
     {
         return new SerializableSeedData
         {
-            weekSeedData = new List<List<SeedType>>(weekSeedData),
+            SeedData = new List<List<List<SeedType>>>(SeedData),
             weekIdx = weekIdx,
-            dayIdx = dayIdx
+            dayIdx = dayIdx,
+            seedIdx = seedIdx
         };
 
     }
@@ -38,9 +42,10 @@ public class SeedDataSO : ScriptableObject
     /// </summary>
     public void LoadSeedDataFromList(SerializableSeedData seedListData)
     {
-        weekSeedData = seedListData.weekSeedData;
+        SeedData = seedListData.SeedData;
         weekIdx = seedListData.weekIdx;
         dayIdx = seedListData.dayIdx;
+        seedIdx = seedListData.seedIdx;
     }
 }
 
@@ -48,9 +53,10 @@ public class SeedDataSO : ScriptableObject
 [System.Serializable]
 public class SerializableSeedData
 {
-    public List<List<SeedType>> weekSeedData;
+    public List<List<List<SeedType>>> SeedData;
     public int weekIdx;
     public int dayIdx;
+    public int seedIdx;
 }
 #if UNITY_EDITOR //TODO : Editor 디렉토리로 이동
 [CustomEditor(typeof(SeedDataSO))]
